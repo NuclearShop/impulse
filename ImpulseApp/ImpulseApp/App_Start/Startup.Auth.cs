@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using ImpulseApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Owin;
@@ -10,6 +12,7 @@ namespace ImpulseApp
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
         {
+          
             // Enable the application to use a cookie to store information for the signed in user
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -18,8 +21,8 @@ namespace ImpulseApp
             });
             // Use a cookie to temporarily store information about a user logging in with a third party login provider
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
-            int a = 0;
 
+            ConfigureRoles(app);
             // Uncomment the following lines to enable logging in with third party login providers
             //app.UseMicrosoftAccountAuthentication(
             //    clientId: "",
@@ -34,6 +37,20 @@ namespace ImpulseApp
             //   appSecret: "");
 
             //app.UseGoogleAuthentication();
+        }
+
+        private void ConfigureRoles(IAppBuilder app)
+        {
+  
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>());
+            if(!roleManager.RoleExists("Administrators"))
+            {
+                roleManager.Create(new IdentityRole("Administrators"));
+                roleManager.Create(new IdentityRole("Users"));
+                roleManager.Create(new IdentityRole("ExtendedUsers"));
+                roleManager.Create(new IdentityRole("Moderators"));
+            }
+            
         }
     }
 }
