@@ -190,7 +190,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminFrontController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserFrontController.cs" />
+    <Compile Include="Filters\RestApiAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,11 +201,17 @@
     <Compile Include="Migrations\201409201823319_indenttityupgrade.Designer.cs">
       <DependentUpon>201409201823319_indenttityupgrade.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409210922504_add_AdModel.cs" />
+    <Compile Include="Migrations\201409210922504_add_AdModel.Designer.cs">
+      <DependentUpon>201409210922504_add_AdModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\AdModels\SimpleAdModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilites\Generator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-ImpulseApp-20140917091404.mdf" />
@@ -263,8 +272,10 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserFront\CreateTestStub.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\AdminFront\" />
     <Folder Include="Views\Dummy\" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +285,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201409201823319_indenttityupgrade.resx">
       <DependentUpon>201409201823319_indenttityupgrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409210922504_add_AdModel.resx">
+      <DependentUpon>201409210922504_add_AdModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

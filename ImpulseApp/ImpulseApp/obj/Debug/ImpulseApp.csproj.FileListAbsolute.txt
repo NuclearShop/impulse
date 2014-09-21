@@ -59,3 +59,6 @@ E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\Microsoft.Owin.Security.Microso
 E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.csprojResolveAssemblyReference.cache
 E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.dll
 E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.pdb
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.Migrations.indenttityupgrade.resources
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.csproj.GenerateResource.Cache
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.Migrations.add_AdModel.resources

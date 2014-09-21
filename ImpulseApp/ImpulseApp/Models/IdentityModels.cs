@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
 
 namespace ImpulseApp.Models
 {
@@ -10,8 +11,10 @@ namespace ImpulseApp.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
+            
         }
+        public DbSet<AdModels.SimpleAdModel> SimpleAds{get; set;}
     }
 }
