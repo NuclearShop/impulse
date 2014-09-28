@@ -191,6 +191,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminFrontController.cs" />
+    <Compile Include="Controllers\AdOutboundController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserFrontController.cs" />
     <Compile Include="Filters\RestApiAttribute.cs" />
@@ -273,6 +274,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserFront\CreateTestStub.cshtml" />
+    <Content Include="Views\AdOutbound\OutboundHtml.cshtml" />
+    <Content Include="Views\UserFront\CreateResponse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AdminFront\" />

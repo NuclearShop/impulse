@@ -11,9 +11,10 @@ namespace ImpulseApp.Utilites
         public static string GenerateShortAdUrl(int length = 5)
         {
             StringBuilder s = new StringBuilder(length);
+            Random r = new Random(DateTime.Now.Millisecond);
             for (int i = 0; i<length; i++)
             {
-                Random r = new Random();
+                
                 s.Append(r.Next(0, 10));
             }
             return s.ToString();

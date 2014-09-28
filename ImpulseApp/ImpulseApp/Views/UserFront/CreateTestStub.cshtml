@@ -17,6 +17,14 @@
         var xmlhttp = new XMLHttpRequest();
         xmlhttp.open("POST", "http://localhost:56596/UserFront/CreateExecuting", true);
         xmlhttp.send(xml);
+        xmlhttp.onreadystatechange = function (result) {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var locstring = result.target.response;
+                var loc = JSON.parse(locstring);
+
+                location.href = loc.redirectToUrl;
+            }
+        }
     }
 </script>
 

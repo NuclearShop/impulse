@@ -27,32 +27,25 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
-        [Route("/UserFront/Create")]
+        [Route("UserFront/Create")]
         public ActionResult CreateTestStub()
         {
             return View();
         }
         [RestApiAttribute]
         [HttpPost]
-        public ActionResult CreateExecuting(string xmlMessage)
+        public JsonResult CreateExecuting(string xmlMessage)
         {
-
-
             XDocument xmlModel = XDocument.Parse(xmlMessage);
-
             SimpleAdModel mvcAdModel = new SimpleAdModel();
-
             mvcAdModel.HtmlSource = xmlModel.DescendantNodes().Single(el => el.NodeType == XmlNodeType.CDATA).Parent.Value.Trim();
-
             context.SimpleAds.Add(mvcAdModel);
-
             context.SaveChangesAsync();
-
-            return RedirectToAction("CreateResponse", new { id = mvcAdModel.Id});
+            return Json(new { redirectToUrl = Url.Action("CreateResponse", new { id = mvcAdModel.ShortUrlKey }) });
         }
-        public ActionResult CreateResponse()
+        public ActionResult CreateResponse(int id)
         {
-            return View();
+            return View(id);
         }
 	}
 }
