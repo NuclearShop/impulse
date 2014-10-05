@@ -16,6 +16,7 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
+
         public ActionResult OutboundHtml(string shorturl)
         {
             string htmlRow = "Error when loading";
