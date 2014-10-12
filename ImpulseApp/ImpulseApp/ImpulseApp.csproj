@@ -208,6 +208,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdModels\ViewInfoModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AdModels\SimpleAdModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
