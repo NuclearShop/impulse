@@ -1,2 +1,2 @@
 ﻿@model string
-@Html.Raw(Model)
+@Html.Raw(HttpUtility.HtmlDecode(Model))

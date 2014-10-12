@@ -38,7 +38,9 @@ namespace ImpulseApp.Controllers
         {
             XDocument xmlModel = XDocument.Parse(xmlMessage);
             SimpleAdModel mvcAdModel = new SimpleAdModel();
-            mvcAdModel.HtmlSource = xmlModel.DescendantNodes().Single(el => el.NodeType == XmlNodeType.CDATA).Parent.Value.Trim();
+            var elems = xmlModel.Root.Elements();
+            var body = elems.Single(el => el.Name.LocalName.Equals("body"));
+            mvcAdModel.HtmlSource = body.Value.Trim();
             context.SimpleAds.Add(mvcAdModel);
             context.SaveChangesAsync();
             return Json(new { redirectToUrl = Url.Action("CreateResponse", new { id = mvcAdModel.ShortUrlKey }) });

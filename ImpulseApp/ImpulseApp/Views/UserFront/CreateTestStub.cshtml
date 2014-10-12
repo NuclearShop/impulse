@@ -1,34 +1,23 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "CreateTestStub";
 }
 
 <h2>CreateTestStub</h2>
-
-<script>
-    function send() {
-        var xml = '' +
-    '<?xml version=\'1.0\' encoding=\'UTF-8\'?>' +
-    '<ad>' +
-    '<body>' +
-    '<![CDATA[This is an <b>AD MESSAGE</b>]]>'+
-        '</body></ad>';
-
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:56596/UserFront/CreateExecuting", true);
-        xmlhttp.send(xml);
-        xmlhttp.onreadystatechange = function (result) {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                var locstring = result.target.response;
-                var loc = JSON.parse(locstring);
-
-                location.href = loc.redirectToUrl;
-            }
-        }
-    }
-</script>
-
-<div>
-
+<div id="adBody">
+    This is An AD
+    <a class="link" href="http://ya.ru">Ссылка</a>
+    <button class="button">Кнопка</button>
 </div>
-<button onclick="send()">SendXML</button>
+<button id="sendButton">SendXML</button>
+
+@section scripts {
+    <script src="~/Scripts/sendXml.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#sendButton").click(function () {
+                send($("#adBody").html());
+            })
+        })
+    </script>
+}
