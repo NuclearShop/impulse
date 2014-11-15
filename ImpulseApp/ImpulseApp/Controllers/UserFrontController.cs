@@ -9,6 +9,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Xml;
 using System.Xml.Linq;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using ImpulseApp.Models.StatModels;
 
 namespace ImpulseApp.Controllers
 {
@@ -49,5 +53,19 @@ namespace ImpulseApp.Controllers
         {
             return View(id);
         }
+
+        public ActionResult StatisticsIndex()
+        {
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            string id = User.Identity.GetUserId();
+            var ads = context.SimpleAds.Where(a => a.UserId.Equals(id));
+            return View(ads);
+        }
+        public ActionResult Statistics(int adId = 0)
+        {
+            return View(adId);
+        }
+
+        
 	}
 }

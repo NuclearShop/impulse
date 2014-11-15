@@ -1,4 +1,7 @@
 ﻿using ImpulseApp.Models;
+using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.ComplexViewModels;
+using ImpulseApp.Models.StatModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,13 +23,23 @@ namespace ImpulseApp.Controllers
         public ActionResult OutboundHtml(string shorturl)
         {
             string htmlRow = "Error when loading";
+            SimpleAdModel model = null;
             try {
-                htmlRow = context.SimpleAds.First(a => a.ShortUrlKey.Equals(shorturl)).HtmlSource;
+                model = context.SimpleAds.First(a => a.ShortUrlKey.Equals(shorturl));
+                htmlRow = model.HtmlSource;
             }
             catch (Exception ex)
             {}
-            
-            return PartialView("OutboundHtml",htmlRow);
+
+            AdOutboundModel aom = new AdOutboundModel
+            {
+                Session = new AdSession
+                {
+                    AdId = model.Id,
+                },
+                htmlString = htmlRow
+            };
+            return PartialView("OutboundHtml",aom);
         }
 	}
 }

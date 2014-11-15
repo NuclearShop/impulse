@@ -1,2 +1,84 @@
-﻿@model string
-@Html.Raw(HttpUtility.HtmlDecode(Model))
+﻿@model ImpulseApp.Models.ComplexViewModels.AdOutboundModel
+@Scripts.Render("~/bundles/outboundjs")
+<div class="impls-ad" data-bind="event: { mouseenter: startActivity, mouseleave: stopActivity}">
+    @Html.Raw(HttpUtility.HtmlDecode(Model.htmlString))
+</div>
+<script type="text/javascript">
+
+    var Click = function(){ }
+    Click.prototype = {
+        ClickZone:'',
+        ClickTime: new Date(),
+        ClickType: 0
+    }
+
+    var Activity = function () { }
+    Activity.prototype = {
+        StartTime: new Date(),
+        EndTime: new Date(),
+        Clicks: new Array()
+    }
+    var CommonModel = function () { }
+    CommonModel.prototype = {
+        CurrentActivity: new Activity(),
+        Activities: new Array(),
+        AdId:0,
+        AdTimeStart: new Date(),
+        AdTimeEnd: new Date()
+    }
+
+
+    $(document).ready(function () {
+
+
+        var statModel = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model))
+        statModel.DateTimeStart = new Date();
+        var jsModel = new CommonModel();
+        jsModel.Activities = new Array();
+        jsModel.CurrentActivity = new Activity();
+        jsModel.AdId = statModel.Session.AdId;
+        jsModel.AdTimeStart = new Date();
+        jsModel.AdTimeEnd = new Date();
+        $("button").attr("data-role", "clickable");
+        
+
+        $("[data-role='clickable']").click(function () {
+            if(jsModel.CurrentActivity!=null) {
+                var click = new Click();
+                click.ClickTime = new Date();
+                click.ClickZone = $(this).parent().class;
+                click.ClickType = 0;
+                jsModel.CurrentActivity.Clicks[jsModel.CurrentActivity.Clicks.length] = click;
+            }
+            
+        });
+        $(".impls-ad").mouseenter(function () {
+            var act = new Activity();
+            act.StartTime = new Date();
+            act.Clicks = new Array();
+            jsModel.CurrentActivity = act;
+        })
+        $(".impls-ad").mouseleave(function () {
+            if (jsModel.CurrentActivity != null) {
+                jsModel.CurrentActivity.EndTime = new Date();
+                jsModel.Activities[jsModel.Activities.length] = jsModel.CurrentActivity;
+                jsModel.CurrentActivity = null;
+            }
+        })
+        window.onbeforeunload = function () {
+            jsModel.AdTimeEnd = new Date();
+            var jsonModel = JSON.stringify(jsModel);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "http://localhost:56596/Statistic/SaveSession", true);
+            xmlhttp.send(jsonModel);
+            xmlhttp.onreadystatechange = function (result) {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    
+                }
+            }
+        }
+    });
+
+</script>
+
+

@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using ImpulseApp.Utilites;
+using ImpulseApp.Models.StatModels;
 
 namespace ImpulseApp.Models.AdModels
 {
@@ -17,6 +18,7 @@ namespace ImpulseApp.Models.AdModels
             ShortUrlKey = Generator.GenerateShortAdUrl();
             this.DateTime = DateTime.Now;
             UserId = HttpContext.Current.User.Identity.GetUserId();
+            this.AdSessions = new HashSet<AdSession>();
         }
         [Key]
         public int Id { get; set; }
@@ -26,12 +28,15 @@ namespace ImpulseApp.Models.AdModels
         [AllowHtml]
         public string HtmlSource { get; set; }
 
-        public string UserId { get; set; }
+        public virtual string UserId { get; set; }
 
         public DateTime DateTime { get; set; }
 
         [ForeignKey("UserId")]
-        public ApplicationUser ApplicationUser { get; set; } 
+        public virtual ApplicationUser ApplicationUser { get; set; }
+
+
+        public virtual ICollection<AdSession> AdSessions { get; set; }
         
     }
 }

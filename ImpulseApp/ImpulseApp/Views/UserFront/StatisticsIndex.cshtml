@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ImpulseApp.Models.AdModels.SimpleAdModel>
+@{
+    ViewBag.Title = "StatisticsIndex";
+}
+
+<h2>StatisticsIndex</h2>
+
+Choose Ad
+<ul>
+    @foreach (var ad in Model)
+    {
+        <li>@Html.ActionLink(ad.ShortUrlKey + "-" + ad.DateTime, "Statistics", new { AdId = ad.Id})</li>
+    }
+</ul>
