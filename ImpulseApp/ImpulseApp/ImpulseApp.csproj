@@ -224,9 +224,9 @@
     <Compile Include="Migrations\201411051235355_migr10.Designer.cs">
       <DependentUpon>201411051235355_migr10.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201411061423163_migr_stats2.cs" />
-    <Compile Include="Migrations\201411061423163_migr_stats2.Designer.cs">
-      <DependentUpon>201411061423163_migr_stats2.cs</DependentUpon>
+    <Compile Include="Migrations\201411180940354_adModelName.cs" />
+    <Compile Include="Migrations\201411180940354_adModelName.Designer.cs">
+      <DependentUpon>201411180940354_adModelName.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,6 +284,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\sendXml.js" />
+    <Content Include="Scripts\StatisticsClicksJS.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\underscore.string.js" />
@@ -317,14 +318,14 @@
     <Content Include="Views\AdOutbound\OutboundHtml.cshtml" />
     <Content Include="Views\UserFront\CreateResponse.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
-    <Content Include="Views\UserFront\Statistics.cshtml" />
+    <Content Include="Views\UserFront\StatisticsClicks.cshtml" />
     <Content Include="Views\UserFront\StatisticsIndex.cshtml" />
     <Content Include="Views\Additional\GetCurrentUserAds.cshtml" />
+    <Content Include="Views\Statistic\DetailedStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AdminFront\" />
     <Folder Include="Views\Dummy\" />
-    <Folder Include="Views\Statistic\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -346,8 +347,8 @@
     <EmbeddedResource Include="Migrations\201411051235355_migr10.resx">
       <DependentUpon>201411051235355_migr10.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201411061423163_migr_stats2.resx">
-      <DependentUpon>201411061423163_migr_stats2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201411180940354_adModelName.resx">
+      <DependentUpon>201411180940354_adModelName.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

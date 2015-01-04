@@ -7,13 +7,13 @@ namespace ImpulseApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class migr_stats2 : IMigrationMetadata
+    public sealed partial class adModelName : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(migr_stats2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(adModelName));
         
         string IMigrationMetadata.Id
         {
-            get { return "201411061423163_migr_stats2"; }
+            get { return "201411180940354_adModelName"; }
         }
         
         string IMigrationMetadata.Source

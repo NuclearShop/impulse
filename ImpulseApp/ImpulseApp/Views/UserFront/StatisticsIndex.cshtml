@@ -7,8 +7,5 @@
 
 Choose Ad
 <ul>
-    @foreach (var ad in Model)
-    {
-        <li>@Html.ActionLink(ad.ShortUrlKey + "-" + ad.DateTime, "Statistics", new { AdId = ad.Id})</li>
-    }
+    <li>@Html.ActionLink("Статистика по кликам", "StatisticsClicks")</li>
 </ul>

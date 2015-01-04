@@ -1,4 +1,5 @@
-﻿using ImpulseApp.Models.StatModels;
+﻿using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.StatModels;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 
@@ -16,7 +17,7 @@ namespace ImpulseApp.Models
         {
             
         }
-        public DbSet<AdModels.SimpleAdModel> SimpleAds{get; set;}
+        public DbSet<SimpleAdModel> SimpleAds{get; set;}
         public DbSet<Click> ClickStats { get; set; }
         public DbSet<AdSession> Sessions { get; set; }
         public DbSet<Activity> Activity { get; set; }

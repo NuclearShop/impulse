@@ -23,6 +23,8 @@ namespace ImpulseApp.Models.AdModels
         [Key]
         public int Id { get; set; }
 
+        public String Name { get; set; }
+
         public string ShortUrlKey { get; set; } 
 
         [AllowHtml]

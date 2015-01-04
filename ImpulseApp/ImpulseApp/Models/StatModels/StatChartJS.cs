@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ImpulseApp.Models.AdModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,8 @@ namespace ImpulseApp.Models.StatModels
         }
         public List<String> labels { get; set; }
         public List<String> data { get; set; }
+        public String name { get; set; }
+        public String color { get; set; }
     }
 
     public class CompareChartModel
@@ -23,5 +26,12 @@ namespace ImpulseApp.Models.StatModels
             charts = new List<StatChartJS>();
         }
         public List<StatChartJS> charts { get; set; }
+    }
+
+    public class DetailedStatisticsModel
+    {
+        public DetailedStatisticsModel()
+        { }
+        
     }
 }

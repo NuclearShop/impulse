@@ -91,7 +91,11 @@ namespace ImpulseApp.Controllers
             int interval = 1, bool isMinificate = false)
         {
             List<SimpleAdModel> ads = new List<SimpleAdModel>();
-            
+
+            if(AdIds==null || AdIds.Count == 0)
+            {
+                return Json(new CompareChartModel());
+            }
             foreach (int adId in AdIds)
             {
                 var ad = context.SimpleAds.SingleOrDefault(a => a.Id == adId);
@@ -115,6 +119,7 @@ namespace ImpulseApp.Controllers
                         }
                     }
                     model.data.Add(clickNum.ToString());
+                    model.name = ad.Name;
                 }
                 chart.charts.Add(model);
             }
@@ -142,11 +147,19 @@ namespace ImpulseApp.Controllers
                 foreach(var ad in ads)
                 {
                     StatChartJS model = new StatChartJS();
-                    for (DateTime curDate = startDate; curDate < endDate; curDate = curDate.AddDays(interval))
+                    for (DateTime curDate = startDate; curDate <= endDate; curDate = curDate.Date.AddDays(interval))
                     {
-                        DateTime estimate = curDate.AddDays(interval);
+                        DateTime estimate = curDate.Date.AddDays(interval);
                         model.labels.Add(curDate.ToShortDateString());
-                        var sessions = ad.AdSessions.Where(a => a.DateTimeStart.CompareTo(curDate) >= 0 && a.DateTimeStart.CompareTo(estimate) <= 0);
+                        List<AdSession> sessions = new List<AdSession>();
+                        foreach(var s in ad.AdSessions)
+                        {
+                               if(s.DateTimeStart.Date.CompareTo(curDate.Date)>=0 && s.DateTimeStart.CompareTo(estimate.Date) <= 0)
+                               {
+                                   sessions.Add(s);
+                               }
+                        }
+                        //var sessions = ad.AdSessions.Where(a => a.DateTimeStart.CompareTo(curDate) >= 0 && a.DateTimeStart.CompareTo(estimate) < 0);
                         if(sessions.Count()==0)
                         {
                             model.data.Add("0");
@@ -156,11 +169,28 @@ namespace ImpulseApp.Controllers
                             model.data.Add(sessions.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Count().ToString());
                         }
                     }
+                    model.name = ad.Name;
                     chart.charts.Add(model);
                 }
 
             }
+            
             return Json(chart);
+        }
+
+        public PartialViewResult DetailedStatistics(DateTime Date, List<int> AdIds)
+        {
+            var sessions = context.SimpleAds.Where(a => AdIds.Contains(a.Id)).SelectMany(b => b.AdSessions);
+            List<AdSession> sessionsFiltered = new List<AdSession>();
+            foreach(var session in sessions)
+            {
+                if(session.DateTimeStart.Date.Equals(Date.Date))
+                {
+                    sessionsFiltered.Add(session);
+                }
+                
+            }
+            return PartialView(sessionsFiltered);
         }
     }
 }

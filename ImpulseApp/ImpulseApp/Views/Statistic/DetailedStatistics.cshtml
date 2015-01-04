@@ -1,0 +1,26 @@
+﻿@model List<ImpulseApp.Models.StatModels.AdSession>
+
+<ul>
+    @foreach (var session in Model)
+    {
+        <li>
+            @session.DateTimeStart.ToShortDateString()
+            <ul>
+                @foreach (var activity in session.Activities)
+                {
+                    <li>
+                        @activity.StartTime.ToShortDateString()
+                        <ul>
+                            @foreach (var click in activity.Clicks)
+                            {
+                                <li>@click.ClickTime.ToShortDateString()</li>
+                            }
+                        </ul>
+                    </li>
+                }
+            </ul>
+        </li>
+
+
+    }
+</ul>

@@ -61,11 +61,11 @@ namespace ImpulseApp.Controllers
             var ads = context.SimpleAds.Where(a => a.UserId.Equals(id));
             return View(ads);
         }
-        public ActionResult Statistics(int adId = 0)
+        public ActionResult StatisticsClicks()
         {
-            return View(adId);
+            return View();
         }
 
-        
-	}
+
+    }
 }
