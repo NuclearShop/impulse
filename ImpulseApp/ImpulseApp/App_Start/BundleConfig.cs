@@ -32,7 +32,7 @@ namespace ImpulseApp
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
             bundles.Add(new ScriptBundle("~/bundles/outboundjs").Include(
-                    "~/Scripts/jquery-2.1.1.min.js"
+                    "~/Scripts/jquery-{version}.min.js"
                 ));
         }
     }

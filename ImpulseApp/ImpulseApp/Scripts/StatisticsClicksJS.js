@@ -2,7 +2,7 @@
 var removedDD = new Array();
 var AdIds = new Array();
 
-function reload() {
+function reload(chartType) {
     $("#canvasContainer").html("");
     $("#canvasContainer").html("<canvas id='graph1' width='800' height='400'></canvas>");
     var ctx = $("#graph1").get(0).getContext("2d");
@@ -45,15 +45,17 @@ function reload() {
                         data: chart.data
                     }
                 $("#statLegend").append(
-                        "<div id='" + chart.name + "'>" + chart.name + "<button class='dltBtn' id='dltBtn" + i + "' data-val='" + i + "'>Удалить</button></div>"
+                        "<div class='row' id='" + chart.name.toString().substr(8) + "'>" + chart.name + "<button class='dltBtn btn btn-warning btn-xs pull-right' id='dltBtn" + i + "' data-val='" + i + "'><i class='fa fa-times'></i></button></div>"
                     );
 
                 $("#dltBtn" + i).click(function () {
                     id = $(this).data("val");
                     chartColor = _.without(chartColor, chartColor[id].toString());
                     $("#Ads").append("<option value='" + AdIds[id] + "'>" + removedDD[AdIds[id].toString()] + "</option>");
-                    AdIds = _.without(AdIds, AdIds[id].toString())
-                    reload(AdIds);
+                    AdIds = _.without(AdIds, AdIds[id].toString());
+                    $("#Ads").show();
+                    $("#addAd").show();
+                    reload(chartType);
                 });
                 if ($('.dltBtn').length === 1) {
                     $('.dltBtn').hide();
@@ -65,16 +67,24 @@ function reload() {
                     $('#minificated').hide();
                     $('#minificate').prop("checked", false);
                 }
-                $("#" + chart.name).css({
-                    "border-style": "solid",
-                    "border-color": chartColor[i] + ",1)"
+                $("#" + chart.name.toString().substr(8)).css({
+                    "border-radius": "5px",
+                    "background-color": chartColor[i] + ",0.5)"
                 })
                 i++;
             });
-            var ch = new Chart(ctx).Line(data, {
-                bezierCurve: true,
+            var ch;
+            if (chartType === "Line") {
+                ch = new Chart(ctx).Line(data, {
+                    bezierCurve: true,
 
-            });
+                });
+            } else if (chartType === "Radar") {
+                ch = new Chart(ctx).Radar(data);
+            }
+            else if (chartType === "Bar") {
+                ch = new Chart(ctx).Bar(data);
+            }
             $("#graph1").click(function (evt) {
                 var activePoints = ch.getPointsAtEvent(evt);
                 var date = activePoints[0].label;
@@ -99,18 +109,22 @@ function loadStatistics(date, list) {
         }
     });
 }
-$(document).ready(function () {
 
+var init = function (chartType) {
     $("#addAd").click(function () {
         AdIds[AdIds.length] = $("#Ads option:selected").val();
         var selector = "#Ads option[value='" + AdIds[AdIds.length - 1] + "']";
         removedDD[AdIds[AdIds.length - 1].toString()] = $(selector).html();
         $(selector).remove();
         AdIds = _.uniq(AdIds, false);
-        reload();
+        if ($("#Ads option").size() == 0) {
+            $("#addAd").hide();
+            $("#Ads").hide();
+        }
+        reload(chartType);
     });
 
     $("#minificate").click(function () {
-        reload();
+        reload(chartType);
     });
-})
+}

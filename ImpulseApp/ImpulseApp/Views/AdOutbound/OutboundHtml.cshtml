@@ -1,5 +1,6 @@
 ﻿@model ImpulseApp.Models.ComplexViewModels.AdOutboundModel
 @Scripts.Render("~/bundles/outboundjs")
+<script src="~/Scripts/jquery-2.1.3.min.js"></script>
 <div class="impls-ad" data-bind="event: { mouseenter: startActivity, mouseleave: stopActivity}">
     @Html.Raw(HttpUtility.HtmlDecode(Model.htmlString))
 </div>

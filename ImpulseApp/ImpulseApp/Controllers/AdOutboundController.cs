@@ -12,7 +12,7 @@ namespace ImpulseApp.Controllers
 {
     public class AdOutboundController : Controller
     {
-        ApplicationDbContext context = new ApplicationDbContext();
+        DBService.IDBService service = new DBService.DBServiceClient();
         //
         // GET: /AdOutbound/
         public ActionResult Index()
@@ -25,7 +25,7 @@ namespace ImpulseApp.Controllers
             string htmlRow = "Error when loading";
             SimpleAdModel model = null;
             try {
-                model = context.SimpleAds.First(a => a.ShortUrlKey.Equals(shorturl));
+                model = service.GetAdByUrl(shorturl);
                 htmlRow = model.HtmlSource;
             }
             catch (Exception ex)

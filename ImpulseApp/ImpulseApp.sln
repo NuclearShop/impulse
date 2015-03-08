@@ -4,17 +4,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp", "ImpulseApp\ImpulseApp.csproj", "{9E63E90F-B2BF-4543-9679-A83DEF47A675}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
+		{4966464E-D0D4-47B5-A4DD-5C1A65995888} = {4966464E-D0D4-47B5-A4DD-5C1A65995888}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Tests", "ImpulseApp.Tests\ImpulseApp.Tests.csproj", "{765B5D45-8DF2-426D-B27C-E6D98BFDC838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.WCF", "ImpulseAppWCF\ImpulseApp.WCF.csproj", "{F671A520-B6F6-4664-AECD-E1643F74BEE9}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E} = {B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Schemas", "ImpulseApp.Schemas\ImpulseApp.Schemas.csproj", "{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.WCF.Database", "ImpulseApp.WCF.Database\ImpulseApp.WCF.Database.csproj", "{90C88039-8B86-480D-9633-64DB40C0C7D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Models", "ImpulseApp.Models\ImpulseApp.Models.csproj", "{6EC98B93-098A-4A4A-83CB-C8F07A0747F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Database", "ImpulseApp.Database\ImpulseApp.Database.csproj", "{5CC74536-26AC-43E7-A5FE-DAD08F064EED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6EC98B93-098A-4A4A-83CB-C8F07A0747F3} = {6EC98B93-098A-4A4A-83CB-C8F07A0747F3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Outbound", "ImpulseApp.Outbound\ImpulseApp.Outbound.csproj", "{55CDBABD-42CC-4B70-B65B-75140899FE39}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.CreationService", "ImpulseApp.CreationService\ImpulseApp.CreationService.csproj", "{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubMethods", "StubMethods\StubMethods.csproj", "{4966464E-D0D4-47B5-A4DD-5C1A65995888}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,18 +46,30 @@ Global
 		{765B5D45-8DF2-426D-B27C-E6D98BFDC838}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{765B5D45-8DF2-426D-B27C-E6D98BFDC838}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{765B5D45-8DF2-426D-B27C-E6D98BFDC838}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F671A520-B6F6-4664-AECD-E1643F74BEE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F671A520-B6F6-4664-AECD-E1643F74BEE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F671A520-B6F6-4664-AECD-E1643F74BEE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F671A520-B6F6-4664-AECD-E1643F74BEE9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B02A0B04-26FE-4557-9BAE-1F2FA0205F8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{90C88039-8B86-480D-9633-64DB40C0C7D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{90C88039-8B86-480D-9633-64DB40C0C7D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{90C88039-8B86-480D-9633-64DB40C0C7D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{90C88039-8B86-480D-9633-64DB40C0C7D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EC98B93-098A-4A4A-83CB-C8F07A0747F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC98B93-098A-4A4A-83CB-C8F07A0747F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC98B93-098A-4A4A-83CB-C8F07A0747F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC98B93-098A-4A4A-83CB-C8F07A0747F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CC74536-26AC-43E7-A5FE-DAD08F064EED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

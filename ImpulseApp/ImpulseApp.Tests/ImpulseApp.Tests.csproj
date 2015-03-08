@@ -90,6 +90,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImpulseApp.Models\ImpulseApp.Models.csproj">
+      <Project>{6ec98b93-098a-4a4a-83cb-c8f07a0747f3}</Project>
+      <Name>ImpulseApp.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImpulseApp\ImpulseApp.csproj">
       <Project>{9E63E90F-B2BF-4543-9679-A83DEF47A675}</Project>
       <Name>ImpulseApp</Name>

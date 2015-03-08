@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "StatisticsTableClick";
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#addAd").click(function () {
+                var AdId = $("#Ads option:selected").val();
+                var dateStart = $("#DateStart").val();
+                var dateEnd = $("#DateEnd").val();
+                $.ajax({
+                    url: '@Url.Action("TableClickStatistics", "Statistic")',
+                    type: 'POST',
+                    data: {
+                        AdId: AdId,
+                        StartDate: dateStart,
+                        EndDate: dateEnd
+                    },
+                    success: function (result) {
+                        $("#tablediv").html(result);
+                        $('#ClickStat').DataTable({
+                            responsive: true
+                        });
+                    }
+                });
+            })
+        })
+    </script>
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Статистика по кликам</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+   
+        <div class="form-group">
+            @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
+            <input id="DateStart" type="date" />
+            <input id="DateEnd" type="date" />
+            <button id="addAd" class="btn btn-default">Выбрать</button>
+        </div>
+
+</div>
+<div class="row">
+    <div id="tablediv"></div>
+</div>
