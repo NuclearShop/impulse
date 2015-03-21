@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "GenerateAds";
+}
+
+<h2>Сгенерировать данные</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        @Html.DropDownList("AdId")
+    </div>
+    <div class="row">
+        <label for="EndDate">Начальная дата</label>
+        <input type="date" name="BeginDate" />
+    </div>
+    <div class="row">
+        <label for="EndDate">Конечная дата</label>
+        <input type="date" name="EndDate" />
+    </div>
+    <div class="row">
+        <input type="submit" value="Отправить" />
+    </div>
+}

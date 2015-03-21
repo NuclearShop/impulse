@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "GetAllVideosTest";
+}
+
+<h2>GetAllVideosTest</h2>
+
+<div id="videos" />
+
+
+@section scripts
+{
+    <script>
+        function load_video(file) {
+                var r = new XMLHttpRequest();
+                r.onload = function () {
+                    var vid = document.createElement("video");
+                    vid.setAttribute("loop", "loop");
+                    vid.setAttribute("controls", "controls");
+                    vid.setAttribute("src", URL.createObjectURL(r.response));
+                    $('#videos').append(vid);
+                };
+                r.open("GET", file);
+                r.responseType = "blob";
+                r.send();
+                
+        }
+        $(document).ready(function () {
+            $.getJSON("/api/video/all")
+                .done(function (data) {
+                    $.each(data, function (key, item) {
+                        load_video("/"+item.FullPath);
+                    });
+                });
+        });
+    </script>
+}

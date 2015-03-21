@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DBService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDBService_GetUserAds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAds" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserAds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAdByUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAdByUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAdById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAdById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAdByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAd_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAd" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAd_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetSessionsByAdId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionsByAdId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetSessionsByAdId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSessionsByAdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdSession_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdSession" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdSession_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdSessionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetActivityBySessionId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivityBySessionId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetActivityBySessionId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActivityBySessionIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveActivity" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveActivityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetClicksByActivityId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClicksByActivityId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetClicksByActivityId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClicksByActivityIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveClick_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClick" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveClick_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveClickResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDBService">
+    <wsdl:operation name="GetUserAds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserAds" message="tns:IDBService_GetUserAds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetUserAdsResponse" message="tns:IDBService_GetUserAds_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAdByUrl" message="tns:IDBService_GetAdByUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAdByUrlResponse" message="tns:IDBService_GetAdByUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAdById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAdById" message="tns:IDBService_GetAdById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAdByIdResponse" message="tns:IDBService_GetAdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAd">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAd" message="tns:IDBService_SaveAd_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdResponse" message="tns:IDBService_SaveAd_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionsByAdId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetSessionsByAdId" message="tns:IDBService_GetSessionsByAdId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetSessionsByAdIdResponse" message="tns:IDBService_GetSessionsByAdId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdSession">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdSession" message="tns:IDBService_SaveAdSession_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdSessionResponse" message="tns:IDBService_SaveAdSession_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityBySessionId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetActivityBySessionId" message="tns:IDBService_GetActivityBySessionId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetActivityBySessionIdResponse" message="tns:IDBService_GetActivityBySessionId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveActivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveActivity" message="tns:IDBService_SaveActivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveActivityResponse" message="tns:IDBService_SaveActivity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClicksByActivityId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetClicksByActivityId" message="tns:IDBService_GetClicksByActivityId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetClicksByActivityIdResponse" message="tns:IDBService_GetClicksByActivityId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveClick">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveClick" message="tns:IDBService_SaveClick_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveClickResponse" message="tns:IDBService_SaveClick_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IDBService" type="tns:IDBService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetUserAds">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetUserAds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdByUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAdByUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAdById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAd">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSessionsByAdId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetSessionsByAdId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdSession">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdSession" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetActivityBySessionId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetActivityBySessionId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveActivity">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveActivity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClicksByActivityId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetClicksByActivityId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveClick">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveClick" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DBService">
+    <wsdl:port name="BasicHttpBinding_IDBService" binding="tns:BasicHttpBinding_IDBService">
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
