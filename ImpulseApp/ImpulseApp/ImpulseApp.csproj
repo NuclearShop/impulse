@@ -231,8 +231,11 @@
     <Compile Include="Controllers\AdditionalController.cs" />
     <Compile Include="Controllers\AdminFrontController.cs" />
     <Compile Include="Controllers\AdOutboundController.cs" />
+    <Compile Include="Controllers\APIControllers\UploadController.cs" />
+    <Compile Include="Controllers\APIControllers\VideoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatisticController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserFrontController.cs" />
     <Compile Include="Filters\RestApiAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +289,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilites\ImpulseFormDataStreamProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\aspnet-ImpulseApp-20140917091404.mdf" />
@@ -1049,6 +1053,7 @@
     <Content Include="Content\less\mixins.less" />
     <Content Include="Content\less\sb-admin-2.less" />
     <Content Include="Content\less\variables.less" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.VideoUnit.datasource" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-2.1.3.min.js" />
@@ -1154,9 +1159,11 @@
     <Content Include="Views\UserFront\StatisticsFunnel.cshtml" />
     <Content Include="Views\Statistic\TableClickStatistics.cshtml" />
     <Content Include="Views\UserFront\StatisticsTableClick.cshtml" />
+    <Content Include="Views\Test\UploadTest.cshtml" />
+    <Content Include="Views\Test\GetAllVideosTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\APIControllers\" />
+    <Folder Include="Videos\" />
     <Folder Include="Views\AdminFront\" />
     <Folder Include="Views\Dummy\" />
   </ItemGroup>
@@ -1188,6 +1195,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImpulseApp.Database\ImpulseApp.Database.csproj">
+      <Project>{5cc74536-26ac-43e7-a5fe-dad08f064eed}</Project>
+      <Name>ImpulseApp.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImpulseApp.Models\ImpulseApp.Models.csproj">
       <Project>{6ec98b93-098a-4a4a-83cb-c8f07a0747f3}</Project>
       <Name>ImpulseApp.Models</Name>
