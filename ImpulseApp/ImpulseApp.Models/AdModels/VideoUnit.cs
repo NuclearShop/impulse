@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace ImpulseApp.Models.AdModels
 {
+    [DataContract]
     public class VideoUnit
     {
         public VideoUnit()
@@ -35,6 +36,9 @@ namespace ImpulseApp.Models.AdModels
 
         [DataMember]
         public string FullPath { get; set; }
+
+        [DataMember]
+        public string MimeType { get; set; }
 
         [DataMember]
         public virtual HashSet<AdState> AdStates { get; set; }

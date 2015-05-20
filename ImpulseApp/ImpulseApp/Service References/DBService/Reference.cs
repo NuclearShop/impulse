@@ -86,6 +86,106 @@ namespace ImpulseApp.DBService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserVideo", ReplyAction="http://tempuri.org/IDBService/GetUserVideoResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.VideoUnit>> GetUserVideoAsync(string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetVideoById", ReplyAction="http://tempuri.org/IDBService/GetVideoByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VideoNotFoundException), Action="http://tempuri.org/IDBService/GetVideoByIdVideoNotFoundExceptionFault", Name="VideoNotFoundException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.VideoUnit GetVideoById(string UserName, int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetVideoById", ReplyAction="http://tempuri.org/IDBService/GetVideoByIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit> GetVideoByIdAsync(string UserName, int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId", ReplyAction="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VideoNotFoundException), Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdVideoNotFoundExceptionFault" +
+            "", Name="VideoNotFoundException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.AdState GetStateByAdIdAndVideoId(int adId, int videoId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId", ReplyAction="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.AdState> GetStateByAdIdAndVideoIdAsync(int adId, int videoId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByEntity", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByEntityResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByEntityVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByEntity(ImpulseApp.Models.AdModels.Versioning versioning);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByEntity", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByEntityResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByEntityAsync(ImpulseApp.Models.AdModels.Versioning versioning);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIds", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByIdsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByIds(int rootId, int childId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIds", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdsResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByIdsAsync(int rootId, int childId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByIdAndUrl(int rootId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByIdAndUrlAsync(int rootId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlVersioningExcepti" +
+            "onFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByPreviousIdAndUrl(int prevId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByPreviousIdAndUrlAsync(int prevId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByUrls", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByUrlsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByUrlsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByUrls(string rootUrl, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByUrls", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByUrlsResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByUrlsAsync(string rootUrl, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/IsRoot", ReplyAction="http://tempuri.org/IDBService/IsRootResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/IsRootVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        bool IsRoot(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/IsRoot", ReplyAction="http://tempuri.org/IDBService/IsRootResponse")]
+        System.Threading.Tasks.Task<bool> IsRootAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetRootAdId", ReplyAction="http://tempuri.org/IDBService/GetRootAdIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/GetRootAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        int GetRootAdId(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetRootAdId", ReplyAction="http://tempuri.org/IDBService/GetRootAdIdResponse")]
+        System.Threading.Tasks.Task<int> GetRootAdIdAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetChildAds", ReplyAction="http://tempuri.org/IDBService/GetChildAdsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/GetChildAdsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        System.Collections.Generic.List<ImpulseApp.Models.DTO.VersioningDTO> GetChildAds(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetChildAds", ReplyAction="http://tempuri.org/IDBService/GetChildAdsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.DTO.VersioningDTO>> GetChildAdsAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAbTest", ReplyAction="http://tempuri.org/IDBService/SaveAbTestResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/SaveAbTestAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAbTest(ImpulseApp.Models.AdModels.ABTest test);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAbTest", ReplyAction="http://tempuri.org/IDBService/SaveAbTestResponse")]
+        System.Threading.Tasks.Task<string> SaveAbTestAsync(ImpulseApp.Models.AdModels.ABTest test);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/GetAbTestByUrlAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.ABTest GetAbTestByUrl(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByUrlAsync(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/GetAbTestByIdAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.ABTest GetAbTestById(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(string id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SetActiveByAdId(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
+        System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -209,6 +309,118 @@ namespace ImpulseApp.DBService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.VideoUnit>> GetUserVideoAsync(string UserName) {
             return base.Channel.GetUserVideoAsync(UserName);
+        }
+        
+        public ImpulseApp.Models.AdModels.VideoUnit GetVideoById(string UserName, int Id) {
+            return base.Channel.GetVideoById(UserName, Id);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit> GetVideoByIdAsync(string UserName, int Id) {
+            return base.Channel.GetVideoByIdAsync(UserName, Id);
+        }
+        
+        public ImpulseApp.Models.AdModels.AdState GetStateByAdIdAndVideoId(int adId, int videoId, string stateName) {
+            return base.Channel.GetStateByAdIdAndVideoId(adId, videoId, stateName);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.AdState> GetStateByAdIdAndVideoIdAsync(int adId, int videoId, string stateName) {
+            return base.Channel.GetStateByAdIdAndVideoIdAsync(adId, videoId, stateName);
+        }
+        
+        public string SaveAdVersioningByEntity(ImpulseApp.Models.AdModels.Versioning versioning) {
+            return base.Channel.SaveAdVersioningByEntity(versioning);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByEntityAsync(ImpulseApp.Models.AdModels.Versioning versioning) {
+            return base.Channel.SaveAdVersioningByEntityAsync(versioning);
+        }
+        
+        public string SaveAdVersioningByIds(int rootId, int childId) {
+            return base.Channel.SaveAdVersioningByIds(rootId, childId);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByIdsAsync(int rootId, int childId) {
+            return base.Channel.SaveAdVersioningByIdsAsync(rootId, childId);
+        }
+        
+        public string SaveAdVersioningByIdAndUrl(int rootId, string childUrl) {
+            return base.Channel.SaveAdVersioningByIdAndUrl(rootId, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByIdAndUrlAsync(int rootId, string childUrl) {
+            return base.Channel.SaveAdVersioningByIdAndUrlAsync(rootId, childUrl);
+        }
+        
+        public string SaveAdVersioningByPreviousIdAndUrl(int prevId, string childUrl) {
+            return base.Channel.SaveAdVersioningByPreviousIdAndUrl(prevId, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByPreviousIdAndUrlAsync(int prevId, string childUrl) {
+            return base.Channel.SaveAdVersioningByPreviousIdAndUrlAsync(prevId, childUrl);
+        }
+        
+        public string SaveAdVersioningByUrls(string rootUrl, string childUrl) {
+            return base.Channel.SaveAdVersioningByUrls(rootUrl, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByUrlsAsync(string rootUrl, string childUrl) {
+            return base.Channel.SaveAdVersioningByUrlsAsync(rootUrl, childUrl);
+        }
+        
+        public bool IsRoot(int adId) {
+            return base.Channel.IsRoot(adId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsRootAsync(int adId) {
+            return base.Channel.IsRootAsync(adId);
+        }
+        
+        public int GetRootAdId(int adId) {
+            return base.Channel.GetRootAdId(adId);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetRootAdIdAsync(int adId) {
+            return base.Channel.GetRootAdIdAsync(adId);
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.DTO.VersioningDTO> GetChildAds(int adId) {
+            return base.Channel.GetChildAds(adId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.DTO.VersioningDTO>> GetChildAdsAsync(int adId) {
+            return base.Channel.GetChildAdsAsync(adId);
+        }
+        
+        public string SaveAbTest(ImpulseApp.Models.AdModels.ABTest test) {
+            return base.Channel.SaveAbTest(test);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAbTestAsync(ImpulseApp.Models.AdModels.ABTest test) {
+            return base.Channel.SaveAbTestAsync(test);
+        }
+        
+        public ImpulseApp.Models.AdModels.ABTest GetAbTestByUrl(string url) {
+            return base.Channel.GetAbTestByUrl(url);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByUrlAsync(string url) {
+            return base.Channel.GetAbTestByUrlAsync(url);
+        }
+        
+        public ImpulseApp.Models.AdModels.ABTest GetAbTestById(string id) {
+            return base.Channel.GetAbTestById(id);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(string id) {
+            return base.Channel.GetAbTestByIdAsync(id);
+        }
+        
+        public string SetActiveByAdId(int id) {
+            return base.Channel.SetActiveByAdId(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id) {
+            return base.Channel.SetActiveByAdIdAsync(id);
         }
     }
 }

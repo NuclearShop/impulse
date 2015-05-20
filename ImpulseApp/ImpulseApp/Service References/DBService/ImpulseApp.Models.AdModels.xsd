@@ -12,11 +12,16 @@
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="AdSessions" nillable="true" type="q1:ArrayOfAdSession" />
       <xs:element minOccurs="0" name="AdStates" nillable="true" type="tns:ArrayOfAdState" />
       <xs:element minOccurs="0" name="DateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HtmlEndSource" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="HtmlSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlStartSource" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsRoot" type="xs:boolean" />
       <xs:element minOccurs="0" name="JsSource" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ShortUrlKey" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StateGraph" nillable="true" type="tns:ArrayOfNodeLink" />
       <xs:element minOccurs="0" name="UserId" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -31,17 +36,68 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Ad" nillable="true" type="tns:SimpleAdModel" />
       <xs:element minOccurs="0" name="AdId" type="xs:int" />
+      <xs:element minOccurs="0" name="ChainedHtml" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndTime" type="xs:int" />
-      <xs:element minOccurs="0" name="HtmlSource" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="IsEnd" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsFullPlay" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsStart" type="xs:boolean" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="StartTime" type="xs:int" />
       <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserElements" nillable="true" type="tns:ArrayOfUserElement" />
       <xs:element minOccurs="0" name="VideoUnit" nillable="true" type="tns:VideoUnit" />
       <xs:element minOccurs="0" name="VideoUnitId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AdState" nillable="true" type="tns:AdState" />
+  <xs:complexType name="ArrayOfUserElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserElement" nillable="true" type="tns:UserElement" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserElement" nillable="true" type="tns:ArrayOfUserElement" />
+  <xs:complexType name="UserElement">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Action" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="AdState" nillable="true" type="tns:AdState" />
+      <xs:element minOccurs="0" name="AdStateId" type="xs:int" />
+      <xs:element minOccurs="0" name="CurrentId" type="xs:int" />
+      <xs:element minOccurs="0" name="FormName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Height" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlClass" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlStyle" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HtmlTags" nillable="true" type="tns:ArrayOfHtmlTag" />
+      <xs:element minOccurs="0" name="HtmlType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="NextId" type="xs:int" />
+      <xs:element minOccurs="0" name="NextTime" type="xs:int" />
+      <xs:element minOccurs="0" name="Text" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeAppear" type="xs:int" />
+      <xs:element minOccurs="0" name="TimeDisappear" type="xs:int" />
+      <xs:element minOccurs="0" name="UseDefaultStyle" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Width" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserElement" nillable="true" type="tns:UserElement" />
+  <xs:complexType name="ArrayOfHtmlTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="HtmlTag" nillable="true" type="tns:HtmlTag" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfHtmlTag" nillable="true" type="tns:ArrayOfHtmlTag" />
+  <xs:complexType name="HtmlTag">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Key" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UserElement" nillable="true" type="tns:UserElement" />
+      <xs:element minOccurs="0" name="UserElementId" type="xs:int" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HtmlTag" nillable="true" type="tns:HtmlTag" />
   <xs:complexType name="VideoUnit">
     <xs:sequence>
       <xs:element minOccurs="0" name="AdStates" nillable="true" type="tns:ArrayOfAdState" />
@@ -50,15 +106,57 @@
       <xs:element minOccurs="0" name="GeneratedName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Length" type="xs:int" />
+      <xs:element minOccurs="0" name="MimeType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="VideoUnit" nillable="true" type="tns:VideoUnit" />
+  <xs:complexType name="ArrayOfNodeLink">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodeLink" nillable="true" type="tns:NodeLink" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNodeLink" nillable="true" type="tns:ArrayOfNodeLink" />
+  <xs:complexType name="NodeLink">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdId" type="xs:int" />
+      <xs:element minOccurs="0" name="AdModel" nillable="true" type="tns:SimpleAdModel" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="T" type="xs:int" />
+      <xs:element minOccurs="0" name="V1" type="xs:int" />
+      <xs:element minOccurs="0" name="V2" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NodeLink" nillable="true" type="tns:NodeLink" />
   <xs:complexType name="ArrayOfVideoUnit">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="VideoUnit" nillable="true" type="tns:VideoUnit" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfVideoUnit" nillable="true" type="tns:ArrayOfVideoUnit" />
+  <xs:complexType name="Versioning">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ChildAdId" type="xs:int" />
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="RootAdId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Versioning" nillable="true" type="tns:Versioning" />
+  <xs:complexType name="ABTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveAd" type="xs:int" />
+      <xs:element minOccurs="0" name="AdA" nillable="true" type="tns:SimpleAdModel" />
+      <xs:element minOccurs="0" name="AdAId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="AdB" nillable="true" type="tns:SimpleAdModel" />
+      <xs:element minOccurs="0" name="AdBId" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ChangeCount" type="xs:int" />
+      <xs:element minOccurs="0" name="ChangeHours" type="xs:int" />
+      <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ABTest" nillable="true" type="tns:ABTest" />
 </xs:schema>

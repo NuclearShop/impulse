@@ -34,6 +34,12 @@ namespace ImpulseApp
             bundles.Add(new ScriptBundle("~/bundles/outboundjs").Include(
                     "~/Scripts/jquery-{version}.min.js"
                 ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ngImpulse").Include(
+                   "~/Scripts/ng-impulse/mplsApp.js"
+               ).IncludeDirectory("~/Scripts/ng-impulse/controllers/", "*.js")
+               .Include("~/Scripts/ng-impulse/mplsServices.js")
+               .Include("~/Scripts/ng-impulse/mplsDirectives.js"));
         }
     }
 }

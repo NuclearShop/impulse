@@ -32,6 +32,7 @@
   <xs:complexType name="Activity">
     <xs:sequence>
       <xs:element minOccurs="0" name="Clicks" nillable="true" type="tns:ArrayOfClick" />
+      <xs:element minOccurs="0" name="CurrentStateName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="EndTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Session" nillable="true" type="tns:AdSession" />
@@ -50,9 +51,14 @@
     <xs:sequence>
       <xs:element minOccurs="0" name="Activity" nillable="true" type="tns:Activity" />
       <xs:element minOccurs="0" name="ActivityId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClickCurrentStage" type="xs:int" />
       <xs:element minOccurs="0" name="ClickId" type="xs:int" />
+      <xs:element minOccurs="0" name="ClickNextStage" type="xs:int" />
+      <xs:element minOccurs="0" name="ClickNextTime" type="xs:int" />
+      <xs:element minOccurs="0" name="ClickStamp" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ClickText" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ClickTime" type="xs:dateTime" />
-      <xs:element minOccurs="0" name="ClickType" type="xs:int" />
+      <xs:element minOccurs="0" name="ClickType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="ClickZone" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

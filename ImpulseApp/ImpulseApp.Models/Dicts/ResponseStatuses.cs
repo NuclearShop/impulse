@@ -20,7 +20,7 @@ namespace ImpulseApp.Models.Dicts
     }
     public class Browsers
     {
-        public static string[] NAMES = new String[] { "Mozilla", "Opera", "Chrome", "Firefox", "IE" };
+        public static string[] NAMES = new String[] { "Safari", "Opera", "Chrome", "Firefox", "IE", "Mobile" };
     }
     public class Locales
     {

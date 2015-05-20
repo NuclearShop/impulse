@@ -6,6 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
+using System.Threading.Tasks;
 
 namespace ImpulseApp.Controllers.APIControllers
 {
@@ -19,5 +23,18 @@ namespace ImpulseApp.Controllers.APIControllers
             IEnumerable<VideoUnit> videos = service.GetUserVideo(User.Identity.Name);
             return videos;
         }
+        [Route("api/video/ids")]
+        public IEnumerable<int> GetVideoIds()
+        {
+            var ids = service.GetUserVideo(User.Identity.GetUserId()).Select(a => a.Id);
+            return ids;
+        }
+        [Route("api/video/{id}")]
+        public VideoUnit GetVideoUnitById(int id)
+        {
+            var video = service.GetVideoById(User.Identity.GetUserId(), id);
+            return video;
+        }
+
     }
 }

@@ -24,6 +24,16 @@ namespace ImpulseApp.Models.StatModels
         [DataMember]
         public DateTime ClickTime { get; set; }
         [DataMember]
-        public int ClickType { get; set; }
+        public string ClickType { get; set; }
+        [DataMember]
+        public int ClickCurrentStage { get; set; }
+        [DataMember]
+        public int ClickNextStage { get; set; }
+        [DataMember]
+        public int ClickNextTime { get; set; }
+        [DataMember]
+        public string ClickText { get; set; }
+        [DataMember]
+        public string ClickStamp { get; set; }
     }
 }

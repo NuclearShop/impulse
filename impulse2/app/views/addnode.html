@@ -1,0 +1,88 @@
+<div class="modal-title">Добавить слайд</div>
+<form class="addslide-form">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Название слайда</label>
+				    <input type="text" class="form-control" placeholder="" ng-model="name" ng-model-options="{ getterSetter: true }">
+				  </div>
+	<div ng-show="!isVideoLoaded">			  
+    <div class="upload-video-button" ngf-select ng-model="files" accept="video/*">Загрузить основное видео</div>
+        <div ngf-drop="" ngf-select="" ng-model="files" class="drop-box" 
+        ngf-drag-over-class="dragover" accept="video/*">Загрузите видео файл <br>или перетащите его в эту область</div><br>
+    </div>
+    <div ng-show="isVideoLoaded">
+    <div class="modal-video-wrapper">
+    <span class="play-stop-btn button1-disabled" ng-class="{'icon-pause':isVideoPlayed,'icon-play3': !isVideoPlayed}"></span>
+    <video id="addSlideVideo" class="modal-video" ng-click="playVideo()" loop="true" ngf-src="files[0]" ng-show="files[0].type.indexOf('video') > -1" ngf-accept="'video/*'">
+    </video></div>
+    <div class="crop-wrapper">
+    	<div class="crop-area" style="left:{{cropLeft}}px; width:{{cropWidth}}px">
+    		<div class="scrop-bar"></div>
+    		<div class="ecrop-bar"></div>
+    	</div>
+    	<div class="curtime-bar" style="left:{{curBarPosition}}px"></div>
+    </div>
+    <div class="startcrop-timepicker">
+    <span class="timepicker-alt">Начало<br>ролика</span>
+	<table>
+	<tbody>
+		<tr class="text-center">
+			<td><a ng-click="descStartSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="descStartMSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+		</tr>
+		<tr class="text-center">
+			<td class="form-group">
+				<div>{{startSec}}</div>			
+			</td>
+			<td>:</td>
+			<td class="form-group">
+				<div>{{startMSec}}</div>	
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td><a ng-click="incStartSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="incStartMSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
+	<div class="endcrop-timepicker">
+		<span class="timepicker-alt">Конец<br>ролика</span>
+	<table>
+	<tbody>
+		<tr class="text-center">
+			<td><a ng-click="descEndSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="descEndMSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-up"></span></a></td>
+		</tr>
+		<tr class="text-center">
+			<td class="form-group">
+				<div>{{endSec}}</div>			
+			</td>
+			<td>:</td>
+			<td class="form-group">
+				<div>{{endMSec}}</div>	
+			</td>
+		</tr>
+		<tr class="text-center">
+			<td><a ng-click="incEndSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+			<td>&nbsp;</td>
+			<td><a ng-click="incEndMSeconds()" class="btn"><span class="glyphicon glyphicon-chevron-down"></span></a></td>
+		</tr>
+	</tbody>
+	</table>
+	</div>
+    <p class="text-center">Минимальная длина ролика 2 сек</p>
+    <div class="form-group">
+				    <label class="text-left">Длительность</label>
+				    <div class="">
+				      <p class="">{{duration}}</p>
+				    </div>
+				  </div>
+				</div>
+</form>
+<div class="modal-buttons-wrap">
+<div class="button1 button1-left " ng-click="saveAndClose()" ng-class="{'button1-gray button1-disabled':!isVideoLoaded,'button1-pink': isVideoLoaded}"><span class="button-icon"><span class="icon-plus"></span></span>Создать слайд</div>
+<div class="button1 button1-gray" ng-click="closeModal()">Отмена</div>
+</div>

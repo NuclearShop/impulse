@@ -9,8 +9,19 @@ using System.Threading.Tasks;
 
 namespace ImpulseApp.Models.AdModels
 {
+    [DataContract]
     public class AdState
     {
+        public AdState()
+        {
+            this.UserElements = new HashSet<UserElement>();
+        }
+        public void Init()
+        {
+            this.Id = 0;
+            if (Name == null)
+                Name = Guid.NewGuid().ToString();
+        }
         [Key]
         [DataMember]
         public int Id { get; set; }
@@ -21,13 +32,22 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         public int AdId { get; set; }
         [DataMember]
-        public int StartTime { get; set; }
-        [DataMember]
         public int EndTime { get; set; }
         [DataMember]
-        public string HtmlSource { get; set; }
+        public string ChainedHtml { get; set; }
+        [DataMember]
+        public bool IsFullPlay { get; set; }
+        [DataMember]
+        public bool IsStart { get; set; }
         [DataMember]
         public int VideoUnitId { get; set; }
+        [DataMember]
+        public bool IsEnd { get; set; }
+        [DataMember]
+        public int DefaultNext { get; set; }
+        [DataMember]
+        public int DefaultNextTime { get; set; }
+        
 
         [ForeignKey("AdId")]
         [DataMember]
@@ -35,5 +55,7 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         [ForeignKey("VideoUnitId")]
         public virtual VideoUnit VideoUnit { get; set; }
+        [DataMember]
+        public virtual HashSet<UserElement> UserElements { get; set; }
     }
 }

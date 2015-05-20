@@ -1,4 +1,6 @@
-﻿using ImpulseApp.Models.StatModels;
+﻿using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.StatModels;
+using ImpulseApp.Utilites;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +35,7 @@ namespace StubMethods
         public string GenerateStats(int AdID, string beginDate, string endDate)
         {
             DatabaseService.DBServiceClient db = new DatabaseService.DBServiceClient();
+            SimpleAdModel ad = db.GetAdById(AdID);
             DateTime bDate = DateTime.Parse(beginDate);
             DateTime eDate = DateTime.Parse(endDate);
             for (DateTime curDate = bDate; curDate.CompareTo(eDate) < 0; curDate = curDate.AddDays(1))
@@ -55,21 +58,28 @@ namespace StubMethods
                     int ActivityCount = r.Next(10);
                     for (int j = 0; j < ActivityCount; j++)
                     {
+                        NodeLink randomLink = ad.StateGraph.ElementAt(r.Next(ad.StateGraph.Count));
                         Activity act = new Activity
                         {
                             StartTime = curDate,
-                            EndTime = curDate
+                            EndTime = curDate,
+                            CurrentStateName = ad.AdStates.First(a=>a.VideoUnitId==randomLink.V1).Name
                         };
-                        int ClickCount = r.Next(10);
-                        StubUtils.InitClicks();
-                        for (int k = 0; k < ClickCount; k++)
+                        for (int k = 0; k < 1; k++)
                         {
+
+                            
                             Click c = new Click
                             {
                                 ClickTime = curDate,
-                                ClickType = StubUtils.GenerateClickType(),
-                                ClickZone = "SubZone"
+                                ClickType = "action-next",
+                                ClickZone = "SubZone",
+                                ClickCurrentStage = randomLink.V1,
+                                ClickNextStage = randomLink.V2,
+                                ClickNextTime = randomLink.T
                             };
+                            c.ClickText = Generator.GenerateClickName(c);
+                            c.ClickStamp = Generator.GenerateClickStamp(c);
                             act.Clicks.Add(c);
                         };
                         session.Activities.Add(act);

@@ -1,0 +1,120 @@
+<div class="struct-editor">
+<div class="struct-inner container">
+		<div class="editor-header">
+			
+			<span class="presentation-name">Слайд1<span class="icon-pencil"></span></span>
+			<div class="presentation-menu">
+				<ul>
+					<li><div class="button1 button1-pink button1-left"><span class="button-icon"><span class="icon-video-camera"></span></span>Редактировать видео</div></li>
+					<li><div class="save-btn"><span class="icon-floppy-disk"></span></div></li>
+					<li><div class="setting-btn"><span class="icon-cog"></span></div></li>
+					<li><div class="basket-btn"><span class="icon-bin2"></span></div></li>
+				</ul>
+			</div>
+		</div>
+		<div class="editor-wrapper">
+			<div class="editor-container">
+			<div class="tools-wrapper">
+				<ul>
+					<li>
+						<div class="tolls-icon"><span class="icon-text"></span><span class="tolls-icon-label">Текст</span></div>
+					</li>
+					<li>
+						<div class="tolls-icon" ng-click="addButton()"><span class="icon-button"></span><span class="tolls-icon-label">Кнопка</span></div>
+					</li>
+					<li>
+						<div class="tolls-icon"><span class="icon-form"></span><span class="tolls-icon-label">Форма</span></div>
+					</li>
+				</ul>
+			</div>
+			<div class="video-edit-wrapper">
+				<div class="video-wrapper">
+					<video id="main-video">
+						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
+					</video>
+					<div id="interactive" class="interactive" ng-click="interactiveClick();">
+						<div data-id="1" ng-show='userElements.length>0' ng-click="elementClick(0);" class="mpls-action-button element1" style="left:{{userElements[0].X}}px;top:{{userElements[0].Y}}px;width:{{userElements[0].Width}}px;height:{{userElements[0].Height}}px;">{{userElements[0].Text}}</div>
+						<div data-id="2" ng-show='userElements.length>1' ng-click="elementClick(1);" class="mpls-action-button element1"  style="left:{{userElements[1].X}}px;top:{{userElements[1].Y}}px;width:{{userElements[1].Width}}px;height:{{userElements[1].Height}}px;">{{userElements[1].Text}}</div>
+						<div data-id="3" ng-show='userElements.length>2' ng-click="elementClick(2);" class="mpls-action-button element1"  style="left:{{userElements[2].X}}px;top:{{userElements[2].Y}}px;width:{{userElements[2].Width}}px;height:{{userElements[2].Height}}px;">{{userElements[2].Text}}</div>
+						<div data-id="4" ng-show='userElements.length>3' ng-click="elementClick(3);" class="mpls-action-button element1"  style="left:{{userElements[3].X}}px;top:{{userElements[3].Y}}px;width:{{userElements[3].Width}}px;height:{{userElements[3].Height}}px;">{{userElements[3].Text}}</div>
+						<div data-id="5" ng-show='userElements.length>4' ng-click="elementClick(4);" class="mpls-action-button element1"  style="left:{{userElements[4].X}}px;top:{{userElements[4].Y}}px;width:{{userElements[4].Width}}px;height:{{userElements[4].Height}}px;">{{userElements[4].Text}}</div>
+						<div data-id="6" ng-show='userElements.length>5' ng-click="elementClick(5);" class="mpls-action-button element1"  style="left:{{userElements[5].X}}px;top:{{userElements[5].Y}}px;width:{{userElements[5].Width}}px;height:{{userElements[5].Height}}px;">{{userElements[5].Text}}</div>
+						<div data-id="7" ng-show='userElements.length>6' ng-click="elementClick(6);" class="mpls-action-button element1"  style="left:{{userElements[6].X}}px;top:{{userElements[6].Y}}px;width:{{userElements[6].Width}}px;height:{{userElements[6].Height}}px;">{{userElements[6].Text}}</div>
+					</div>
+					<span class="play-stop-btn" ng-click="playVideo()" ng-class="{'icon-pause':isVideoPlayed,'icon-play3': !isVideoPlayed}"></span>
+				</div>
+				<div class="elements-wrapper">
+					<div class="elem-wrap" ng-show='userElements.length>0' ng-click="elementClick(0);">
+						<div class="element" style="width:{{getWidth(0);}}px;left:{{getLeft(0);}}px;">{{userElements[0].Text}}</div>
+					</div>
+					<div class="elem-wrap" ng-show='userElements.length>1'  ng-click="elementClick(1);">
+						<div class="element" style="width:{{getWidth(1)}}px;left:{{getLeft(1)}}px;">{{userElements[1].Text}}</div>
+					</div>
+					<div class="elem-wrap"  ng-show='userElements.length>2' ng-click="elementClick(2);">
+						<div class="element" style="width:{{getWidth(2)}}px;left:{{getLeft(2)}}px;">{{userElements[2].Text}}</div>
+					</div>
+					<div class="elem-wrap" ng-show='userElements.length>3' ng-click="elementClick(3);">
+						<div class="element" style="width:{{getWidth(3)}}px;left:{{getLeft(3)}}px;" >{{userElements[3].Text}}</div>
+					</div>
+					<div class="elem-wrap" ng-show='userElements.length>4' ng-click="elementClick(4);">
+						<div class="element" style="width:{{getWidth(4)}}px;left:{{getLeft(4)}}px;" >{{userElements[4].Text}}</div>
+					</div>
+					<div class="elem-wrap" ng-show='userElements.length>5' ng-click="elementClick(5);">
+						<div class="element" style="width:{{getWidth(5)}}px;left:{{getLeft(5)}}px;">{{userElements[5].Text}}</div>
+					</div>
+					<div class="elem-wrap"  ng-show='userElements.length>6' ng-click="elementClick(6);">
+						<div class="element" style="width:{{getWidth(6)}}px;left:{{getLeft(6)}}px;">{{userElements[6].Text}}</div>
+					</div>
+					<div class="curtime-bar" style="left:{{curBarPosition}}px"></div>
+
+				</div>
+				
+			</div>	
+			</div>
+			<div class="editor-aside">
+				<ul class="nav nav-tabs ">
+				  <li ng-click="tab(0)" role="presentation" class="active col-sm-6"><a>Стили</a></li>
+				  <li ng-click="tab(1)" role="presentation" class="col-sm-6"><a>Зависимости</a></li>
+				</ul>
+				<div ng-show="isElementSelected">
+				<form ng-show="!tabCoef">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Ширина</label>
+				    <input type="text" ng-model="selectedElement.Width" class="form-control" placeholder="100">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Высота</label>
+				    <input type="text" ng-model="selectedElement.Height" class="form-control" placeholder="50">
+				  </div>
+					<div class="form-group">
+				    <label for="exampleInputEmail1">X</label>
+				    <input type="text" ng-model="selectedElement.X" class="form-control" placeholder=" ">
+				  </div>
+					<div class="form-group">
+				    <label for="exampleInputEmail1">Y</label>
+				    <input type="text" ng-model="selectedElement.Y" class="form-control" placeholder=" ">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Текст</label>
+				    <input type="text" ng-model="selectedElement.Text" class="form-control" placeholder=" ">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Время появления</label>
+				    <input type="text" ng-model="selectedElement.TimeAppear" class="form-control" placeholder="0">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Время исчезновения</label>
+				    <input type="text" ng-model="selectedElement.TimeDisappear" class="form-control" placeholder="10">
+				  </div>
+				</form>
+				<form ng-show="tabCoef">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Укажите номер слайда, на который будет осуществлен переход</label>
+				    <input type="text" ng-model="selectedElement.NextId" class="form-control" placeholder="1">
+				  </div>
+				</form>
+			</div>
+			</div>
+		</div>	
+</div>
+</div>

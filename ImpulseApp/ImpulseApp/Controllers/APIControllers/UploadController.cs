@@ -18,10 +18,10 @@ namespace ImpulseApp.Controllers.APIControllers
     public class UploadController : ApiController
     {
         IDBService service = new DBServiceClient();
-        [Route("api/video/upload")]
+        [Route("api/upload/video")]
+        [HttpPost]
         public async Task<HttpResponseMessage> PostFormData()
         {
-            // Check if the request contains multipart/form-data.
             if (!Request.Content.IsMimeMultipartContent())
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
@@ -49,6 +49,7 @@ namespace ImpulseApp.Controllers.APIControllers
                     if (file.Headers.ContentType.MediaType.Contains("video"))
                     {
                         video.FullPath = fileName+Path.GetFileName(file.LocalFileName);
+                        video.MimeType = file.Headers.ContentType.MediaType;
                     }
                     else
                     {

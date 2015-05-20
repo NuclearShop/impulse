@@ -11,148 +11,172 @@
     <link href="~/Content/dist/css/sb-admin-2.css" rel="stylesheet" />
     <link href="~/Content/bower_components/morrisjs/morris.css" rel="stylesheet" />
     <link href="~/Content/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
-<link href="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
-<link href="~/Content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" />
+    <link href="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bower_components/datatables-plugins/dataTables.tableTools.css" rel="stylesheet" />
+    <link href="~/Content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" />
+
 </head>
 <body>
     <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="@Url.Action("Index","UserFront")">Impulse Admin Board</a>
-            </div>
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-messages"></ul>
-                    <!-- /.dropdown-messages -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-
-                    <!-- /.dropdown-tasks -->
-                </li>
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-
-                    <!-- /.dropdown-alerts -->
-                </li>
-                <!-- /.dropdown -->
-                
-
-                    <!-- /.dropdown-user -->
-                    @Html.Partial("_LoginPartial")
-                
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index","UserFront")"><i class="fa fa-dashboard fa-fw"></i>Панель управления</a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("CreateTestStub", "UserFront")"><i class="fa fa-pencil fa-fw"></i>Создать презентацию</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Графики<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="@Url.Action("StatisticsClicks", "UserFront")">Статистика по кликам</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("StatisticsBrowser", "UserFront")">Статистика по браузерам</a>
-                                </li>
-                                <li>
-                                    <a href="@Url.Action("StatisticsFunnel", "UserFront")">Статистика по переходам</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-table fa-fw"></i>Таблицы<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="@Url.Action("StatisticsTableClick", "UserFront")">Статистика по кликам</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i>Дополнительно<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="@Url.Action("GenerateAds", "Additional")">Генерация статистики</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Тестовые страницы<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Тест API <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="@Url.Action("UploadTest", "Test")">Загрузка</a>
-                                        </li>
-                                        <li>
-                                            <a href="@Url.Action("GetAllVideosTest", "Test")">Все видео</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="@Url.Action("Index","UserFront")">Impulse Admin Board</a>
                 </div>
+
+                <ul class="nav navbar-top-links navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages"></ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        </a>
+                    </li>
+                    @Html.Partial("_LoginPartial")
+                </ul>
+
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search">
+                                <div class="input-group custom-search-form">
+                                    <input type="text" class="form-control" placeholder="Поиск...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <!-- /input-group -->
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","UserFront")"><i class="fa fa-dashboard fa-fw"></i>Панель управления</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("CreateTestStub", "UserFront")"><i class="fa fa-pencil fa-fw"></i>Создать презентацию</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Графики<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="/#/graphics/click">Статистика по кликам</a>
+                                    </li>
+                                    <li>
+                                        <a href="/#/graphics/browser">Статистика по браузерам</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("StatisticsFunnel", "UserFront")">Статистика по переходам</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-table fa-fw"></i>Таблицы<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="@Url.Action("StatisticsTableClick", "UserFront")">Статистика по кликам</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-wrench fa-fw"></i>Дополнительно<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="@Url.Action("GenerateAds", "Additional")">Генерация статистики</a>
+                                    </li>
+                                </ul>
+                                <!-- /.nav-second-level -->
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Тестовые страницы<span class="fa arrow"></span></a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="#">Тест API <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                            <li>
+                                                <a href="@Url.Action("UploadTest", "Test")">Загрузка</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("GetAllVideosTest", "Test")">Все видео</a>
+                                            </li>
+                                            <li>
+                                                <a href="@Url.Action("CreateTestStub", "UserFront")">Тестовая презентация</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id="page-wrapper">
+                @RenderBody()
+                <hr />
+
             </div>
-        </nav>
-        <div id="page-wrapper">
-            @RenderBody()
-            <hr />
-            
-        </div>
+        }
+        else
+        {
+            <div>
+                @RenderBody()
+                <hr />
+
+            </div>
+        }
+
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/underscore")
+    <script src="~/Scripts/highchart/highcharts.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/highchart/modules/funnel.js"></script>
+    <script src="~/Scripts/highchart/modules/exporting.js"></script>
     <script src="~/Content/bower_components/metisMenu/dist/metisMenu.min.js"></script>
     <script src="~/Content/bower_components/raphael/raphael-min.js"></script>
     <script src="~/Content/bower_components/morrisjs/morris.min.js"></script>
-    <script src="~/Content/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/bower_components/datatables/media/js/jquery.dataTables.js"></script>
+    <script src="~/Content/bower_components/datatables-plugins/dataTables.tableTools.js"></script>
     <script src="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
     <script src="~/Content/dist/js/sb-admin-2.js"></script>
+    <script src="~/Scripts/spin.min.js"></script>
+    <script src="~/Scripts/jQuery.download.js"></script>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/mpls.statistics.helper.chartjs.js"></script>
+    <script src="~/Scripts/mpls.statistics.helper.highchart.js"></script>
+    @Scripts.Render("~/bundles/ngImpulse")
+    <script>
+        var spinnerOpts = {
+            lines: 5, // The number of lines to draw
+            length: 0, // The length of each line
+            width: 10, // The line thickness
+            radius: 50, // The radius of the inner circle
+            corners: 1, // Corner roundness (0..1)
+            rotate: 0, // The rotation offset
+            direction: -1, // 1: clockwise, -1: counterclockwise
+            color: '#000', // #rgb or #rrggbb or array of colors
+            speed: 2.2, // Rounds per second
+            trail: 100, // Afterglow percentage
+        };
+
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

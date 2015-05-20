@@ -1,31 +1,24 @@
 ﻿@{
     ViewBag.Title = "Statistics";
+    Layout = null;
 }
-@section scripts{
-    <script src="~/Scripts/Chart.min.js"></script>
-    <script src="~/Scripts/StatisticsClicksJS.js"></script>
-    <script>
-        $(document).ready(function () {
-            init("Line");
-        })
-    </script>
-}
-<div class="row">
-    <div class="col-lg-12">
-        <h1 class="page-header">Статистика по кликам</h1>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
 
-<div id="options" class="row">
-    @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
-     <button id="addAd" class="btn btn-default">Добавить</button>
-    <div id="minificated"><input type="checkbox" value="minificate" id="minificate"> Минифицировать</div>
-</div>
-<div class="row">
-    <div class="col-lg-10">
-        <div id="canvasContainer" data-url="@Url.Action("ClickStatistics", "Statistic")"></div>
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{title}}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
     </div>
-    <div id="statLegend" class="col-lg-2"></div>
+
+    <div id="options" class="row">
+        @{Html.RenderAction("StatisticSettingsPartial", "Additional");}
+    </div>
+    <div class="row">
+        <div class="col-lg-10">
+            <div id="canvasContainer" />
+        </div>
+        <div id="statLegend" class="col-lg-2"></div>
+    </div>
+    <div id="statDetails" data-url="@Url.Action("DetailedStatistics", "Statistic")"></div>
 </div>
-<div id="statDetails" data-url="@Url.Action("DetailedStatistics", "Statistic")"></div>

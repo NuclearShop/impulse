@@ -1,0 +1,62 @@
+<div class="struct-editor">
+<div class="struct-inner container">
+		<div class="editor-header" >
+			<span class="presentation-name">{{presentationName}}<span class="icon-pencil"></span></span>
+			<div class="presentation-menu">
+				<ul>
+					<li><div class="button1 button1-green button1-right" style="display:none;"><span class="button-icon"><span class="icon-eye"></span></span>Предпросмотр</div></li>
+					<li><div class="button1 button1-blue button1-right" style="display:none;"><span class="button-icon"><span class="icon-share"></span></span>Опубликовать проект</div></li>
+					<li><div class="save-btn" ng-click="updateStructure()"><span class="icon-save"></span></div></li>
+					<li><div class="setting-btn"><span class="icon-settings"></span></div></li>
+					<li><div class="basket-btn"><span class="icon-remove"></span></div></li>
+				</ul>
+			</div>
+		</div>
+		<div class="editor-wrapper">
+			<div class="editor-container">
+				<div class="editor-top-menu">
+					<ul>
+						<li>
+							<div class="button1 button1-left button1-pink" ng-click="openAddSlideModal(400);"><span class="button-icon"><span class="icon-plus"></span></span>Добавить слайд</div>
+						</li>
+						<li>
+							<a ng-href="#/slide" class="button1 button1-left" ng-class="{'button1-gray button1-disabled':!nodeSelected,'button1-violet': nodeSelected}" ng-click="editNode();"><span class="button-icon"><span class="icon-pencil"></span></span>Редактировать</a>
+						</li>
+						<li>
+							<div class="button1 button1-left button1-gray" ng-click="deleteNode();" ng-class="{'button1-gray button1-disabled':!nodeSelected,'button1-violet': nodeSelected}"><span class="button-icon"><span class="icon-delete"></span></span>Удалить</div>
+						</li>
+					</ul>
+				</div>
+				<div class="editor-canvas">
+				<div id="editor-canvas"><canvas id="canvas" width="400" height="700"></canvas></div>
+					
+				</div>
+			</div>
+			<div class="editor-aside" >
+				<div ng-show="nodeSelected">
+					<form>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Название слайда</label>
+				    <input type="text" class="form-control" placeholder="" ng-model="mySel.name" ng-model-options="{ getterSetter: true }">
+				  </div>
+				  <div class="form-group">
+				    <label class="text-left">Длительность</label>
+				    <div class="">
+				      <p class="">{{mySel.videoDuration}}</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="text-left">Переход при бездействии к слайду:</label>
+				    <div class="">
+				      <p class="">{{getNodenameByID(mySel.defaultNext)}}</p>
+				    </div>
+				  </div>
+				  <button type="submit" class="btn btn-default">Сохранить</button>
+					</form>
+				</div>
+				
+				
+			</div>
+		</div>	
+</div>
+</div>

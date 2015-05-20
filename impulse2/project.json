@@ -1,0 +1,67 @@
+
+server.SimpleAdModelDTO = function () {
+    this.Id = 0;
+    this.Name = '';
+    this.HtmlStartSource = '';
+    this.HtmlEndSource = '';
+    this.HtmlSource = '';
+    this.ShortUrlKey = '';
+    this.DateTime = new Date();
+    this.IsRoot = false;
+    this.IsActive = false;
+    this.Videos = [];
+    this.StateGraph = [];
+};
+
+
+
+server.AdStateDTO = function () {
+    this.Id = 0;
+    this.EndTime = 0;
+    this.IsFullPlay = false;
+    this.Name = '';
+    this.ChainedHtml = '';
+    this.FullPath = '';
+    this.MimeType = '';
+    this.IsStart = false;
+    this.IsEnd = false;
+    this.VideoUnitId = 0;
+    this.DefaultNext = 0;
+    this.DefaultNextTime = 0;
+    this.UserElements = [];
+};
+
+
+server.UserElementDTO = function () {
+    this.Id = 0;
+    this.HtmlId = '';
+    this.HtmlClass = '';
+    this.HtmlType = '';
+    this.UseDefaultStyle = false;
+    this.HtmlStyle = '';
+    this.Text = '';
+    this.X = 0;
+    this.Y = 0;
+    this.Width = '';
+    this.Height = '';
+    this.Action = '';
+    this.TimeAppear = 0;
+    this.TimeDisappear = 0;
+    this.CurrentId = 0;
+    this.NextId = 0;
+    this.NextTime = 0;
+    this.FormName = '';
+    this.HtmlTags = [];
+};
+
+server.HtmlTagDTO = function () {
+    this.Key = '';
+    this.Value = '';
+};
+
+
+server.NodeLinkDTO = function () {
+    this.V1 = 0;
+    this.V2 = 0;
+    this.T = 0;
+};

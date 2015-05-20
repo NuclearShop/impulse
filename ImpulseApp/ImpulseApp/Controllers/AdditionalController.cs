@@ -29,6 +29,10 @@ namespace ImpulseApp.Controllers
             ViewBag.AdId = new SelectList(ads, "Id", "Id");
             return View();
         }
+        public ActionResult StatisticSettingsPartial()
+        {
+            return PartialView();
+        }
         [HttpPost]
         public ActionResult GenerateAds(int AdId, DateTime BeginDate, DateTime EndDate)
         {

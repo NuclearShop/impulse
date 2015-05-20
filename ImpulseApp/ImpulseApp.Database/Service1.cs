@@ -1,4 +1,7 @@
-﻿using ImpulseApp.Models.Dicts;
+﻿using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.Dicts;
+using ImpulseApp.Models.Exception;
+using ImpulseApp.Models.Exceptions;
 using ImpulseApp.Models.Utilites;
 using System;
 using System.Collections.Generic;
@@ -6,6 +9,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using RefactorThis.GraphDiff;
+using ImpulseApp.Models.DTO;
 
 namespace ImpulseApp.Database
 {
@@ -24,7 +29,18 @@ namespace ImpulseApp.Database
 
         public string SaveAd(Models.AdModels.SimpleAdModel model, bool proceedToDB = true)
         {
-            context.SimpleAds.Add(model);
+            if (model.ShortUrlKey != null && model.Id > 0)
+            {
+                context.UpdateGraph(model, map => map
+                    .OwnedCollection(graph => graph.StateGraph)
+                    .OwnedCollection(states => states.AdStates, with => with
+                        .AssociatedCollection(c => c.UserElements)
+                        .AssociatedEntity(d => d.VideoUnit)));
+            }
+            else
+            {
+                context.SimpleAds.Add(model);
+            }
             try
             {
                 if (proceedToDB)
@@ -97,19 +113,32 @@ namespace ImpulseApp.Database
             }
         }
 
-
+        [ReferencePreservingDataContractFormatAttribute]
         public Models.AdModels.SimpleAdModel GetAdByUrl(string url)
         {
-            var ad = context.SimpleAds.First(a => a.ShortUrlKey.Equals(url));
+            var ad = context.SimpleAds
+                .Include("StateGraph")
+                .Include("AdStates")
+                .Include("AdSessions")
+                .Include("AdStates.VideoUnit")
+                .Include("AdStates.UserElements")
+                .Include("AdStates.UserElements.HtmlTags")
+                .First(a => a.ShortUrlKey.Equals(url) && a.IsActive);
             return ad;
         }
 
         [ReferencePreservingDataContractFormatAttribute]
         public Models.AdModels.SimpleAdModel GetAdById(int id)
         {
-            Models.AdModels.SimpleAdModel model = context.SimpleAds.Include("AdSessions").Include("AdSessions.Activities").Include("AdSessions.Activities.Clicks").Include("AdStates").SingleOrDefault(a => a.Id == id);
-            
-            return model;
+            var ad = context.SimpleAds
+                .Include("StateGraph")
+                .Include("AdSessions")
+                .Include("AdSessions.Activities")
+                .Include("AdSessions.Activities.Clicks")
+                .Include("AdStates")
+                .FirstOrDefault(a => a.Id == id);
+
+            return ad;
         }
 
 
@@ -125,6 +154,204 @@ namespace ImpulseApp.Database
         public IEnumerable<Models.AdModels.VideoUnit> GetUserVideo(string UserName)
         {
             return context.VideoUnits.Where(a => a.UserName.Equals(UserName)).ToList();
+        }
+
+
+        public Models.AdModels.VideoUnit GetVideoById(string UserName, int Id)
+        {
+            VideoUnit videoUnit = context.VideoUnits.Find(Id);
+            if (videoUnit == null)
+            {
+                throw new FaultException<VideoNotFoundException>(new VideoNotFoundException(Models.Properties.ExceptionText.VideoNotFoundById));
+            }
+            if (videoUnit.UserName.Equals(UserName))
+            {
+                return videoUnit;
+            }
+            else
+            {
+                throw new FaultException<VideoNotFoundException>(new VideoNotFoundException(Models.Properties.ExceptionText.VideoNotFoundByUser));
+            }
+        }
+
+
+
+
+
+        public AdState GetStateByAdIdAndVideoId(int adId, int videoId, string stateName)
+        {
+            AdState state = null;
+            try
+            {
+                state = context.AdStates.SingleOrDefault(a => a.AdId == adId && a.VideoUnitId == videoId && a.Name.Equals(stateName));
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<MultiplyAdStatesFoundException>(new MultiplyAdStatesFoundException(Models.Properties.ExceptionText.AdStateMultiply));
+            }
+            if (state == null)
+            {
+                throw new FaultException<AdStateNotFoundException>(new AdStateNotFoundException(Models.Properties.ExceptionText.AdStateNotFound));
+            }
+            return state;
+        }
+
+
+        public string SaveAdVersioningByEntity(Versioning versioning)
+        {
+            context.Entry<Versioning>(versioning).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            return ResponseStatuses.SUCCESS;
+        }
+
+        public string SaveAdVersioningByIds(int rootId, int childId)
+        {
+            Versioning versioning = null;
+            try
+            {
+                versioning = context.Versioning.Single(a => a.RootAdId == rootId && a.ChildAdId == childId);
+            }
+            catch (Exception ex)
+            { }
+            if (versioning == null)
+            {
+                versioning = new Versioning();
+                versioning.RootAdId = rootId;
+                versioning.ChildAdId = childId;
+                context.Versioning.Add(versioning);
+                context.SaveChanges();
+                return ResponseStatuses.SUCCESS;
+            }
+            else
+            {
+                throw new FaultException<VersioningException>(new VersioningException("Текущая презентация является версией более чем одной презентации"));
+            }
+
+        }
+
+        public bool IsRoot(int adId)
+        {
+            int count = context.Versioning.Where(a => a.RootAdId == adId).Count();
+            if (count > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public int GetRootAdId(int adId)
+        {
+            try
+            {
+                var versioning = context.Versioning.Single(a => a.ChildAdId == adId);
+                if (versioning != null)
+                {
+                    return versioning.RootAdId;
+                }
+                else
+                {
+                    if (context.Versioning.Where(a => a.RootAdId == adId).Count() > 0)
+                    {
+                        throw new FaultException<VersioningException>(new VersioningException("Текущая версия является корневой"));
+                    }
+                    throw new FaultException<VersioningException>(new VersioningException("Текущая презентация не найдена"));
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new FaultException<VersioningException>(new VersioningException("Текущая презентация является версией более чем одной презентации"));
+            }
+
+        }
+
+        public IEnumerable<Models.DTO.VersioningDTO> GetChildAds(int adId)
+        {
+            List<VersioningDTO> result = new List<VersioningDTO>();
+            var versions = context.Versioning.Where(a => a.RootAdId == adId);
+            if(versions==null)
+            {
+                throw new FaultException<VersioningException>(new VersioningException("Результаты не найдены"));
+            }
+            foreach (var v in versions)
+            {
+                result.Add(new VersioningDTO
+                    {
+                         ChildAdId = v.ChildAdId,
+                         RootAdId = v.RootAdId,
+                         date = v.Date
+                    });
+            }
+            return result;
+        }
+
+
+        public string SaveAdVersioningByIdAndUrl(int rootId, string childUrl)
+        {
+            int childId = context.SimpleAds.FirstOrDefault(a => a.ShortUrlKey.Equals(childUrl)).Id;
+            var versioning = new Versioning();
+            versioning.RootAdId = rootId;
+            versioning.ChildAdId = childId;
+            context.Versioning.Add(versioning);
+            context.SaveChanges();
+            return ResponseStatuses.SUCCESS;
+        }
+
+
+        public string SaveAdVersioningByUrls(string rootUrl, string childUrl)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public string SaveAdVersioningByPreviousIdAndUrl(int prevId, string childUrl)
+        {
+            int childId = context.SimpleAds.FirstOrDefault(a => a.ShortUrlKey.Equals(childUrl)).Id;
+            var rootVersion = context.Versioning.FirstOrDefault(a => a.ChildAdId == prevId);
+            int rootId = prevId;
+            if(rootVersion!=null)
+            {
+                rootId = rootVersion.Id;
+            }
+            var versioning = new Versioning();
+            versioning.RootAdId = rootId;
+            versioning.ChildAdId = childId;
+            context.Versioning.Add(versioning);
+            context.SaveChanges();
+            return ResponseStatuses.SUCCESS;
+        }
+
+
+        public string SaveAbTest(ABTest test)
+        {
+            context.AbTests.Add(test);
+            context.SaveChanges();
+            return ResponseStatuses.SUCCESS;
+        }
+
+        public ABTest GetAbTestByUrl(string url)
+        {
+            return context.AbTests.FirstOrDefault(a => a.Url.Equals(url));
+        }
+
+        public ABTest GetAbTestById(string id)
+        {
+            return context.AbTests.Find(id);
+        }
+
+
+        public string SetActiveByAdId(int id)
+        {
+            var current = context.SimpleAds.Find(id);
+            var active = context.SimpleAds.FirstOrDefault(a => a.ShortUrlKey.Equals(current.ShortUrlKey) && a.IsActive);
+            if (active != null)
+            {
+                active.IsActive = false;
+                context.Entry(active).State = System.Data.Entity.EntityState.Modified;
+            }
+            current.IsActive = true;
+            context.Entry(current).State = System.Data.Entity.EntityState.Modified;
+            context.SaveChanges();
+            return ResponseStatuses.SUCCESS;
         }
     }
 }

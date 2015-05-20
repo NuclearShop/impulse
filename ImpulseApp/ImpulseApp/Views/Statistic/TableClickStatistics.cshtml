@@ -12,15 +12,10 @@
             <td>
                 @Html.LabelFor(a => a.First().Browser)
             </td>
-            <td>
-                @Html.LabelFor(a => a.First().FirstStage)
-            </td>
-            <td>
-                @Html.LabelFor(a => a.First().SecondStage)
-            </td>
-            <td>
-                @Html.LabelFor(a => a.First().ThirdStage)
-            </td>
+            @foreach (var st in Model.First().Stages)
+            {
+                <td>@Html.DisplayFor(model => st.Name)</td>
+            }
         </tr>
     </thead>
     <tbody>
@@ -36,15 +31,10 @@
                 <td>
                     @Html.DisplayFor(model => m.Browser)
                 </td>
-                <td>
-                    @Html.DisplayFor(model => m.FirstStage)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => m.SecondStage)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => m.ThirdStage)
-                </td>
+                @foreach (var st in m.Stages)
+                {
+                    <td>@Html.DisplayFor(model => st.Value)</td>
+                }
             </tr>
         }
     </tbody>

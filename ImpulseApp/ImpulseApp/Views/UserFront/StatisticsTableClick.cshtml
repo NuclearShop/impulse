@@ -1,30 +1,12 @@
 ﻿@{
     ViewBag.Title = "StatisticsTableClick";
+    Layout = null;
 }
 
 @section scripts{
     <script>
         $(document).ready(function () {
-            $("#addAd").click(function () {
-                var AdId = $("#Ads option:selected").val();
-                var dateStart = $("#DateStart").val();
-                var dateEnd = $("#DateEnd").val();
-                $.ajax({
-                    url: '@Url.Action("TableClickStatistics", "Statistic")',
-                    type: 'POST',
-                    data: {
-                        AdId: AdId,
-                        StartDate: dateStart,
-                        EndDate: dateEnd
-                    },
-                    success: function (result) {
-                        $("#tablediv").html(result);
-                        $('#ClickStat').DataTable({
-                            responsive: true
-                        });
-                    }
-                });
-            })
+
         })
     </script>
 }
@@ -37,13 +19,18 @@
 </div>
 
 <div class="row">
-   
-        <div class="form-group">
-            @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
-            <input id="DateStart" type="date" />
-            <input id="DateEnd" type="date" />
-            <button id="addAd" class="btn btn-default">Выбрать</button>
+
+    <div class="form-inline">
+        @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
+        C: <input id="DateStart" type="date" class="form-control" />
+        По: <input id="DateEnd" type="date" class="form-control" />
+        <button id="addAd" class="btn btn-default" ng-click="loadTable()">Выбрать</button>
+        <div class="pull-right">
+            Экспорт в PDF:
+            <button class="btn btn-default export-pdf" ng-click="generateReport(false)">Видимая таблица</button>
+            <button class="btn btn-default export-pdf" ng-click="generateReport(true)">Вся таблица</button>
         </div>
+    </div>
 
 </div>
 <div class="row">

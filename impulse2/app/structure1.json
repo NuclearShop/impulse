@@ -1,0 +1,19 @@
+{   
+    "projectname":"Cапог",
+    "nodes":[{
+        "name":"Введение",
+        "x": 100,
+        "y": 500,
+        "capture":"../../images/thumbnail.jpg"
+        },{
+          "name":"О компании",
+        "x": 450,
+        "y": 120,
+        "capture":"../../images/aventura1.jpg"  
+        },{
+          "name":"Продукт",
+        "x": 400,
+        "y": 250,
+        "capture":"../../images/thumbnail.jpg"  
+        }]
+}

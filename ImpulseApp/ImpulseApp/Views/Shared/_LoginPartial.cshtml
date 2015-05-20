@@ -4,7 +4,7 @@
 
 
     <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
@@ -12,10 +12,12 @@
                 <a href="#"><i class="fa fa-user fa-fw"></i>Профиль</a>
                 <a href="@Url.Action("Manage", "Account")"><i class="fa fa-gear fa-fw"></i>Настройки</a>
             </li>
-            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post))
+            @using (Html.BeginForm("LogOff", "Account",FormMethod.Post, new {name = "LogOff"}))
             {
                 @Html.AntiForgeryToken()
-                <li><i class="fa fa-sign-out fa-fw"></i><input type="submit" value="Выход" /> </li>
+                <li>
+                    <a href="javascript:document.forms['LogOff'].submit()"><i class="fa fa-sign-out fa-fw"></i>Выход</a>
+                </li>
             }
         </ul>
     </li>

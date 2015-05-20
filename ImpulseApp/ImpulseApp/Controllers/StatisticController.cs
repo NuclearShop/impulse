@@ -48,46 +48,7 @@ namespace ImpulseApp.Controllers
             }
             return Json(model);
         }
-        [RestApiAttribute]
-        [HttpPost]
-        public void SaveSession(string xmlMessage)
-        {
 
-            var adJS = (JObject)JsonConvert.DeserializeObject(xmlMessage);
-            AdSession adDB = new AdSession();
-            String dtStartString = (String)adJS["AdTimeStart"];
-            String dtEndString = (String)adJS["AdTimeEnd"];
-            adDB.ActiveMilliseconds = 0;//DateTime.Parse((String)adJS["AdTimeStart"]).Subtract(DateTime.Parse((String)adJS["AdTimeEnd"])).Milliseconds;
-            adDB.AdId = Int16.Parse((String)adJS["AdId"]);
-            adDB.DateTimeStart = DateTime.ParseExact(dtStartString, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            adDB.DateTimeEnd = DateTime.ParseExact(dtEndString, "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-            adDB.UserIp = Request.ServerVariables["REMOTE_ADDR"];
-            adDB.UserBrowser = Request.UserAgent;
-            adDB.UserLocale = Request.UserLanguages[0];
-            adDB.UserLocation = "123";
-            List<Click> clicks = new List<Click>();
-            List<Activity> activities = new List<Activity>();
-            foreach (var activityJS in adJS["Activities"])
-            {
-                Activity activityDB = new Activity();
-
-                //activityDB.Session = adDB;
-                activityDB.StartTime = DateTime.ParseExact((String)activityJS["StartTime"], "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                activityDB.EndTime = DateTime.ParseExact((String)activityJS["EndTime"], "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                foreach (var clickJS in activityJS["Clicks"])
-                {
-                    Click clickDB = new Click();
-                    //clickDB.Activity = activityDB;
-                    clickDB.ClickTime = DateTime.ParseExact((String)clickJS["ClickTime"], "MM/dd/yyyy HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
-                    clickDB.ClickZone = (String)clickJS["ClickZone"];
-                    clickDB.ClickType = Int16.Parse((String)clickJS["ClickType"]);
-                    activityDB.Clicks.Add(clickDB);
-                }
-                adDB.Activities.Add(activityDB);
-            }
-            service.SaveAdSession(adDB, true);
-
-        }
         [HttpPost]
         public JsonResult ClickStatistics(List<int> AdIds, string sDate = "", string eDate = "",
             int interval = 1, bool isMinificate = false)
@@ -106,77 +67,51 @@ namespace ImpulseApp.Controllers
             }
             CompareChartModel chart = new CompareChartModel();
 
-            if (isMinificate && ads.Count == 1)
+            DateTime startDate = ads.Min(a => a.AdSessions.OrderBy(b => b.DateTimeStart).First().DateTimeStart);
+            DateTime endDate = ads.Max(a => a.AdSessions.OrderByDescending(b => b.DateTimeStart).First().DateTimeStart);
+            if (sDate != "")
             {
-                SimpleAdModel ad = ads[0];
+                DateTime dt = DateTime.Parse(sDate);
+                if (dt.CompareTo(startDate) > 0)
+                {
+                    startDate = dt;
+                }
+            }
+            if (eDate != "")
+            {
+                DateTime dt = DateTime.Parse(eDate);
+                if (dt.CompareTo(endDate) < 0)
+                {
+                    endDate = dt;
+                }
+            }
+            foreach (var ad in ads)
+            {
                 StatChartJS model = new StatChartJS();
                 model.name = ad.Name;
-                foreach (var session in ad.AdSessions.GroupBy(a => a.DateTimeStart.Date))
+                for (DateTime curDate = startDate; curDate <= endDate; curDate = curDate.Date.AddDays(interval))
                 {
-                    model.labels.Add(session.Key.ToShortDateString());
-                    int clickNum = 0;
-                    foreach (var activityWrapper in session.Select(a => a.Activities))
+                    DateTime estimate = curDate.Date.AddDays(interval);
+                    model.labels.Add(curDate.ToShortDateString());
+                    List<AdSession> sessions = new List<AdSession>();
+                    foreach (var s in ad.AdSessions)
                     {
-                        foreach (var activity in activityWrapper)
+                        if (s.DateTimeStart.Date.CompareTo(curDate.Date) >= 0 && s.DateTimeStart.CompareTo(estimate.Date) <= 0)
                         {
-                            clickNum += activity.Clicks.Count;
+                            sessions.Add(s);
                         }
                     }
-                    model.data.Add(clickNum.ToString());
-                    model.name = ad.Name;
+                    if (sessions.Count() == 0)
+                    {
+                        model.data.Add("0");
+                    }
+                    else
+                    {
+                        model.data.Add(sessions.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Count().ToString());
+                    }
                 }
+                model.name = ad.Name;
                 chart.charts.Add(model);
-            }
-            else if (ads.Count > 0)
-            {
-
-                DateTime startDate = ads.Min(a => a.AdSessions.OrderBy(b => b.DateTimeStart).First().DateTimeStart);
-                DateTime endDate = ads.Max(a => a.AdSessions.OrderByDescending(b => b.DateTimeStart).First().DateTimeStart);
-                if (sDate != "")
-                {
-                    DateTime dt = DateTime.Parse(sDate);
-                    if (dt.CompareTo(startDate) > 0)
-                    {
-                        startDate = dt;
-                    }
-                }
-                if (eDate != "")
-                {
-                    DateTime dt = DateTime.Parse(eDate);
-                    if (dt.CompareTo(endDate) < 0)
-                    {
-                        endDate = dt;
-                    }
-                }
-                foreach (var ad in ads)
-                {
-                    StatChartJS model = new StatChartJS();
-                    model.name = ad.Name;
-                    for (DateTime curDate = startDate; curDate <= endDate; curDate = curDate.Date.AddDays(interval))
-                    {
-                        DateTime estimate = curDate.Date.AddDays(interval);
-                        model.labels.Add(curDate.ToShortDateString());
-                        List<AdSession> sessions = new List<AdSession>();
-                        foreach (var s in ad.AdSessions)
-                        {
-                            if (s.DateTimeStart.Date.CompareTo(curDate.Date) >= 0 && s.DateTimeStart.CompareTo(estimate.Date) <= 0)
-                            {
-                                sessions.Add(s);
-                            }
-                        }
-                        //var sessions = ad.AdSessions.Where(a => a.DateTimeStart.CompareTo(curDate) >= 0 && a.DateTimeStart.CompareTo(estimate) < 0);
-                        if (sessions.Count() == 0)
-                        {
-                            model.data.Add("0");
-                        }
-                        else
-                        {
-                            model.data.Add(sessions.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Count().ToString());
-                        }
-                    }
-                    model.name = ad.Name;
-                    chart.charts.Add(model);
-                }
 
             }
 
@@ -204,7 +139,7 @@ namespace ImpulseApp.Controllers
             return PartialView(sessionsFiltered);
         }
 
-        public JsonResult BrowserStatistics(List<int> AdIds)
+        public JsonResult BrowserStatistics(List<int> AdIds, string sDate = "", string eDate = "")
         {
             List<SimpleAdModel> ads = new List<SimpleAdModel>();
             CompareChartModel chart = new CompareChartModel();
@@ -216,6 +151,16 @@ namespace ImpulseApp.Controllers
             {
                 var ad = service.GetAdById(adId);
                 ads.Add(ad);
+            }
+            DateTime startDateTime = DateTime.MinValue;
+            DateTime endDateTime = DateTime.MaxValue;
+            if (sDate != "")
+            {
+                startDateTime = DateTime.Parse(sDate);
+            }
+            if (eDate != "")
+            {
+                endDateTime = DateTime.Parse(eDate);
             }
             foreach (var ad in ads)
             {
@@ -224,14 +169,17 @@ namespace ImpulseApp.Controllers
                 jsModel.name = ad.Name;
                 foreach (var browserName in jsModel.labels)
                 {
-                    jsModel.data.Add(ad.AdSessions.Where(b => b.UserBrowser.Equals(browserName)).Count().ToString());
+                    jsModel.data.Add(ad.AdSessions
+                        .Where(b => b.UserBrowser.Equals(browserName)
+                        && b.DateTimeStart.CompareTo(startDateTime) >= 0
+                        && b.DateTimeEnd.CompareTo(endDateTime) <= 0).Count().ToString());
                 }
                 chart.charts.Add(jsModel);
             }
             return Json(chart);
         }
 
-        public JsonResult FunnelStatistics(List<int> AdIds)
+        public JsonResult FunnelStatistics(List<int> AdIds, string sDate = "", string eDate = "")
         {
             List<SimpleAdModel> ads = new List<SimpleAdModel>();
             CompareChartModel chart = new CompareChartModel();
@@ -244,16 +192,31 @@ namespace ImpulseApp.Controllers
                 var ad = service.GetAdById(adId);
                 ads.Add(ad);
             }
+            DateTime startDateTime = DateTime.MinValue;
+            DateTime endDateTime = DateTime.MaxValue;
+            if (sDate != "")
+            {
+                startDateTime = DateTime.Parse(sDate);
+            }
+            if (eDate != "")
+            {
+                endDateTime = DateTime.Parse(eDate);
+            }
             foreach (var ad in ads)
             {
                 StatChartJS jsModel = new StatChartJS();
-                jsModel.labels.Add("Просмотр 1 этапа");
-                jsModel.labels.Add("Просмотр 2 этапа");
-                jsModel.labels.Add("Просмотр 3 этапа");
+                var clicks = ad.AdSessions
+                        .SelectMany(a => a.Activities)
+                        .SelectMany(b => b.Clicks)
+                        .Where(c => c.ClickTime.CompareTo(startDateTime) >= 0
+                            && c.ClickTime.CompareTo(endDateTime) <= 0).GroupBy(d=>d.ClickStamp).OrderByDescending(e=>e.Count());
                 jsModel.name = ad.Name;
-                for (int i = 0; i < 3; i++)
+                foreach (var clickGroup in clicks)
                 {
-                    jsModel.data.Add(ad.AdSessions.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == i).Count().ToString());
+                    var clickElem = clickGroup.First();
+                    //AdState state = service.GetStateByAdIdAndVideoId(ad.Id, clickElem.ClickCurrentStage, clickElem.Activity.CurrentStateName);
+                    jsModel.labels.Add(clickElem.Activity.CurrentStateName);
+                    jsModel.data.Add(clickGroup.Count().ToString());
                 }
                 chart.charts.Add(jsModel);
             }
@@ -282,9 +245,22 @@ namespace ImpulseApp.Controllers
                 row.IP = session.Key;
                 row.Locale = session.First().UserLocale;
                 row.Browser = session.First().UserBrowser;
-                row.FirstStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 0).Count().ToString();
-                row.SecondStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 1).Count().ToString();
-                row.ThirdStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 2).Count().ToString();
+                var clicks = session
+                        .SelectMany(a => a.Activities)
+                        .SelectMany(b => b.Clicks).GroupBy(d => d.ClickStamp).OrderByDescending(e => e.Count());
+                string transitions = ":";
+                foreach (var clickGroup in clicks)
+                {
+                    transitions += (":" + clickGroup.First().ClickStamp);
+                }
+                row.Stages.Add(new Stage
+                {
+                    Name = "Переходы",
+                    Value = transitions
+                });
+                //row.FirstStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 0).Count().ToString();
+                //row.SecondStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 1).Count().ToString();
+                //row.ThirdStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 2).Count().ToString();
                 table.Add(row);
             }
             return PartialView(table);

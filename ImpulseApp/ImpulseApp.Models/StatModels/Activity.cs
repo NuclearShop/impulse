@@ -26,6 +26,8 @@ namespace ImpulseApp.Models.StatModels
         [DataMember]
         public virtual int SessionId { get; set; }
         [DataMember]
+        public string CurrentStateName { get; set; }
+        [DataMember]
         [ForeignKey("SessionId")]
         public virtual AdSession Session { get; set; }
         [DataMember]

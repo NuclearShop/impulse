@@ -1,0 +1,152 @@
+.browsehappy {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+body {
+  padding: 0;
+  color:#fff;
+}
+a{
+  color:#fff;
+}
+@font-face {
+  font-family: 'icomoon';
+  src:url('../fonts/icomoon.eot?-au7y8f');
+  src:url('../fonts/icomoon.eot?#iefix-au7y8f') format('embedded-opentype'),
+    url('../fonts/icomoon.woff?-au7y8f') format('woff'),
+    url('../fonts/icomoon.ttf?-au7y8f') format('truetype'),
+    url('../fonts/icomoon.svg?-au7y8f#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-stop:before {
+  content: "\e600";
+}
+
+.icon-pause:before {
+  content: "\e601";
+}
+
+.icon-form:before {
+  content: "\e602";
+}
+
+.icon-button:before {
+  content: "\e603";
+}
+
+.icon-text:before {
+  content: "\e604";
+}
+
+.icon-pencil:before {
+  content: "\e905";
+}
+
+.icon-camera:before {
+  content: "\e914";
+}
+
+.icon-file:before {
+  content: "\e922";
+}
+
+.icon-array:before {
+  content: "\e92e";
+}
+
+.icon-phone:before {
+  content: "\e942";
+}
+
+.icon-knopka:before {
+  content: "\e946";
+}
+
+.icon-time:before {
+  content: "\e94e";
+}
+
+.icon-import:before {
+  content: "\e960";
+}
+
+.icon-export:before {
+  content: "\e961";
+}
+
+.icon-save:before {
+  content: "\e962";
+}
+
+.icon-db:before {
+  content: "\e964";
+}
+
+.icon-settings1:before {
+  content: "\e992";
+}
+
+.icon-settings:before {
+  content: "\e994";
+}
+
+.icon-analytics:before {
+  content: "\e99b";
+}
+
+.icon-diagram:before {
+  content: "\e99c";
+}
+
+.icon-remove:before {
+  content: "\e9ad";
+}
+
+.icon-eye:before {
+  content: "\e9ce";
+}
+
+.icon-plus:before {
+  content: "\ea0a";
+}
+
+.icon-delete:before {
+  content: "\ea0f";
+}
+
+.icon-play3:before {
+  content: "\ea1c";
+}
+
+.icon-volume:before {
+  content: "\ea27";
+}
+
+.icon-muted:before {
+  content: "\ea29";
+}
+
+.icon-share:before {
+  content: "\ea82";
+}
+
+

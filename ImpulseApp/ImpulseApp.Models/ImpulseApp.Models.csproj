@@ -54,33 +54,88 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdModels\ABTest.cs" />
     <Compile Include="AdModels\AdState.cs" />
+    <Compile Include="AdModels\NodeLink.cs" />
     <Compile Include="AdModels\SimpleAdModel.cs" />
+    <Compile Include="AdModels\UserElement.cs" />
+    <Compile Include="AdModels\Versioning.cs" />
     <Compile Include="AdModels\VideoUnit.cs" />
     <Compile Include="Dicts\ResponseStatuses.cs" />
+    <Compile Include="DTO\AdStateDTO.cs" />
+    <Compile Include="DTO\AdOutboundDTO.cs" />
+    <Compile Include="DTO\NodeLinkDTO.cs" />
+    <Compile Include="DTO\UserElementDTO.cs" />
+    <Compile Include="DTO\VersioningDTO.cs" />
+    <Compile Include="Exceptions\AbTestException.cs" />
+    <Compile Include="Exceptions\ImpulseBaseException.cs" />
+    <Compile Include="Exceptions\MultiplyAdStatesFoundException.cs" />
+    <Compile Include="DTO\SimpleAdModelDTO.cs" />
+    <Compile Include="DTO\StatModelsDTO.cs" />
+    <Compile Include="Exceptions\AdStateNotFoundException.cs" />
+    <Compile Include="Exceptions\VersioningException.cs" />
+    <Compile Include="Exceptions\VideoNotFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\ExceptionText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExceptionText.resx</DependentUpon>
+    </Compile>
     <Compile Include="StatModels\Activity.cs" />
     <Compile Include="StatModels\AdSession.cs" />
     <Compile Include="StatModels\Click.cs" />
     <Compile Include="Utilites\Generator.cs" />
     <Compile Include="Utilites\ReferencePreservingDataContractFormatAttribute.cs" />
+    <Compile Include="UtilModels\ModeratorViews.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Diagrams\ClassDiagram1.cd" />
+    <None Include="Diagrams\Graph1.dgml" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Properties\ExceptionText.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExceptionText.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AdModels\ABTest.cs.js">
+      <DependentUpon>ABTest.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DTO\AdStateDTO.cs.js">
+      <DependentUpon>AdStateDTO.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DTO\NodeLinkDTO.cs.js">
+      <DependentUpon>NodeLinkDTO.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DTO\SimpleAdModelDTO.cs.js">
+      <DependentUpon>SimpleAdModelDTO.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DTO\UserElementDTO.cs.js">
+      <DependentUpon>UserElementDTO.cs</DependentUpon>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

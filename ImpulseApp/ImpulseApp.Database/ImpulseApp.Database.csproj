@@ -53,6 +53,9 @@
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
+    <Reference Include="RefactorThis.GraphDiff">
+      <HintPath>..\packages\RefactorThis.GraphDiff.2.0.1\lib\RefactorThis.GraphDiff.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -73,12 +76,74 @@
     <Compile Include="Migrations\201503211846003_videopath.Designer.cs">
       <DependentUpon>201503211846003_videopath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201503291333179_addStateUpdate.cs" />
+    <Compile Include="Migrations\201503291333179_addStateUpdate.Designer.cs">
+      <DependentUpon>201503291333179_addStateUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504111020189_adHtml.cs" />
+    <Compile Include="Migrations\201504111020189_adHtml.Designer.cs">
+      <DependentUpon>201504111020189_adHtml.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504121111177_wtfmigration.cs" />
+    <Compile Include="Migrations\201504121111177_wtfmigration.Designer.cs">
+      <DependentUpon>201504121111177_wtfmigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504141033572_NodeLinks.cs" />
+    <Compile Include="Migrations\201504141033572_NodeLinks.Designer.cs">
+      <DependentUpon>201504141033572_NodeLinks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504141057469_clickupd.cs" />
+    <Compile Include="Migrations\201504141057469_clickupd.Designer.cs">
+      <DependentUpon>201504141057469_clickupd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504141451533_clickupd2.cs" />
+    <Compile Include="Migrations\201504141451533_clickupd2.Designer.cs">
+      <DependentUpon>201504141451533_clickupd2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504151248265_actupd.cs" />
+    <Compile Include="Migrations\201504151248265_actupd.Designer.cs">
+      <DependentUpon>201504151248265_actupd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504241459572_userelems.cs" />
+    <Compile Include="Migrations\201504241459572_userelems.Designer.cs">
+      <DependentUpon>201504241459572_userelems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504260852479_htmltags.cs" />
+    <Compile Include="Migrations\201504260852479_htmltags.Designer.cs">
+      <DependentUpon>201504260852479_htmltags.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504261156521_htmltags2.cs" />
+    <Compile Include="Migrations\201504261156521_htmltags2.Designer.cs">
+      <DependentUpon>201504261156521_htmltags2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021615207_versioning.cs" />
+    <Compile Include="Migrations\201505021615207_versioning.Designer.cs">
+      <DependentUpon>201505021615207_versioning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505021626109_deleteConvention.cs" />
+    <Compile Include="Migrations\201505021626109_deleteConvention.Designer.cs">
+      <DependentUpon>201505021626109_deleteConvention.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505040921227_abtest.cs" />
+    <Compile Include="Migrations\201505040921227_abtest.Designer.cs">
+      <DependentUpon>201505040921227_abtest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505041036169_fk.cs" />
+    <Compile Include="Migrations\201505041036169_fk.Designer.cs">
+      <DependentUpon>201505041036169_fk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505081539228_defSlide.cs" />
+    <Compile Include="Migrations\201505081539228_defSlide.Designer.cs">
+      <DependentUpon>201505081539228_defSlide.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +158,51 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201503211846003_videopath.resx">
       <DependentUpon>201503211846003_videopath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201503291333179_addStateUpdate.resx">
+      <DependentUpon>201503291333179_addStateUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504111020189_adHtml.resx">
+      <DependentUpon>201504111020189_adHtml.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504121111177_wtfmigration.resx">
+      <DependentUpon>201504121111177_wtfmigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504141033572_NodeLinks.resx">
+      <DependentUpon>201504141033572_NodeLinks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504141057469_clickupd.resx">
+      <DependentUpon>201504141057469_clickupd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504141451533_clickupd2.resx">
+      <DependentUpon>201504141451533_clickupd2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504151248265_actupd.resx">
+      <DependentUpon>201504151248265_actupd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504241459572_userelems.resx">
+      <DependentUpon>201504241459572_userelems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504260852479_htmltags.resx">
+      <DependentUpon>201504260852479_htmltags.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504261156521_htmltags2.resx">
+      <DependentUpon>201504261156521_htmltags2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021615207_versioning.resx">
+      <DependentUpon>201505021615207_versioning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505021626109_deleteConvention.resx">
+      <DependentUpon>201505021626109_deleteConvention.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505040921227_abtest.resx">
+      <DependentUpon>201505040921227_abtest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505041036169_fk.resx">
+      <DependentUpon>201505041036169_fk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505081539228_defSlide.resx">
+      <DependentUpon>201505081539228_defSlide.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.StatModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +20,17 @@ namespace ImpulseApp.Utilites
                 s.Append(r.Next(0, 10));
             }
             return s.ToString();
+        }
+
+        public static string GenerateClickName(Click click)
+        {
+            return "Переход с видео " + click.ClickCurrentStage + " на видео " + click.ClickNextStage;
+        }
+        public static string GenerateClickStamp(Click click)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(click.ClickCurrentStage).Append('-').Append(click.ClickNextStage).Append('-').Append(click.ClickNextTime);
+            return sb.ToString();
         }
     }
 }

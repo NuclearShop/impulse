@@ -38,34 +38,6 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
-        [RestApiAttribute]
-        [HttpPost]
-        public JsonResult CreateExecuting(string xmlMessage)
-        {
-            XDocument xmlModel = XDocument.Parse(xmlMessage);
-            SimpleAdModel mvcAdModel = new SimpleAdModel(User.Identity.GetUserId());
-            var elems = xmlModel.Root.Elements();
-            var body = elems.Single(el => el.Name.LocalName.Equals("body"));
-            mvcAdModel.HtmlSource = body.Value.Trim();
-            mvcAdModel.Name = "Реклама " + mvcAdModel.ShortUrlKey;
-            AdState state = new AdState
-            {
-                Type = AdStateTypes.FIRST
-            };
-            AdState state2 = new AdState
-            {
-                Type = AdStateTypes.MIDDLE
-            };
-            AdState state3 = new AdState
-            {
-                Type = AdStateTypes.FINAL
-            };
-            mvcAdModel.AdStates.Add(state);
-            mvcAdModel.AdStates.Add(state2);
-            mvcAdModel.AdStates.Add(state3);
-            service.SaveAd(mvcAdModel, true);
-            return Json(new { redirectToUrl = Url.Action("CreateResponse", new { id = mvcAdModel.ShortUrlKey }) });
-        }
         public ActionResult CreateResponse(int id)
         {
             return View(id);
@@ -82,17 +54,17 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
-        public ActionResult StatisticsBrowser()
-        {
-            return View();
-        }
-        public ActionResult StatisticsFunnel()
-        {
-            return View();
-        }
         public ActionResult StatisticsTableClick()
         {
             return View();
+        }
+        public ActionResult AdList()
+        {
+            return PartialView();
+        }
+        public ActionResult AbTest()
+        {
+            return PartialView();
         }
 
 
