@@ -416,5 +416,13 @@ namespace ImpulseApp.Database
             }
             context.SaveChanges();
         }
+
+
+        public void RemoveAbTestById(int id)
+        {
+            ABTest ab = context.AbTests.Find(id);
+            context.AbTests.Remove(ab);
+            context.SaveChanges();
+        }
     }
 }

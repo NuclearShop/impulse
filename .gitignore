@@ -4,6 +4,10 @@ x64/
 build/
 [Bb]in/
 [Oo]bj/
+[Vv]ideos/
 
 *.mdf
 *.ldf
+*.webm
+*.mp4
+

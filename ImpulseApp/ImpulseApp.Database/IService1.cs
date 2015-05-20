@@ -100,6 +100,9 @@ namespace ImpulseApp.Database
         IEnumerable<ABTest> GetAllActiveTests(string UserId);
 
         [OperationContract]
+        void RemoveAbTestById(int id);
+
+        [OperationContract]
         [FaultContract(typeof(VersioningException))]
         string SetActiveByAdId(int id);
 
