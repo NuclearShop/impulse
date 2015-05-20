@@ -66,9 +66,17 @@ namespace ImpulseApp.Controllers
                     ads.Add(ad);
             }
             CompareChartModel chart = new CompareChartModel();
-
-            DateTime startDate = ads.Min(a => a.AdSessions.OrderBy(b => b.DateTimeStart).First().DateTimeStart);
-            DateTime endDate = ads.Max(a => a.AdSessions.OrderByDescending(b => b.DateTimeStart).First().DateTimeStart);
+            DateTime startDate = DateTime.Now;
+            DateTime endDate = DateTime.Now;
+            try
+            {
+                startDate = ads.Min(a => a.AdSessions.OrderBy(b => b.DateTimeStart).First().DateTimeStart);
+                endDate = ads.Max(a => a.AdSessions.OrderByDescending(b => b.DateTimeStart).First().DateTimeStart);
+            }
+            catch (Exception ex)
+            {
+                return Json(chart);
+            }
             if (sDate != "")
             {
                 DateTime dt = DateTime.Parse(sDate);
@@ -207,15 +215,14 @@ namespace ImpulseApp.Controllers
                 StatChartJS jsModel = new StatChartJS();
                 var clicks = ad.AdSessions
                         .SelectMany(a => a.Activities)
-                        .SelectMany(b => b.Clicks)
-                        .Where(c => c.ClickTime.CompareTo(startDateTime) >= 0
-                            && c.ClickTime.CompareTo(endDateTime) <= 0).GroupBy(d=>d.ClickStamp).OrderByDescending(e=>e.Count());
+                        .Where(c => c.StartTime.CompareTo(startDateTime) >= 0
+                            && c.EndTime.CompareTo(endDateTime) <= 0).GroupBy(d=>d.CurrentStateName).OrderByDescending(e=>e.Count());
                 jsModel.name = ad.Name;
                 foreach (var clickGroup in clicks)
                 {
                     var clickElem = clickGroup.First();
                     //AdState state = service.GetStateByAdIdAndVideoId(ad.Id, clickElem.ClickCurrentStage, clickElem.Activity.CurrentStateName);
-                    jsModel.labels.Add(clickElem.Activity.CurrentStateName);
+                    jsModel.labels.Add(clickElem.CurrentStateName);
                     jsModel.data.Add(clickGroup.Count().ToString());
                 }
                 chart.charts.Add(jsModel);

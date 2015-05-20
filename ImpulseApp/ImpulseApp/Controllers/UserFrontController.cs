@@ -66,6 +66,10 @@ namespace ImpulseApp.Controllers
         {
             return PartialView();
         }
+        public ActionResult AbTestList()
+        {
+            return PartialView();
+        }
 
 
     }

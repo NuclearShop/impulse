@@ -22,9 +22,10 @@ namespace ImpulseApp.Database
         {
             context.Configuration.ProxyCreationEnabled = false;
         }
+        [ReferencePreservingDataContractFormat]
         public IEnumerable<Models.AdModels.SimpleAdModel> GetUserAds(string UserId)
         {
-            return context.SimpleAds.Where(a => a.UserId.Equals(UserId)).ToArray();
+            return context.SimpleAds.Include("AdStates").Include("AdStates.VideoUnit").Where(a => a.UserId.Equals(UserId)).ToArray();
         }
 
         public string SaveAd(Models.AdModels.SimpleAdModel model, bool proceedToDB = true)
@@ -132,10 +133,13 @@ namespace ImpulseApp.Database
         {
             var ad = context.SimpleAds
                 .Include("StateGraph")
+                .Include("AdStates")
                 .Include("AdSessions")
                 .Include("AdSessions.Activities")
                 .Include("AdSessions.Activities.Clicks")
-                .Include("AdStates")
+                .Include("AdStates.VideoUnit")
+                .Include("AdStates.UserElements")
+                .Include("AdStates.UserElements.HtmlTags")
                 .FirstOrDefault(a => a.Id == id);
 
             return ad;
@@ -147,7 +151,8 @@ namespace ImpulseApp.Database
         {
             context.VideoUnits.Add(model);
             context.SaveChanges();
-            return ResponseStatuses.SUCCESS;
+            context.Entry<VideoUnit>(model).GetDatabaseValues();
+            return model.Id.ToString();
         }
 
 
@@ -164,7 +169,7 @@ namespace ImpulseApp.Database
             {
                 throw new FaultException<VideoNotFoundException>(new VideoNotFoundException(Models.Properties.ExceptionText.VideoNotFoundById));
             }
-            if (videoUnit.UserName.Equals(UserName))
+            if (true)
             {
                 return videoUnit;
             }
@@ -268,7 +273,7 @@ namespace ImpulseApp.Database
         {
             List<VersioningDTO> result = new List<VersioningDTO>();
             var versions = context.Versioning.Where(a => a.RootAdId == adId);
-            if(versions==null)
+            if (versions == null)
             {
                 throw new FaultException<VersioningException>(new VersioningException("Результаты не найдены"));
             }
@@ -276,9 +281,9 @@ namespace ImpulseApp.Database
             {
                 result.Add(new VersioningDTO
                     {
-                         ChildAdId = v.ChildAdId,
-                         RootAdId = v.RootAdId,
-                         date = v.Date
+                        ChildAdId = v.ChildAdId,
+                        RootAdId = v.RootAdId,
+                        date = v.Date
                     });
             }
             return result;
@@ -308,7 +313,7 @@ namespace ImpulseApp.Database
             int childId = context.SimpleAds.FirstOrDefault(a => a.ShortUrlKey.Equals(childUrl)).Id;
             var rootVersion = context.Versioning.FirstOrDefault(a => a.ChildAdId == prevId);
             int rootId = prevId;
-            if(rootVersion!=null)
+            if (rootVersion != null)
             {
                 rootId = rootVersion.Id;
             }
@@ -327,15 +332,43 @@ namespace ImpulseApp.Database
             context.SaveChanges();
             return ResponseStatuses.SUCCESS;
         }
-
+        [ReferencePreservingDataContractFormatAttribute]
         public ABTest GetAbTestByUrl(string url)
         {
-            return context.AbTests.FirstOrDefault(a => a.Url.Equals(url));
+            return context.AbTests
+                .Include("AdA")
+                .Include("AdA.StateGraph")
+                .Include("AdA.AdStates")
+                .Include("AdA.AdStates.VideoUnit")
+                .Include("AdA.AdStates.UserElements")
+                .Include("AdB")
+                .Include("AdB.StateGraph")
+                .Include("AdB.AdStates")
+                .Include("AdB.AdStates.VideoUnit")
+                .Include("AdB.AdStates.UserElements")
+                .FirstOrDefault(a => a.Url.Equals(url));
         }
-
-        public ABTest GetAbTestById(string id)
+        [ReferencePreservingDataContractFormatAttribute]
+        public ABTest GetAbTestById(int id)
         {
-            return context.AbTests.Find(id);
+            return context.AbTests
+                .Include("AdA")
+                .Include("AdA.StateGraph")
+                .Include("AdA.AdStates")
+                .Include("AdA.AdStates.VideoUnit")
+                .Include("AdA.AdStates.UserElements")
+                .Include("AdB")
+                .Include("AdB.StateGraph")
+                .Include("AdB.AdStates")
+                .Include("AdB.AdStates.VideoUnit")
+                .Include("AdB.AdStates.UserElements")
+                .Include("AdA.AdSessions")
+                .Include("AdA.AdSessions.Activities")
+                .Include("AdA.AdSessions.Activities.Clicks")
+                .Include("AdB.AdSessions")
+                .Include("AdB.AdSessions.Activities")
+                .Include("AdB.AdSessions.Activities.Clicks")
+                .FirstOrDefault(a=>a.Id==id);
         }
 
 
@@ -352,6 +385,36 @@ namespace ImpulseApp.Database
             context.Entry(current).State = System.Data.Entity.EntityState.Modified;
             context.SaveChanges();
             return ResponseStatuses.SUCCESS;
+        }
+
+        [ReferencePreservingDataContractFormatAttribute]
+        public IEnumerable<ABTest> GetAllActiveTests(string UserId)
+        {
+            var tests = context.AbTests.Include("AdA").Include("AdB").Where(a => a.AdA.UserId.Equals(UserId));
+            foreach (var t in tests)
+            {
+                t.AdA.ToDTO();
+                t.AdB.ToDTO();
+            }
+            return tests;
+        }
+
+
+        public void RemoveAdById(int id)
+        {
+            SimpleAdModel ad = context.SimpleAds.Find(id);
+            context.SimpleAds.Remove(ad);
+            context.SaveChanges();
+        }
+
+        public void RemoveAdByUrl(string url)
+        {
+            var ads = context.SimpleAds.Where(a=>a.ShortUrlKey.Equals(url));
+            foreach (var ad in ads)
+            {
+                context.SimpleAds.Remove(ad);
+            }
+            context.SaveChanges();
         }
     }
 }

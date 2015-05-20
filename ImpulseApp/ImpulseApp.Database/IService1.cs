@@ -22,6 +22,10 @@ namespace ImpulseApp.Database
         [OperationContract]
         SimpleAdModel GetAdById(int id);
         [OperationContract]
+        void RemoveAdById(int id);
+        [OperationContract]
+        void RemoveAdByUrl(string url);
+        [OperationContract]
         string SaveAd(SimpleAdModel model, bool proceedToDB = true);
 
         [OperationContract]
@@ -87,12 +91,13 @@ namespace ImpulseApp.Database
         string SaveAbTest(ABTest test);
 
         [OperationContract]
-        [FaultContract(typeof(AbTestException))]
         ABTest GetAbTestByUrl(string url);
 
         [OperationContract]
-        [FaultContract(typeof(AbTestException))]
-        ABTest GetAbTestById(string id);
+        ABTest GetAbTestById(int id);
+
+        [OperationContract]
+        IEnumerable<ABTest> GetAllActiveTests(string UserId);
 
         [OperationContract]
         [FaultContract(typeof(VersioningException))]

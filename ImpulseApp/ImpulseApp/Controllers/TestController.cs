@@ -18,5 +18,9 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
+        public ActionResult AbInfo()
+        {
+            return PartialView();
+        }
 	}
 }

@@ -28,6 +28,18 @@
   <wsdl:message name="IDBService_GetAdById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAdByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdById_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdByUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdByUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByUrlResponse" />
+  </wsdl:message>
   <wsdl:message name="IDBService_SaveAd_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveAd" />
   </wsdl:message>
@@ -187,17 +199,17 @@
   <wsdl:message name="IDBService_GetAbTestByUrl_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAbTestByUrlResponse" />
   </wsdl:message>
-  <wsdl:message name="IDBService_GetAbTestByUrl_AbTestExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q12:AbTestException" />
-  </wsdl:message>
   <wsdl:message name="IDBService_GetAbTestById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetAbTestById" />
   </wsdl:message>
   <wsdl:message name="IDBService_GetAbTestById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAbTestByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IDBService_GetAbTestById_AbTestExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q13:AbTestException" />
+  <wsdl:message name="IDBService_GetAllActiveTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveTests" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAllActiveTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveTestsResponse" />
   </wsdl:message>
   <wsdl:message name="IDBService_SetActiveByAdId_InputMessage">
     <wsdl:part name="parameters" element="tns:SetActiveByAdId" />
@@ -206,7 +218,7 @@
     <wsdl:part name="parameters" element="tns:SetActiveByAdIdResponse" />
   </wsdl:message>
   <wsdl:message name="IDBService_SetActiveByAdId_VersioningExceptionFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q14:VersioningException" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q12:VersioningException" />
   </wsdl:message>
   <wsdl:portType name="IDBService">
     <wsdl:operation name="GetUserAds">
@@ -220,6 +232,14 @@
     <wsdl:operation name="GetAdById">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAdById" message="tns:IDBService_GetAdById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAdByIdResponse" message="tns:IDBService_GetAdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAdById" message="tns:IDBService_RemoveAdById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAdByIdResponse" message="tns:IDBService_RemoveAdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdByUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAdByUrl" message="tns:IDBService_RemoveAdByUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAdByUrlResponse" message="tns:IDBService_RemoveAdByUrl_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveAd">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAd" message="tns:IDBService_SaveAd_InputMessage" />
@@ -315,12 +335,14 @@
     <wsdl:operation name="GetAbTestByUrl">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAbTestByUrl" message="tns:IDBService_GetAbTestByUrl_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAbTestByUrlResponse" message="tns:IDBService_GetAbTestByUrl_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetAbTestByUrlAbTestExceptionFault" name="AbTestExceptionFault" message="tns:IDBService_GetAbTestByUrl_AbTestExceptionFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAbTestById">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAbTestById" message="tns:IDBService_GetAbTestById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAbTestByIdResponse" message="tns:IDBService_GetAbTestById_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetAbTestByIdAbTestExceptionFault" name="AbTestExceptionFault" message="tns:IDBService_GetAbTestById_AbTestExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTests" message="tns:IDBService_GetAllActiveTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTestsResponse" message="tns:IDBService_GetAllActiveTests_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetActiveByAdId">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdId" message="tns:IDBService_SetActiveByAdId_InputMessage" />
@@ -350,6 +372,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAdById">
       <soap:operation soapAction="http://tempuri.org/IDBService/GetAdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdByUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAdByUrl" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -578,9 +618,6 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AbTestExceptionFault">
-        <soap:fault use="literal" name="AbTestExceptionFault" namespace="" />
-      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetAbTestById">
       <soap:operation soapAction="http://tempuri.org/IDBService/GetAbTestById" style="document" />
@@ -590,9 +627,15 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="AbTestExceptionFault">
-        <soap:fault use="literal" name="AbTestExceptionFault" namespace="" />
-      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveTests">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAllActiveTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="SetActiveByAdId">
       <soap:operation soapAction="http://tempuri.org/IDBService/SetActiveByAdId" style="document" />

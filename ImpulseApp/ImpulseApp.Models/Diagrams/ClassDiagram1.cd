@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImpulseApp.Models.Dicts.ResponseStatuses" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACBAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dicts\ResponseStatuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Dicts.Browsers" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dicts\ResponseStatuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Dicts.Locales" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dicts\ResponseStatuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Dicts.AdStateTypes" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAARAAAAAAAAAAAAAABAAAAAAAQAAAAA=</HashCode>
+      <FileName>Dicts\ResponseStatuses.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.DTO.AdOutboundDTO" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DTO\AdOutboundDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.DTO.AdStateDTO" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAACAAAAAAAAAAQAAAIAEAQAAAAgAAAAAAAAwAAAAAA=</HashCode>
+      <FileName>DTO\AdStateDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.DTO.SimpleAdModelDTO" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAACAg=</HashCode>
+      <FileName>DTO\SimpleAdModelDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.DTO.SessionStatModel" Collapsed="true">
+    <Position X="2.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAQAABAAABAAAAAAAAIAAAAA=</HashCode>
+      <FileName>DTO\StatModelsDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Exceptions.AdStateNotFoundException" Collapsed="true">
+    <Position X="0.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\AdStateNotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Exceptions.ImpulseBaseException" Collapsed="true">
+    <Position X="2.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAIAAAAAA=</HashCode>
+      <FileName>Exceptions\ImpulseBaseException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Exception.MultiplyAdStatesFoundException" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\MultiplyAdStatesFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Exceptions.VideoNotFoundException" Collapsed="true">
+    <Position X="2.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Exceptions\VideoNotFoundException.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.Activity" Collapsed="true">
+    <Position X="4" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAQAAAAIAAAAIIAAgAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>StatModels\Activity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.AdSession" Collapsed="true">
+    <Position X="4" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAGAAACAAAAAAAAAAAAgIAAAQEAAAACAgAIAAAAA=</HashCode>
+      <FileName>StatModels\AdSession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.Click" Collapsed="true">
+    <Position X="4" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAIAAAAEAABAAAAAAQAQAAACEAAAAAAEAAAAA=</HashCode>
+      <FileName>StatModels\Click.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Utilites.Generator" Collapsed="true">
+    <Position X="0.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAQAAAA=</HashCode>
+      <FileName>Utilites\Generator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.Utilites.ReferencePreservingDataContractFormatAttribute" Collapsed="true">
+    <Position X="2.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAQAACAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilites\ReferencePreservingDataContractFormatAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpulseApp.Models.Utilites.ReferencePreservingDataContractSerializerOperationBehavior" Collapsed="true">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAIAAAAAAAA=</HashCode>
+      <FileName>Utilites\ReferencePreservingDataContractFormatAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

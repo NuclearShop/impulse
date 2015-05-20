@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="(@1 Namespace=ImpulseApp.Models.Dicts Type=Browsers)" Category="CodeSchema_Class" Bounds="89.7816666666666,88.48,88.3933333333333,26" CodeSchemaProperty_IsPublic="True" CommonLabel="Browsers" Icon="Microsoft.VisualStudio.Class.Public" Label="Browsers" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///E:/Dip/Project/impulse/ImpulseApp/ImpulseApp.Models/Dicts/ResponseStatuses.cs StartLineNumber=20 StartCharacterOffset=4 EndLineNumber=20 EndCharacterOffset=4)" UseManualLocation="True" />
+    <Node Id="(@1 Namespace=ImpulseApp.Models.Dicts Type=ResponseStatuses)" Category="CodeSchema_Class" Bounds="129.781666666667,31.48,135.656666666667,26" CodeSchemaProperty_IsPublic="True" CommonLabel="ResponseStatuses" Icon="Microsoft.VisualStudio.Class.Public" Label="ResponseStatuses" Language="{B5E9BD34-6D3E-4B5D-925E-8A43B79820B4}" SourceLocation="(Assembly=file:///E:/Dip/Project/impulse/ImpulseApp/ImpulseApp.Models/Dicts/ResponseStatuses.cs StartLineNumber=8 StartCharacterOffset=4 EndLineNumber=8 EndCharacterOffset=4)" UseManualLocation="True" />
+    <Node Id="96e61d51-4c34-4e24-8f94-1bd91356e1481" Bounds="0,0,76.5633333333333,25.96" Label="New Node" />
+  </Nodes>
+  <Links />
+  <Categories>
+    <Category Id="CodeSchema_Class" Label="Class" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Classes" />
+    <Category Id="CodeSchema_Type" Label="Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Types" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
+    <Property Id="CommonLabel" DataType="System.String" />
+    <Property Id="DefaultAction" Label="DefaultAction" Description="DefaultAction" DataType="System.String" />
+    <Property Id="Icon" Label="Icon" Description="Icon" DataType="System.String" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Language" Label="Language" Description="Language" DataType="System.String" />
+    <Property Id="NavigationActionLabel" Label="NavigationActionLabel" Description="NavigationActionLabel" DataType="System.String" />
+    <Property Id="SourceLocation" Label="Start Line Number" DataType="Microsoft.VisualStudio.GraphModel.CodeSchema.SourceLocation" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+  <QualifiedNames>
+    <Name Id="Assembly" Label="Assembly" ValueType="Uri" />
+    <Name Id="Namespace" Label="Namespace" ValueType="System.String" />
+    <Name Id="Type" Label="Type" ValueType="System.Object" />
+  </QualifiedNames>
+  <IdentifierAliases>
+    <Alias n="1" Uri="Assembly=$(6ec98b93-098a-4a4a-83cb-c8f07a0747f3.OutputPathUri)" />
+  </IdentifierAliases>
+  <Paths>
+    <Path Id="6ec98b93-098a-4a4a-83cb-c8f07a0747f3.OutputPathUri" Value="file:///E:/Dip/Project/impulse/ImpulseApp/ImpulseApp.Models/bin/Debug/ImpulseApp.Models.dll" />
+  </Paths>
+</DirectedGraph>

@@ -1,0 +1,3 @@
+﻿var ReportController = function ($scope) {
+
+};

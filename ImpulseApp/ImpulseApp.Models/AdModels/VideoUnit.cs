@@ -41,6 +41,9 @@ namespace ImpulseApp.Models.AdModels
         public string MimeType { get; set; }
 
         [DataMember]
+        public String Image { get; set; }
+
+        [DataMember]
         public virtual HashSet<AdState> AdStates { get; set; }
     }
 }

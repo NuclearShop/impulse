@@ -14,9 +14,27 @@
     <div id="options" class="row">
         @{Html.RenderAction("StatisticSettingsPartial", "Additional");}
     </div>
-    <div class="row">
-        <div class="col-lg-10">
+    <div class="row top-buffer">
+        <div class="col-lg-6">
             <div id="canvasContainer" />
+        </div>
+        <div class="col-lg-6" ng-show="state.Name">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">Название</span>
+                    {{state.Name}}
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Количество возможных переходов</span>
+                    {{state.UserElements.length}}
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Название видео</span>
+                    {{state.VideoUnit.Name}}
+                </li>
+                <li class="list-group-item"><img class="img-responsive" src="{{state.VideoUnit.Image}}" /></li>
+            </ul>
+            
         </div>
         <div id="statLegend" class="col-lg-2"></div>
     </div>

@@ -84,6 +84,12 @@ namespace ImpulseApp.StubService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStubService/GenerateStats", ReplyAction="http://tempuri.org/IStubService/GenerateStatsResponse")]
         System.Threading.Tasks.Task<string> GenerateStatsAsync(int AdID, string beginDate, string endDate);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStubService/GenerateAbStats", ReplyAction="http://tempuri.org/IStubService/GenerateAbStatsResponse")]
+        string GenerateAbStats(int AbID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStubService/GenerateAbStats", ReplyAction="http://tempuri.org/IStubService/GenerateAbStatsResponse")]
+        System.Threading.Tasks.Task<string> GenerateAbStatsAsync(int AbID);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IStubService/GetDataUsingDataContract", ReplyAction="http://tempuri.org/IStubService/GetDataUsingDataContractResponse")]
         ImpulseApp.StubService.CompositeType GetDataUsingDataContract(ImpulseApp.StubService.CompositeType composite);
         
@@ -124,6 +130,14 @@ namespace ImpulseApp.StubService {
         
         public System.Threading.Tasks.Task<string> GenerateStatsAsync(int AdID, string beginDate, string endDate) {
             return base.Channel.GenerateStatsAsync(AdID, beginDate, endDate);
+        }
+        
+        public string GenerateAbStats(int AbID) {
+            return base.Channel.GenerateAbStats(AbID);
+        }
+        
+        public System.Threading.Tasks.Task<string> GenerateAbStatsAsync(int AbID) {
+            return base.Channel.GenerateAbStatsAsync(AbID);
         }
         
         public ImpulseApp.StubService.CompositeType GetDataUsingDataContract(ImpulseApp.StubService.CompositeType composite) {

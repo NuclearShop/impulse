@@ -1,5 +1,7 @@
-﻿using ImpulseApp.DBService;
+﻿using AutoMapper;
+using ImpulseApp.DBService;
 using ImpulseApp.Models.AdModels;
+using ImpulseApp.Models.DTO;
 using ImpulseApp.Models.Utilites;
 using ImpulseApp.Utilites;
 using System;
@@ -12,12 +14,26 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ImpulseApp.Controllers.APIControllers
 {
     public class UploadController : ApiController
     {
         IDBService service = new DBServiceClient();
+        [Route("api/upload/video/complete")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SaveImage(VideoUnitDTO video)
+        {
+            byte[] image = Convert.FromBase64String(video.Image);
+            string path = "/Videos/" + User.Identity.Name + "/" + video.GeneratedName + "/";
+            string fullPath = HttpContext.Current.Server.MapPath("~"+path);
+            File.WriteAllBytes(fullPath + "/img.png", image);
+            video.Image = path + "img.png";
+            VideoUnit vid = Mapper.Map<VideoUnitDTO, VideoUnit>(video);
+            string id = await service.SaveVideoAsync(vid);
+            return Request.CreateResponse(HttpStatusCode.OK, id);
+        }
         [Route("api/upload/video")]
         [HttpPost]
         public async Task<HttpResponseMessage> PostFormData()
@@ -26,16 +42,13 @@ namespace ImpulseApp.Controllers.APIControllers
             {
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
-            VideoUnit video = new VideoUnit
+            VideoUnitDTO video = new VideoUnitDTO
             {
                 DateLoaded = DateTime.Now,
-                GeneratedName = Guid.NewGuid().GetHashCode().ToString(),
+                GeneratedName = Math.Abs(Guid.NewGuid().GetHashCode()).ToString(),
                 Name = "DefaultName",
                 UserName = User.Identity.Name
             };
-
-            
-
             string root = HttpContext.Current.Server.MapPath("~/Videos");
             var path = "/" + User.Identity.Name + "/" + video.GeneratedName+"/";
             DirectoryInfo directory = Directory.CreateDirectory(root + path);
@@ -48,7 +61,7 @@ namespace ImpulseApp.Controllers.APIControllers
                 {
                     if (file.Headers.ContentType.MediaType.Contains("video"))
                     {
-                        video.FullPath = fileName+Path.GetFileName(file.LocalFileName);
+                        video.FullPath = "/"+fileName+Path.GetFileName(file.LocalFileName);
                         video.MimeType = file.Headers.ContentType.MediaType;
                     }
                     else
@@ -61,7 +74,6 @@ namespace ImpulseApp.Controllers.APIControllers
                         throw new HttpResponseException(exceptionMessage);
                     }
                 }
-                await service.SaveVideoAsync(video);
 
                 return Request.CreateResponse(HttpStatusCode.OK, video);
             }

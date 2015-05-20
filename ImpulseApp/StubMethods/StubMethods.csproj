@@ -63,8 +63,18 @@
     <Content Include="Properties\DataSources\ImpulseApp.Models.StatModels.Activity.datasource" />
     <Content Include="Properties\DataSources\ImpulseApp.Models.StatModels.AdSession.datasource" />
     <Content Include="Properties\DataSources\ImpulseApp.Models.StatModels.Click.datasource" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.ABTest.datasource" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.AdState.datasource" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.VideoUnit.datasource" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.DTO.VersioningDTO.datasource" />
     <None Include="Service References\DatabaseService\configuration91.svcinfo" />
     <None Include="Service References\DatabaseService\configuration.svcinfo" />
+    <None Include="Service References\DatabaseService\ImpulseApp.Models.DTO.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DatabaseService\ImpulseApp.Models.Exceptions.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\DatabaseService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

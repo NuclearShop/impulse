@@ -29,6 +29,12 @@ namespace ImpulseApp.Models.AdModels
             this.UserId = UserId;
 
         }
+        public void ToDTO()
+        {
+            this.AdSessions = null;
+            this.StateGraph = null;
+            this.AdStates = null;
+        }
         public void Init(string userId = null)
         {
             this.IsRoot = false;

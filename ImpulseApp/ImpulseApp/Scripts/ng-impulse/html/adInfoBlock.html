@@ -1,0 +1,39 @@
+﻿<div class="col-lg-6 top-buffer">
+    <div style="background-image: url('{{image}}'); background-size: 100% auto; width: 500px; height: 500px; background-repeat: no-repeat; background-position: left top; ">
+        <div class="top-buffer" style="background-color:white; opacity: 0.8">
+
+            <span style="font-size: 20pt;">{{ad.versions[0].Name}}</span>
+            <button class="btn btn-default btn-outline pull-right" ng-click="watch(ad.key)"><span class="fa fa-eye"></span></button>
+            <a class="btn btn-default btn-outline pull-right" href="http://localhost:9000/#/?id={{ad.choosen.Id}}" target="_blank"><span class="fa fa-edit"></span></a>
+            <button class="btn btn-default btn-outline pull-right" ng-click="remove(ad.key)"><span class="fa fa-remove"></span></button>
+        </div>
+        <div style="background-color:white;">
+            Измените основную версию
+            <div class="btn-group" dropdown is-open="ad.isopen">
+                <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    {{ad.choosen.Id}}: {{ad.choosen.DateTime}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="version in ad.versions"><a href="" ng-click="switchChoosen(version.Id)">{{version.Id}}: {{version.DateTime}}</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-default pull-right" ng-click="saveChoosen()"><span class="fa {{saveButton}}"></span></button>
+        </div>
+        <div style="background-color:white;">
+            Экспорт в сторонний сайт
+            <div class="btn-group" dropdown is-open="isopenexport">
+                <button type="button" class="btn btn-default dropdown-toggle" dropdown-toggle ng-disabled="disabled">
+                    {{exportChoosen.id}}: {{exportChoosen.value}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li ng-repeat="export in exportValues"><a href="" ng-click="switchExportChosen(export.id)">{{export.id}}: {{export.value}}</a></li>
+                </ul>
+            </div>
+            <button class="btn btn-default pull-right" ng-click="exportAd()"><span class="fa fa-exchange"></span></button>
+        </div>
+        <div style="background-color:white;" ng-show="isShowExport">
+            <textarea ng-model="exportString" style="-ms-word-break: break-word; word-break: break-all; width: 100%"/>
+        </div>
+    </div>
+</div>
+

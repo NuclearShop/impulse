@@ -55,15 +55,23 @@ namespace StubMethods
                         UserLocale = StubUtils.GenerateLocale(),
                         UserLocation = "TestLocation"
                     };
-                    int ActivityCount = r.Next(10);
+                    int ActivityCount = r.Next(5);
                     for (int j = 0; j < ActivityCount; j++)
                     {
                         NodeLink randomLink = ad.StateGraph.ElementAt(r.Next(ad.StateGraph.Count));
+                        int rndNode = randomLink.V1;
+                        int rndNodeNext = randomLink.V2;
+                        int rand = r.Next(10);
+                        if (rand > 5)
+                        {
+                            rndNode = randomLink.V2;
+                            rndNodeNext = randomLink.V1;
+                        }
                         Activity act = new Activity
                         {
                             StartTime = curDate,
                             EndTime = curDate,
-                            CurrentStateName = ad.AdStates.First(a=>a.VideoUnitId==randomLink.V1).Name
+                            CurrentStateName = ad.AdStates.First(a => a.VideoUnitId == rndNode).Name
                         };
                         for (int k = 0; k < 1; k++)
                         {
@@ -74,8 +82,84 @@ namespace StubMethods
                                 ClickTime = curDate,
                                 ClickType = "action-next",
                                 ClickZone = "SubZone",
-                                ClickCurrentStage = randomLink.V1,
-                                ClickNextStage = randomLink.V2,
+                                ClickCurrentStage = rndNode,
+                                ClickNextStage = rndNodeNext,
+                                ClickNextTime = randomLink.T
+                            };
+                            c.ClickText = Generator.GenerateClickName(c);
+                            c.ClickStamp = Generator.GenerateClickStamp(c);
+                            act.Clicks.Add(c);
+                        };
+                        session.Activities.Add(act);
+                    }
+                    db.SaveAdSession(session, true);
+                }
+            }
+            return "success";
+        }
+
+
+        public string GenerateAbStats(int AbID)
+        {
+            DatabaseService.DBServiceClient db = new DatabaseService.DBServiceClient();
+            ABTest ab = db.GetAbTestById(AbID);
+            DateTime bDate = ab.DateStart;
+            DateTime eDate = ab.DateEnd;
+            for (DateTime curDate = bDate; curDate.CompareTo(eDate) < 0; curDate = curDate.AddDays(1))
+            {
+                Random r = new Random(Guid.NewGuid().GetHashCode());
+                int sessionCount = r.Next(10);
+                for (int i = 0; i < sessionCount; i++)
+                {
+                    int rand = r.Next(10);
+                    int curId = ab.AdAId.Value;
+                    SimpleAdModel ad = ab.AdA;
+                    if (rand > 5)
+                    {
+                        ad = ab.AdB;
+                        curId = ab.AdBId.Value;
+                    }
+                    AdSession session = new AdSession
+                    {
+                        ActiveMilliseconds = r.Next(500),
+                        AdId = curId,
+                        DateTimeStart = curDate,
+                        DateTimeEnd = curDate,
+                        UserBrowser = StubUtils.GenerateBrowser(),
+                        UserIp = StubUtils.GenerateIP(),
+                        UserLocale = StubUtils.GenerateLocale(),
+                        UserLocation = "TestLocation",
+                        AbTestId = AbID
+                    };
+                    int ActivityCount = r.Next(5);
+                    for (int j = 0; j < ActivityCount; j++)
+                    {
+                        NodeLink randomLink = ad.StateGraph.ElementAt(r.Next(ad.StateGraph.Count));
+                        int rndNode = randomLink.V1;
+                        int rndNodeNext = randomLink.V2;
+                        rand = r.Next(10);
+                        if (rand > 5)
+                        {
+                            rndNode = randomLink.V2;
+                            rndNodeNext = randomLink.V1;
+                        }
+                        Activity act = new Activity
+                        {
+                            StartTime = curDate,
+                            EndTime = curDate,
+                            CurrentStateName = ad.AdStates.First(a => a.VideoUnitId == rndNode).Name
+                        };
+                        for (int k = 0; k < 1; k++)
+                        {
+
+
+                            Click c = new Click
+                            {
+                                ClickTime = curDate,
+                                ClickType = "action-next",
+                                ClickZone = "SubZone",
+                                ClickCurrentStage = rndNode,
+                                ClickNextStage = rndNodeNext,
                                 ClickNextTime = randomLink.T
                             };
                             c.ClickText = Generator.GenerateClickName(c);

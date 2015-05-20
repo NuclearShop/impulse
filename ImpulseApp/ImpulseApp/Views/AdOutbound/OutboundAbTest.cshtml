@@ -1,0 +1,32 @@
+﻿@model ImpulseApp.Models.DTO.AbOutboundDTO
+<div class="splash-content text-center">
+    <div id="mpls-container" />
+</div>
+<button class="btn btn-lg btn-outline" 
+        ng-click="closeModal()" 
+        style="position:absolute; right:0; top: 0; color:whitesmoke; border: 1px solid white;">
+    <span class="fa fa-close"></span>
+</button>
+@Scripts.Render("~/bundles/outboundjs")
+<script src="~/Scripts/bowser.min.js"></script>
+<script src="~/Scripts/jquery-2.1.3.min.js"></script>
+<script src="~/Scripts/mpls.video.play.js"></script>
+<script src="~/Scripts/underscore.min.js"></script>
+<script src="~/Scripts/mpls.statistics.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var AdId = '@Model.AdIdCurrent';
+        getVideoInfo(captureStatistics, AdId, '@Model.AdUrlCurrent', '@Model.AbTestId');
+
+    })
+
+</script>
+<style>
+    video::-webkit-media-controls {
+        display: none !important;
+    }
+</style>
+
+
+

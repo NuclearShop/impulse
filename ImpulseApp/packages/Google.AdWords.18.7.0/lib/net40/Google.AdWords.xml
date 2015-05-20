@@ -1,0 +1,2215 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Google.AdWords</name>
+    </assembly>
+    <members>
+        <member name="T:Google.Api.Ads.AdWords.Headers.AdWordsSoapHeader">
+            <summary>
+            Base class for AdWords API SOAP headers.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.AdWordsSoapHeader.Version">
+            <summary>
+            Gets or sets the API version.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.AdWordsSoapHeader.GroupName">
+            <summary>
+            Gets or sets the service namespace (e.g. cm, o, info, etc.).
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Headers.RequestHeader">
+            <summary>
+            This class wraps the <see cref="T:Google.Api.Ads.AdWords.Headers.RequestHeaderStub" />, adding
+            cross-namespace serialization capabilities.
+            </summary>
+            <remarks>The XmlSerializer provides two mutually exclusive ways of
+            serialization.
+            - Mark a class as Serializable, and allow the class to be serialized
+            automagically. This option does object serialization correctly, but isn't
+            cross-namespace aware.
+            - Implement IXmlSerializable, and customize the serialization. This
+            option allows us to customize the serialization process and add cross
+            namespace support.
+            However since options 1 and 2 are mutually exclusive (i.e. cannot be
+            applied to the same object hierarchy), we cannot derive this class from
+            <see cref="T:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub" />, instead, we have to wrap it in another
+            class.
+            </remarks>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeader.stub">
+            <summary>
+            The request header stub that this class wraps.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.Stub">
+            <summary>
+            Gets or sets the stub that is wrapped by this object.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.clientCustomerId">
+            <summary>
+            Gets or sets the client customer id.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.developerToken">
+            <summary>
+            Gets or sets the developer token.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.userAgent">
+            <summary>
+            Gets or sets the user agent.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.validateOnly">
+            <summary>
+            Gets or sets whether this API call is for validation only.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.validateOnlySpecified">
+            <summary>
+            Gets or sets whether <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.validateOnly" /> is specified.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.partialFailure">
+            <summary>
+            Gets or sets whether partial failures should be returned.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.partialFailureSpecified">
+            <summary>
+            Gets or sets whether <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.partialFailure" /> is specified.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.expressBusinessId">
+            <summary>
+            Gets or sets the AdWords Express business ID. This header applies only
+            for AdWords Express API services. This field should not be set if
+            <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.pageId" /> is set.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.expressBusinessIdSpecified">
+            <summary>
+            Gets or sets whether <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.expressBusinessId" /> is specified. This
+            field applies only for AdWords Express API services.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.pageId">
+            <summary>
+            Gets or sets the AdWords Express Plus Page ID. This header applies only
+            for AdWords Express API services. This field should not be set if
+            <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.expressBusinessId" /> is set.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.RequestHeader.pageIdSpecified">
+            <summary>
+            Gets or sets whether <see cref="P:Google.Api.Ads.AdWords.Headers.RequestHeader.expressBusinessId" /> is specified. This
+            field applies only for AdWords Express API services.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Headers.RequestHeaderStub">
+            <summary>
+            A SOAP stub class that represents the request headers for an AdWords
+            API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.developerToken">
+            <summary>
+            Developer token.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.clientCustomerId">
+            <summary>
+            Client customer id for which API calls are made.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.userAgent">
+            <summary>
+            User agent to identify the requesting application.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.validateOnly">
+            <summary>
+            Specifies whether this request is for validation only.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.validateOnlySpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.validateOnly" /> is provided.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.partialFailure">
+            <summary>
+            Specifies whether partial failures should be returned.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.partialFailureSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.partialFailure" /> is provided.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.expressBusinessId">
+            <summary>
+            Specifies the AdWords Express business ID. This field applies only
+            for AdWords Express API services.  This field should not be set if
+            <see cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.pageId" /> is set.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.expressBusinessIdSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.expressBusinessId" /> is provided. This
+            field applies only for AdWords Express API services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.pageId">
+            <summary>
+            Specifies the AdWords Express Plus Page ID. This field applies only
+            for AdWords Express API services. This field should not be set if
+            <see cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.expressBusinessId" /> is set.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.pageIdSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.RequestHeaderStub.pageId" /> is provided. This
+            field applies only for AdWords Express API services.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Headers.ResponseHeader">
+            <summary>
+            This class wraps the <see cref="T:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub" />, adding
+            cross-namespace serialization capabilities.
+            </summary>
+            <remarks>The XmlSerializer provides two mutually exclusive ways of
+            serialization.
+            - Mark a class as Serializable, and allow the class to be serialized
+            automagically. This option does object serialization correctly, but isn't
+            cross-namespace aware.
+            - Implement IXmlSerializable, and customize the serialization. This
+            option allows us to customize the serialization process and add cross
+            namespace support.
+            However since options 1 and 2 are mutually exclusive (i.e. cannot be
+            applied to the same object hierarchy), we cannot derive this class from
+            <see cref="T:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub" />, instead, we have to wrap it in another
+            class.
+            </remarks>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeader.stub">
+            <summary>
+            The SOAP stub object that this class wraps.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.ResponseHeader.Stub">
+            <summary>
+            Gets or sets the stub that is wrapped by this object.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.ResponseHeader.requestId">
+            <summary>
+            Gets or sets the request id for this API call.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.ResponseHeader.operations">
+            <summary>
+            Gets or sets the number of operations for this API call.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.ResponseHeader.responseTime">
+            <summary>
+            Gets or sets the response time for this API call.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Headers.ResponseHeader.units">
+            <summary>
+            Gets or sets the number of units consumed for this API call.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Headers.ResponseHeader.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            Deserialize the object from xml.
+            </summary>
+            <param name="reader">The xml reader for reading the serialized xml.
+            </param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub">
+            <summary>
+            A SOAP stub class that represents the response headers for an AdWords
+            API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.requestId">
+            <summary>
+            Request ID for this API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.operations">
+            <summary>
+            Number of operations for this API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.operationsSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.operations" /> is provided.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.responseTime">
+            <summary>
+            Response time for this API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.responseTimeSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.responseTime" /> is provided.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.units">
+            <summary>
+            Units consumed for this API call.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.unitsSpecified">
+            <summary>
+            Specifies whether <seealso cref="F:Google.Api.Ads.AdWords.Headers.ResponseHeaderStub.units" /> is provided.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsApiException">
+            <summary>
+            Custom exception class for wrapping AdWords API SOAP exceptions.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsApiException.apiException">
+            <summary>
+            The original ApiException object from AdWords API.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsApiException.ApiException">
+            <summary>
+            Gets the ApiException object.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.#ctor">
+            <summary>
+            Public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.#ctor(System.Object)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="apiException">The underlying ApiException from the
+            server.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.#ctor(System.Object,System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="apiException">The underlying ApiException from the
+            server.</param>
+            <param name="message">Error message for this API exception.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.#ctor(System.Object,System.String,System.Exception)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="apiException">The underlying ApiException from the
+            server.</param>
+            <param name="message">Error message for this API exception.</param>
+            <param name="innerException">Inner exception, if any.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Protected constructor. Used by serialization frameworks while
+            deserializing an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsApiException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is called by serialization frameworks while serializing
+            an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig">
+            <summary>
+            This class reads the configuration keys from App.config.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.SHORT_NAME">
+            <summary>
+            The short name to identify this assembly.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.CLIENT_CUSTOMER_ID">
+            <summary>
+            Key name for clientCustomerId.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.MERCHANT_CENTER_ID">
+            <summary>
+            Key name for merchantCenterId.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.PLACES_LOGIN_EMAIL">
+            <summary>
+            Key name for placesLoginEmail.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.PLACES_OAUTH2_REFRESH_TOKEN">
+            <summary>
+            Key name for placesOAuth2RefreshToken.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DEVELOPER_TOKEN">
+            <summary>
+            Key name for developerToken.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.USER_AGENT">
+            <summary>
+            Key name for userAgent.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.ADWORDSAPI_SERVER">
+            <summary>
+            Key name for AdWords API URL.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.AUTHORIZATION_METHOD">
+            <summary>
+            Key name for authorizationMethod.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.SKIP_REPORT_HEADER">
+            <summary>
+            Key name for skipReportingHeader.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.SKIP_REPORT_SUMMARY">
+            <summary>
+            Key name for skipReportingSummary.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DEFAULT_ADWORDSAPI_SERVER">
+            <summary>
+            Default value for AdWords API URL.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DEFAULT_OAUTH_SCOPE">
+            <summary>
+            Default OAuth2 scope for AdWords API.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DEFAULT_SKIP_REPORT_HEADER">
+            <summary>
+            Default value for skipping reports header.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DEFAULT_SKIP_REPORT_SUMMARY">
+            <summary>
+            Default value for skipping reports summary.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.clientCustomerId">
+            <summary>
+            ClientCustomerId to be used in SOAP headers.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.developerToken">
+            <summary>
+            DeveloperToken to be used in the SOAP header.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.placesLoginEmail">
+            <summary>
+            Login email to be used with Google Places account.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.placesOAuth2RefreshToken">
+            <summary>
+            OAuth2 refresh token to be used for Google Places account.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.merchantCenterId">
+            <summary>
+            Merchant Center ID to be used for Shopping campaigns.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.userAgent">
+            <summary>
+            Useragent to be used in the SOAP header.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.adWordsApiServer">
+            <summary>
+            Url for AdWords API.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.skipReportHeader">
+            <summary>
+            Flag to decide whether or not to skip report header.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.skipReportSummary">
+            <summary>
+            Flag to decide whether or not to skip report summary.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.ClientCustomerId">
+            <summary>
+            Gets or sets the client customerId to be used in SOAP headers.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.DeveloperToken">
+            <summary>
+            Gets or sets the developer token to be used in SOAP headers.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.MerchantCenterId">
+            <summary>
+            Gets or sets the Merchant Center ID to be used with Shopping campaigns.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.PlacesLoginEmail">
+            <summary>
+            Gets or sets the Google Places OAuth2 login email.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.PlacesOAuth2RefreshToken">
+            <summary>
+            Gets or sets the Google Places OAuth2 refresh token.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.SkipReportHeader">
+            <summary>
+            Gets or sets whether reporting headers should be skipped.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.SkipReportSummary">
+            <summary>
+            Gets or sets whether report summary should be skipped.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.UserAgent">
+            <summary>
+            Gets or sets the useragent to be used in SOAP headers.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.AdWordsApiServer">
+            <summary>
+            Gets or sets the URL for AdWords API.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.GetUserAgent">
+            <summary>
+            Gets a useragent string that can be used with the library.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.GetDefaultOAuth2Scope">
+            <summary>
+            Gets the default OAuth2 scope.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.#ctor">
+            <summary>
+            Public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsAppConfig.ReadSettings(System.Collections.Hashtable)">
+            <summary>
+            Read all settings from App.config.
+            </summary>
+            <param name="settings">The parsed App.config settings.</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsCallListener">
+            <summary>
+            Listens to SOAP messages and logs API unit costs.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.config">
+            <summary>
+            The config class to be used with this class.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.Config">
+            <summary>
+            Gets or sets the config class to be used with this class.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.#ctor">
+            <summary>
+            Protected constructor.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.Instance">
+            <summary>
+            Gets the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.RecordApiOperationCount(Google.Api.Ads.AdWords.Lib.AdWordsUser,Google.Api.Ads.Common.Lib.AdsClient,System.String,System.Int32)">
+            <summary>
+            Records API operation count for a user.
+            </summary>
+            <param name="user">The AdWords user who made the call.</param>
+            <param name="service">The AdWords API service that was called.</param>
+            <param name="methodName">The name of the method that was called.</param>
+            <param name="operationCount">The number of API operations for the
+            current call.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.GetApiUnitsForCall(System.Xml.XmlDocument)">
+            <summary>
+            Gets the API units for the method call from the SOAP message.
+            The derived classes should override this method to analyze
+            the message and return the API units.
+            </summary>
+            <param name="soapMessage">The SOAP message.</param>
+            <returns>The API units for call.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.HandleMessage(System.Xml.XmlDocument,Google.Api.Ads.Common.Lib.AdsClient,Google.Api.Ads.Common.Lib.SoapMessageDirection)">
+            <summary>
+            Handles the SOAP message.
+            </summary>
+            <param name="soapMessage">The SOAP message.</param>
+            <param name="service">The SOAP service.</param>
+            <param name="direction">The direction of message.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.CleanupAfterCall">
+            <summary>
+            Cleanups the after call.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCallListener.InitForCall">
+            <summary>
+            Inits for call.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsCredentialsExpiredException.#ctor(System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="expiredCredential">The expired credential.</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler">
+            <summary>
+            Handles AdWords API Errors.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.COOKIE_INVALID_ERROR">
+            <summary>
+            The error thrown when an auth token expires.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.OAUTH_TOKEN_EXPIRED_ERROR">
+            <summary>
+            The error thrown when an oauth token expires.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.RATE_EXCEEDED_ERROR">
+            <summary>
+            The error thrown when an oauth token expires.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.INTERNAL_ERROR">
+            <summary>
+            The error thrown when an unexpected internal error occurs.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler" /> class.
+            </summary>
+            <param name="user">The user.</param>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.Config">
+            <summary>
+            Gets the config.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.ShouldRetry(System.Exception)">
+            <summary>
+            Checks if an API call should be retried when an exception occurs.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>
+            True, if the call should be retried, false otherwise.
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.PrepareForRetry(System.Exception)">
+            <summary>
+            Prepares the system for retrying the last failed call.
+            </summary>
+            <param name="ex">The exception.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.IsExpiredCredentialsError(System.Exception)">
+            <summary>
+            Determines whether an exception corrsponds to an expired credential.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>True if the exception corresponds to an expired credential,
+            false otherwise.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.IsOAuthTokenExpiredError(System.Exception)">
+            <summary>
+            Determines whether the exception thrown by the server is an OAuth token
+            expired error.
+            </summary>
+            <param name="ex">The exception.</param>
+            <returns>True, if the server exception is a OAuth token expired error,
+            false otherwise.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.MatchesError(Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException,System.String[])">
+            <summary>
+            Determines whether the exception thrown by the server matches a known
+            error.
+            </summary>
+            <param name="ex">The exception.</param>
+            <param name="errorMessage">The known error message.</param>
+            <returns>True, if the server exception matches the known error, false
+            otherwise.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.MatchesError(Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException,System.String[])">
+            <summary>
+            Determines whether the exception thrown by the server matches a known
+            error.
+            </summary>
+            <param name="ex">The exception.</param>
+            <param name="errorMessage">The known error message.</param>
+            <returns>True, if the server exception matches the known error, false
+            otherwise.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsErrorHandler.MatchesError(Google.Api.Ads.AdWords.Lib.AdWordsApiException,System.String[])">
+            <summary>
+            Determines whether the exception thrown by the server matches a known
+            error.
+            </summary>
+            <param name="awapiException">The awapi exception.</param>
+            <param name="errorMessage">The known error message.</param>
+            <returns>True, if the server exception matches the known error, false
+            otherwise.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsException">
+            <summary>
+            Base class for all exceptions specific to AdWords.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsException.#ctor">
+            <summary>
+            Public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsException.#ctor(System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsException.#ctor(System.String,System.Exception)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+            <param name="innerException">Inner exception, if any.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Protected constructor. Used by serialization frameworks while
+            deserializing an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsService">
+            <summary>
+            Lists all the services available through this library.
+            </summary>
+            <summary>
+            Lists all the services available through this library.
+            </summary>
+            <summary>
+            Lists all the services available through this library.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsService.MakeServiceSignature(System.String,System.String,System.String)">
+            <summary>
+            Creates a service creation parameter for defining an AdWords service.
+            </summary>
+            <param name="version">Service version.</param>
+            <param name="groupName">Group name.</param>
+            <param name="serviceName">Service name.</param>
+            <returns>A service creation parameter defining this service.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsService.GetServiceTypes">
+            <summary>
+            Gets all service types defined in this service.
+            </summary>
+            <returns>The nested types that define service versions under this
+            service.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406">
+            <summary>
+            All the services available in v201406.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdGroupAdService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdGroupAdService">
+            this page </a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdGroupBidModifierService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdGroupBidModifierService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdGroupCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdGroupCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdGroupFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdGroupFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdGroupService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdGroupService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdParamService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdParamService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AdwordsUserListService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AdwordsUserListService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.AlertService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/AlertService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.BiddingStrategyService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/BiddingStrategyService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.BudgetOrderService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/BudgetOrderService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.BudgetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/BudgetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CampaignAdExtensionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CampaignAdExtensionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CampaignCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CampaignCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CampaignFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CampaignFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CampaignService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CampaignService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ConstantDataService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/ConstantDataService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ConversionTrackerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/ConversionTrackerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CustomerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CustomerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CustomerSyncService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CustomerSyncService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CustomerFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/CustomerFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.DataService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/DataService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ExperimentService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/ExperimentService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.factoryType">
+            <summary>
+            Factory type for v201406 services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.FeedItemService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/FeedItemService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.FeedMappingService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/FeedMappingService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.FeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/FeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.GeoLocationService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/GeoLocationService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.LocationCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/LocationCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ManagedCustomerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/ManagedCustomerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.MediaService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/MediaService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.MutateJobService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/MutateJobService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.OfflineConversionFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/OfflineConversionFeedService">
+            this page </a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ReportDefinitionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/ReportDefinitionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.TargetingIdeaService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/TargetingIdeaService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.TrafficEstimatorService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201406/TrafficEstimatorService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoAdService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoAdService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoCampaignCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoCampaignCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoCampaignService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoCampaignService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoTargetingGroupCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoTargetingGroupCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.VideoTargetingGroupService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/video/v201406/VideoTargetingGroupService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ExpressBusinessService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201406/ExpressBusinessService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.BudgetSuggestionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201406/BudgetSuggestionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.PromotionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201406/PromotionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.ProductServiceService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201406/ProductServiceService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.CampaignSharedSetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201406/CampaignSharedSetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.SharedCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201406/SharedCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.SharedSetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201406/SharedCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.LabelService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201406/SharedSetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsService.v201406.#ctor">
+            <summary>
+            Static constructor to initialize the service constants.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409">
+            <summary>
+            All the services available in v201409.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdGroupAdService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdGroupAdService">
+            this page </a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdGroupBidModifierService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdGroupBidModifierService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdGroupCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdGroupCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdGroupFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdGroupFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdGroupService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdGroupService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdParamService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdParamService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.BiddingStrategyService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/BiddingStrategyService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.BudgetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/BudgetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CampaignAdExtensionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CampaignAdExtensionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CampaignCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CampaignCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CampaignFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CampaignFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CampaignService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CampaignService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CampaignSharedSetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201409/CampaignSharedSetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ConstantDataService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/ConstantDataService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ConversionTrackerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/ConversionTrackerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CustomerFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CustomerFeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.DataService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/DataService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ExperimentService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/ExperimentService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.factoryType">
+            <summary>
+            Factory type for v201409 services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.FeedItemService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/FeedItemService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.FeedMappingService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/FeedMappingService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.FeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/FeedService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.GeoLocationService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/GeoLocationService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.LabelService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201409/SharedSetService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.LocationCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/LocationCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.MediaService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/MediaService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.MutateJobService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/MutateJobService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.OfflineConversionFeedService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/OfflineConversionFeedService">
+            this page </a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ReportDefinitionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/ReportDefinitionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.SharedCriterionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201409/SharedCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.SharedSetService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/cm/v201409/SharedCriterionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.BudgetOrderService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/BudgetOrderService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.AdwordsUserListService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/AdwordsUserListService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.TargetingIdeaService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/TargetingIdeaService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.TrafficEstimatorService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/TrafficEstimatorService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.BudgetSuggestionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201409/BudgetSuggestionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ExpressBusinessService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201409/ExpressBusinessService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.PromotionService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201409/PromotionService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ProductServiceService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/express/v201409/ProductServiceService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CustomerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CustomerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.ManagedCustomerService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/ManagedCustomerService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.CustomerSyncService">
+            <summary>
+            See <a href="https://developers.google.com/adwords/api/docs/reference/v201409/CustomerSyncService">
+            this page</a> for details.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsService.v201409.#ctor">
+            <summary>
+            Static constructor to initialize the service constants.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory">
+            <summary>
+            The factory class for all AdWords API services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.requestHeader">
+            <summary>
+            The request header to be used with AdWords API services.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.#ctor">
+            <summary>
+            Default public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.CreateService(Google.Api.Ads.Common.Lib.ServiceSignature,Google.Api.Ads.Common.Lib.AdsUser,System.Uri)">
+            <summary>
+            Create a service object.
+            </summary>
+            <param name="signature">Signature of the service being created.</param>
+            <param name="user">The user for which the service is being created.
+            <param name="serverUrl">The server to which the API calls should be
+            made.</param></param>
+            <returns>An object of the desired service type.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.ReadHeadersFromConfig(Google.Api.Ads.Common.Lib.AppConfig)">
+            <summary>
+            Reads the headers from App.config.
+            </summary>
+            <param name="config">The configuration class.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.FixRequestHeaderNameSpace(Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature,Google.Api.Ads.Common.Lib.AdsClient)">
+            <summary>
+            Fix the request header namespace in outgoing Soap Requests, so that
+            cross namespace requests can work properly.
+            </summary>
+            <param name="signature">The service creation parameters.</param>
+            <param name="service">The service object for which RequestHeader
+            needs to be patched.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceFactory.CheckServicePreconditions(Google.Api.Ads.Common.Lib.ServiceSignature)">
+            <summary>
+            Checks preconditions of the service signature and throws and exception if the service
+            cannot be generated.
+            </summary>
+            <param name="signature">the service signature for generating the service</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature">
+            <summary>
+            Service creation params for AdWords API family of services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature.groupName">
+            <summary>
+            The group name, for instance, cm.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature.GroupName">
+            <summary>
+            Gets the group name.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature.ServiceType">
+            <summary>
+            Gets the type of service.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsServiceSignature.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="version">Service version.</param>
+            <param name="serviceSignature">Service name.</param>
+            <param name="groupName">The group name</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient">
+            <summary>
+            Base class for AdWords API services.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.SERVICE_NAME">
+            <summary>
+            Service name to be used when getting auth token for AdWords.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.InitForCall(System.String,System.Object[])">
+            <summary>
+            Initializes the service before MakeApiCall.
+            </summary>
+            <param name="methodName">Name of the method.</param>
+            <param name="parameters">The method parameters.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.GetRequestHeader">
+            <summary>
+            Gets the request header.
+            </summary>
+            <returns>The request header.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.CleanupAfterCall(System.String,System.Object[])">
+            <summary>
+            Cleans up the service after MakeApiCall.
+            </summary>
+            <param name="methodName">Name of the method.</param>
+            <param name="parameters">The method parameters.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.CreateErrorHandler">
+            <summary>
+            Creates the error handler.
+            </summary>
+            <returns>
+            The error handler instance.
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.GetWebRequest(System.Uri)">
+            <summary>
+            Creates a WebRequest instance for the specified url.
+            </summary>
+            <param name="uri">The Uri to use when creating the WebRequest.</param>
+            <returns>
+            The WebRequest instance.
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsSoapClient.GetCustomException(System.Web.Services.Protocols.SoapException)">
+            <summary>
+            Gets a custom exception that wraps the SOAP exception thrown
+            by the server.
+            </summary>
+            <param name="ex">SOAPException that was thrown by the server.</param>
+            <returns>A custom exception object that wraps the SOAP exception.
+            </returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener">
+            <summary>
+            Listens to SOAP messages sent and received by this library.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.#ctor">
+            <summary>
+            Protected constructor.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.Instance">
+            <summary>
+            Gets the singleton instance.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.GetSummaryRequestLogs(System.String)">
+            <summary>
+            Gets the summary request logs.
+            </summary>
+            <param name="soapRequest">The request xml for this SOAP call.</param>
+            <returns>The summary request logs.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.GetSummaryResponseLogs(System.String)">
+            <summary>
+            Gets the summary response logs.
+            </summary>
+            <param name="soapResponse">The response xml for this SOAP call.</param>
+            <returns>The summary response logs.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsTraceListener.GetFieldsToMask">
+            <summary>
+            Gets a list of fields to be masked in xml logs.
+            </summary>
+            <returns>The list of fields to be masked.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.AdWordsUser">
+            <summary>
+            Represents an AdWords API user.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.AdWordsUser.apiCalls">
+            <summary>
+            Keeps track of the API calls made this user.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.#ctor">
+            <summary>
+            Public constructor. Use this version if you want the library to
+            use all settings from App.config.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Parameterized constructor. Use this version if you want to construct
+            an AdWordsUser with a custom set of headers.
+            </summary>
+            <param name="headers">The custom set of headers.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.GetServiceTypes">
+            <summary>
+            Gets all the service types to be registered against this user.
+            </summary>
+            <returns>The type of all service classes to be registered.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.GetDefaultListeners">
+            <summary>
+            Gets the list of default SOAP listeners.
+            </summary>
+            <returns>
+            A list of default SOAP listeners.
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.AddCallDetails(Google.Api.Ads.AdWords.Lib.ApiCallEntry)">
+            <summary>
+            Adds an API call detail to this user instance.
+            </summary>
+            <param name="apiCall">The API call details to be added.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.GetCallDetails">
+            <summary>
+            Gets the details of the API calls made by this user.
+            </summary>
+            <returns>The list of all call details.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.GetTotalOperationCount">
+            <summary>
+            Gets the total number of operations made by this user.
+            </summary>
+            <returns>The total number of operations made by this user, or 0 if no
+            calls were made.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.GetOperationCountForLastCall">
+            <summary>
+            Gets the number of operations for the last API call.
+            </summary>
+            <returns>The number of operations for the last API call, or 0 if no API
+            calls have been made so far.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Lib.AdWordsUser.ResetCallHistory">
+            <summary>
+            Resets the call history for this user.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Lib.ApiCallEntry">
+            <summary>
+            Represents an API call that was made to the AdWords API server.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.ApiCallEntry.service">
+            <summary>
+            The service that was called.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.ApiCallEntry.method">
+            <summary>
+            Name of the method that was called.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Lib.ApiCallEntry.operationCount">
+            <summary>
+            The number of API operations for this call.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.ApiCallEntry.Service">
+            <summary>
+            Gets or sets the service that was called.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.ApiCallEntry.Method">
+            <summary>
+            Gets or sets the name of the method that was called.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Lib.ApiCallEntry.OperationCount">
+            <summary>
+            Gets or sets the number of API operations for this call.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport">
+            <summary>
+            Represents a report downloaded from the server.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport.path">
+            <summary>
+            The path to which the report was downloaded.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport.contents">
+            <summary>
+            The report contents in memory.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport.Path">
+            <summary>
+            Gets or sets the path.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport.Contents">
+            <summary>
+            Gets the report contents.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.Legacy.ClientReport.Text">
+            <summary>
+            Gets the report contents.
+            </summary>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities">
+            <summary>
+            Defines report utility functions for the client library.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.user">
+            <summary>
+            The user associated with this object.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.DEFAULT_REPORT_VERSION">
+            <summary>
+            Default report version.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.reportVersion">
+            <summary>
+            Sets the reporting API version to use.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.QUERY_REPORT_URL_FORMAT">
+            <summary>
+            The report download url format for ad-hoc reports.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.ADHOC_REPORT_URL_FORMAT">
+            <summary>
+            The report download url format for ad-hoc reports.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.ReportVersion">
+            <summary>
+            Gets or sets the reporting API version to use.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.User">
+            <summary>
+            Returns the user associated with this object.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities" /> class.
+            </summary>
+            <param name="user">AdWords user to be used along with this
+            utilities object.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.GetClientReport(System.String,System.String)">
+            <summary>
+            Downloads a report into memory.
+            </summary>
+            <param name="query">The AWQL query for report definition. See
+            https://developers.google.com/adwords/api/docs/guides/awql for AWQL
+            documentation.</param>
+            <param name="format">The report format.</param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.GetClientReport``1(``0)">
+            <summary>
+            Downloads a report into memory.
+            </summary>
+            <param name="reportDefinition">The report definition.</param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.DownloadClientReport(System.String,System.String,System.String)">
+            <summary>
+            Downloads a report to disk.
+            </summary>
+            <param name="query">The AWQL query for report definition.</param>
+            <param name="format">The report format.</param>
+            <param name="path">The path to which report should be downloaded.
+            </param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.DownloadClientReport``1(``0,System.String)">
+            <summary>
+            Downloads a report to disk.
+            </summary>
+            <param name="reportDefinition">The report definition.</param>
+            <param name="path">The path to which report should be downloaded.
+            </param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.GetClientReportInternal(System.String,System.String)">
+            <summary>
+            Downloads the client report.
+            </summary>
+            <param name="downloadUrl">The download URL.</param>
+            <param name="postBody">The HTTP POST request body.</param>
+            <param name="path">The path to which report should be downloaded.
+            </param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.DownloadClientReportInternal(System.String,System.String,System.String)">
+            <summary>
+            Downloads the client report.
+            </summary>
+            <param name="downloadUrl">The download URL.</param>
+            <param name="postBody">The HTTP POST request body.</param>
+            <param name="path">The path to which report should be downloaded.
+            </param>
+            <returns>The client report.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.DownloadReportToStream(System.String,System.String,System.IO.Stream)">
+            <summary>
+            Downloads a report to stream.
+            </summary>
+            <param name="downloadUrl">The download url.</param>
+            <param name="postBody">The POST body.</param>
+            <param name="outputStream">The stream to which report is downloaded.
+            </param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.BuildRequest(System.String,System.String)">
+            <summary>
+            Builds an HTTP request for downloading reports.
+            </summary>
+            <param name="downloadUrl">The download url.</param>
+            <param name="postBody">The POST body.</param>
+            <returns>A webrequest to download reports.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.ParseException(System.String)">
+            <summary>
+            Parses the error response into an exception.
+            </summary>
+            <param name="errors">The error response from the server.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportUtilities.ConvertDefinitionToXml``1(``0)">
+            <summary>
+            Converts the report definition to XML format.
+            </summary>
+            <typeparam name="T">The type of ReportDefinition.</typeparam>
+            <param name="definition">The report definition.</param>
+            <returns>The report definition serialized as an xml.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException">
+            <summary>
+            Custom exception class for handling reporting errors.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException.#ctor">
+            <summary>
+            Public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException.#ctor(System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException.#ctor(System.String,System.Exception)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+            <param name="innerException">Inner exception, if any.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Protected constructor. Used by serialization frameworks while
+            deserializing an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.Legacy.ReportsException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is called by serialization frameworks while serializing
+            an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException">
+            <summary>
+            Custom exception class for handling reporting errors.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.errors">
+            <summary>
+            The errors returned by reports server.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.message">
+            <summary>
+            The exception message.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.Errors">
+            <summary>
+            Gets or sets the errors.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.#ctor">
+            <summary>
+            Public constructor.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.#ctor(System.String)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.#ctor(System.String,System.Exception)">
+            <summary>
+            Public constructor.
+            </summary>
+            <param name="message">Error message for this API exception.</param>
+            <param name="innerException">Inner exception, if any.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Protected constructor. Used by serialization frameworks while
+            deserializing an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            This method is called by serialization frameworks while serializing
+            an exception object.
+            </summary>
+            <param name="info">Info about the serialization context.</param>
+            <param name="context">A streaming context that represents the
+            serialization stream.</param>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.AdWordsReportsException.Message">
+            <summary>
+            Gets a message that describes the current exception.
+            </summary>
+            <returns>The error message that explains the reason for the exception,
+            or an empty string("").</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError">
+            <summary>
+            Represents a report download error.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.errorType">
+            <summary>
+            Type of error.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.trigger">
+            <summary>
+            The reason for triggering this error.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.fieldPath">
+            <summary>
+            The field that triggered this error, if applicable.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.ErrorType">
+            <summary>
+            Gets or sets the type of the error.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.Trigger">
+            <summary>
+            Gets or sets the reason for triggering this error.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.FieldPath">
+            <summary>
+            Gets or sets the field that triggered this error, if applicable.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportDownloadError.ToString">
+            <summary>
+            Returns a <see cref="T:System.String" /> that represents this instance.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities">
+            <summary>
+            Defines report utility functions for the client library.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.DEFAULT_REPORT_VERSION">
+            <summary>
+            Default report version.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.reportVersion">
+            <summary>
+            Sets the reporting API version to use.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.QUERY_REPORT_URL_FORMAT">
+            <summary>
+            The report download url format for ad-hoc reports.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.ADHOC_REPORT_URL_FORMAT">
+            <summary>
+            The report download url format for ad-hoc reports.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.HEADERS_TO_MASK">
+            <summary>
+            The list of headers to mask in the logs.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.query">
+            <summary>
+            The AWQL query for downloading this report.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.format">
+            <summary>
+            The format in which the report is downloaded.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.reportDefinition">
+            <summary>
+            The report definition for downloading this report.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.usesQuery">
+            <summary>
+            True, if the user wants to use AWQL for downloading reports, false if
+            the user wants to use reportDefinition instead.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities" /> class.
+            </summary>
+            <param name="user">AdWords user to be used along with this
+            utilities object.</param>
+            <param name="query">The AWQL for downloading reports.</param>
+            <param name="format">The report download format.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities" /> class.
+            </summary>
+            <param name="user">AdWords user to be used along with this
+            utilities object.</param>
+            <param name="reportDefinition">The report definition.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser,System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities" /> class.
+            </summary>
+            <param name="user">AdWords user to be used along with this
+            utilities object.</param>
+            <param name="query">The AWQL for downloading reports.</param>
+            <param name="format">The report download format.</param>
+            <param name="reportVersion">The report version.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.#ctor(Google.Api.Ads.AdWords.Lib.AdWordsUser,System.String,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities" /> class.
+            </summary>
+            <param name="user">AdWords user to be used along with this
+            utilities object.</param>
+            <param name="reportDefinition">The report definition.</param>
+            <param name="reportVersion">The report version.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.GetReport">
+            <summary>
+            Gets the report response.
+            </summary>
+            <returns>
+            The report response.
+            </returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.DownloadReport(System.String,System.String)">
+            <summary>
+            Downloads a report to stream.
+            </summary>
+            <param name="downloadUrl">The download url.</param>
+            <param name="postBody">The POST body.</param>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.BuildRequest(System.String,System.String)">
+            <summary>
+            Builds an HTTP request for downloading reports.
+            </summary>
+            <param name="downloadUrl">The download url.</param>
+            <param name="postBody">The POST body.</param>
+            <returns>A webrequest to download reports.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.ParseException(System.Exception,System.String)">
+            <summary>
+            Parses the error response into an exception.
+            </summary>
+            <param name="errorsXml">The errors XML.</param>
+            <param name="e">The original exception.</param>
+            <returns>An AdWords Reports exception that represents the error.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.Reports.ReportUtilities.ConvertDefinitionToXml(System.Object)">
+            <summary>
+            Converts the report definition to XML format.
+            </summary>
+            <param name="definition">The report definition.</param>
+            <returns>The report definition serialized as an XML string.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.v201406.MapUtilities">
+            <summary>
+            Provides utility functions for creating and handling
+            String_StringMapEntry[] fields.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.values">
+            <summary>
+            Dictionary to hold the key-value pairs.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.Add(System.String,System.String)">
+            <summary>
+            Adds the specified key to the map.
+            </summary>
+            <param name="key">The settings key.</param>
+            <param name="value">The settings value.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.AddEntry(Google.Api.Ads.AdWords.v201406.String_StringMapEntry)">
+            <summary>
+            Adds the specified string map entry to the map.
+            </summary>
+            <param name="entry">The string map entry.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.AddEntries(Google.Api.Ads.AdWords.v201406.String_StringMapEntry[])">
+            <summary>
+            Adds an array of string map entries to the map.
+            </summary>
+            <param name="entries">The list of string map entries.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.AsArray">
+            <summary>
+            Returns the settings as a list of string map entries.
+            </summary>
+            <returns>The settings, as a list of string map entries.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201406.MapUtilities.AsDict">
+            <summary>
+            Returns the settings as a dictionary.
+            </summary>
+            <returns>The dictionary that contains the settings.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.v201409.MapUtilities">
+            <summary>
+            Provides utility functions for creating and handling
+            String_StringMapEntry[] fields.
+            </summary>
+        </member>
+        <member name="F:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.values">
+            <summary>
+            Dictionary to hold the key-value pairs.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.Add(System.String,System.String)">
+            <summary>
+            Adds the specified key to the map.
+            </summary>
+            <param name="key">The settings key.</param>
+            <param name="value">The settings value.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.AddEntry(Google.Api.Ads.AdWords.v201409.String_StringMapEntry)">
+            <summary>
+            Adds the specified string map entry to the map.
+            </summary>
+            <param name="entry">The string map entry.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.AddEntries(Google.Api.Ads.AdWords.v201409.String_StringMapEntry[])">
+            <summary>
+            Adds an array of string map entries to the map.
+            </summary>
+            <param name="entries">The list of string map entries.</param>
+            <returns>The maputils instance, for chaining calls.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.AsArray">
+            <summary>
+            Returns the settings as a list of string map entries.
+            </summary>
+            <returns>The settings, as a list of string map entries.</returns>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.v201409.MapUtilities.AsDict">
+            <summary>
+            Returns the settings as a dictionary.
+            </summary>
+            <returns>The dictionary that contains the settings.</returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.Util.ErrorUtilities">
+            <summary>
+            Provides utility methods for handling API errors.
+            </summary>
+        </member>
+        <member name="M:Google.Api.Ads.AdWords.Util.ErrorUtilities.GetOperationIndex(System.String)">
+            <summary>
+            Gets the operation index that corresponds to an ApiError.
+            </summary>
+            <param name="fieldPath">The fieldPath from ApiError.</param>
+            <returns>The operation index, or -1 if the index cannot be retrieved.
+            </returns>
+        </member>
+        <member name="T:Google.Api.Ads.AdWords.AdWordsErrorMessages">
+            <summary>
+            A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ResourceManager">
+            <summary>
+            Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.Culture">
+            <summary>
+            Overrides the current thread's CurrentUICulture property for all
+            resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.AnApiExceptionOccurred">
+            <summary>
+            Looks up a localized string similar to An API exception has occurred. See ApiException and InnerException fields for more details..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ClientCustomerIdIsEmpty">
+            <summary>
+            Looks up a localized string similar to AdWords API can find out effective user from the authorization headers, but setting a client customer ID explicitly is recommended. If the credentials in your configuration corresponds to an MCC account, you may not see any data..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.DeveloperTokenCannotBeEmpty">
+            <summary>
+            Looks up a localized string similar to AdWords API requires a developer token. If you don't have one, you can refer to the instructions at https://developers.google.com/adwords/api/docs/signingup to get one..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ExpressHeadersShouldNotBeSpecified">
+            <summary>
+            Looks up a localized string similar to expressBusinessId and pageId headers should only be specified for PromotionService..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.InvalidStageForSoapMessage">
+            <summary>
+            Looks up a localized string similar to Invalid stage for Soap message..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.MissingExpressHeaders">
+            <summary>
+            Looks up a localized string similar to No AdWords Express headers were found on PromotionService request..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.OAuthProviderCannotBeNull">
+            <summary>
+            Looks up a localized string similar to OAuth provider cannot be null when selecting Authorization method as "OAuth"..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.OnlyOneExpressHeaderShouldBeSpecified">
+            <summary>
+            Looks up a localized string similar to You should set one of the 'expressBusinessId' or 'pageId' headers for PromotionService, but not both..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ReportGenerationFailed">
+            <summary>
+            Looks up a localized string similar to Report generation failed..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ReportIsInvalid">
+            <summary>
+            Looks up a localized string similar to Report contents are invalid..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.ReportNumPollsExceeded">
+            <summary>
+            Looks up a localized string similar to Report could not be downloaded after {0} polling attempts. Try requesting a report with lesser amount of data, increase the number of polling attempts, or use the asynchronous download methods..
+            </summary>
+        </member>
+        <member name="P:Google.Api.Ads.AdWords.AdWordsErrorMessages.SignatureIsOfWrongType">
+            <summary>
+            Looks up a localized string similar to Signature should be a {0} instance..
+            </summary>
+        </member>
+    </members>
+</doc>

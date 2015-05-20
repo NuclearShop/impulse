@@ -15,8 +15,13 @@ namespace ImpulseApp
 
             routes.MapRoute(
                 name: "ShortAdUrl",
-                url: "Ad/{shorturl}",
+                url: "ad/{shorturl}",
                 defaults: new { controller = "AdOutbound", action = "OutboundHtml", id = UrlParameter.Optional }
+             );
+            routes.MapRoute(
+                name: "ShortAbUrl",
+                url: "ab/{shorturl}",
+                defaults: new { controller = "AdOutbound", action = "OutboundAbTest", id = UrlParameter.Optional }
              );
             routes.MapRoute(
                 name: "Default",

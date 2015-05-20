@@ -29,6 +29,8 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="5edf37e3-7291-4931-8255-1a47c8eb423d" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/mex" />
     <MetadataFile FileName="ImpulseApp.Models.AdModels.xsd" MetadataType="Schema" ID="6a8684c8-0e18-4310-85d1-a31525dfc698" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/mex" />
     <MetadataFile FileName="ImpulseApp.Models.StatModels.xsd" MetadataType="Schema" ID="6fd78f47-ec28-4b5a-b263-2c7da38239f3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/mex" />
+    <MetadataFile FileName="ImpulseApp.Models.Exceptions.xsd" MetadataType="Schema" ID="d9fb3222-2513-47d8-9fc2-e804ace23606" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/mex" />
+    <MetadataFile FileName="ImpulseApp.Models.DTO.xsd" MetadataType="Schema" ID="602568b8-fcab-4ee9-b7a2-7b9d386111c3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/ImpulseApp.Database/Service1/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

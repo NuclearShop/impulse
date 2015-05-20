@@ -24,19 +24,19 @@ namespace ImpulseApp
 
             ConfigureRoles(app);
             // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            app.UseMicrosoftAccountAuthentication(
+                clientId: "123",
+                clientSecret: "123");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: "123",
+               consumerSecret: "123");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "123",
+               appSecret: "123");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
 
         private void ConfigureRoles(IAppBuilder app)

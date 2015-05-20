@@ -13,6 +13,12 @@
   <wsdl:message name="IStubService_GenerateStats_OutputMessage">
     <wsdl:part name="parameters" element="tns:GenerateStatsResponse" />
   </wsdl:message>
+  <wsdl:message name="IStubService_GenerateAbStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateAbStats" />
+  </wsdl:message>
+  <wsdl:message name="IStubService_GenerateAbStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GenerateAbStatsResponse" />
+  </wsdl:message>
   <wsdl:message name="IStubService_GetDataUsingDataContract_InputMessage">
     <wsdl:part name="parameters" element="tns:GetDataUsingDataContract" />
   </wsdl:message>
@@ -24,6 +30,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IStubService/GenerateStats" message="tns:IStubService_GenerateStats_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IStubService/GenerateStatsResponse" message="tns:IStubService_GenerateStats_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GenerateAbStats">
+      <wsdl:input wsaw:Action="http://tempuri.org/IStubService/GenerateAbStats" message="tns:IStubService_GenerateAbStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IStubService/GenerateAbStatsResponse" message="tns:IStubService_GenerateAbStats_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetDataUsingDataContract">
       <wsdl:input wsaw:Action="http://tempuri.org/IStubService/GetDataUsingDataContract" message="tns:IStubService_GetDataUsingDataContract_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IStubService/GetDataUsingDataContractResponse" message="tns:IStubService_GetDataUsingDataContract_OutputMessage" />
@@ -33,6 +43,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GenerateStats">
       <soap:operation soapAction="http://tempuri.org/IStubService/GenerateStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateAbStats">
+      <soap:operation soapAction="http://tempuri.org/IStubService/GenerateAbStats" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

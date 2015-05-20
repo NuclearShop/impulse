@@ -37,6 +37,8 @@ namespace ImpulseApp.Models.StatModels
         [DataMember]
         public string UserBrowser { get; set; }
         [DataMember]
+        public int? AbTestId { get; set; }
+        [DataMember]
         [ForeignKey("AdId")]
         public virtual SimpleAdModel Ad { get; set; }
         [DataMember]

@@ -2,12 +2,77 @@
 
 <h2>UploadTest</h2>
 
-<form name="form1" method="post" enctype="multipart/form-data" action="/api/upload/video">
+<form enctype="multipart/form-data">
     <div>
-        <label for="image1">Видео файл</label>
-        <input name="image1" type="file" />
-    </div>
-    <div>
-        <input type="submit" value="Submit" />
+        <input name="file" type="file" id="file" />
+        <input type="button" value="Submit" />
     </div>
 </form>
+<div id="append">
+    <input type="text" placeholder="Введите название видео" id="name" />
+    <div id="video-holder"></div>
+</div>
+
+@section scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var dataUrls = new Array();
+            var video = [];
+            function generateThumbnail() {
+                var thecanvas = document.createElement('canvas');
+                thecanvas.width = video.videoWidth;
+                thecanvas.height = video.videoHeight;
+                var context = thecanvas.getContext('2d');
+                context.drawImage(video, 0, 0, thecanvas.width, thecanvas.height);
+                var dataURL = thecanvas.toDataURL();
+                var img = $("img")
+                img.attr('src', dataURL);
+                img.appendTo("#append");
+                return dataURL;
+            };
+            $(':button').click(function () {
+                var fd = new FormData();
+                fd.append('file', $('#file')[0].files[0]);
+                $.ajax({
+                    url: '/api/upload/video',
+                    type: 'POST',
+                    success: function (data) {
+                        $("#video-holder").html('<video id="video" preload="auto"><source src="' +
+                            data.FullPath + '" type="video/webm"></source><source src="' +
+                            data.FullPath + '" type="video/mp4"></source></video>');
+                        var realVid = document.getElementById('video');
+                        realVid.load();
+                        var dataURL = '';
+                        var sended = false;
+                        window.setTimeout(realVid.onloadeddata = function () {
+                            video = Popcorn("#video");
+                            dataURL = video.capture({
+                                at: realVid.duration > 4?4:Math.floor(realVid.duration / 2)
+                            }).media.poster;
+                            var image = dataURL;
+                            data.Length = realVid.duration;
+                            data.Name = $("#name").val();
+                            data.Image = image.replace('data:image/png;base64,', '');
+                            if (dataURL !== '' && !sended) {
+                                sended = true;
+                                $.ajax({
+                                    url: '/api/upload/video/complete',
+                                    type: 'POST',
+                                    data: data,
+                                    success: function (data) {
+                                        console.log("id: " + data);
+                                    }
+                                });
+                                realVid.onloadeddata = [];
+                            } 
+                        }, 1000);
+                    },
+                    data: fd,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            });
+        });
+    </script>
+}

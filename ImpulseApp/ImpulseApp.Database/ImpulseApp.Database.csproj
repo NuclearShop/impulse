@@ -136,6 +136,26 @@
     <Compile Include="Migrations\201505081539228_defSlide.Designer.cs">
       <DependentUpon>201505081539228_defSlide.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201505082108121_abdateend.cs" />
+    <Compile Include="Migrations\201505082108121_abdateend.Designer.cs">
+      <DependentUpon>201505082108121_abdateend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505141652202_image.cs" />
+    <Compile Include="Migrations\201505141652202_image.Designer.cs">
+      <DependentUpon>201505141652202_image.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505170918039_pciUrl.cs" />
+    <Compile Include="Migrations\201505170918039_pciUrl.Designer.cs">
+      <DependentUpon>201505170918039_pciUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505171736279_xy.cs" />
+    <Compile Include="Migrations\201505171736279_xy.Designer.cs">
+      <DependentUpon>201505171736279_xy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505181452056_abtestid.cs" />
+    <Compile Include="Migrations\201505181452056_abtestid.Designer.cs">
+      <DependentUpon>201505181452056_abtestid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs" />
@@ -203,6 +223,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505081539228_defSlide.resx">
       <DependentUpon>201505081539228_defSlide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505082108121_abdateend.resx">
+      <DependentUpon>201505082108121_abdateend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505141652202_image.resx">
+      <DependentUpon>201505141652202_image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505170918039_pciUrl.resx">
+      <DependentUpon>201505170918039_pciUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505171736279_xy.resx">
+      <DependentUpon>201505171736279_xy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505181452056_abtestid.resx">
+      <DependentUpon>201505181452056_abtestid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

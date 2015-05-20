@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 
 namespace ImpulseApp.Controllers.APIControllers
 {

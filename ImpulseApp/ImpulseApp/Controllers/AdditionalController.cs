@@ -22,23 +22,36 @@ namespace ImpulseApp.Controllers
             ViewBag.Ads = new SelectList(ads, "Id", "Name");
             return PartialView("GetCurrentUserAds");
         }
-
+        public ActionResult StatisticSettingsPartial()
+        {
+            return PartialView();
+        }
         public ActionResult GenerateAds()
         {
             var ads = db.GetUserAds(User.Identity.GetUserId());
             ViewBag.AdId = new SelectList(ads, "Id", "Id");
             return View();
         }
-        public ActionResult StatisticSettingsPartial()
-        {
-            return PartialView();
-        }
+        
         [HttpPost]
         public ActionResult GenerateAds(int AdId, DateTime BeginDate, DateTime EndDate)
         {
             StubService.IStubService stub = new StubService.StubServiceClient();
             stub.GenerateStats(AdId, BeginDate.ToShortDateString(), EndDate.ToShortDateString());
-            return RedirectToAction("StatisticsIndex", "UserFront");
+            return RedirectToAction("/#/");
+        }
+
+        public ActionResult GenerateAbs()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GenerateAbs(int AbId)
+        {
+            StubService.IStubService stub = new StubService.StubServiceClient();
+            stub.GenerateAbStats(AbId);
+            return Redirect("/#/");
         }
 	}
 }

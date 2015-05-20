@@ -33,6 +33,18 @@ namespace ImpulseApp.DBService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAdById", ReplyAction="http://tempuri.org/IDBService/GetAdByIdResponse")]
         System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByIdAsync(int id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdById", ReplyAction="http://tempuri.org/IDBService/RemoveAdByIdResponse")]
+        void RemoveAdById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdById", ReplyAction="http://tempuri.org/IDBService/RemoveAdByIdResponse")]
+        System.Threading.Tasks.Task RemoveAdByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdByUrl", ReplyAction="http://tempuri.org/IDBService/RemoveAdByUrlResponse")]
+        void RemoveAdByUrl(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdByUrl", ReplyAction="http://tempuri.org/IDBService/RemoveAdByUrlResponse")]
+        System.Threading.Tasks.Task RemoveAdByUrlAsync(string url);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAd", ReplyAction="http://tempuri.org/IDBService/SaveAdResponse")]
         string SaveAd(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB);
         
@@ -167,18 +179,22 @@ namespace ImpulseApp.DBService {
         System.Threading.Tasks.Task<string> SaveAbTestAsync(ImpulseApp.Models.AdModels.ABTest test);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/GetAbTestByUrlAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
         ImpulseApp.Models.AdModels.ABTest GetAbTestByUrl(string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
         System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByUrlAsync(string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/GetAbTestByIdAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
-        ImpulseApp.Models.AdModels.ABTest GetAbTestById(string id);
+        ImpulseApp.Models.AdModels.ABTest GetAbTestById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(string id);
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAllActiveTests", ReplyAction="http://tempuri.org/IDBService/GetAllActiveTestsResponse")]
+        System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest> GetAllActiveTests(string UserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAllActiveTests", ReplyAction="http://tempuri.org/IDBService/GetAllActiveTestsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest>> GetAllActiveTestsAsync(string UserId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
@@ -237,6 +253,22 @@ namespace ImpulseApp.DBService {
         
         public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByIdAsync(int id) {
             return base.Channel.GetAdByIdAsync(id);
+        }
+        
+        public void RemoveAdById(int id) {
+            base.Channel.RemoveAdById(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAdByIdAsync(int id) {
+            return base.Channel.RemoveAdByIdAsync(id);
+        }
+        
+        public void RemoveAdByUrl(string url) {
+            base.Channel.RemoveAdByUrl(url);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAdByUrlAsync(string url) {
+            return base.Channel.RemoveAdByUrlAsync(url);
         }
         
         public string SaveAd(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB) {
@@ -407,12 +439,20 @@ namespace ImpulseApp.DBService {
             return base.Channel.GetAbTestByUrlAsync(url);
         }
         
-        public ImpulseApp.Models.AdModels.ABTest GetAbTestById(string id) {
+        public ImpulseApp.Models.AdModels.ABTest GetAbTestById(int id) {
             return base.Channel.GetAbTestById(id);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(string id) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(int id) {
             return base.Channel.GetAbTestByIdAsync(id);
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest> GetAllActiveTests(string UserId) {
+            return base.Channel.GetAllActiveTests(UserId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest>> GetAllActiveTestsAsync(string UserId) {
+            return base.Channel.GetAllActiveTestsAsync(UserId);
         }
         
         public string SetActiveByAdId(int id) {

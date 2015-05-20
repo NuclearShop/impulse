@@ -34,6 +34,10 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         public int EndTime { get; set; }
         [DataMember]
+        public int X { get; set; }
+        [DataMember]
+        public int Y { get; set; }
+        [DataMember]
         public string ChainedHtml { get; set; }
         [DataMember]
         public bool IsFullPlay { get; set; }

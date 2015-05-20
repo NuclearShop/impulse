@@ -17,6 +17,9 @@ namespace StubMethods
         string GenerateStats(int AdID, string beginDate, string endDate);
 
         [OperationContract]
+        string GenerateAbStats(int AbID);
+
+        [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here

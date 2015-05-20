@@ -1,0 +1,17 @@
+﻿body {
+}
+table {
+    border:solid 1px;
+    margin: 2px;
+    padding: 2px;
+    border-spacing: 2px;
+    border-color: gray;
+    margin-top: 10px;
+}
+
+.odd {
+      background-color: #f9f9f9;
+}
+td {
+      border: 1px solid #ddd;
+}

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImpulseApp.Controllers.APIControllers.AdController">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAACAAA=</HashCode>
+      <FileName>Controllers\APIControllers\AdController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.APIControllers.StatApiController">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAIA=</HashCode>
+      <FileName>Controllers\APIControllers\StatApiController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.APIControllers.UploadController">
+    <Position X="1.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAACAAAAA=</HashCode>
+      <FileName>Controllers\APIControllers\UploadController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.APIControllers.VideoController">
+    <Position X="0.5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAABAAAAAAAAAAAAAAAAAAAAAAAAEAAAgAAAAA=</HashCode>
+      <FileName>Controllers\APIControllers\VideoController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Utilites.ImpulseFormDataStreamProvider">
+    <Position X="3.25" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Utilites\ImpulseFormDataStreamProvider.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

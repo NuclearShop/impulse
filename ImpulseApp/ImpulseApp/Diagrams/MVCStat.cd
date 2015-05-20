@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ImpulseApp.Controllers.AdditionalController" Collapsed="true">
+    <Position X="0.5" Y="2" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAQAAAAAAgAAAAAAAAAAAAAAIAAAAAAAAQ=</HashCode>
+      <FileName>Controllers\AdditionalController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.AdminFrontController" Collapsed="true">
+    <Position X="0.5" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdminFrontController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.AdOutboundController" Collapsed="true">
+    <Position X="0.5" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAEEAAAAAAAA=</HashCode>
+      <FileName>Controllers\AdOutboundController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.HomeController" Collapsed="true">
+    <Position X="0.5" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAEACAAAAAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Controllers\HomeController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.StatisticController" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAIAAUACQAAAAAgAAIAAAAAAEAAAAAAABA=</HashCode>
+      <FileName>Controllers\StatisticController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.UserFrontController" Collapsed="true">
+    <Position X="0.5" Y="4.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAQAFAAAAAAAAEAAEgAAEEAAABAACg=</HashCode>
+      <FileName>Controllers\UserFrontController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.ComplexViewModels.ExtendedActivity" Collapsed="true">
+    <Position X="2.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAABA=</HashCode>
+      <FileName>Models\ComplexViewModels\AdOutboundModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.ComplexViewModels.AdOutboundModel" Collapsed="true">
+    <Position X="2.75" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAABAAAADAAAAAAAAAIAQAA=</HashCode>
+      <FileName>Models\ComplexViewModels\AdOutboundModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.Dictionary" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StatModels\Dictionary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.StatChartJS" Collapsed="true">
+    <Position X="2.75" Y="4.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAABAAAAAAAAAAAAAEAACAAAAQAAAAAAA=</HashCode>
+      <FileName>Models\StatModels\StatChartJS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.CompareChartModel" Collapsed="true">
+    <Position X="2.75" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StatModels\StatChartJS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.DetailedStatisticsModel" Collapsed="true">
+    <Position X="2.75" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\StatModels\StatChartJS.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.Stage" Collapsed="true">
+    <Position X="4.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Models\StatModels\TableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Models.StatModels.TableRowModel" Collapsed="true">
+    <Position X="4.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIABAAAAAAAgAAAAEAAA=</HashCode>
+      <FileName>Models\StatModels\TableModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.FakeView" Collapsed="true">
+    <Position X="4.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>Controllers\ExportControllers\FakeView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.HtmlViewRenderer" Collapsed="true">
+    <Position X="4.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Controllers\ExportControllers\HtmlViewRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.PdfExportController" Collapsed="true">
+    <Position X="0.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAEAIAAAAAAA=</HashCode>
+      <FileName>Controllers\ExportControllers\PdfExportController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.PrintHeaderFooter" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQABEAAAAEgAAAAAAAAAACAgAAAEAAAAAAAACAA=</HashCode>
+      <FileName>Controllers\ExportControllers\PrintHeaderFooter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.UnicodeFontFactory" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAgAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Controllers\ExportControllers\StandardPdfRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ImpulseApp.Controllers.ExportControllers.StandardPdfRenderer" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAABAAAAAAIAA=</HashCode>
+      <FileName>Controllers\ExportControllers\StandardPdfRenderer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

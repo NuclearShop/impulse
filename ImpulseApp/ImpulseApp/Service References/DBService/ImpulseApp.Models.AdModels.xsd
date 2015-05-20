@@ -37,6 +37,8 @@
       <xs:element minOccurs="0" name="Ad" nillable="true" type="tns:SimpleAdModel" />
       <xs:element minOccurs="0" name="AdId" type="xs:int" />
       <xs:element minOccurs="0" name="ChainedHtml" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DefaultNext" type="xs:int" />
+      <xs:element minOccurs="0" name="DefaultNextTime" type="xs:int" />
       <xs:element minOccurs="0" name="EndTime" type="xs:int" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="IsEnd" type="xs:boolean" />
@@ -105,6 +107,7 @@
       <xs:element minOccurs="0" name="FullPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="GeneratedName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Image" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Length" type="xs:int" />
       <xs:element minOccurs="0" name="MimeType" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
@@ -153,10 +156,17 @@
       <xs:element minOccurs="0" name="AdBId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ChangeCount" type="xs:int" />
       <xs:element minOccurs="0" name="ChangeHours" type="xs:int" />
+      <xs:element minOccurs="0" name="DateEnd" type="xs:dateTime" />
       <xs:element minOccurs="0" name="DateStart" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
       <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ABTest" nillable="true" type="tns:ABTest" />
+  <xs:complexType name="ArrayOfABTest">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ABTest" nillable="true" type="tns:ABTest" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfABTest" nillable="true" type="tns:ArrayOfABTest" />
 </xs:schema>
