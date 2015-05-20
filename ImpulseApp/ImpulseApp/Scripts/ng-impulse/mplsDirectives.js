@@ -63,7 +63,9 @@ ImpulseApp.directive('adInfoblock', function () {
                     $scope.saveButton = "fa-check";
                 });
             }
-
+            $scope.remove = function () {
+                console.log('confirmed');
+            }
             $scope.toggleDropdown = function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
@@ -92,4 +94,25 @@ ImpulseApp.filter('shortUrlFilter', function () {
             return [];
         }
     }
-})
+});
+
+ImpulseApp.directive('ngConfirmClick', ['dialogs',
+  function (dialogs) {
+      return {
+          priority: -1,
+          restrict: 'A',
+          link: function (scope, element, attrs) {
+              element.bind('click', function (e) {
+                  var message = attrs.ngConfirmClick;
+                  dlg = dialogs.confirm('Пожалуйста, подтвердите действие', message);
+                  dlg.result.then(function (btn) {
+                     
+                  }, function (btn) {
+                      e.stopImmediatePropagation();
+                      e.preventDefault();
+                  });
+              });
+          }
+      }
+  }
+]);

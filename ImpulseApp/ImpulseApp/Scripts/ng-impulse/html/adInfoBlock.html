@@ -5,7 +5,9 @@
             <span style="font-size: 20pt;">{{ad.versions[0].Name}}</span>
             <button class="btn btn-default btn-outline pull-right" ng-click="watch(ad.key)"><span class="fa fa-eye"></span></button>
             <a class="btn btn-default btn-outline pull-right" href="http://localhost:9000/#/?id={{ad.choosen.Id}}" target="_blank"><span class="fa fa-edit"></span></a>
-            <button class="btn btn-default btn-outline pull-right" ng-click="remove(ad.key)"><span class="fa fa-remove"></span></button>
+            <button class="btn btn-default btn-outline pull-right" 
+                    ng-confirm-click="Вы действительно хотите удалить рекламу {{ad.versions[0].Name}}" 
+                    ng-click="remove(ad.key)"><span class="fa fa-remove"></span></button>
         </div>
         <div style="background-color:white;">
             Измените основную версию

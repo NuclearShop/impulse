@@ -9,6 +9,7 @@
   <xs:element name="ArrayOfAdSession" nillable="true" type="tns:ArrayOfAdSession" />
   <xs:complexType name="AdSession">
     <xs:sequence>
+      <xs:element minOccurs="0" name="AbTestId" nillable="true" type="xs:int" />
       <xs:element minOccurs="0" name="ActiveMilliseconds" type="xs:int" />
       <xs:element minOccurs="0" name="Activities" nillable="true" type="tns:ArrayOfActivity" />
       <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="Ad" nillable="true" type="q1:SimpleAdModel" />

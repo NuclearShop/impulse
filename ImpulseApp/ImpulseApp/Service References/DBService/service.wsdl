@@ -211,6 +211,12 @@
   <wsdl:message name="IDBService_GetAllActiveTests_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllActiveTestsResponse" />
   </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAbTestById_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAbTestById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAbTestById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAbTestByIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IDBService_SetActiveByAdId_InputMessage">
     <wsdl:part name="parameters" element="tns:SetActiveByAdId" />
   </wsdl:message>
@@ -343,6 +349,10 @@
     <wsdl:operation name="GetAllActiveTests">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTests" message="tns:IDBService_GetAllActiveTests_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTestsResponse" message="tns:IDBService_GetAllActiveTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAbTestById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAbTestById" message="tns:IDBService_RemoveAbTestById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAbTestByIdResponse" message="tns:IDBService_RemoveAbTestById_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SetActiveByAdId">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdId" message="tns:IDBService_SetActiveByAdId_InputMessage" />
@@ -630,6 +640,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllActiveTests">
       <soap:operation soapAction="http://tempuri.org/IDBService/GetAllActiveTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAbTestById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAbTestById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -196,6 +196,12 @@ namespace ImpulseApp.DBService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAllActiveTests", ReplyAction="http://tempuri.org/IDBService/GetAllActiveTestsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest>> GetAllActiveTestsAsync(string UserId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAbTestById", ReplyAction="http://tempuri.org/IDBService/RemoveAbTestByIdResponse")]
+        void RemoveAbTestById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAbTestById", ReplyAction="http://tempuri.org/IDBService/RemoveAbTestByIdResponse")]
+        System.Threading.Tasks.Task RemoveAbTestByIdAsync(int id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
         string SetActiveByAdId(int id);
@@ -453,6 +459,14 @@ namespace ImpulseApp.DBService {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.ABTest>> GetAllActiveTestsAsync(string UserId) {
             return base.Channel.GetAllActiveTestsAsync(UserId);
+        }
+        
+        public void RemoveAbTestById(int id) {
+            base.Channel.RemoveAbTestById(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAbTestByIdAsync(int id) {
+            return base.Channel.RemoveAbTestByIdAsync(id);
         }
         
         public string SetActiveByAdId(int id) {

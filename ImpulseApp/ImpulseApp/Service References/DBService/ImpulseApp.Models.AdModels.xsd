@@ -49,6 +49,8 @@
       <xs:element minOccurs="0" name="UserElements" nillable="true" type="tns:ArrayOfUserElement" />
       <xs:element minOccurs="0" name="VideoUnit" nillable="true" type="tns:VideoUnit" />
       <xs:element minOccurs="0" name="VideoUnitId" type="xs:int" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="AdState" nillable="true" type="tns:AdState" />

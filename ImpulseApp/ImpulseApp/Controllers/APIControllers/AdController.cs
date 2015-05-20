@@ -42,18 +42,18 @@ namespace ImpulseApp.Controllers.APIControllers
             return response;
         }
 
-        [Route("api/ad/remove")]
+        [Route("api/ad/remove/id")]
         [HttpPost]
-        public HttpResponseMessage RemoveAdById(int id)
+        public async Task<HttpResponseMessage> RemoveAdById(int id)
         {
-            service.RemoveAdById(id);
+            await service.RemoveAdByIdAsync(id);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
         [Route("api/ad/remove/url")]
         [HttpPost]
-        public HttpResponseMessage RemoveAdByUrl(string url)
+        public async Task<HttpResponseMessage> RemoveAdByUrl(string url)
         {
-            service.RemoveAdByUrl(url);
+            await service.RemoveAdByUrlAsync(url);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -75,18 +75,6 @@ namespace ImpulseApp.Controllers.APIControllers
         }
         [Route("api/ad/all")]
         public HttpResponseMessage GetUserAds()
-        {
-            var userAds = service.GetUserAds(User.Identity.GetUserId());
-            List<SimpleAdModelDTO> ads = new List<SimpleAdModelDTO>();
-            foreach (var ad in userAds)
-            {
-                ads.Add(AdMapUtils.GetAdDTO(ad));
-            }
-            return Request.CreateResponse(HttpStatusCode.OK, ads);
-
-        }
-        [Route("api/ad/remove/{id}")]
-        public HttpResponseMessage GetUserAds(int id)
         {
             var userAds = service.GetUserAds(User.Identity.GetUserId());
             List<SimpleAdModelDTO> ads = new List<SimpleAdModelDTO>();
