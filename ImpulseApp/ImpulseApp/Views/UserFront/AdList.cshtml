@@ -1,2 +1,5 @@
-﻿<div ad-infoblock ng-repeat="ad in ads"></div>
+﻿<div ad-infoblock ng-repeat="ad in ads | startFrom:currentPage*pageSize | limitTo:pageSize"></div>
+<pagination class="pull-right" total-items="ads.length" ng-model="currentPage" ng-change="pageChanged()"  max-size="3" 
+            items-per-page = "pageSize"
+             previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
 

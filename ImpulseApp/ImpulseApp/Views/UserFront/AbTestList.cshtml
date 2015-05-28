@@ -5,12 +5,20 @@
     </div>
     <h4>Текущие тестирования</h4>
     <div class="row top-buffer" ng-repeat="ab in abList">
-        <div class="form-group">
+        <div class="form-group col-lg-11">
             ab/{{ab.Url}}:
             <b>Презентация A:</b> {{ab.AdA.Name}}
             <b>Презентация B:</b> {{ab.AdB.Name}}
-            <a class="btn btn-default" href="/#/ab/get/{{ab.Id}}"><span class="fa fa-bar-chart"></span></a>
-            <progressbar class="progress-striped active" max="100" value="ab.progressValue" type="danger"><i>{{ab.progressValue}}% Завершено с {{ab.StartDateString}} по {{ab.EndDateString}}</i></progressbar>
+            <div class="btn-group pull-right">
+                <a class="btn btn-default" href="/#/ab/get/{{ab.Id}}"><span class="fa fa-bar-chart"></span></a>
+                <button class="btn btn-danger" href="/#/ab/get/{{ab.Id}}"
+                        ng-confirm-message="Вы действительно хотите удалить AB тест {{ab.Url}}"
+                        ng-confirm-click="remove(ab.Id)">
+                    <span class="fa fa-remove"></span>
+                </button>
+            </div>
+            <div class="row top-buffer">
+                <progressbar class="progress-striped active" max="100" value="ab.progressValue" type="danger"><i>{{ab.progressValue}}% Завершено с {{ab.StartDateString}} по {{ab.EndDateString}}</i></progressbar>
+            </div>
         </div>
     </div>
-</div>

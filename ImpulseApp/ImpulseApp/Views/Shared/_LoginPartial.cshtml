@@ -1,9 +1,5 @@
-﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
-{
-
-
-    <li class="dropdown">
+﻿<li class="dropdown" ng-controller="LoginPartialController">
+    <div ng-show="isAuth">
         <a class="dropdown-toggle" data-toggle="dropdown" href="">
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
@@ -12,26 +8,21 @@
                 <a href="#"><i class="fa fa-user fa-fw"></i>Профиль</a>
                 <a href="@Url.Action("Manage", "Account")"><i class="fa fa-gear fa-fw"></i>Настройки</a>
             </li>
-            @using (Html.BeginForm("LogOff", "Account",FormMethod.Post, new {name = "LogOff"}))
-            {
-                @Html.AntiForgeryToken()
-                <li>
-                    <a href="javascript:document.forms['LogOff'].submit()"><i class="fa fa-sign-out fa-fw"></i>Выход</a>
-                </li>
-            }
-        </ul>
-    </li>
 
-}
-else
-{
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <li>
+                <a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>Выход</a>
+            </li>
+
+        </ul>
+    </div>
+    <div ng-hide="isAuth">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="">
             <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
         </a>
         <ul class="dropdown-menu dropdown-user">
-            <li>@Html.ActionLink("Регистрация", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-            <li>@Html.ActionLink("Вход", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+            <li><a href="/#/register">Регистрация</a></li>
+            <li><a href="/#/login">Вход</a></li>
         </ul>
-    </li>
-}
+
+    </div>
+</li>

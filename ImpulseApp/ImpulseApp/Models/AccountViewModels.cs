@@ -1,63 +1,43 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ImpulseApp.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    // Models returned by AccountController actions.
+
+    public class ExternalLoginViewModel
     {
-        [Required]
-        [Display(Name = "Имя пользователя")]
-        public string UserName { get; set; }
+        public string Name { get; set; }
+
+        public string Url { get; set; }
+
+        public string State { get; set; }
     }
 
-    public class ManageUserViewModel
+    public class ManageInfoViewModel
     {
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Текущий пароль")]
-        public string OldPassword { get; set; }
+        public string LocalLoginProvider { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} должен быть длиной, по крайней мере {2} символов.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Новый пароль")]
-        public string NewPassword { get; set; }
+        public string Email { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
-        [Compare("NewPassword", ErrorMessage = "Пароли не совпадают.")]
-        public string ConfirmPassword { get; set; }
+        public IEnumerable<UserLoginInfoViewModel> Logins { get; set; }
+
+        public IEnumerable<ExternalLoginViewModel> ExternalLoginProviders { get; set; }
     }
 
-    public class LoginViewModel
+    public class UserInfoViewModel
     {
-        [Required]
-        [Display(Name = "Имя пользователя")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
 
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
-        public string Password { get; set; }
+        public bool HasRegistered { get; set; }
 
-        [Display(Name = "Запомнить меня")]
-        public bool RememberMe { get; set; }
+        public string LoginProvider { get; set; }
     }
 
-    public class RegisterViewModel
+    public class UserLoginInfoViewModel
     {
-        [Required]
-        [Display(Name = "Имя пользователя")]
-        public string UserName { get; set; }
+        public string LoginProvider { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "{0} должен быть длиной, по крайней мере {2} символов.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтвердите пароль")]
-        [Compare("Пароль", ErrorMessage = "Пароли не совпадают.")]
-        public string ConfirmPassword { get; set; }
+        public string ProviderKey { get; set; }
     }
 }

@@ -403,6 +403,11 @@ namespace ImpulseApp.Database
         public void RemoveAdById(int id)
         {
             SimpleAdModel ad = context.SimpleAds.Find(id);
+            var abtests = context.AbTests.Where(a => a.AdAId == id || a.AdBId == id);
+            foreach (var ab in abtests)
+            {
+                context.AbTests.Remove(ab);
+            }
             context.SimpleAds.Remove(ad);
             context.SaveChanges();
         }
@@ -410,9 +415,15 @@ namespace ImpulseApp.Database
         public void RemoveAdByUrl(string url)
         {
             var ads = context.SimpleAds.Where(a=>a.ShortUrlKey.Equals(url));
+            var abtests = context.AbTests.Where(a => ads.Select(b => b.Id).Contains(a.AdAId.Value) ||
+                ads.Select(b => b.Id).Contains(a.AdBId.Value));
             foreach (var ad in ads)
             {
                 context.SimpleAds.Remove(ad);
+            }
+            foreach(var ab in abtests)
+            {
+                context.AbTests.Remove(ab);
             }
             context.SaveChanges();
         }

@@ -22,7 +22,8 @@ var app = angular.module('impulseApp', [
     'ngTouch',
     'ui.bootstrap',
     'ngFileUpload',
-    'underscore'
+    'underscore',
+    'LocalStorageModule'
   ]);
 app.constant('Constants', {
   rootPath: 'http://localhost:56596',
@@ -89,8 +90,10 @@ app.factory('ProjectFactory', function($http, Constants) {
   };
 });
 
-app.run(function(ProjectFactory, $location){
+app.run(function(ProjectFactory, $location, $http){
   var id = $location.search()['id'];
+  var token = $location.search()['token'];
+    $http.defaults.headers.common.Authorization = 'Bearer ' + token;
     ProjectFactory.init(id);
     console.log('Инициализация проекта. Загрузка JSON');
 });
@@ -115,3 +118,17 @@ app.filter('trusted', ['$sce', function ($sce) {
     };
 }]);
 
+app.factory('authInterceptorService', ['$q', '$location', 'localStorageService', 'Constants',  function ($q, $location, localStorageService,Constants) {
+    var authInterceptorServiceFactory = {};
+
+
+    var _responseError = function (rejection) {
+        if (rejection.status === 401) {
+            $location.path(Constants.rootPath+ '/#/login');
+        }
+        return $q.reject(rejection);
+    }
+    authInterceptorServiceFactory.responseError = _responseError;
+
+    return authInterceptorServiceFactory;
+}]);

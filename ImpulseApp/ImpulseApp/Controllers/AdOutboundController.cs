@@ -14,12 +14,6 @@ namespace ImpulseApp.Controllers
     public class AdOutboundController : Controller
     {
         DBService.IDBService service = new DBService.DBServiceClient();
-        //
-        // GET: /AdOutbound/
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult OutboundHtml(string shorturl)
         {

@@ -222,19 +222,11 @@ SenderStub.send =  function() {
     link4.T = 12;
 
     ad.StateGraph = [link1, link2, link3, link4];
-    //ad.ShortUrlKey = '49186';
+    //ad.ShortUrlKey = '12088';
     //ad.Id = 13;
 
 
     var modelDTO = JSON.stringify(ad);
-
-    $.ajax({
-        url: '/api/ad/create',
-        method: 'POST',
-        data: modelDTO,
-        contentType: "application/json",
-        success: function (data, status) {
-            location.href = data;
-        }
-    })
+    return ad;
+    
 }

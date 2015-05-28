@@ -1,0 +1,28 @@
+﻿<h2>Логин</h2>
+
+<h4>Используйте свой логин для входа</h4>
+<hr />
+<label ng-bind="message"></label>
+<hr />
+<div class="form-group">
+    <label for="UserName" class="col-md-2 control-label">Имя пользователя</label>
+    <div class="col-md-10">
+        <input type="text" name="UserName" class="form-control" ng-model="loginData.userName" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="Password" class="col-md-2 control-label">Пароль</label>
+    <div class="col-md-10">
+        <input type="password" name="Password" class="form-control" ng-model="loginData.password" />
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input ng-click="login()" value="Вход" class="btn btn-default" />
+    </div>
+</div>
+<p>
+    <a href="/#/register">Зарегистрируйтесь</a> если у вас нет аккаунта.
+</p>
+
+

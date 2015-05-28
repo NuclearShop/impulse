@@ -93,9 +93,13 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.1.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.3.0.1\lib\net45\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -145,6 +149,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -180,6 +188,10 @@
     </Reference>
     <Reference Include="System.Web.Http.Cors">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.3\lib\net45\System.Web.Http.Cors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http.WebHost, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -235,13 +247,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Owin">
-      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
@@ -250,6 +258,7 @@
     <Compile Include="Controllers\AdditionalController.cs" />
     <Compile Include="Controllers\AdminFrontController.cs" />
     <Compile Include="Controllers\AdOutboundController.cs" />
+    <Compile Include="Controllers\APIControllers\AccountApiController.cs" />
     <Compile Include="Controllers\APIControllers\AdController.cs" />
     <Compile Include="Controllers\APIControllers\StatApiController.cs" />
     <Compile Include="Controllers\APIControllers\TestController.cs" />
@@ -298,6 +307,7 @@
       <DependentUpon>201501051351029_m1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdModels\ViewInfoModel.cs" />
     <Compile Include="Models\ComplexViewModels\AdOutboundModel.cs" />
@@ -307,6 +317,8 @@
     <Compile Include="Models\StatModels\StatHighchart.cs" />
     <Compile Include="Models\StatModels\TableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Providers\ChallengeResult.cs" />
     <Compile Include="Service References\DBService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -762,9 +774,12 @@
     <Content Include="Content\bower_components\raphael\license.txt" />
     <Content Include="Content\bower_components\raphael\raphael-min.js" />
     <Content Include="Content\bower_components\raphael\raphael.js" />
+    <Content Include="Content\dialogs.min.css" />
     <Content Include="Content\dist\css\sb-admin-2.css" />
     <Content Include="Content\dist\css\timeline.css" />
     <Content Include="Content\dist\js\sb-admin-2.js" />
+    <Content Include="Content\ngDialog-theme-plain.min.css" />
+    <Content Include="Content\ngDialog.min.css" />
     <Content Include="Content\pdf-style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -795,6 +810,7 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="package.json" />
     <None Include="Scripts\angular.intellisense.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -1119,6 +1135,7 @@
     <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.AdState.datasource" />
     <Content Include="Diagrams\ClassDiagram1.cd" />
     <Content Include="Diagrams\MVCStat.cd" />
+    <Content Include="Scripts\dialogs.min.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
     <Content Include="Scripts\angular-sanitize.min.js.map" />
@@ -1934,13 +1951,18 @@
     <Content Include="Scripts\ng-impulse\controllers\AdController.js" />
     <Content Include="Scripts\ng-impulse\controllers\GraphController.js" />
     <Content Include="Scripts\ng-impulse\controllers\HomeController.js" />
+    <Content Include="Scripts\ng-impulse\controllers\MainController.js" />
     <Content Include="Scripts\ng-impulse\controllers\ModalController.js" />
     <Content Include="Scripts\ng-impulse\controllers\ReportController.js" />
+    <Content Include="Scripts\ng-impulse\controllers\SecureController.js" />
     <Content Include="Scripts\ng-impulse\controllers\TableController.js" />
     <Content Include="Scripts\ng-impulse\html\adInfoBlock.html" />
+    <Content Include="Scripts\ng-impulse\html\login.html" />
+    <Content Include="Scripts\ng-impulse\html\register.html" />
     <Content Include="Scripts\ng-impulse\mplsApp.js" />
     <Content Include="Scripts\ng-impulse\mplsDirectives.js" />
     <Content Include="Scripts\ng-impulse\mplsServices.js" />
+    <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\popcorn-complete.min.js" />
     <Content Include="Scripts\popcorn.capture.js" />
@@ -2007,7 +2029,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\UserFront\CreateTestStub.cshtml" />
     <Content Include="Views\AdOutbound\OutboundHtml.cshtml" />
-    <Content Include="Views\UserFront\CreateResponse.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\UserFront\StatisticsClicks.cshtml" />
     <Content Include="Views\Additional\GetCurrentUserAds.cshtml" />

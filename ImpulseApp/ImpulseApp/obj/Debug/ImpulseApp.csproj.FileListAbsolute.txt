@@ -328,3 +328,10 @@ H:\Dip\Project\impulse\ImpulseApp\ImpulseApp\obj\Debug\ImpulseApp.pdb
 H:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Cors.dll
 H:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Cors.dll
 H:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Cors.xml
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Cors.dll
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Cors.dll
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Cors.xml
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Owin.dll
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\System.Web.Http.Owin.xml
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\Microsoft.Owin.Cors.dll
+E:\Dip\Project\impulse\ImpulseApp\ImpulseApp\bin\Microsoft.Owin.Cors.xml

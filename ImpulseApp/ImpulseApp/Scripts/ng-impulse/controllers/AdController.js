@@ -10,11 +10,18 @@ ImpulseApp.controller('AdController', function ($scope, $routeParams, SpinnerSer
     container.appendChild($scope.adspinner.el);
     $scope.ads = []
     $scope.filterAds = [];
+    $scope.currentPage = 1;
+    $scope.pageSize = 2;
+    $scope.totalItems = $scope.ads.length;
+    $scope.pageChanged = function () {
+        console.log($scope.currentPage);
+    };
     ServerQueryService.getAds()
         .then(function (ads) {
             /// <param name="ads" type="Array" elementType="server.SimpleAdModelDTO">Description</param>
             $scope.adspinner.stop();
             $scope.ads = $filter('shortUrlFilter')(ads, 2);
+            $scope.totalItems = $scope.ads.length;
         },
         function (data) {
             $scope.adspinner.stop();

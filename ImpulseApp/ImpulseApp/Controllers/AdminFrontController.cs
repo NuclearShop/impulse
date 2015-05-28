@@ -7,12 +7,9 @@ using System.Web.Mvc;
 
 namespace ImpulseApp.Controllers
 {
-    [Authorize(Roles="Administrators")]
     public class AdminFrontController : Controller
     {
         ApplicationDbContext context = new ApplicationDbContext();
-        //
-        // GET: /AdminFront/
         public ActionResult Index()
         {
             return View();

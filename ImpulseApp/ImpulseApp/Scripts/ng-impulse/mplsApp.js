@@ -1,4 +1,4 @@
-﻿var ImpulseApp = angular.module('ImpulseApp', ['ngRoute', 'ui.bootstrap', 'dialogs.main', 'pascalprecht.translate']);
+﻿var ImpulseApp = angular.module('ImpulseApp', ['ngRoute', 'ui.bootstrap', 'ngDialog', 'pascalprecht.translate', 'LocalStorageModule']);
 
 ImpulseApp.run([
   '$templateCache',
@@ -11,7 +11,8 @@ ImpulseApp.run([
   }
 ]);
 
-var configFunction = function ($routeProvider, $translateProvider) {
+var configFunction = function ($routeProvider, $translateProvider, $httpProvider) {
+    $httpProvider.interceptors.push('authInterceptorService');
     $routeProvider.
         when('/', {
             templateUrl: 'UserFront/Index',
@@ -44,6 +45,14 @@ var configFunction = function ($routeProvider, $translateProvider) {
         .when('/ab/get/:id', {
             templateUrl: 'Test/AbInfo',
             controller: 'AbTestInfoController'
+        })
+        .when('/login', {
+            templateUrl: 'Scripts/ng-impulse/html/login.html',
+            controller: 'LoginController'
+        })
+        .when('/register', {
+            templateUrl: 'Scripts/ng-impulse/html/register.html',
+            controller: 'RegisterController'
         })
         .when('/ab', {
             templateUrl: 'UserFront/AbTest',
@@ -78,23 +87,7 @@ var configFunction = function ($routeProvider, $translateProvider) {
                 }
             }
         });
-    /*$translateProvider.translations('en-US', {
-        DIALOGS_ERROR: "Error",
-        DIALOGS_ERROR_MSG: "An unknown error has occurred.",
-        DIALOGS_CLOSE: "Close",
-        DIALOGS_PLEASE_WAIT: "Please Wait",
-        DIALOGS_PLEASE_WAIT_ELIPS: "Please Wait...",
-        DIALOGS_PLEASE_WAIT_MSG: "Waiting on operation to complete.",
-        DIALOGS_PERCENT_COMPLETE: "% Complete",
-        DIALOGS_NOTIFICATION: "Notification",
-        DIALOGS_NOTIFICATION_MSG: "Unknown application notification.",
-        DIALOGS_CONFIRMATION: "Confirmation",
-        DIALOGS_CONFIRMATION_MSG: "Confirmation required.",
-        DIALOGS_OK: "OK",
-        DIALOGS_YES: "Да",
-        DIALOGS_NO: "Нет"
-    });*/
 };
-configFunction.$inject = ['$routeProvider', '$translateProvider'];
+configFunction.$inject = ['$routeProvider', '$translateProvider','$httpProvider'];
 
 ImpulseApp.config(configFunction);

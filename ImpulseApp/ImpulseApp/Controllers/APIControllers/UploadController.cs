@@ -18,6 +18,7 @@ using System.Web.Http.Cors;
 
 namespace ImpulseApp.Controllers.APIControllers
 {
+    [Authorize]
     public class UploadController : ApiController
     {
         IDBService service = new DBServiceClient();

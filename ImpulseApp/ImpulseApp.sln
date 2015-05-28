@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp", "ImpulseApp\ImpulseApp.csproj", "{9E63E90F-B2BF-4543-9679-A83DEF47A675}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -36,6 +36,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		WebEssentials-Settings.json = WebEssentials-Settings.json
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Front", "ImpulseApp.Front\ImpulseApp.Front.csproj", "{B08C2079-826F-4CDE-B6FC-652474DA07E5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

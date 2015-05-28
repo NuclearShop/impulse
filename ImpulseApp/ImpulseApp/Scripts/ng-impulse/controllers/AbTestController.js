@@ -73,6 +73,8 @@ ImpulseApp.controller('AbTestController', function ($scope, $routeParams, Spinne
         getAdsDefinition();
     }
 
+
+
     $scope.submit = function () {
         ServerQueryService.postAbTest($scope.abTest)
         .then(function (ads) {
@@ -91,7 +93,7 @@ ImpulseApp.controller('AbTestController', function ($scope, $routeParams, Spinne
             $scope.ad1 = _.findWhere($scope.ads, { key: val });
             $scope.abTest.AdAId = $scope.ad1.versions[0].Id;
             $scope.version1 = _.findWhere($scope.ad1.versions, { Id: $scope.abTest.AdAId });
-            $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId;
+            $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId + ""+new Date().getMilliseconds();
         }
 
     });
@@ -100,13 +102,13 @@ ImpulseApp.controller('AbTestController', function ($scope, $routeParams, Spinne
             $scope.ad2 = _.findWhere($scope.ads, { key: val })
             $scope.abTest.AdBId = $scope.ad2.versions[0].Id;
             $scope.version2 = _.findWhere($scope.ad2.versions, { Id: $scope.abTest.AdBId });
-            $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId;
+            $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId + "" + new Date().getMilliseconds();
         }
     });
     $scope.$watchGroup(['abTest.AdAId', 'abTest.AdBId'], function () {
         $scope.abform.ada.$setValidity("same", $scope.abTest.AdAId !== $scope.abTest.AdBId);
         $scope.abform.adb.$setValidity("same", $scope.abTest.AdAId !== $scope.abTest.AdBId);
-        $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId;
+        $scope.abTest.Url = $scope.adKey1 + "" + $scope.adKey2 + "" + $scope.abTest.AdAId + "" + $scope.abTest.AdBId + "" + new Date().getMilliseconds();
     })
     $scope.$watchGroup([
         'abTest.ChangeHours',
@@ -137,6 +139,12 @@ ImpulseApp.controller('AbTestListController', function ($scope, $routeParams, Sp
     container.appendChild($scope.adspinner.el);
     $scope.today = new Date();
     $scope.abList = [];
+    $scope.remove = function (id) {
+        ServerQueryService.deleteAbById(id).then(function () {
+            var abToRemove = _.findWhere($scope.abList, { Id: id })
+            $scope.abList = _.without($scope.abList, abToRemove);
+        });
+    }
     ServerQueryService.getAllTests()
     .then(function (abList) {
         /// <param name="ab" type="ABTest">Description</param>

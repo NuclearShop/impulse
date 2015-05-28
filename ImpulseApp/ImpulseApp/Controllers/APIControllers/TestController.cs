@@ -17,9 +17,18 @@ using System.Web.Http.Cors;
 
 namespace ImpulseApp.Controllers.APIControllers
 {
+    [Authorize]
     public class TestController : ApiController
     {
         DBService.IDBService service = new DBService.DBServiceClient();
+        [Route("api/ab/{id}")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteAb(int id)
+        {
+            await service.RemoveAbTestByIdAsync(id);
+
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
         [Route("api/ab/create")]
         [HttpPost]
         public async Task<HttpResponseMessage> SaveAb(ABTest abtest)

@@ -17,8 +17,6 @@ using ImpulseApp.Models.Dicts;
 
 namespace ImpulseApp.Controllers
 {
-
-    [Authorize]
     public class UserFrontController : Controller
     {
         ApplicationDbContext context = new ApplicationDbContext();
@@ -26,10 +24,6 @@ namespace ImpulseApp.Controllers
         //
         // GET: /UserFront/
         public ActionResult Index()
-        {
-            return View();
-        }
-        public ActionResult Create()
         {
             return View();
         }
@@ -41,14 +35,6 @@ namespace ImpulseApp.Controllers
         public ActionResult CreateResponse(int id)
         {
             return View(id);
-        }
-
-        public ActionResult StatisticsIndex()
-        {
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
-            string id = User.Identity.GetUserId();
-            var ads = service.GetUserAds(id);
-            return View(ads);
         }
         public ActionResult StatisticsClicks()
         {

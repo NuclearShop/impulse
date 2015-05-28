@@ -23,6 +23,11 @@ ImpulseApp.directive('adInfoblock', function () {
             $scope.ad.isopen = false;
             $scope.isopenexport = false;
             $scope.ad.choosen = _.findWhere($scope.ad.versions, { IsActive: true });
+            if (!$scope.ad.choosen) {
+                $scope.ad.choosen = $scope.ad.versions[0];
+            }
+            $scope.ad.dbChoosen = $scope.ad.choosen;
+            $scope.saveButton = "fa-check";
             $scope.image = $scope.ad.choosen.AdStates[0].VideoUnit.Image;
             $scope.switchChoosen = function (id) {
                 _.each($scope.ad.versions, function (version) {
@@ -35,14 +40,13 @@ ImpulseApp.directive('adInfoblock', function () {
                 })
                 $scope.ad.choosen = _.findWhere($scope.ad.versions, { IsActive: true });
                 $scope.image = $scope.ad.choosen.AdStates[0].VideoUnit.Image;
-                $scope.saveButton = "fa-save";
 
             };
             $scope.exportAd = function () {
                 $scope.exportString = '';
                 $scope.isShowExport = !$scope.isShowExport;
                 switch ($scope.exportChoosen.id) {
-                    case 0: $scope.exportString = '<iframe src="http://localhost:56596/ad/'+$scope.ad.choosen.ShortUrlKey+'"></iframe>';
+                    case 0: $scope.exportString = '<iframe src="http://localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey + '"></iframe>';
                         break;
                     case 1: $scope.exportString = '<iframe src="http://localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey + '"></iframe>';
                         break;
@@ -56,16 +60,41 @@ ImpulseApp.directive('adInfoblock', function () {
                 })
             };
 
-            $scope.saveButton = "fa-save";
+            $scope.$watchGroup(['ad.choosen.Id', 'ad.dbChoosen.Id'], function () {
+                $scope.saveButton = "fa-save";
+                if ($scope.ad.choosen.Id == $scope.ad.dbChoosen.Id) {
+                    $scope.saveButton = "fa-check";
+                }
+            })
+
             $scope.saveChoosen = function () {
                 $scope.saveButton = "fa-clock-o";
                 ServerQueryService.updateActive($scope.ad.choosen.Id).then(function (data) {
-                    $scope.saveButton = "fa-check";
+                    $scope.ad.dbChoosen = $scope.ad.choosen;
                 });
             }
             $scope.remove = function () {
-                console.log('confirmed');
-            }
+                ServerQueryService.deleteAdByUrl($scope.ad.choosen.ShortUrlKey).then(function () {
+                    var adToRemove = _.findWhere($scope.$parent.ads, { key: $scope.ad.choosen.ShortUrlKey })
+                    $scope.$parent.ads = _.without($scope.$parent.ads, adToRemove);
+                });
+
+            };
+
+            $scope.removeVersion = function (id) {
+                ServerQueryService.deleteAdById(id).then(function () {
+                    $scope.ad.versions = _.without($scope.ad.versions, $scope.ad.choosen);
+                    if ($scope.ad.choosen.Id === $scope.ad.dbChoosen.Id) {
+                        $scope.switchChoosen($scope.ad.versions[0].Id);
+                        $scope.saveChoosen();
+                    } else {
+                        $scope.ad.choosen = $scope.ad.dbChoosen;
+                        
+                    }
+                    
+                });
+            };
+
             $scope.toggleDropdown = function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
@@ -95,24 +124,37 @@ ImpulseApp.filter('shortUrlFilter', function () {
         }
     }
 });
-
-ImpulseApp.directive('ngConfirmClick', ['dialogs',
-  function (dialogs) {
-      return {
-          priority: -1,
-          restrict: 'A',
-          link: function (scope, element, attrs) {
-              element.bind('click', function (e) {
-                  var message = attrs.ngConfirmClick;
-                  dlg = dialogs.confirm('Пожалуйста, подтвердите действие', message);
-                  dlg.result.then(function (btn) {
-                     
-                  }, function (btn) {
-                      e.stopImmediatePropagation();
-                      e.preventDefault();
-                  });
-              });
-          }
-      }
-  }
+ImpulseApp.filter('startFrom', function () {
+    return function (input, start) {
+        start = +start-2; //parse to int
+        return input.slice(start);
+    }
+});
+ImpulseApp.directive('ngConfirmClick', ['ngDialog', '$parse', '$compile',
+function (ngDialog, $parse, $compile) {
+    return {
+        priority: -1,
+        restrict: 'A',
+        link: function (scope, element, attrs) {
+            element.bind('click', function (e) {
+                var fn = $parse(attrs.ngConfirmClick);
+                var message = attrs.ngConfirmMessage;
+                var dlg = ngDialog.openConfirm({
+                    template: '<div class="ngdialog-message mt">' + message + '</div>' +
+  '<div class="ngdialog-buttons mt">' +
+      '<button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click=closeThisDialog("Cancel")>Отмена</button>' +
+      '<button type="button" class="ngdialog-button ngdialog-button-primary" ng-click=confirm("OK")>Подтвердить</button>' +
+      '</div>',
+                    plain: 'true'
+                }).then(function (btn) {
+                    fn(scope, { $event: attrs.ngConfirmClick });
+                }, function (btn) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+                });
+            });
+        }
+    }
+}
 ]);

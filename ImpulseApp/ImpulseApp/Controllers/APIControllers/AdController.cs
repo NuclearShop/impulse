@@ -19,6 +19,7 @@ namespace ImpulseApp.Controllers.APIControllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*", SupportsCredentials = true)]
     [RoutePrefix("")]
+    [Authorize]
     public class AdController : ApiController
     {
         DBService.IDBService service = new DBService.DBServiceClient();
@@ -32,6 +33,7 @@ namespace ImpulseApp.Controllers.APIControllers
         }
         [Route("api/ad/create")]
         [HttpPost]
+        [AllowAnonymous]
         public HttpResponseMessage CreateAd(SimpleAdModelDTO modelDTO)
         {
             SimpleAdModel model = Mapper.Map<SimpleAdModelDTO, SimpleAdModel>(modelDTO);
@@ -42,15 +44,15 @@ namespace ImpulseApp.Controllers.APIControllers
             return response;
         }
 
-        [Route("api/ad/remove/id")]
-        [HttpPost]
+        [Route("api/ad/remove/{id}")]
+        [HttpDelete]
         public async Task<HttpResponseMessage> RemoveAdById(int id)
         {
             await service.RemoveAdByIdAsync(id);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
-        [Route("api/ad/remove/url")]
-        [HttpPost]
+        [Route("api/ad/remove/url/{url}")]
+        [HttpDelete]
         public async Task<HttpResponseMessage> RemoveAdByUrl(string url)
         {
             await service.RemoveAdByUrlAsync(url);

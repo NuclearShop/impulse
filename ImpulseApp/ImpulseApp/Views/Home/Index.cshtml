@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>admin - impulse</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @{Layout = null;}
@@ -15,11 +15,14 @@
     <link href="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bower_components/datatables-plugins/dataTables.tableTools.css" rel="stylesheet" />
     <link href="~/Content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" />
-    <link href="~/Content/dialogs.min.css" rel="stylesheet" />
+    <link href="~/Content/ngDialog.min.css" rel="stylesheet" />
+    
+    <link href="~/Content/ngDialog-theme-default.min.css" rel="stylesheet" />
+    <link href="~/Content/ngDialog-theme-plain.min.css" rel="stylesheet" />
     <meta name="description" content="The description of my page" />
 </head>
 <body>
-    <div id="wrapper">
+    <div id="wrapper" ng-controller="MainController">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -33,18 +36,18 @@
 
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-messages"></ul>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                 </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                 </li>
@@ -69,7 +72,7 @@
                             <a href="/#/"><i class="fa fa-dashboard fa-fw"></i>Панель управления</a>
                         </li>
                         <li>
-                            <a href="http://localhost:9000/#/" target="_blank"><i class="fa fa-pencil fa-fw"></i>Создать презентацию</a>
+                            <a ng-href="http://localhost:9000/#/?token={{token}}" target="_blank"><i class="fa fa-pencil fa-fw"></i>Создать презентацию</a>
                         </li>
                         <li>
                             <a href="/#/media"><i class="fa fa-camera-retro fa-fw"></i>Список презентаций</a>
@@ -162,11 +165,11 @@
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-sanitize.min.js"></script>
+    <script src="~/Content/bower_components/angular-local-storage.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
     <script src="~/Content/bower_components/angular-translate.min.js"></script>
-        <script src="~/Scripts/dialogs-default-translations.min.js"></script>
-    <script src="~/Scripts/dialogs.min.js"></script>
+    <script src="~/Scripts/ngDialog.min.js"></script>
 
     <script src="~/Scripts/mpls.statistics.helper.chartjs.js"></script>
     <script src="~/Scripts/mpls.statistics.helper.highchart.js"></script>
