@@ -60,6 +60,7 @@ namespace ImpulseApp.Controllers.APIControllers
         }
 
         [Route("api/ad")]
+        [AllowAnonymous]
         public HttpResponseMessage GetAd(string url)
         {
             SimpleAdModel ad = service.GetAdByUrl(url);
