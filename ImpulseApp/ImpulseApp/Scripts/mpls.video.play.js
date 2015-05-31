@@ -6,7 +6,9 @@ var startSlideEvent = new Event("mpls-slide-start");
 var endSlideEvent = new Event("mpls-slide-end");
 var startAdEvent = new Event("mpls-ad-start");
 var endAdEvent = new Event("mpls-ad-end");
-
+var elementsToAppear = [];
+var elementsToDisappear = [];
+var videos = [];
 var initCss = function (currentId) {
     $(".mpls-video").css('position', 'absolute');
     $(".mpls-video").css('visibility', 'hidden');
@@ -15,12 +17,12 @@ var initCss = function (currentId) {
     $(".mpls-video-control").css('position', 'absolute');
     $(".mpls-video-control").css('z-index', '1');
     $(".mpls-video-control").css('visibility', 'hidden');
+    $(".mpls-ue").css('visibility', 'hidden');
     $(".mpls-action-button").css('cursor', 'pointer');
     $(".mpls-action-button").css('background-color', 'white');
     $(".mpls-action-button").css('color', 'black');
-    //$(".mpls-action-button").addClass('form-control');
-    //$(".mpls-video-control").addClass('container');
     $(".mpls-video").removeClass('mpls-current');
+    
     if (currentId === undefined) {
         $(".mpls-start-video").css('visibility', 'visible');
         $(".mpls-video-start-control").css('visibility', 'visible');
@@ -29,6 +31,8 @@ var initCss = function (currentId) {
     else {
         $("#mpls-video-" + currentId).css('visibility', 'visible');
         $("#mpls-video-" + currentId).addClass('mpls-current');
+        var videoControl = $("#mpls-container").find("[data-for='mpls-video-" + curPlayingVideoId + "']");
+        videoControl.css("visibility", "visible");
     }
 }
 //Тут эффект для остановки видео
@@ -49,7 +53,7 @@ var getVideoInfo = function (initStatsListener, adId, adUrl, abTestId) {
     $.getJSON('/api/ad', {
         url: adUrl
     }).done(function (data) {
-        var videos = data.AdStates;
+        videos = data.AdStates;
         appendHtmlToDiv(data);
         initStatsListener(adId, abTestId);
         initCss();
@@ -66,18 +70,11 @@ var getVideoInfo = function (initStatsListener, adId, adUrl, abTestId) {
                 document.dispatchEvent(endSlideEvent);
                 var nextSlide = button.data("next-id");
                 var nextTime = button.data("next-time");
-                removeCssEffects(curPlayingVideoId);
-                curPlayingVideoId = nextSlide;
-                removeListeners(video);
-                video = document.getElementById("mpls-video-" + curPlayingVideoId);
-                currentVideoInfo = getCurrentVideoInfo(videos, curPlayingVideoId);
-                initCss(curPlayingVideoId);
-                reinitListeners(video);
-                video.currentTime = nextTime;
-                video.play();
-                document.dispatchEvent(startSlideEvent);
+                goToSlide(nextTime, nextSlide)
             } else if (action === 'start') {
                 document.dispatchEvent(startAdEvent);
+                initCss(curPlayingVideoId);
+                updateElementsAppearness();
                 video.play();
                 $(".mpls-video-start-control").css('visibility', 'hidden');
             }
@@ -87,22 +84,91 @@ var getVideoInfo = function (initStatsListener, adId, adUrl, abTestId) {
     });
 }
 
+var goToSlide = function (nextTime, nextSlide) {
+    removeCssEffects(curPlayingVideoId);
+    curPlayingVideoId = nextSlide;
+    removeListeners(video);
+    video.pause();
+    video = document.getElementById("mpls-video-" + curPlayingVideoId);
+    currentVideoInfo = getCurrentVideoInfo(videos, curPlayingVideoId);
+    updateElementsAppearness();
+    initCss(curPlayingVideoId);
+    reinitListeners(video);
+    video.currentTime = nextTime;
+    video.play();
+    document.dispatchEvent(startSlideEvent);
+}
 var getCurrentVideoInfo = function (array, id) {
     return _.findWhere(array, { VideoUnitId: id });
+}
+
+var updateElementsAppearness = function () {
+    elementsToAppear = [];
+    elementsToDisappear = [];
+    var controls = currentVideoInfo.UserElements;
+    elementsToAppear = _.groupBy(controls, function (c) {
+        return c.TimeAppear;
+    });
+    elementsToDisappear = _.groupBy(controls, function (c) {
+        return c.TimeDisappear;
+    });
+}
+
+var getElementsByAppearTime = function (time) {
+    var result = [];
+    result = elementsToAppear[time];
+    
+    if (!result || result.length === 0) {
+        return result;
+    }
+    var res = _.pluck(result, 'Id');
+    return res;
+}
+
+var getElementsByDisppearTime = function (time) {
+    var result = [];
+    result = elementsToDisappear[time];
+    if (!result || result.length === 0) {
+        return result;
+    }
+    var res = _.pluck(result, 'Id');
+    
+    return res;
 }
 
 var timeUpdateListener = function () {
     var videoTime = video.currentTime.toFixed(1);
     var endTime = videoLength * 0.9;
+    
+    
     if (!currentVideoInfo.IsFullPlay) {
         endTime = currentVideoInfo.EndTime;
+    }
+    var vt = Math.floor(videoTime);
+    if (vt - videoTime === 0) {
+        var elemsToAppear = getElementsByAppearTime(vt);
+        var elemsToDisappear = getElementsByDisppearTime(vt);
+        _.each(elemsToAppear, function (id) {
+            console.log(id);
+            $('.mpls-ue-' + id).css("visibility", "visible");
+        })
+        _.each(elemsToDisappear, function (id) {
+            $('.mpls-ue-' + id).css("visibility", "hidden");
+        })
     }
     if (videoTime > endTime) {
         video.pause();
         initCssEffects(curPlayingVideoId);
-        var videoControl = $("#mpls-container").find("[data-for='mpls-video-" + curPlayingVideoId + "']");
-        videoControl.css("visibility", "visible");
+        var elemsToAppear = getElementsByAppearTime(-1);
+        if (!elemsToAppear || elemsToAppear.length === 0) {
+            goToSlide(0, currentVideoInfo.DefaultNext);
+        }
+        _.each(elemsToAppear, function (id) {
+            $('.mpls-ue-' + id).css("visibility", "visible");
+        })
+
     }
+
 }
 
 var loadedMetaDataListener = function () {
@@ -120,6 +186,7 @@ var reinitListeners = function (video) {
 var removeListeners = function (video) {
     video.removeEventListener('timeupdate', timeUpdateListener, false);
 }
+
 
 var appendHtmlToDiv = function (ad) {
     var videos = ad.AdStates;
@@ -171,6 +238,8 @@ var appendHtmlToDiv = function (ad) {
                 "data-form-name": element.FormName,
                 "style": element.HtmlStyle
             });
+            elem.addClass('mpls-ue');
+            elem.addClass('mpls-ue-' + element.Id);
             $(currentId).append(elem);
             _.each(element.HtmlTags, function (tag) {
                 var key = tag.Key;
