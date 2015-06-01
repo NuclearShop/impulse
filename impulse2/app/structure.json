@@ -1,4 +1,4 @@
-{   
+﻿{   
     "projectname":"Cапог",
     "nodes":[{
         "name":"Введение",
@@ -6,7 +6,7 @@
         "y": 500,
         "capture":"../../images/thumbnail.jpg"
         },{
-          "name":"О компании",
+          "name":"О компании1",
         "x": 450,
         "y": 120,
         "capture":"../../images/aventura1.jpg"  
