@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "dependencies": {
     "express": "~4.10.2",
-    "multer": "~0.1.6"
-    },
+    "grunt-connect": "^0.2.0",
+    "grunt-wiredep": "^2.0.0",
+    "multer": "~0.1.6",
+    "watchjs": "0.0.0"
+  },
   "repository": {},
   "devDependencies": {
     "grunt": "^0.4.5",
