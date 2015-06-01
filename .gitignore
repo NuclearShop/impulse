@@ -10,4 +10,5 @@ build/
 *.ldf
 *.webm
 *.mp4
-
+impulse2/node_modules/
+impulse2/bower_components/
