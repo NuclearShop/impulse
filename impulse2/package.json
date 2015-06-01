@@ -4,6 +4,7 @@
   "dependencies": {
     "express": "~4.10.2",
     "grunt-connect": "^0.2.0",
+    "grunt-ng-annotate": "^1.0.1",
     "grunt-wiredep": "^2.0.0",
     "multer": "~0.1.6",
     "watchjs": "0.0.0"
