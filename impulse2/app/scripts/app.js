@@ -26,7 +26,7 @@ var app = angular.module('impulseApp', [
     'LocalStorageModule'
   ]);
 app.constant('Constants', {
-  rootPath: 'http://localhost:56596',
+  rootPath: 'http://localhost:9001',
 });
 app.factory('ProjectFactory', function($http, Constants) {
   var projectLoaded = false;
@@ -34,7 +34,7 @@ app.factory('ProjectFactory', function($http, Constants) {
   var selectedNodeID=null;
 
   function init(id){
-    if(id!==undefined && id!='') {
+    if(id!==undefined && id!=='') {
       $http.get(Constants.rootPath+'/api/ad/'+id).success(function(data) {
                   project = data;
                   projectLoaded = true;
@@ -53,6 +53,10 @@ app.factory('ProjectFactory', function($http, Constants) {
   function updateStructure(nodes){
     //project.AdStates = [];
     //project.AdStates = nodes;
+  }
+  function saveSettings(settings) {
+    project.Poster=settings.Poster;
+    project.Name=settings.Name;
   }
   function getSelectedNode(){
     var selectedNode=null;
@@ -86,7 +90,8 @@ app.factory('ProjectFactory', function($http, Constants) {
     save:save,
     getSelectedNode:getSelectedNode,
     setSelectedNode:setSelectedNode,
-    updateStructure:updateStructure
+    updateStructure:updateStructure, 
+    saveSettings:saveSettings
   };
 });
 
@@ -127,7 +132,7 @@ app.factory('authInterceptorService', ['$q', '$location', 'localStorageService',
             $location.path(Constants.rootPath+ '/#/login');
         }
         return $q.reject(rejection);
-    }
+    };
     authInterceptorServiceFactory.responseError = _responseError;
 
     return authInterceptorServiceFactory;

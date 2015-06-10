@@ -53,9 +53,28 @@
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
+  $scope.openSettingsModal=function(size){
+    var modalInstance = $modal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'views/settings.html',
+      controller: 'SettingsCtrl',
+      size: size,
+      resolve: {
+        items: function () {
+          return $scope.items;
+        }
+      }
+    });
 
+  modalInstance.result.then(function (selectedItem) {
+            setPoster(selectedItem.Poster);
+            $scope.presentationName = selectedItem.Name;
+    }, function () {
+      $log.info('Modal dismissed at: ' + new Date());
+    });
+  };
   $scope.updateStructure= function(){
-    var data=[];
+   // var data=[];
     var states = ProjectFactory.getProject().AdStates;
     for(var i in states){
       var node = _.findWhere($scope.nodes, {Id: states[i].Id});
@@ -116,7 +135,7 @@
     $scope.nodes = _.without($scope.nodes, $scope.mySel);
     var states = ProjectFactory.getProject().AdStates;
     states = _.without(states, _.findWhere(states, {Id: $scope.mySel.Id}));
-    $scope.mySel="";
+    $scope.mySel='';
     invalidate();
     ProjectFactory.getProject().AdStates = states;
     $scope.updateStructure();
@@ -131,9 +150,12 @@
     var INTERVAL = 20;  // how often, in milliseconds, we check to see if a redraw is needed
     var WAITINTERVAL = 400;
     var isDrag = false;
+    var isCanvasDrag=false;
     var mx, my; // mouse coordinates
     var waitintervalid;
-
+    var project;
+    var posterImg;
+    var bgImg;
      // when set to true, the canvas will redraw everything
      // invalidate() just sets this to false right now
      // we want to call invalidate() whenever we make a change
@@ -156,7 +178,7 @@
     // instead of just its x/y corner, we need to save
     // the offset of the mouse when we start dragging.
     var offsetx, offsety;
-
+    var ctxOffsetx=10, ctxOffsety=-10;
     // Padding and border style widths for mouse offsets
     var stylePaddingLeft, stylePaddingTop, styleBorderLeft, styleBorderTop;
 
@@ -171,59 +193,81 @@
    function Node() {
       this.x = 0;
       this.y = 0;
+      this.w=nodeWidth;
+      this.h=nodeHeight;
       this.defaultNext = -1;
       this.videoUnitId = -1;
       this.name = 'Слайд';
       this.capture = '';
       this.videoDuration=0;
     }
+    
     function getNodeByVideoId(id){
       var node;
-      console.log(id);
       for(var i in $scope.nodes){
         
         if(id===$scope.nodes[i].videoUnitId){
           node = $scope.nodes[i];
         }
       }
-      console.log(node);
       return node;
     }
     //Clear canvas
     function clear(c) {
       c.clearRect(0, 0, WIDTH, HEIGHT);
     }
+    function drawBg(){
+    ctx.drawImage(bgImg, 16, 16);
+    var pattern = ctx.createPattern(bgImg, 'repeat');
+    ctx.fillStyle = pattern; 
+    ctx.rect(0, 0, WIDTH, HEIGHT);
+    ctx.fill();
+    }
     //метод для рисования звена
     function drawNode(node) {
       // We can skip the drawing of elements that have moved off the screen:
-      if (node.x > WIDTH || node.y > HEIGHT) { 
+      if (node.x+ctxOffsetx > WIDTH || node.y+ctxOffsety > HEIGHT) { 
         return;
       } 
-      if (node.x + nodeWidth < 0 || node.y + nodeHeight < 0){
+      if (node.x+ctxOffsetx + nodeWidth < 0 || node.y+ctxOffsety + nodeHeight < 0){
         return;
       } 
       //var capture = new Image();
       //capture.src = node.capture;
       ctx.fillStyle = '#ffffff';
       ctx.setLineDash([0]);
-      ctx.fillRect(node.x,node.y,nodeWidth,nodeHeight);
+      ctx.fillRect(node.x+ctxOffsetx,node.y+ctxOffsety,nodeWidth,nodeHeight);
       ctx.strokeStyle = '#e6e6e6';
       ctx.lineWidth = 1;
-      ctx.strokeRect(node.x,node.y,nodeWidth,nodeHeight);
-      ctx.drawImage(node.capture, node.x+8, node.y+8, 96,54);
+      ctx.strokeRect(node.x+ctxOffsetx,node.y+ctxOffsety,nodeWidth,nodeHeight);
+      ctx.drawImage(node.capture, node.x+ctxOffsetx+8, node.y+ctxOffsety+8, 96,54);
       ctx.font = 'bold 9pt Open Sans';
       ctx.fillStyle = 'black';
-      ctx.fillText(node.name, node.x + 8, node.y-5);
+      ctx.fillText(node.name, node.x+ctxOffsetx + 8, node.y+ctxOffsety-5);
+    }
+    function setPoster(src){
+      if(src&&src!=='none'){
+        posterImg.src=src;
+      }else{
+        posterImg.src='../images/poster.jpg';
+      }
+    }
+    function drawPoster(){
+
+      ctx.drawImage(posterImg, 15+ctxOffsetx,HEIGHT/2-25+ctxOffsety,80,50);
+      ctx.font = 'bold 9pt Open Sans';
+      ctx.fillStyle = 'black';
+      ctx.fillText('Начало', 30+ctxOffsetx, HEIGHT/2+40+ctxOffsety);
     }
     function drawGhostNode(gcontext, node){
-      if (node.x > WIDTH || node.y > HEIGHT) { 
+      if (node.x+ctxOffsetx > WIDTH || node.y+ctxOffsety > HEIGHT) { 
         return;
       } 
-      if (node.x + nodeWidth < 0 || node.y + nodeHeight < 0){
+      if (node.x+ctxOffsetx + nodeWidth < 0 || node.y+ctxOffsety + nodeHeight < 0){
         return;
       } 
       gcontext.fillStyle = '#ffffff';
-      gcontext.fillRect(node.x,node.y,nodeWidth,nodeHeight);
+      gcontext.fillRect(node.x+ctxOffsetx,node.y+ctxOffsety,nodeWidth,nodeHeight);
     }
     //Метод для рисования линии
     function drawline(x,y,x1,y1){
@@ -234,10 +278,10 @@
     }
     //Метод для соеденения звеньев
     function connectNodes(node1,node2,type){
-      var startpointx=node1.x+nodeWidth;
-      var startpointy=node1.y+nodeHeight/2;
-      var endpointx=node2.x;
-      var endpointy=node2.y+nodeHeight/2;
+      var startpointx=node1.x+ctxOffsetx+node1.w;
+      var startpointy=node1.y+ctxOffsety+node1.h/2;
+      var endpointx=node2.x+ctxOffsetx;
+      var endpointy=node2.y+ctxOffsety+node2.h/2;
       var coef=1;
 
       if(type==='default'){
@@ -347,7 +391,12 @@
       }
       
       } else {
-          var project = ProjectFactory.getProject();
+          project = ProjectFactory.getProject();
+  
+          posterImg=new Image();
+          posterImg.onload=onLoadImage;
+          setPoster(project.Poster);
+
           for(var n in project.AdStates){
             var node = new Node();
             node.videoUnitId=project.AdStates[n].VideoUnitId;
@@ -367,7 +416,6 @@
           }
           for(var i in project.StateGraph){
             $scope.userConnect.push(project.StateGraph[i]);
-            console.log(project.StateGraph[i]);
           }
           $scope.presentationName = project.Name;
           console.log('Проект загружен, звенья переданы в scope');
@@ -383,9 +431,10 @@
       
       if (canvasValid === false) {
         clear(ctx);
-        
+        drawBg();
         // Add stuff you want drawn in the background all the time here
-        
+        drawPoster();
+
         // draw all boxes
         var l = $scope.nodes.length;
         for (var i = 0; i < l; i++) {
@@ -400,13 +449,25 @@
         }
         for (var c in $scope.userConnect){
           var node1=getNodeByVideoId(parseInt($scope.userConnect[c].V1));
-          console.log(parseInt($scope.userConnect[c].V1));
           var node2=getNodeByVideoId(parseInt($scope.userConnect[c].V2));
-          console.log(parseInt($scope.userConnect[c].V2));
 
           if(node1&&node2){
             connectNodes(node1,node2,'user');
           }
+        }
+
+        if($scope.nodes&&project.FirstState!==0){
+          var poster=new Node();
+          poster.x=15;
+          poster.y=HEIGHT/2-25;
+          poster.w=80;
+          poster.h=50;
+          var firstnode=getNodeByVideoId(parseInt(project.FirstState));
+          if(poster&&firstnode){
+            connectNodes(poster,firstnode,'default');
+          }
+
+
         }
         //connectNodes($scope.nodes[0],$scope.nodes[2],'default');
         // draw selection
@@ -415,7 +476,7 @@
           ctx.strokeStyle = mySelColor;
           ctx.lineWidth = mySelWidth;
           ctx.setLineDash([0]);
-          ctx.strokeRect($scope.mySel.x,$scope.mySel.y,nodeWidth,nodeHeight);
+          ctx.strokeRect($scope.mySel.x+ctxOffsetx,$scope.mySel.y+ctxOffsety,nodeWidth,nodeHeight);
           
         }
         
@@ -447,6 +508,12 @@
         $scope.mySel.y = my - offsety;   
         
         // something is changing position so we better invalidate the canvas!
+        invalidate();
+      }
+      if(isCanvasDrag){
+        getMouse(e);
+        ctxOffsetx=mx-offsetx;
+        ctxOffsety=my-offsety;
         invalidate();
       }
     }
@@ -489,6 +556,13 @@
       $scope.$apply();
       // havent returned means we have selected nothing
       $scope.mySel = null;
+      offsetx=mx-ctxOffsetx;
+      offsety=my-ctxOffsety;
+      ctxOffsetx=mx-offsetx;
+      ctxOffsety=my-offsety;
+      isCanvasDrag=true;
+      canvas.onmousemove=myMove;
+
       // clear the ghost canvas for next time
       clear(gctx);
       // invalidate because we might need the selection border to disappear
@@ -497,6 +571,7 @@
 
     function myUp(){
       isDrag = false;
+      isCanvasDrag=false;
       canvas.onmousemove = null;
     }
 
@@ -509,20 +584,25 @@
       //var height = 70;
       //addRect(mx - (width / 2), my - (height / 2), width, height, '#ffffff');
     }
-
-
-    function init() {
-      canvas = document.getElementById('canvas');
-      canvasWrapper = document.getElementById('editor-canvas');
+    function resizecanvas(){
       canvas.height = canvasWrapper.offsetHeight;
       canvas.width = canvasWrapper.offsetWidth;
       HEIGHT = canvas.height;
       WIDTH = canvas.width;
       ctx = canvas.getContext('2d');
-      ghostcanvas = document.createElement('canvas');
       ghostcanvas.height = HEIGHT;
       ghostcanvas.width = WIDTH;
       gctx = ghostcanvas.getContext('2d');
+      invalidate();
+    }
+
+    function init() {
+      canvas = document.getElementById('canvas');
+      canvasWrapper = document.getElementById('editor-canvas');
+      ghostcanvas = document.createElement('canvas');
+      
+      window.onresize =resizecanvas;
+      resizecanvas();
       //fixes a problem where double clicking causes text to get selected on the canvas
       canvas.onselectstart = (function () {
        return false; 
@@ -538,7 +618,8 @@
       }
       
       // make draw() fire every INTERVAL milliseconds
-      
+      bgImg = new Image();
+      bgImg.src='../images/tiny_grid.png';
       waitintervalid = setInterval(waitingLoadProject, WAITINTERVAL);
       // set our events. Up and down are for dragging,
       // double click is for making new boxes

@@ -8,6 +8,8 @@
    "DateTime":"2015-05-16T21:05:21.257",
    "IsRoot":false,
    "IsActive":true,
+   "Poster":"../../images/thumbnail.jpg",
+   "FirstState":68,
    "AdStates":[
       {
          "Id":43,

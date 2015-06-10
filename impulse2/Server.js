@@ -22,6 +22,12 @@ app.post('/api/video',function(req,res){
     res.end("File uploaded.");
   }
 });
+app.post('/api/poster',function(req,res){
+  if(done==true){
+    console.log(req.files);
+    res.end("File uploaded.");
+  }
+});
 
 app.listen(9000,function(){
     console.log("Working on port 3000");

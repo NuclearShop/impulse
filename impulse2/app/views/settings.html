@@ -1,0 +1,31 @@
+<div class="modal-title">Настройки проекта</div>
+<form class="addslide-form">
+				  <div class="form-group">
+				    <label>Название проекта</label>
+				    <input type="text" class="form-control" placeholder="" ng-model="projectName" ng-model-options="{ getterSetter: true }">
+				  </div>
+				  <label for="">Превью-картинка к проекту</label>
+					<label class="radio-inline">
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">Изображение
+					</label>
+					<label class="radio-inline">
+					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">Черный фон
+					</label>
+	<div ng-show="posterEnabled">
+	<p ng-show="!isPosterLoaded">Превью-картинка не установлена</p>
+	<div ng-show="isPosterLoaded">
+    <div class="modal-poster-wrapper">
+    <img id="posterImage" class="poster-image" ng-src="{{posterSrc}}" ng-show="isPosterLoaded">
+    </div>
+	</div>
+				  
+    <div class="upload-video-button" ngf-select ng-model="files" accept="image/*">Загрузить превью-картинку к презентации</div>
+        <!--<div ngf-drop="" ngf-select="" ng-model="files" class="drop-box" 
+        ngf-drag-over-class="dragover" accept="image/*">Загрузите изображение <br>или перетащите его в эту область</div><br>-->
+    </div>
+   
+</form>
+<div class="modal-buttons-wrap">
+<div class="button1 button1-left button1-pink" ng-click="saveAndClose()"><span class="button-icon"><span class="icon-save"></span></span>Сохранить изменения</div>
+<div class="button1 button1-gray" ng-click="closeModal()">Отмена</div>
+</div>
