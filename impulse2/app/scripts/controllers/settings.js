@@ -8,7 +8,7 @@ app.controller('SettingsCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
     $scope.posterEnabled=false;
     $scope.projectName='';
     $scope.posterSrc='';
-    $scope.closeModal = function(){
+    $scope.closeModal = function() {
             $modalInstance.dismiss();
     };
     $scope.saveAndClose = function(){
@@ -56,7 +56,7 @@ app.controller('SettingsCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
     function onSuccessVideoLoad(data, status, headers, config){
          
          $scope.isPosterLoaded=true; 
-         $scope.posterSrc=$scope.files[0];   
+         $scope.posterSrc=Constants.rootPath+data;   
     }
 
     init();
