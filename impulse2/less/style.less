@@ -1,5 +1,11 @@
 
+@import "variables.less";
+@import "fonts.less";
 @import "../bower_components/bootstrap/less/variables.less";
+@import "../bower_components/animate.css/animate.min.css";
+@import "select.less";
+@import "switch.less";
+@import "mpls-style.less";
 
 .button1-bg(@button-bg) {
 	background-color: @button-bg;
@@ -18,7 +24,6 @@
 		
 	}
 }
-
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,800,700,600&subset=cyrillic,cyrillic-ext);
 body{
 	font-family: 'Open Sans', sans-serif;
@@ -47,11 +52,13 @@ body{
 }
 .curtime-bar{
 position: absolute;
-height:46px;
+height:253px;
 width:2px;
 display: block;
-left:0;
+left:100px;
 top:-8px;
+z-index:10;
+margin-left: 100px;
 background-color: @lpink;
 }
 .curtime-bar:before{
@@ -209,14 +216,7 @@ video.modal-video{
 		float: left;
 		background-color: @lgray1;
 	}
-	.editor-aside{
-		width:400px;
-		height: 100%;
-		background-color: @editor-aside;
-		float: right;
-		border-left: 1px solid @background-clr;
-		padding:3rem;
-	}
+	
 }
 
 .presentation-name{
@@ -251,19 +251,12 @@ video.modal-video{
 }
 
 .editor-top-menu{
-	float:left;
-	height:70px;
-	padding:0 3rem;
-	background-color: @editor-top-menu;
 	width: 100%;
-	border-bottom: 1px solid @background-clr;
+	padding-top:5px;
 	li{
 		list-style: none;
 		float:left;
 		color:#fff;
-		height:40px;
-		margin:15px 0;
-		margin-right:15px;
 		
 	}
 }
@@ -279,6 +272,11 @@ video.modal-video{
 	width: 100%;
 	position: relative;
 	
+}
+#slide-canvas{
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 .save-btn,.basket-btn,.setting-btn,.button1{
 	height:40px;
@@ -371,112 +369,3 @@ opacity: 1;
 }
 
 //-----------------------------------
-
-.editor-aside{
-	.nav-tabs{
-		margin-bottom: 2rem;
-		li{
-			padding-left: 0;
-			padding-right: 0;
-		}
-	}
-}
-.tools-wrapper{
-	width:100px;
-	height: 100%;
-	position: relative;
-	background-color: @dblue;
-	float: left;
-ul{
-	padding: 0;
-	margin: 0;
-	li{
-		list-style: none;
-		color:#fff;
-	}
-} 
-.tolls-icon{
-	font-size: 3rem;
-	text-align: center;
-
-	.tolls-icon-label{
-		font-size: 1rem;
-		margin-bottom:1rem;
-		display:block;
-	}
-	.icon-text,.icon-form,.icon-button{
-	display: block;
-	padding-top:2rem;
-}
-}
-
-}
-.interactive{
-	display: block;
-	width: 800px;
-	height: 450px;
-	position: absolute;
-	background-color: rgba(68, 85, 255, 0.26);
-	top: 0;
-	left: 0;
-}
-.elements-wrapper{
-display:block;
-width:800px;
-position: relative;
-min-height: 50px;
-background-color: @lgray3;
-.curtime-bar{
-	height:100%;
-	z-index: 2;
-}
-}
-.elem-wrap{
-	width:800px;
-	position:relative;
-	height:50px;
-	display: block;
-	border-bottom:1px dashed @gray1;
-	background-color: @lgray3;
-	z-index: 1;
-	.element{
-		display:block;
-		position:absolute;
-		border-radius: 3px;
-		padding:7px 10px;
-		color: #fff;
-		font-weight: 700;
-		background-color: @lviolet;
-		top:7px;
-		height:36px;
-	}	
-}
-.video-edit-wrapper{
-	float:right;
-	width:800px;
-	height: 100%;
-	background-color: @lgray2;
-	position: relative;
-	
-	.video-wrapper{
-		background-color: #fff;
-		width: 800px;
-		height:450px;
-		video{
-			width:800px;
-			height: 450px;
-		}
-	}
-
-}
-.video-playback-line{
-		.play-btn{
-			padding:1.5rem;
-			line-height: 1rem;
-			background-color: @lgray3;
-			font-size: 2rem;
-			width: 5rem;
-		}
-		background-color: @background-clr;
-		padding:0 2rem;
-	}

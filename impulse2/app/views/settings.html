@@ -5,12 +5,14 @@
 				    <input type="text" class="form-control" placeholder="" ng-model="projectName" ng-model-options="{ getterSetter: true }">
 				  </div>
 				  <label for="">Превью-картинка к проекту</label>
-					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">Изображение
-					</label>
-					<label class="radio-inline">
-					  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">Черный фон
-					</label>
+				  <div class="switch">
+				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">
+				      <label for="inlineRadio1" class="switch-label switch-label-off">ВКЛ</label>
+				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">
+				      <label for="inlineRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
+				      <span class="switch-selection"></span>
+				    </div>
+
 	<div ng-show="posterEnabled">
 	<p ng-show="!isPosterLoaded">Превью-картинка не установлена</p>
 	<div ng-show="isPosterLoaded">

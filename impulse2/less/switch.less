@@ -1,0 +1,77 @@
+.switch {
+  position: relative;
+  height: 28px;
+  width: 92px;
+  background: #efefef;
+  border-radius: 30px;
+  border:1px solid #ccc;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 1rem;
+
+}
+
+.switch-label {
+  position: relative;
+  z-index: 2;
+  float: left;
+  width: 44px;
+  line-height: 26px;
+  font-size: 11px;
+  color: black;
+  text-align: center;
+  cursor: pointer;
+}
+.switch-label:active {
+  font-weight: bold;
+}
+
+.switch-label-off {
+  padding-left: 2px;
+}
+
+.switch-label-on {
+  padding-right: 0px;
+}
+
+
+.switch-input {
+  display: none;
+}
+.switch-input:checked + .switch-label {
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 1px rgba(255, 255, 255, 0.25);
+  -webkit-transition: 0.15s ease-out;
+  -moz-transition: 0.15s ease-out;
+  -ms-transition: 0.15s ease-out;
+  -o-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+  -webkit-transition-property: color, text-shadow;
+  -moz-transition-property: color, text-shadow;
+  -ms-transition-property: color, text-shadow;
+  -o-transition-property: color, text-shadow;
+  transition-property: color, text-shadow;
+}
+.switch-input:checked + .switch-label-on ~ .switch-selection {
+  left: 44px;
+  background-color:#ccc;
+  color:black;
+}
+
+.switch-selection {
+  position: absolute;
+  z-index: 1;
+  top: 2px;
+  left: 2px;
+  display: block;
+  width: 44px;
+  height: 22px;
+  border-radius: 30px;
+  background-color: @nblue1;
+  -webkit-transition: left 0.15s ease-out;
+  -moz-transition: left 0.15s ease-out;
+  -ms-transition: left 0.15s ease-out;
+  -o-transition: left 0.15s ease-out;
+  transition: left 0.15s ease-out;
+}

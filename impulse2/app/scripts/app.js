@@ -23,7 +23,8 @@ var app = angular.module('impulseApp', [
     'ui.bootstrap',
     'ngFileUpload',
     'underscore',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ui.select'
   ]);
 app.constant('Constants', {
   rootPath: 'http://localhost:9001',

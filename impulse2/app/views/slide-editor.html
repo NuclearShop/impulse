@@ -1,4 +1,161 @@
-<div class="struct-editor">
+<div class="view-inner">
+	<!--<div class="editor-left-panel">
+		<div class="slide-info-wrap">
+			<div class="back-to-struct-btn btn2">Назад к структуре проекта</div>
+			<div class="slide-info-container">
+				<div class="slide-name">Слайд 1</div>
+				<div class="elements-count"><span>0</span> элементов на слайде</div>
+				<div class="save-changes-btn btn1 btn1-blue">Сохранить изменения</div>
+			</div>
+		</div>
+		
+	</div>-->
+	<div class="tools-wrapper">
+				<ul>
+					<li>
+						<div class="tolls-icon"><span class="icon-text-1"></span><span class="tolls-icon-label">Текст</span></div>
+					</li>
+					<li>
+						<div class="tolls-icon"><span class="icon-image"></span><span class="tolls-icon-label">Изображение</span></div>
+					</li>
+					<li>
+						<div class="tolls-icon" ng-click="addButton()"><span class="icon-button-1"></span><span class="tolls-icon-label">Кнопка</span></div>
+					</li>
+					<li>
+						<div class="tolls-icon"><span class="icon-form"></span><span class="tolls-icon-label">Форма</span></div>
+					</li>
+				</ul>
+	</div>
+	<div class="video-edit-wrapper" id="video-wrapper">
+				<div class="video-wrapper" style="top:{{offsetVideoWrapper}}px;">
+					<video id="main-video">
+						<source src="videos/1.webm" type='video/webm'>
+						<!--<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">-->
+					</video>
+
+					<div id="interactive" class="interactive" ng-click="interactiveClick(); ">
+						<div class="user-elements" ng-repeat="elem in userElements track by $index">
+							<div data-id="{{$index}}" class="mpls-action-button element1" ng-show="isShow({{$index}})" style="left:{{userElements[$index].X}}px;top:{{userElements[$index].Y}}px;width:{{userElements[$index].Width}}px;height:{{userElements[$index].Height}}px;">{{userElements[$index].Text}}</div>
+						</div>
+					<canvas id="slide-canvas" width="800" height="200"></canvas>
+					<span class="play-stop-btn" ng-click="playVideo()" ng-class="{'icon-pause':isVideoPlayed,'icon-play': !isVideoPlayed}"></span>
+				</div>
+				
+				
+				</div>	
+	</div>
+	<div class="timeline-panel">
+	<div class="playback-wrap ">
+		<div class="play-btn elem-type-wrap"><span ng-click="playVideo()" ng-class="{'icon-pause':isVideoPlayed,'icon-play': !isVideoPlayed}"></span></div>
+		<div id="playback-line" class="playback-line-wrap" ng-click="gotoAndStop($event)">
+			<div class="playback-line" style="width:{{curBarPosition}}px;"></div>
+			<span class="video-duration-wrap"><span class="curtime">{{video.currentTime}}</span> / <span class="duration">{{video.duration}}</span></span>
+		</div>
+	</div>
+		<div class="elements-wrapper">
+		<div class="elements-wrapper-inner">
+					<div class="elem-list playback-wrap" ng-repeat="elem in userElements track by $index">
+						<div class="elem-type-wrap"><span class="icon-button-1"></span></div>
+						<div class="elem-wrap" ng-click="elementClick({{$index}});">
+							<div class="element" style="width:{{getWidth($index);}}px;left:{{getLeft($index);}}px;">{{userElements[$index].Text}}</div>
+						</div>
+					</div>
+		</div>
+		</div>
+		<div class="curtime-bar" style="left:{{curBarPosition}}px"></div>
+
+	</div>
+	<div class="right-panel slide-info-wrap">
+				<div class="slide-info">
+				<div class="slide-name">{{node.Name}}</div>
+				<div class="elements-count"><span>{{userElements.length}}</span> элементов на слайде</div>
+				<div class="devider"></div>
+				<label class="text-left">Основное видео:</label>
+				    <div class="">
+				      <p class="">{{node.VideoUnit.Name}}</p>
+				    </div>
+				</div>
+				<div class="devider"></div>
+				<div class="form-group">
+				    <label for="exampleInputEmail1">Название слайда</label>
+				    <input type="text" ng-model="node.Name" class="form-control mpls">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Переход при бездействии к слайду:</label>
+				    <ui-select ng-model="defaultNext.selected" theme="selectize" ng-disabled="disabled" >
+				    <ui-select-match placeholder="При бездействии перейти к слайду:">{{$select.selected.name}}</ui-select-match>
+				    <ui-select-choices repeat="defaultNext in defaultNexts | filter: $select.search">
+				      <span ng-bind-html="defaultNext.name | highlight: $select.search"></span>
+				      <small ng-bind-html="defaultNext.id | highlight: $select.search"></small>
+				    </ui-select-choices>
+				  	</ui-select>
+				  </div>
+				<div class="save-changes-btn btn1 btn1-blue" ng-click="saveElements()">Сохранить изменения</div>
+	</div>
+	<div class="element-variables-panel" ng-show="isElementSelected">
+		<div class="tabs-btn-panel">
+			<ul>
+				<li ng-click="tab(1)" ng-class="{'active':tabCoef===1}"><span class="tabs-icon icon-brush"></span></li>
+				<li ng-click="tab(2)" ng-class="{'active':tabCoef===2}"><span class="tabs-icon icon-stopwatch"></span></li>
+				<li ng-click="tab(3)" ng-class="{'active':tabCoef===3}"><span class="tabs-icon icon-arrange"></span></li>
+				<li ng-click="tab(4)" ng-class="{'active':tabCoef===4}"><span class="tabs-icon icon-flash"></span></li>
+				<li ng-click="removeElement();"><span class="tabs-icon icon-bucket"></span></li>
+			</ul>
+		</div>
+		<div class="right-panel">
+			<form ng-show="tabCoef===1">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Ширина</label>
+				    <input type="number" ng-model="selectedElement.Width" class="form-control mpls" placeholder="100" min="10" max="1000">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Высота</label>
+				    <input type="number" ng-model="selectedElement.Height" class="form-control mpls" placeholder="50" min="10" max="1000">
+				  </div>
+					<div class="form-group">
+				    <label for="exampleInputEmail1">X</label>
+				    <input type="number" ng-model="selectedElement.X" class="form-control mpls" placeholder=" " min="0">
+				  </div>
+					<div class="form-group">
+				    <label for="exampleInputEmail1">Y</label>
+				    <input type="number" ng-model="selectedElement.Y" class="form-control mpls" placeholder=" " min="0">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Текст</label>
+				    <input type="text" ng-model="selectedElement.Text" class="form-control mpls" placeholder=" ">
+				  </div>
+				  
+			</form>
+			<form ng-show="tabCoef===2">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Время появления</label>
+				    <input type="number" ng-model="selectedElement.TimeAppear" class="form-control mpls" placeholder="0" min="0" max="{{selectedElement.TimeDisappear-2}}" ng-change="changeTimeAppear()">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Время исчезновения</label>
+				    <input type="number" ng-model="selectedElement.TimeDisappear" class="form-control mpls" placeholder="10" min="{{selectedElement.TimeAppear+2}}" max="{{video.duration}}" ng-change="changeTimeDisappear()">
+				  </div>
+			</form>
+			<form ng-show="tabCoef===3">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">3 кажите номер слайда, на который будет осуществлен переход</label>
+				    <input type="text" ng-model="selectedElement.NextId" class="form-control mpls" placeholder="1">
+				  </div>
+			</form>
+			<form ng-show="tabCoef===4">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">4 рый будет осуществлен переход</label>
+				    <input type="text" ng-model="selectedElement.NextId" class="form-control mpls" placeholder="1">
+				  </div>
+			</form>
+			
+		</div>
+	</div>
+
+</div>
+
+
+<!--<div class="struct-editor">
 <div class="struct-inner container">
 		<div class="editor-header">
 			
@@ -30,14 +187,17 @@
 			<div class="video-edit-wrapper">
 				<div class="video-wrapper">
 					<video id="main-video">
+						<source src="videos/1.webm" type='video/webm'>
 						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
 					</video>
+
 					<div id="interactive" class="interactive" ng-click="interactiveClick(); ">
 						<div class="user-elements" ng-repeat="elem in userElements track by $index">
-							<div data-id="{{$index}}" class="mpls-action-button element1" ng-click="elementClick({{$index}});" style="left:{{userElements[$index].X}}px;top:{{userElements[$index].Y}}px;width:{{userElements[$index].Width}}px;height:{{userElements[$index].Height}}px;">{{userElements[$index].Text}}</div>
+							<div data-id="{{$index}}" class="mpls-action-button element1" ng-show="isShow({{$index}})" style="left:{{userElements[$index].X}}px;top:{{userElements[$index].Y}}px;width:{{userElements[$index].Width}}px;height:{{userElements[$index].Height}}px;">{{userElements[$index].Text}}</div>
 						</div>
-						<!--<div data-id="7" ng-show='userElements.length>6' ng-click="elementClick(6);" class="mpls-action-button element1"  style="left:{{userElements[6].X}}px;top:{{userElements[6].Y}}px;width:{{userElements[6].Width}}px;height:{{userElements[6].Height}}px;">{{userElements[6].Text}}</div>-->
+						<!-<div data-id="7" ng-show='userElements.length>6' ng-click="elementClick(6);" class="mpls-action-button element1"  style="left:{{userElements[6].X}}px;top:{{userElements[6].Y}}px;width:{{userElements[6].Width}}px;height:{{userElements[6].Height}}px;">{{userElements[6].Text}}</div>
 					</div>
+					<canvas id="slide-canvas" width="800" height="200"></canvas>
 					<span class="play-stop-btn" ng-click="playVideo()" ng-class="{'icon-pause':isVideoPlayed,'icon-play3': !isVideoPlayed}"></span>
 				</div>
 				<div class="elements-wrapper">
@@ -46,10 +206,11 @@
 							<div class="element" style="width:{{getWidth($index);}}px;left:{{getLeft($index);}}px;">{{userElements[$index].Text}}</div>
 						</div>
 					</div>
-					<!--<div class="elem-wrap" ng-show='userElements.length>0' ng-click="elementClick(0);">
+					<!-<div cl
+					ass="elem-wrap" ng-show='userElements.length>0' ng-click="elementClick(0);">
 						<div class="element" style="width:{{getWidth(0);}}px;left:{{getLeft(0);}}px;">{{userElements[0].Text}}</div>
 					</div>
-					-->
+					
 					<div class="curtime-bar" style="left:{{curBarPosition}}px"></div>
 
 				</div>
@@ -65,19 +226,19 @@
 				<form ng-show="!tabCoef">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Ширина</label>
-				    <input type="text" ng-model="selectedElement.Width" class="form-control" placeholder="100">
+				    <input type="number" ng-model="selectedElement.Width" class="form-control" placeholder="100" min="10" max="1000">
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Высота</label>
-				    <input type="text" ng-model="selectedElement.Height" class="form-control" placeholder="50">
+				    <input type="number" ng-model="selectedElement.Height" class="form-control" placeholder="50" min="10" max="1000">
 				  </div>
 					<div class="form-group">
 				    <label for="exampleInputEmail1">X</label>
-				    <input type="text" ng-model="selectedElement.X" class="form-control" placeholder=" ">
+				    <input type="number" ng-model="selectedElement.X" class="form-control" placeholder=" " min="0">
 				  </div>
 					<div class="form-group">
 				    <label for="exampleInputEmail1">Y</label>
-				    <input type="text" ng-model="selectedElement.Y" class="form-control" placeholder=" ">
+				    <input type="number" ng-model="selectedElement.Y" class="form-control" placeholder=" " min="0">
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Текст</label>
@@ -85,11 +246,11 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Время появления</label>
-				    <input type="text" ng-model="selectedElement.TimeAppear" class="form-control" placeholder="0">
+				    <input type="number" ng-model="selectedElement.TimeAppear" class="form-control" placeholder="0" min="0" max="{{selectedElement.TimeDisappear-2}}" ng-change="changeTimeAppear()">
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Время исчезновения</label>
-				    <input type="text" ng-model="selectedElement.TimeDisappear" class="form-control" placeholder="10">
+				    <input type="number" ng-model="selectedElement.TimeDisappear" class="form-control" placeholder="10" min="{{selectedElement.TimeAppear+2}}" max="{{video.duration}}" ng-change="changeTimeDisappear()">
 				  </div>
 				</form>
 				<form ng-show="tabCoef">
@@ -100,6 +261,6 @@
 				</form>
 			</div>
 			</div>
-		</div>	
+		</div>
 </div>
-</div>
+</div>-->

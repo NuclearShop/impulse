@@ -1,6 +1,72 @@
-<div class="struct-editor">
-<div class="struct-inner container">
-		<div class="editor-header" >
+<div class="view-inner">
+<div id="editor-canvas">
+<canvas id="canvas" width="400" height="700"></canvas>
+</div>
+<div class="editor-top-menu">
+					<ul class="wrapper">
+						<li>
+							<div class="btn1 btn1-pink" ng-click="openAddSlideModal(400);"><span class="icon-btn icon-popup"></span>Добавить слайд</div>
+						</li>
+						<li>
+							<a ng-href="#/slide"  class="btn1" ng-class="{'btn1-gray button1-disabled':!nodeSelected,'btn1-violet': nodeSelected}" ng-click="editNode();"><span class="icon-btn icon-pencil"></span>Редактировать</a>
+						</li>
+						<li>
+							<div class="btn1" ng-click="deleteNode();" ng-class="{'btn1-gray button1-disabled':!nodeSelected,'btn1-violet': nodeSelected}"><span class="icon-btn icon-bucket"></span>Удалить</div>
+						</li>
+
+					</ul>
+</div>
+<div class="right-panel struct-editor-aside" ng-show="nodeSelected">
+				<div>
+					<form>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Название слайда</label>
+				    <input type="text" class="form-control mpls" placeholder="" ng-model="mySel.name" ng-model-options="{ getterSetter: true }">
+				  </div>
+				  <div class="form-group">
+				    <label class="text-left">Длительность</label>
+				    <div class="">
+				      <p class="">{{mySel.videoDuration}}</p>
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="text-left">Переход при бездействии к слайду:</label>
+				    <div class="">
+				      <p class="">{{getNodenameByID(mySel.defaultNext)}}</p>
+				    </div>
+				  </div>
+				  
+					</form>
+				</div>
+				
+				
+			</div>
+			<div class="show-connect-wrapper">
+				<div>
+					<span class="show-connect-text">Отображать переходы при бездействии на слайде</span>
+					<div class="switch">
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio1" ng-model="showDefaultLines" ng-value="true" ng-change="invalidate()">
+					      <label for="inlineRadio1" class="switch-label switch-label-off">ВКЛ</label>
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio2" ng-model="showDefaultLines" ng-value="false" ng-change="invalidate()">
+					      <label for="inlineRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
+					      <span class="switch-selection"></span>
+					    </div>
+				</div>
+				<div>
+				<span class="show-connect-text">
+				Отображать переходы с интерактивных элементов	
+				</span>
+				<div class="switch">
+					      <input type="radio" class="switch-input" name="inlineRadioOptions1" id="inlineRadio3" ng-model="showInteractiveLines" ng-value="true" ng-change="invalidate()">
+					      <label for="inlineRadio3" class="switch-label switch-label-off">ВКЛ</label>
+					      <input type="radio" class="switch-input" name="inlineRadioOptions1" id="inlineRadio4" ng-model="showInteractiveLines" ng-value="false" ng-change="invalidate()">
+					      <label for="inlineRadio4" class="switch-label switch-label-on">ВЫКЛ</label>
+					      <span class="switch-selection"></span>
+					    </div>
+				</div>
+			</div>
+<div class="struct-inner" style="display:none;">
+		<!--<div class="editor-header" >
 			<span class="presentation-name">{{presentationName}}<span class="icon-pencil"></span></span>
 			<div class="presentation-menu">
 				<ul>
@@ -11,7 +77,7 @@
 					<li><div class="basket-btn"><span class="icon-remove"></span></div></li>
 				</ul>
 			</div>
-		</div>
+		</div>-->
 		<div class="editor-wrapper">
 			<div class="editor-container">
 				<div class="editor-top-menu">
@@ -24,6 +90,22 @@
 						</li>
 						<li>
 							<div class="button1 button1-left button1-gray" ng-click="deleteNode();" ng-class="{'button1-gray button1-disabled':!nodeSelected,'button1-violet': nodeSelected}"><span class="button-icon"><span class="icon-delete"></span></span>Удалить</div>
+						</li>
+						<li>
+						<div class="switch">
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">
+					      <label for="inlineRadio1" class="switch-label switch-label-off">ВКЛ</label>
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">
+					      <label for="inlineRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
+					      <span class="switch-selection"></span>
+					    </div>	
+						<div class="switch">
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">
+					      <label for="inlineRadio1" class="switch-label switch-label-off">ВКЛ</label>
+					      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">
+					      <label for="inlineRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
+					      <span class="switch-selection"></span>
+					    </div>
 						</li>
 					</ul>
 				</div>

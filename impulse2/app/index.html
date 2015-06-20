@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="styles/bootstrap.css">
 
     <!-- endbuild -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   </head>
   <body ng-app="impulseApp">
     <!--[if lt IE 7]>
@@ -24,56 +25,37 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-inverse" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
+    <div class="mp-header">
+      <div class="mp-navbar" role="navigation">
+        <div class="wrapper">
+            <div class="nav-logo"></div>
+            <div class="project-name">Презентация 1</div>
+            
+            <ul class="mp-nav">
+            <li class="nav-btn btn1 btn1-blue"><span class="icon-btn icon-eye"></span>Предпросмотр</li>
+            <li class="nav-btn btn2"><span class="icon-btn icon-wrench"></span>Настройки проекта</li>
 
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-
-            <a class="navbar-brand" href="#/">impulse</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
-
-            <ul class="nav navbar-nav ">
-              <li class="active"><a href="#/">Презентации</a></li>
-              <li><a ng-href="#/analilycs">Аналитика</a></li>
-            </ul>
-                <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="icon-cog"></span></a></li>
-            <li class="dropdown">
-              <a href="#/" class="dropdown-toggle" data-toggle="dropdown">Алексей <b class="caret"></b></a>
+            <li class="nav-btn btn2 dropdown">
+              <span class="dropdown-toggle" data-toggle="dropdown">Сохранить и выйти<b class="caret"></b></span>
               <ul class="dropdown-menu">
-                <li><a href="#">Все проекты</a></li>
-                <li><a href="#">Настройки</a></li>
+                <li>Сохранить</li>
+                <li>Сохранить как новую версию</li>
                 <li class="divider"></li>
-                <li><a href="#">Выйти</a></li>
+                <li>Выйти без сохранения</li>
               </ul>
             </li>
           </ul>
-          </div>
         </div>
       </div>
     </div>
-    <div class="project-name-wrapper">
-      <div class="container">
-        <a href="#" class="project-name">Название проекта</a>
-      </div>
-    </div>
-    <div ng-view=""></div>
+    <div ng-view="" class="view-wrapper"></div>
   
 
-    <div class="footer">
+    <!--<div class="footer">
       <div class="container">
         
       </div>
-    </div>
+    </div>-->
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -109,6 +91,7 @@
     <!-- endbuild -->
     <script src="bower_components/popcorn-complete.min.js"></script>
     <script src="bower_components/popcorn.capture.js"></script>
+    <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>

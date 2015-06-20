@@ -18,7 +18,16 @@
       name: ''
 
     };
+    $scope.showInteractiveLines=true;
+    $scope.showDefaultLines=true;
     $scope.userConnect=[];
+    
+  $scope.country = {};
+  $scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
+    {name: 'Afghanistan', code: 'AF'},
+    {name: 'Åland Islands', code: 'AX'},
+   
+  ];
   $scope.openAddSlideModal = function (size) {
 
     var modalInstance = $modal.open({
@@ -88,6 +97,9 @@
       
     }
     ProjectFactory.updateStructure();
+  };
+  $scope.invalidate=function(){
+    invalidate();
   };
     /*"Id":43,
          "EndTime":5,
@@ -440,13 +452,14 @@
         for (var i = 0; i < l; i++) {
             drawNode($scope.nodes[i]);
             var defaultNext = getNodeByVideoId($scope.nodes[i].defaultNext);
-            if(defaultNext!==undefined&&defaultNext!==null){
+            if(defaultNext!==undefined&&defaultNext!==null&&$scope.showDefaultLines){
             connectNodes($scope.nodes[i],defaultNext,'default');
             }
             /*if($scope.nodes[i+1]!==null&& $scope.nodes[i+1]!==undefined){
             connectNodes($scope.nodes[i],$scope.nodes[i+1],'user');
             }*/
         }
+        if($scope.showInteractiveLines){
         for (var c in $scope.userConnect){
           var node1=getNodeByVideoId(parseInt($scope.userConnect[c].V1));
           var node2=getNodeByVideoId(parseInt($scope.userConnect[c].V2));
@@ -455,7 +468,7 @@
             connectNodes(node1,node2,'user');
           }
         }
-
+        }
         if($scope.nodes&&project.FirstState!==0){
           var poster=new Node();
           poster.x=15;

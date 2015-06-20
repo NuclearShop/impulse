@@ -30,7 +30,7 @@
             "Name":"birds",
             "GeneratedName":"465899830",
             "UserName":"admin",
-            "Length":0,
+            "Length":19.56,
             "FullPath":"../../images/1.webm",
             "MimeType":"video/webm",
             "Image":"../../images/thumbnail.jpg"
@@ -46,11 +46,11 @@
                "Text":"Перейти к видео 3",
                "X":50,
                "Y":50,
-               "Width":"68",
-               "Height":"10",
+               "Width":200,
+               "Height":100,
                "Action":"next-slide",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
+               "TimeAppear":0,
+               "TimeDisappear":19.56,
                "CurrentId":68,
                "NextId":66,
                "NextTime":0,
@@ -69,11 +69,11 @@
                "Text":"Перейти к видео 3 на позицию 3c",
                "X":10,
                "Y":5,
-               "Width":"10",
-               "Height":"5",
+               "Width":200,
+               "Height":100,
                "Action":"next-slide",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
+               "TimeAppear":0,
+               "TimeDisappear":7.5,
                "CurrentId":68,
                "NextId":66,
                "NextTime":3,
@@ -93,9 +93,9 @@
          "IsStart":false,
          "IsEnd":true,
          "VideoUnitId":67,
-         "X":200,
-         "Y":150,
-         "DefaultNext":68,
+         "X":300,
+         "Y":230,
+         "DefaultNext":0,
          "DefaultNextTime":0,
          "VideoUnit":{
             "Id":67,
@@ -119,11 +119,11 @@
                "Text":"Конец",
                "X":50,
                "Y":50,
-               "Width":"0",
-               "Height":"0",
+               "Width":200,
+               "Height":100,
                "Action":"0",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
+               "TimeAppear":5,
+               "TimeDisappear":9,
                "CurrentId":0,
                "NextId":0,
                "NextTime":0,
@@ -138,29 +138,6 @@
                      "Value":"Надо что-то ввести"
                   }
                ]
-            },
-            {
-               "Id":40,
-               "HtmlId":"",
-               "HtmlClass":"mpls-decorate",
-               "HtmlType":"span",
-               "UseDefaultStyle":true,
-               "HtmlStyle":"",
-               "Text":"Конец",
-               "X":68,
-               "Y":68,
-               "Width":"0",
-               "Height":"0",
-               "Action":"0",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
-               "CurrentId":0,
-               "NextId":0,
-               "NextTime":0,
-               "FormName":"",
-               "HtmlTags":[
-
-               ]
             }
          ]
       },
@@ -174,7 +151,7 @@
          "IsEnd":false,
          "VideoUnitId":66,
          "X":450,
-         "Y":150,
+         "Y":450,
          "DefaultNext":68,
          "DefaultNextTime":0,
          "VideoUnit":{
@@ -189,52 +166,7 @@
             "Image":"../../images/aventura1.jpg"
          },
          "UserElements":[
-            {
-               "Id":41,
-               "HtmlId":"",
-               "HtmlClass":"mpls-action-button",
-               "HtmlType":"div",
-               "UseDefaultStyle":true,
-               "HtmlStyle":"",
-               "Text":"Перейти к видео 2",
-               "X":50,
-               "Y":50,
-               "Width":"68",
-               "Height":"10",
-               "Action":"next-slide",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
-               "CurrentId":66,
-               "NextId":67,
-               "NextTime":0,
-               "FormName":"",
-               "HtmlTags":[
-
-               ]
-            },
-            {
-               "Id":42,
-               "HtmlId":"",
-               "HtmlClass":"mpls-action-button",
-               "HtmlType":"div",
-               "UseDefaultStyle":true,
-               "HtmlStyle":"",
-               "Text":"Перейти к видео 1 на позицию 12c",
-               "X":10,
-               "Y":50,
-               "Width":"68",
-               "Height":"10",
-               "Action":"next-slide",
-               "TimeAppear":-1,
-               "TimeDisappear":-1,
-               "CurrentId":66,
-               "NextId":68,
-               "NextTime":12,
-               "FormName":"",
-               "HtmlTags":[
-
-               ]
-            }
+            
          ]
       }
    ],

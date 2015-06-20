@@ -11,7 +11,7 @@ body {
 }
 a{
   color:#fff;
-}
+}/*
 @font-face {
   font-family: 'icomoon';
   src:url('../fonts/icomoon.eot?-au7y8f');
@@ -32,7 +32,7 @@ a{
   text-transform: none;
   line-height: 1;
 
-  /* Better Font Rendering =========== */
+  /* Better Font Rendering =========== 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -150,3 +150,4 @@ a{
 }
 
 
+*/
