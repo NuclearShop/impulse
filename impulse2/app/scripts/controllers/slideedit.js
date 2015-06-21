@@ -393,12 +393,12 @@ angular.module('impulseApp')
     console.log($scope.defaultNexts);
     console.log($scope.node.DefaultNext);
 
-    // if($scope.node.VideoUnit.FullPath.indexOf(Constants.rootPath)<0) {
-    //$scope.node.VideoUnit.FullPath = Constants.rootPath + $scope.node.VideoUnit.FullPath;
-    //}	
-     $scope.video = document.getElementById('main-video');
+    if($scope.node.VideoUnit.FullPath.indexOf(Constants.rootPath)<0) {
+      $scope.node.VideoUnit.FullPath = Constants.rootPath + $scope.node.VideoUnit.FullPath;
+    }	
+    $scope.video = document.getElementById('main-video');
 
-     $scope.interactiveLayer=document.getElementById('interactive');
+    $scope.interactiveLayer=document.getElementById('interactive');
 
     canvas = document.getElementById('slide-canvas');
     ghostcanvas = document.createElement('canvas');
@@ -434,7 +434,7 @@ angular.module('impulseApp')
     setInterval(drawCanvas, INTERVAL);
 
     loadElements();
-    $scope.video.load();
+    //$scope.video.load();
 		$scope.video.addEventListener('timeupdate', function() {
                 var durationBarWidth=playbackLineWidth;
                 $scope.duration = $scope.video.duration;

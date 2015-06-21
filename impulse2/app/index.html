@@ -25,7 +25,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="mp-header">
+    <div class="mp-header" ng-controller="IndexCtrl">
       <div class="mp-navbar" role="navigation">
         <div class="wrapper">
             <div class="nav-logo"></div>
@@ -39,7 +39,7 @@
               <span class="dropdown-toggle" data-toggle="dropdown">Сохранить и выйти<b class="caret"></b></span>
               <ul class="dropdown-menu">
                 <li>Сохранить</li>
-                <li>Сохранить как новую версию</li>
+                <li ng-click='saveAd()'>Сохранить как новую версию</li>
                 <li class="divider"></li>
                 <li>Выйти без сохранения</li>
               </ul>
@@ -89,11 +89,12 @@
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script src="bower_components/popcorn-complete.min.js"></script>
+    <script src="bower_components/popcorn-js/popcorn.js"></script>
     <script src="bower_components/popcorn.capture.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/index.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/slideedit.js"></script>
         <script src="scripts/controllers/addslide.js"></script>

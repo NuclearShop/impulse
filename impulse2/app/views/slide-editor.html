@@ -29,8 +29,8 @@
 	<div class="video-edit-wrapper" id="video-wrapper">
 				<div class="video-wrapper" style="top:{{offsetVideoWrapper}}px;">
 					<video id="main-video">
-						<source src="videos/1.webm" type='video/webm'>
-						<!--<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">-->
+						<!-- <source src="videos/1.webm" type='video/webm'> -->
+						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
 					</video>
 
 					<div id="interactive" class="interactive" ng-click="interactiveClick(); ">
@@ -56,7 +56,7 @@
 		<div class="elements-wrapper-inner">
 					<div class="elem-list playback-wrap" ng-repeat="elem in userElements track by $index">
 						<div class="elem-type-wrap"><span class="icon-button-1"></span></div>
-						<div class="elem-wrap" ng-click="elementClick({{$index}});">
+						<div class="elem-wrap" ng-click="elementClick($index);">
 							<div class="element" style="width:{{getWidth($index);}}px;left:{{getLeft($index);}}px;">{{userElements[$index].Text}}</div>
 						</div>
 					</div>

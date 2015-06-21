@@ -42,6 +42,7 @@
       }
     });
 
+
   modalInstance.result.then(function (selectedItem) {
             var node = new Node();
             node.videoUnitId=selectedItem.id;

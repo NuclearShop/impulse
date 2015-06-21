@@ -27,7 +27,7 @@ var app = angular.module('impulseApp', [
     'ui.select'
   ]);
 app.constant('Constants', {
-  rootPath: 'http://localhost:9001',
+  rootPath: 'http://localhost:56596',
 });
 app.factory('ProjectFactory', function($http, Constants) {
   var projectLoaded = false;
@@ -83,6 +83,11 @@ app.factory('ProjectFactory', function($http, Constants) {
   function isProjectLoaded(){
     return projectLoaded;
   }
+  function saveAd(update) {
+  	$http.post(Constants.rootPath+'/api/ad/create', project).success(function(data) {
+      console.log('Отправлено успешно'+data);
+            });
+  }
   return {
     variable: 'This is public',
     init:init,
@@ -92,7 +97,8 @@ app.factory('ProjectFactory', function($http, Constants) {
     getSelectedNode:getSelectedNode,
     setSelectedNode:setSelectedNode,
     updateStructure:updateStructure, 
-    saveSettings:saveSettings
+    saveSettings:saveSettings,
+    saveAd: saveAd
   };
 });
 
