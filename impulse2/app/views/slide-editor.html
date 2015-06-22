@@ -29,13 +29,13 @@
 	<div class="video-edit-wrapper" id="video-wrapper">
 				<div class="video-wrapper" style="top:{{offsetVideoWrapper}}px;">
 					<video id="main-video">
-						<!-- <source src="videos/1.webm" type='video/webm'> -->
-						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
+						 <source src="videos/1.webm" type='video/webm'>
+						<!--<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">-->
 					</video>
 
 					<div id="interactive" class="interactive" ng-click="interactiveClick(); ">
 						<div class="user-elements" ng-repeat="elem in userElements track by $index">
-							<div data-id="{{$index}}" class="mpls-action-button element1" ng-show="isShow({{$index}})" style="left:{{userElements[$index].X}}px;top:{{userElements[$index].Y}}px;width:{{userElements[$index].Width}}px;height:{{userElements[$index].Height}}px;">{{userElements[$index].Text}}</div>
+							<div data-id="{{$index}}" class="mpls-action-button element1" ng-show="isShow({{$index}})" style="left:{{userElements[$index].X}}px;top:{{userElements[$index].Y}}px;width:{{userElements[$index].Width}}px;height:{{userElements[$index].Height}}px;border-radius:{{userElements[$index].Styles['border-radius']}}px;padding-top:{{userElements[$index].Styles['padding-top']}}px;opacity:{{userElements[$index].Styles['opacity']/100}};background-color:{{userElements[$index].Styles['background-color']}};color:{{userElements[$index].Styles['color']}};border-width:{{userElements[$index].Styles['border-width']}}px;border-style:solid;border-color:{{userElements[$index].Styles['border-color']}};font-size:{{userElements[$index].Styles['font-size']}}px;font-weight:{{userElements[$index].Styles['font-weight']}};box-shadow:0 {{userElements[$index].Styles['shadow-width']}}px 0 0 {{userElements[$index].Styles['shadow-color']}};">{{userElements[$index].Text}}</div>
 						</div>
 					<canvas id="slide-canvas" width="800" height="200"></canvas>
 					<span class="play-stop-btn" ng-click="playVideo()" ng-class="{'icon-pause':isVideoPlayed,'icon-play': !isVideoPlayed}"></span>
@@ -82,11 +82,10 @@
 				  </div>
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Переход при бездействии к слайду:</label>
-				    <ui-select ng-model="defaultNext.selected" theme="selectize" ng-disabled="disabled" >
-				    <ui-select-match placeholder="При бездействии перейти к слайду:">{{$select.selected.name}}</ui-select-match>
-				    <ui-select-choices repeat="defaultNext in defaultNexts | filter: $select.search">
-				      <span ng-bind-html="defaultNext.name | highlight: $select.search"></span>
-				      <small ng-bind-html="defaultNext.id | highlight: $select.search"></small>
+				    <ui-select ng-model="node.DefaultNext" theme="selectize" ng-disabled="disabled" >
+				    <ui-select-match placeholder="При бездействии перейти к слайду:">{{getNameById($select.selected)}}</ui-select-match>
+				    <ui-select-choices repeat="defaultNext in defaultNexts ">
+				      <span ng-bind-html="getNameById(defaultNext)"></span>
 				    </ui-select-choices>
 				  	</ui-select>
 				  </div>
@@ -95,15 +94,18 @@
 	<div class="element-variables-panel" ng-show="isElementSelected">
 		<div class="tabs-btn-panel">
 			<ul>
-				<li ng-click="tab(1)" ng-class="{'active':tabCoef===1}"><span class="tabs-icon icon-brush"></span></li>
-				<li ng-click="tab(2)" ng-class="{'active':tabCoef===2}"><span class="tabs-icon icon-stopwatch"></span></li>
-				<li ng-click="tab(3)" ng-class="{'active':tabCoef===3}"><span class="tabs-icon icon-arrange"></span></li>
-				<li ng-click="tab(4)" ng-class="{'active':tabCoef===4}"><span class="tabs-icon icon-flash"></span></li>
+				<li ng-click="tab(1)" ng-class="{'active':tabCoef===1}"><span class="tabs-icon icon-sliders"></span></li>
+				<li ng-click="tab(2)" ng-class="{'active':tabCoef===2}"><span class="tabs-icon icon-text-1"></span></li>
+				<li ng-click="tab(3)" ng-class="{'active':tabCoef===3}"><span class="tabs-icon icon-brush"></span></li>
+				<li ng-click="tab(4)" ng-class="{'active':tabCoef===4}"><span class="tabs-icon icon-stopwatch"></span></li>
+				<li ng-click="tab(6)" ng-class="{'active':tabCoef===6}" style="display:none;"><span class="tabs-icon icon-arrange"></span></li>
+				<li ng-click="tab(5)" ng-class="{'active':tabCoef===5}"><span class="tabs-icon icon-flash"></span></li>
 				<li ng-click="removeElement();"><span class="tabs-icon icon-bucket"></span></li>
 			</ul>
 		</div>
 		<div class="right-panel">
 			<form ng-show="tabCoef===1">
+				  
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Ширина</label>
 				    <input type="number" ng-model="selectedElement.Width" class="form-control mpls" placeholder="100" min="10" max="1000">
@@ -120,13 +122,68 @@
 				    <label for="exampleInputEmail1">Y</label>
 				    <input type="number" ng-model="selectedElement.Y" class="form-control mpls" placeholder=" " min="0">
 				  </div>
+				  
+			</form>
+			<form ng-show="tabCoef===2">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Текст</label>
 				    <input type="text" ng-model="selectedElement.Text" class="form-control mpls" placeholder=" ">
 				  </div>
-				  
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Цвет текста</label>
+				  <color-picker ng-model="selectedElement.Styles['color']" color-picker-format="'hex'"
+    					color-picker-alpha="false"></color-picker>
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Отступ сверху</label>
+				    <input type="number" ng-model="selectedElement.Styles['padding-top']" class="form-control mpls" placeholder=" " min="0">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Размер текста</label>
+				    <input type="number" ng-model="selectedElement.Styles['font-size']" class="form-control mpls" placeholder=" " min="5" max="100">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Начертание шрифта</label>
+				    <ui-select ng-model="selectedElement.Styles['font-weight']" theme="selectize" ng-disabled="disabled" >
+				    <ui-select-match placeholder="Укажите начертание текста">{{$select.selected}}</ui-select-match>
+				    <ui-select-choices repeat="fontWeight in ['lighter','normal','bold']">
+				      <span ng-bind-html="fontWeight | highlight: $select.search"></span>
+				    </ui-select-choices>
+				  	</ui-select>
+				  </div>
 			</form>
-			<form ng-show="tabCoef===2">
+			<form ng-show="tabCoef===3">
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Скругление углов</label>
+				    <input type="number" ng-model="selectedElement.Styles['border-radius']" class="form-control mpls" placeholder=" " min="0">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Цвет заливки</label>
+				  <color-picker ng-model="selectedElement.Styles['background-color']" color-picker-format="'rgb'"></color-picker>
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Непрозрачность, %</label>
+				    <input type="number" ng-model="selectedElement.Styles['opacity']" class="form-control mpls" placeholder=" " min="0" max="100">
+				  </div>
+					<div class="form-group">
+				    <label for="exampleInputEmail1">Обводка</label>
+				    <input type="number" ng-model="selectedElement.Styles['border-width']" class="form-control mpls" placeholder=" " min="0" max="10">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Цвет обводки</label>
+				  <color-picker ng-model="selectedElement.Styles['border-color']" color-picker-format="'hex'"
+    				color-picker-alpha="false"></color-picker>
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Размер тени</label>
+				    <input type="number" ng-model="selectedElement.Styles['shadow-width']" class="form-control mpls" placeholder=" " min="0" max="10">
+				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Цвет тени</label>
+				  <color-picker ng-model="selectedElement.Styles['shadow-color']" color-picker-format="'rgb'"></color-picker>
+				  </div>
+			</form>
+			<form ng-show="tabCoef===4">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Время появления</label>
 				    <input type="number" ng-model="selectedElement.TimeAppear" class="form-control mpls" placeholder="0" min="0" max="{{selectedElement.TimeDisappear-2}}" ng-change="changeTimeAppear()">
@@ -136,13 +193,31 @@
 				    <input type="number" ng-model="selectedElement.TimeDisappear" class="form-control mpls" placeholder="10" min="{{selectedElement.TimeAppear+2}}" max="{{video.duration}}" ng-change="changeTimeDisappear()">
 				  </div>
 			</form>
-			<form ng-show="tabCoef===3">
+			<form ng-show="tabCoef===5">
 				  <div class="form-group">
-				    <label for="exampleInputEmail1">3 кажите номер слайда, на который будет осуществлен переход</label>
-				    <input type="text" ng-model="selectedElement.NextId" class="form-control mpls" placeholder="1">
+				    <label for="exampleInputEmail1">Выберите действие:</label>
+				    <ui-select ng-model="selectedElement.Action" theme="selectize" ng-disabled="disabled" >
+				    <ui-select-match placeholder="Выберите действие:">{{getNameOfActionType($select.selected)}}</ui-select-match>
+				    <ui-select-choices repeat="actionType in ['next-slide','link'] | filter: $select.search">
+				      <span ng-bind-html="getNameOfActionType(actionType)"></span>
+				    </ui-select-choices>
+				  	</ui-select>
+				  </div>
+				  <div ng-if="selectedElement.Action==='next-slide'" class="form-group">
+				    <label for="exampleInputEmail1">Перейти к слайду:</label>
+				    <ui-select ng-model="selectedElement.NextId" theme="selectize" ng-disabled="disabled" >
+				    <ui-select-match placeholder="Перейти к слайду:">{{getNameById($select.selected)}}</ui-select-match>
+				    <ui-select-choices repeat="nextSlide in defaultNexts">
+				      <span ng-bind-html="getNameById(nextSlide)"></span>
+				    </ui-select-choices>
+				  	</ui-select>
+				  </div>
+				  <div ng-if="selectedElement.Action==='link'" class="form-group">
+				    <label for="exampleInputEmail1">Ссылка</label>
+				    <input type="text" ng-model="selectedElement.ActionTemp" class="form-control mpls" placeholder=" ">
 				  </div>
 			</form>
-			<form ng-show="tabCoef===4">
+			<form ng-show="tabCoef===6">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">4 рый будет осуществлен переход</label>
 				    <input type="text" ng-model="selectedElement.NextId" class="form-control mpls" placeholder="1">

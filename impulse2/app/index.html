@@ -29,11 +29,11 @@
       <div class="mp-navbar" role="navigation">
         <div class="wrapper">
             <div class="nav-logo"></div>
-            <div class="project-name">Презентация 1</div>
+            <div class="project-name">{{presentationName}}</div>
             
             <ul class="mp-nav">
-            <li class="nav-btn btn1 btn1-blue"><span class="icon-btn icon-eye"></span>Предпросмотр</li>
-            <li class="nav-btn btn2"><span class="icon-btn icon-wrench"></span>Настройки проекта</li>
+            <li class="nav-btn btn1 btn1-blue" ng-click="openPreviewModal('lg');"><span class="icon-btn icon-eye"></span>Предпросмотр</li>
+            <li class="nav-btn btn2" ng-click="openSettingsModal(800);"><span class="icon-btn icon-wrench"></span>Настройки проекта</li>
 
             <li class="nav-btn btn2 dropdown">
               <span class="dropdown-toggle" data-toggle="dropdown">Сохранить и выйти<b class="caret"></b></span>
@@ -92,6 +92,8 @@
     <script src="bower_components/popcorn-js/popcorn.js"></script>
     <script src="bower_components/popcorn.capture.js"></script>
     <script src="bower_components/angular-ui-select/dist/select.min.js"></script>
+     <script src="bower_components/tinycolor/tinycolor.js"></script>
+    <script src="bower_components/angularjs-color-picker/angularjs-color-picker.min.js"></script>
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/index.js"></script>
@@ -99,6 +101,7 @@
         <script src="scripts/controllers/slideedit.js"></script>
         <script src="scripts/controllers/addslide.js"></script>
         <script src="scripts/controllers/settings.js"></script>
+         <script src="scripts/controllers/preview.js"></script>
         <!-- endbuild -->
 </body>
 </html>

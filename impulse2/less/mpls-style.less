@@ -15,7 +15,7 @@
   -webkit-animation:0.2s slideInRight linear; 
   animation:0.2s slideInRight linear; 
 }
-.form-control.mpls {
+.color-picker-input.form-control,.form-control.mpls {
   color: @input-color1;
   background-color: @input-bg1;
   border: 1px solid @input-border-color1;
@@ -241,7 +241,7 @@ position: relative;
 min-height: 50px;
 padding-top: 5px;
 overflow: hidden;
-height: 205px;
+height: 165px;
 width: 100%;
 .curtime-bar{
 	height:100%;
@@ -251,10 +251,9 @@ width: 100%;
 .elements-wrapper-inner{
 	width:110%;
 	overflow-y:auto;
-	height:205px;
+	height:165px;
 }
 .elem-wrap{
-	width:800px;
 	position:relative;
 	height:40px;
 	display: block;
@@ -288,7 +287,7 @@ width: 100%;
 
 //-------Slide editor styles--------------
 .right-panel{
-	width:400px;
+	width:350px;
 	right:0;
 	height: 100%;
 	background-color: @right-panel-bg;
@@ -313,25 +312,24 @@ width: 100%;
 }
 .element-variables-panel{
 	position: absolute;
-	width: 470px;
+	width: 410px;
 	height: 100%;
 	right:0;
 }
 .tabs-btn-panel{
-	width: 70px;
+	width: 60px;
 	position: absolute;
 	li{
-		width:70px;
-		height: 70px;
+		width:60px;
+		height: 60px;
 		display: block;
-		padding:14px 15px;
+		padding:12px 12px;
 		color:@nblue4;
 		cursor: pointer;
-		border-radius: 5px 0px 0px 5px;
-		-moz-border-radius: 5px 0px 0px 5px;
-		-webkit-border-radius: 5px 0px 0px 5px;
+		background-color:fadeout(@lgray4,20%);
 		&:hover{
-		background-color: fadeout(@right-panel-bg,85%);
+		background-color: fadeout(@right-panel-bg,20%);
+		color:#fff;
 		}
 	}
 	li.active{
@@ -339,11 +337,11 @@ width: 100%;
 		color: white;
 	}
 	.tabs-icon{
-		font-size:3rem;	
+		font-size:2.5rem;	
 	}
 }
 .tools-wrapper{
-	width:100px;
+	width:80px;
 	height: 100%;
 	position: absolute;
 	background-color: @tools-wrapper-bg;
@@ -356,7 +354,7 @@ ul{
 	}
 } 
 .tolls-icon{
-	font-size: 3rem;
+	font-size: 2.5rem;
 	text-align: center;
 	padding: 1rem 0;
 	border-bottom: 1px solid @nblue2;
@@ -375,9 +373,9 @@ ul{
 .video-edit-wrapper{
 	position: absolute;
 	top:0;
-	left:100px;
-	bottom:245px;
-	right: 400px;
+	left:80px;
+	bottom:205px;
+	right: 350px;
 	background-color: @video-wrapper-bg;
 	.video-wrapper{
 		background-color: #fff;
@@ -395,9 +393,9 @@ ul{
 .timeline-panel{
 	position: absolute;
 	bottom:0;
-	left:100px;
-	right:400px;
-	height: 245px;
+	left:80px;
+	right:350px;
+	height: 205px;
 	background-color: @elements-list-bg;
 }
 .editor-aside{
@@ -411,12 +409,10 @@ ul{
 }
 .playback-wrap{
 	position: relative;
-	padding-left: 100px;
+	padding-left: 80px;
 	height: 40px;
 }
-.elem-type{
 
-}
 .play-btn{
 	border-radius: 5px;
 	background-color: @play-btn-bg !important;
@@ -448,7 +444,7 @@ ul{
 .elem-type-wrap{
 	position: absolute;
 	left:0;
-	width:100px;
+	width:80px;
 	height:40px;
 	text-align: center;
 	font-size: 2.5rem;

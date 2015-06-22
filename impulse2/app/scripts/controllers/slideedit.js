@@ -21,9 +21,14 @@ angular.module('impulseApp')
       endtime:10.5,
       text:''
     };
+
     $scope.defaultNext = {};
   $scope.defaultNexts = [];
-    
+    $scope.actionType = {};
+    $scope.actionTypes = [
+    {type:'next-slide',name:'Перейти к слайду'},
+    {type:'link',name:'Перейти по ссылке'}
+    ];
 
     var canvas;    
     var ctx;
@@ -42,7 +47,15 @@ angular.module('impulseApp')
     var playbackLineWidth = 800;
     var project = null;
 
-
+    $scope.getNameOfActionType=function(str){
+      if(str==='next-slide'){
+        return 'Перейти к слайду';
+      }
+      if(str==='link'){
+        return 'Перейти по ссылке';
+      }
+      return 'Не задан';
+    };
     $scope.getNodenameByID=function(id){
     var nodename='Не задан';
     for(var i in project.AdStates){
@@ -54,6 +67,12 @@ angular.module('impulseApp')
       return nodename;
   };
 
+    $scope.getOpacity=function(opacity){
+      console.log(opacity);
+      var newopacity=parseInt(opacity)/100;
+      console.log(newopacity);
+      return newopacity;
+    };
     $scope.tabCoef=1;
     $scope.tab=function(id){
       $scope.tabCoef=id;
@@ -124,6 +143,12 @@ angular.module('impulseApp')
       invalidate();
 
     };
+    $scope.removeElement=function(){
+      console.log($scope.userElements);
+      $scope.userElements = _.without($scope.userElements, $scope.selectedElement);
+      console.log($scope.userElements);
+      unselectElement();
+    };
     $scope.gotoAndStop=function(event){
       console.log(event.x+' '+event.y+' '+event.offsetX+' '+event.offsetY);
       if($scope.video){
@@ -134,7 +159,7 @@ angular.module('impulseApp')
     };
     $scope.addButton=function(){
     	var id = $scope.userElements.length;
-	var userelement={
+	   var userelement={
     	'HtmlId':'',
     	'HtmlClass':'',
     	'HtmlType':'',
@@ -143,18 +168,32 @@ angular.module('impulseApp')
     	'Text':'Кнопка 1',
     	'X':10,
     	'Y':5,
-    	'Width':150,
-    	'Height':40,
+    	'Width':200,
+    	'Height':60,
     	'Action':'next-slide',
     	'TimeAppear':0,
     	'TimeDisappear':5,
     	'CurrentId':'',
-    	'NextId':'',
+    	'NextId':0,
     	'NextTime':0,
     	'FormName':'',
+      'Styles':[],
     	'HtmlTags':[],
-    	'tempId': id
+    	'Id': id,
+      'ActionTemp':'',
+      'ActionType':'none'
 		};
+    userelement.Styles={
+      'border-radius':0,
+      'background-color':'#fff',
+      'border-width':0,
+      'border-color':'#008',
+      'opacity':100,
+      'color':'#000',
+      'font-size':14,
+      'padding-top':20,
+      'font-weight':'normal'
+    };
     userelement.TimeDisappear=$scope.video.duration;
 		//var elemwrap='<div id="element'+id+'" data-id="'+id+'" class="elem-wrap element'+id+'"><div class="element" style="width:800px;left:0px;">'+userelement.Text+'</div></div>';
 		//angular.element('.elements-wrapper').append(elemwrap);
@@ -353,17 +392,135 @@ angular.module('impulseApp')
       invalidate();
     }
     function loadElements(){
-      for(var i in $scope.node.UserElements){
-        $scope.userElements.push($scope.node.UserElements[i]);
-        console.log($scope.node.UserElements[i]);
+     // for(var i in $scope.node.UserElements){
+        angular.copy($scope.node.UserElements,$scope.userElements);
+        //$scope.userElements.push($scope.node.UserElements[i]);
+        //$scope.userElements[i].Styles=JSON.parse($scope.node.UserElements[i].HtmlStyle);
+        console.log($scope.userElements);
+        parseStyles();
+        //$scope.userElements[i].Styles=JSON.parse($scope.node.UserElements[i].HtmlStyle);
+        //console.log($scope.userElements[i]);
+        //console.log($scope.node.UserElements[i]);
+      //}
+    }
+    function parseStyles(){
+      for(var i in $scope.userElements){
+        var styles = JSON.parse($scope.userElements[i].HtmlStyle);
+        
+        if(styles['border-radius']){styles['border-radius']=parseInt(deletePxPrefix(styles['border-radius']));
+        }
+        if(styles['padding-top']){styles['padding-top']=parseInt(deletePxPrefix(styles['padding-top']));
+        }
+        if(styles['font-size']){styles['font-size']=parseInt(deletePxPrefix(styles['font-size']));
+        }
+        if(styles['border-width']){styles['border-width']=parseInt(deletePxPrefix(styles['border-width']));
+        }
+        if(styles['opacity']){styles['opacity']=parseFloat(styles['opacity'])*100;
+        }
+        if(styles['box-shadow']){
+          var s2=styles['box-shadow'].split('px 0 0 ');
+          s2[0]=s2[0].replace('0 ','');
+          styles['shadow-width']=s2[0];
+          styles['shadow-color']=s2[1];
+        }
+        /*$scope.userElements[i].Styles.BorderRadius=deletePxPrefix(styles['border-radius']);
+        $scope.userElements[i].Styles['padding-top']=deletePxPrefix(styles['padding-top']);
+        $scope.userElements[i].Styles['font-size']=deletePxPrefix(styles['font-size']);
+        $scope.userElements[i].Styles['opacity']=styles['opacity'];
+        $scope.userElements[i].Styles['border-color']=styles['border-color'];
+        $scope.userElements[i].Styles['border-width']=styles['border-width'];
+        $scope.userElements[i].Styles['background-color']=styles['background-color'];
+        $scope.userElements[i].Styles['color']=styles['color'];
+        */
+        $scope.userElements[i].Styles=styles;
+        console.log($scope.userElements[i].Styles);
       }
+      console.log('Стили разбиты');
+      console.log($scope.userElements);
+    }
+    function deletePxPrefix(str){
+      str=str.replace('px','');
+      return str;
+    }
+    function createInlineStyle(styles1){
+      var styles=angular.copy(styles1);
+      if(styles['border-radius']){
+        styles['border-radius']=styles['border-radius']+'px';
+      }
+      if(styles['padding-top']){
+        styles['padding-top']=styles['padding-top']+'px';
+      }
+      if(styles['font-size']){
+        styles['font-size']=styles['font-size']+'px';
+      }
+      if(styles['border-width']){
+        styles['border-width']=styles['border-width']+'px';
+        styles['border-color']=styles['border-color'];
+        styles['border-style']='solid';
+      }
+      if(styles['opacity']){styles['opacity']=parseFloat(styles['opacity'])/100;
+        }
+
+      if(styles['shadow-width']){
+        styles['box-shadow']='0 '+styles['shadow-width']+'px 0 0 '+styles['shadow-color'];
+        delete styles['shadow-width'];
+        delete styles['shadow-color'];      
+      }
+        styles=JSON.stringify(styles);
+        console.log(styles);
+        return styles;
+      /*
+      if(styles['border-radius']!==0){css+='border-radius:'+styles['border-radius']+'px;';}
+      if(styles['padding-top']!==0){css+='padding-top:'+styles['padding-top']+'px;';}
+      if(styles['font-size']!==0){css+='font-size:'+styles['padding-top']+'px;';}
+      if(styles['opacity']!==1){css+='opacity:'+parseInt(styles['opacity'])/100+';';}
+      if(styles['border-width']!==0){css+='border:'+styles['border-width']+'px solid'+styles['border-color']+';';}
+      css+='background-color:'+styles['background-color']+';';
+      css+='color:'+styles['color']+';';
+      */
     }
     $scope.saveElements = function (){
-        $scope.node.UserElements = $scope.userElements;
-        $scope.node.DefaultNext=$scope.defaultNext.selected.id;
+        for(var i in $scope.userElements){
+         var style = createInlineStyle($scope.userElements[i].Styles); 
+         console.log(style);
+         $scope.userElements[i].HtmlStyle=style;
+        }
+        $scope.node.UserElements =$scope.userElements;
+        console.log(project.StateGraph);
+        var StateGraph=_.where(project.StateGraph,{V1:$scope.node.VideoUnitId});
+         console.log(StateGraph);
+         for(var j in StateGraph){
+          project.StateGraph=_.without(project.StateGraph,StateGraph[j]);
+         }
+        console.log(project.StateGraph);
+
+        var nextslideBtn=_.where($scope.userElements,{Action:'next-slide'});
+        for(var j in nextslideBtn){
+          if(nextslideBtn[j].NextId>0){
+            var newStateNode={
+              V1:$scope.node.VideoUnitId,
+              V2:nextslideBtn[j].NextId,
+              T:0
+            };
+            project.StateGraph.push(newStateNode);
+          }
+        }
+        console.log(project.StateGraph);
+
+        console.log($scope.node.UserElements);
         console.log($scope.userElements);
       
     };
+    $scope.getNameById=function (id){
+      if(id>0){
+      var node =_.findWhere(project.AdStates, {VideoUnitId: id});
+      return node.Name;
+
+      }
+      return '';
+
+    };
+
     function init(){
     
     var timeline= angular.element('elements-wrapper');
@@ -376,12 +533,9 @@ angular.module('impulseApp')
 
 
     for(var i in project.AdStates){
-      var node={
-      name : project.AdStates[i].Name,
-      id : project.AdStates[i].VideoUnitId
-      };
+      
       if($scope.node.VideoUnitId!==project.AdStates[i].VideoUnitId){
-      $scope.defaultNexts.push(node); 
+      $scope.defaultNexts.push(project.AdStates[i].VideoUnitId); 
       }
     }
     if($scope.node.DefaultNext!==0){
@@ -434,6 +588,7 @@ angular.module('impulseApp')
     setInterval(drawCanvas, INTERVAL);
 
     loadElements();
+    $scope.$apply();
     //$scope.video.load();
 		$scope.video.addEventListener('timeupdate', function() {
                 var durationBarWidth=playbackLineWidth;

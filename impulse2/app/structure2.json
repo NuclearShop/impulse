@@ -42,7 +42,7 @@
                "HtmlClass":"mpls-action-button",
                "HtmlType":"div",
                "UseDefaultStyle":true,
-               "HtmlStyle":"",
+               "HtmlStyle":"{\"font-weight\":\"normal\",\"font-size\":\"14px\",\"border-radius\":\"20px\",\"padding-top\":\"20px\",\"color\":\"#fff\",\"background-color\":\"#0ff\",\"opacity\":\"0.5\",\"border-width\":\"3\",\"border-color\":\"#00c\"}",
                "Text":"Перейти к видео 3",
                "X":50,
                "Y":50,
@@ -65,7 +65,7 @@
                "HtmlClass":"mpls-action-button",
                "HtmlType":"div",
                "UseDefaultStyle":true,
-               "HtmlStyle":"",
+               "HtmlStyle":"{\"font-weight\":\"normal\",\"font-size\":\"14px\",\"border-radius\":\"0px\",\"padding-top\":\"20px\",\"color\":\"#000\",\"background-color\":\"#fff\",\"opacity\":\"1\",\"border-width\":\"1\",\"border-color\":\"#00c\"}",
                "Text":"Перейти к видео 3 на позицию 3c",
                "X":10,
                "Y":5,
@@ -109,36 +109,7 @@
             "Image":"../../images/thumbnail.jpg"
          },
          "UserElements":[
-            {
-               "Id":37,
-               "HtmlId":"",
-               "HtmlClass":"mpls-input",
-               "HtmlType":"input",
-               "UseDefaultStyle":true,
-               "HtmlStyle":"",
-               "Text":"Конец",
-               "X":50,
-               "Y":50,
-               "Width":200,
-               "Height":100,
-               "Action":"0",
-               "TimeAppear":5,
-               "TimeDisappear":9,
-               "CurrentId":0,
-               "NextId":0,
-               "NextTime":0,
-               "FormName":"",
-               "HtmlTags":[
-                  {
-                     "Key":"type",
-                     "Value":"text"
-                  },
-                  {
-                     "Key":"placeholder",
-                     "Value":"Надо что-то ввести"
-                  }
-               ]
-            }
+            
          ]
       },
       {
@@ -171,11 +142,6 @@
       }
    ],
    "StateGraph":[
-      {
-         "V1":68,
-         "V2":66,
-         "T":0
-      },
       {
          "V1":66,
          "V2":67,
