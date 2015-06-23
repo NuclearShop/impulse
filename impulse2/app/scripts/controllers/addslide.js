@@ -16,6 +16,7 @@ app.controller('AddSlideCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
     $scope.isVideoPlayed=false;
     $scope.curBarPosition=0;
     $scope.videoId = undefined;
+    $scope.VideoUnit = {};
 
     $scope.closeModal = function(){
             $modalInstance.dismiss();
@@ -206,10 +207,10 @@ app.controller('AddSlideCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
         });
          
          var video = [];
-                        var realVid = document.getElementById('addSlideVideo');
-                        realVid.load();
-                        var dataURL = '';
-                        var sended = false;
+        var realVid = document.getElementById('addSlideVideo');
+        realVid.load();
+        var dataURL = '';
+        var sended = false;
                         window.setTimeout(realVid.onloadeddata = function () {
                             video = Popcorn("#addSlideVideo");
                             dataURL = video.capture({
@@ -219,9 +220,17 @@ app.controller('AddSlideCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
                             data.Length = realVid.duration;
                             data.Name = $("#name").val();
                             data.Image = image.replace('data:image/png;base64,', '');
+                            $scope.VideoUnit = data;
                             if (dataURL !== '' && !sended) {
                                 sended = true;
-                                $.ajax({
+                                $http.post(Constants.rootPath+'/api/upload/video/complete', data).success(
+                                    function (data) {
+                                        $scope.videoId = data;
+                                        $scope.VideoUnit.Id = data;
+                                        console.log("id: " + data);
+                                    }
+                                )
+                                /*$.ajax({
                                     url: Constants.rootPath+'/api/upload/video/complete',
                                     type: 'POST',
                                     data: data,
@@ -229,7 +238,7 @@ app.controller('AddSlideCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
                                         $scope.videoId = data;
                                         console.log("id: " + data);
                                     }
-                                });
+                                });*/
                                 realVid.onloadeddata = [];
                             } 
                         }, 1000);

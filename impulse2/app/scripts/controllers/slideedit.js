@@ -405,7 +405,11 @@ angular.module('impulseApp')
     }
     function parseStyles(){
       for(var i in $scope.userElements){
-        var styles = JSON.parse($scope.userElements[i].HtmlStyle);
+        var styles = {};
+        try {
+          styles = JSON.parse($scope.userElements[i].HtmlStyle);
+        }
+        catch(err){}
         
         if(styles['border-radius']){styles['border-radius']=parseInt(deletePxPrefix(styles['border-radius']));
         }
@@ -484,6 +488,7 @@ angular.module('impulseApp')
          var style = createInlineStyle($scope.userElements[i].Styles); 
          console.log(style);
          $scope.userElements[i].HtmlStyle=style;
+         $scope.userElements[i].HtmlType='div';
         }
         $scope.node.UserElements =$scope.userElements;
         console.log(project.StateGraph);

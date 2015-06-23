@@ -49,8 +49,10 @@
             node.defaultNext=0;
             node.x = 100;
             node.y = 150;
+            node.videoUnit = selectedItem.v;
             node.name = selectedItem.name===undefined?'name':selectedItem.name;
             //node.Id = project.AdStates[n].Id;
+            
 
             var img=new Image();
             img.src = Constants.rootPath +selectedItem.v.Image;
@@ -59,6 +61,7 @@
             node.videoDuration=selectedItem.v.Length;
             node.capture = img;
             $scope.nodes.push(node);
+            $scope.addNodeToState(node);
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });
@@ -80,6 +83,22 @@
     }
     ProjectFactory.updateStructure();
   };
+
+  $scope.addNodeToState = function (node) {
+    var proj = ProjectFactory.getProject();
+    if(node) {
+        var state = {};
+        state.X = node.x;
+        state.Y = node.y;
+        state.Name = node.name;
+        state.DefaultNext = node.defaultNext;
+        state.VideoUnitId = node.videoUnitId;
+        state.VideoUnit = node.videoUnit;
+        proj.AdStates.push(state);
+    }
+
+  }
+
   $scope.invalidate=function(){
     invalidate();
   };
