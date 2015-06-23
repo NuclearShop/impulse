@@ -48,6 +48,7 @@ $scope.openSettingsModal=function(size){
   modalInstance.result.then(function (selectedItem) {
             //setPoster(selectedItem.Poster);
             $scope.presentationName = selectedItem.Name;
+            project.FirstState=selectedItem.FirstState;
             project.Name=selectedItem.Name;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
