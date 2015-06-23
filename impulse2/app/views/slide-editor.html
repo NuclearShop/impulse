@@ -29,8 +29,8 @@
 	<div class="video-edit-wrapper" id="video-wrapper">
 				<div class="video-wrapper" style="top:{{offsetVideoWrapper}}px;">
 					<video id="main-video">
-						 <source src="videos/1.webm" type='video/webm'>
-						<!--<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">-->
+						 <!-- <source src="videos/1.webm" type='video/webm'> -->
+						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
 					</video>
 
 					<div id="interactive" class="interactive" ng-click="interactiveClick(); ">
