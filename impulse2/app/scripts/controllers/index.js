@@ -24,9 +24,6 @@ $scope.presentationName='Презентация';
     });
 
   modalInstance.result.then(function (selectedItem) {
-            //setPoster(selectedItem.Poster);
-            //$scope.presentationName = selectedItem.Name;
-            //project.Name=selectedItem.Name;
     }, function () {
       $log.info('Modal dismissed at: ' + new Date());
     });

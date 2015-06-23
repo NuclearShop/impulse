@@ -9,30 +9,35 @@ var endAdEvent = new Event("mpls-ad-end");
 var elementsToAppear = [];
 var elementsToDisappear = [];
 var videos = [];
+var roorPath = "";
 var initCss = function (currentId) {
+    
     $(".mpls-video").css('position', 'absolute');
-    $(".mpls-video").css('visibility', 'hidden');
+    $(".mpls-video").css('display', 'none');
     $(".mpls-video").css('left', '0');
     $(".mpls-video").css('top', '0');
     $(".mpls-video-control").css('position', 'absolute');
     $(".mpls-video-control").css('z-index', '1');
-    $(".mpls-video-control").css('visibility', 'hidden');
-    $(".mpls-ue").css('visibility', 'hidden');
+    $(".mpls-video-control").css('display', 'none');
+    $(".mpls-ue").css('display', 'none');
     $(".mpls-action-button").css('cursor', 'pointer');
     $(".mpls-action-button").css('background-color', 'white');
     $(".mpls-action-button").css('color', 'black');
+    $(".mpls-ue").css('-webkit-animation', '2s fadeIn linear');
+    $(".mpls-action-button").css('-webkit-animation', '2s fadeIn linear');
+    $(".mpls-video-control").css('-webkit-animation', '2s fadeIn linear');
     $(".mpls-video").removeClass('mpls-current');
     
     if (currentId === undefined) {
-        $(".mpls-start-video").css('visibility', 'visible');
-        $(".mpls-video-start-control").css('visibility', 'visible');
+        $(".mpls-start-video").css('display', 'block');
+        $(".mpls-video-start-control").css('display', 'block');
         $(".mpls-start-video").addClass('mpls-current');
     }
     else {
-        $("#mpls-video-" + currentId).css('visibility', 'visible');
+        $("#mpls-video-" + currentId).css('display', 'block');
         $("#mpls-video-" + currentId).addClass('mpls-current');
         var videoControl = $("#mpls-container").find("[data-for='mpls-video-" + curPlayingVideoId + "']");
-        videoControl.css("visibility", "visible");
+        videoControl.css('display', 'block');
     }
 }
 //Тут эффект для остановки видео
@@ -48,14 +53,11 @@ var removeCssEffects = function (currentId) {
     }
 }
 
-var getVideoInfo = function (initStatsListener, adId, adUrl, abTestId) {
-    jQuery.support.cors = true;
-    $.getJSON('/api/ad', {
-        url: adUrl
-    }).done(function (data) {
+var getVideoInfo = function (data, root) {
+		rootPath = root;
+    	jQuery.support.cors = true;
         videos = data.AdStates;
         appendHtmlToDiv(data);
-        initStatsListener(adId, abTestId);
         initCss();
         curPlayingVideoId = $(".mpls-start-video").data('id');
         video = document.getElementById("mpls-video-" + curPlayingVideoId);
@@ -76,12 +78,10 @@ var getVideoInfo = function (initStatsListener, adId, adUrl, abTestId) {
                 initCss(curPlayingVideoId);
                 updateElementsAppearness();
                 video.play();
-                $(".mpls-video-start-control").css('visibility', 'hidden');
+                $(".mpls-video-start-control").css('display', 'none');
             }
         })
-    }).error(function (data) {
-        console.log(data);
-    });
+
 }
 
 var goToSlide = function (nextTime, nextSlide) {
@@ -150,10 +150,10 @@ var timeUpdateListener = function () {
         var elemsToDisappear = getElementsByDisppearTime(vt);
         _.each(elemsToAppear, function (id) {
             console.log(id);
-            $('.mpls-ue-' + id).css("visibility", "visible");
+            $('.mpls-ue-' + id).css('display', 'block');
         })
         _.each(elemsToDisappear, function (id) {
-            $('.mpls-ue-' + id).css("visibility", "hidden");
+            $('.mpls-ue-' + id).css('display', 'none');
         })
     }
     if (videoTime > endTime) {
@@ -164,7 +164,7 @@ var timeUpdateListener = function () {
             goToSlide(0, currentVideoInfo.DefaultNext);
         }
         _.each(elemsToAppear, function (id) {
-            $('.mpls-ue-' + id).css("visibility", "visible");
+            $('.mpls-ue-' + id).css('display', 'block');
         })
 
     }
@@ -194,13 +194,13 @@ var appendHtmlToDiv = function (ad) {
     var container = $("#mpls-container");
     _.each(videos, function (video) {
         var startTag = "";
-        if (video.IsStart) {
+        if (video.IsStart || video.VideoUnitId === ad.FirstState) {
             startTag = " mpls-start-video";
             container.append("<div class='mpls-video-control mpls-video-start-control'>" + startHtml + "</div>")
         }
         
-        container.append("<video height='400' id='mpls-video-" + video.VideoUnitId + "' class='mpls-video" + startTag + "' data-id='" + video.VideoUnitId + "' data-name='" + video.Name + "'>" +
-            "<source src='" + video.VideoUnit.FullPath + "' type='" + video.VideoUnit.MimeType + "' />" +
+        container.append("<video height='450' id='mpls-video-" + video.VideoUnitId + "' class='mpls-video" + startTag + "' data-id='" + video.VideoUnitId + "' data-name='" + video.Name + "'>" +
+            "<source src='" + rootPath+video.VideoUnit.FullPath + "' type='" + video.VideoUnit.MimeType + "' />" +
             "</video>");
         var controlLayer = $("<div></div>", {
             id: "mpls-layer-" + video.VideoUnitId,
@@ -230,13 +230,14 @@ var appendHtmlToDiv = function (ad) {
                 id: id,
                 text: element.Text,
                 "data-action": element.Action,
-                "data-appear": element.TimeAppear,
-                "data-disappear": element.TimeDisappear,
+                "data-appear": element.TimeAppear.toFixed(0),
+                "data-disappear": element.TimeDisappear.toFixed(0),
                 "data-current-id": element.CurrentId,
                 "data-next-id": element.NextId,
                 "data-next-time": element.NextTime,
                 "data-form-name": element.FormName,
-                "style": element.HtmlStyle
+                "style": element.HtmlStyle.replace(/{/g, '').replace(/}/g, '').replace(/,/g, ';').replace(/"/g, ''),
+
             });
             elem.addClass('mpls-ue');
             elem.addClass('mpls-ue-' + element.Id);
@@ -246,11 +247,12 @@ var appendHtmlToDiv = function (ad) {
                 var value = tag.Value;
                 $('#' + id).attr(key, value);
             });
+
             $('#' + id).css({
-                'top': element.X + '%',
-                'left': element.Y + '%',
-                //'width': element.Width,
-                //'height': element.Height,
+                'top': element.Y + 'px',
+                'left': element.X + 'px',
+                'width': element.Width+'px',
+                'height': element.Height + 'px',
                 'position': 'absolute'
             });
 

@@ -27,6 +27,8 @@ app.controller('AddSlideCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
         vid.id = $scope.videoId;
         $http.get(Constants.rootPath+'/api/video/'+vid.id).success(function(data){
             vid.v = data;
+            vid.startTime = $scope.startSec;
+            vid.endTime = $scope.endSec;
             var proj = ProjectFactory.getProject();
 
             $modalInstance.close(vid);

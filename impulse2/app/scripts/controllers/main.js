@@ -50,6 +50,8 @@
             node.x = 100;
             node.y = 150;
             node.videoUnit = selectedItem.v;
+            node.startTime = selectedItem.startTime;
+            node.endTime = selectedItem.endTime;
             node.name = selectedItem.name===undefined?'name':selectedItem.name;
             //node.Id = project.AdStates[n].Id;
             
@@ -94,6 +96,7 @@
         state.DefaultNext = node.defaultNext;
         state.VideoUnitId = node.videoUnitId;
         state.VideoUnit = node.videoUnit;
+        state.EndTime = node.endTime;
         proj.AdStates.push(state);
     }
 
