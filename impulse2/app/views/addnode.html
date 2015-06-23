@@ -2,10 +2,10 @@
 <form class="addslide-form">
 				  <div class="form-group">
 				    <label for="exampleInputEmail1">Название слайда</label>
-				    <input type="text" class="form-control" placeholder="" ng-model="name" ng-model-options="{ getterSetter: true }">
+				    <input type="text" class="form-control mpls" placeholder="" ng-model="name" ng-model-options="{ getterSetter: true }">
 				  </div>
 	<div ng-show="!isVideoLoaded">			  
-    <div class="upload-video-button" ngf-select ng-model="files" accept="video/*">Загрузить основное видео</div>
+    <div class="btn1 upload-video-button" ngf-select ng-model="files" accept="video/*">Загрузить основное видео</div>
         <div ngf-drop="" ngf-select="" ng-model="files" class="drop-box" 
         ngf-drag-over-class="dragover" accept="video/*">Загрузите видео файл <br>или перетащите его в эту область</div><br>
     </div>
@@ -83,6 +83,6 @@
 				</div>
 </form>
 <div class="modal-buttons-wrap">
-<div class="button1 button1-left " ng-click="saveAndClose()" ng-class="{'button1-gray button1-disabled':!isVideoLoaded,'button1-pink': isVideoLoaded}"><span class="button-icon"><span class="icon-plus"></span></span>Создать слайд</div>
-<div class="button1 button1-gray" ng-click="closeModal()">Отмена</div>
+<div class="btn1" ng-click="saveAndClose()" ng-class="{'btn1-gray button1-disabled':!isVideoLoaded,'btn1-pink': isVideoLoaded}"><span class="button-icon"><span class="icon-plus"></span></span>Создать слайд</div>
+<div class="btn1 btn1-gray" ng-click="closeModal()">Отмена</div>
 </div>

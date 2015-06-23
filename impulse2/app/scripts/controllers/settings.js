@@ -8,18 +8,22 @@ app.controller('SettingsCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
     $scope.posterEnabled=false;
     $scope.projectName='';
     $scope.posterSrc='';
+    $scope.States=[];
+    $scope.FirstState='none';
     $scope.closeModal = function() {
             $modalInstance.dismiss();
     };
     $scope.saveAndClose = function(){
         var settings = [];
         settings.Name = $scope.projectName;
+        settings.FirstState=$scope.FirstState.id;
         if($scope.posterEnabled&&$scope.isPosterLoaded){
         settings.Poster = $scope.posterSrc;
 
         }else{
             settings.Poster='none';
         }
+        console.log(settings);
         ProjectFactory.saveSettings(settings);
         $modalInstance.close(settings);
     };
@@ -39,6 +43,19 @@ app.controller('SettingsCtrl', ['$scope', 'Upload', 'Constants', '$modalInstance
     };
     function init(){
         var project= ProjectFactory.getProject();
+        for(var i in project.AdStates){
+            var state={
+                id:project.AdStates[i].VideoUnitId,
+                name:project.AdStates[i].Name
+            };
+            if(project.FirstState===project.AdStates[i].VideoUnitId){
+                $scope.FirstState={
+                 id:project.AdStates[i].VideoUnitId,
+                name:project.AdStates[i].Name
+                };
+            }
+            $scope.States.push(state);
+        }
         $scope.projectName=project.Name;
         if(project.Poster==='none'){
             $scope.posterEnabled=false;

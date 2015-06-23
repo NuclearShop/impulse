@@ -2,14 +2,24 @@
 <form class="addslide-form">
 				  <div class="form-group">
 				    <label>Название проекта</label>
-				    <input type="text" class="form-control" placeholder="" ng-model="projectName" ng-model-options="{ getterSetter: true }">
+				    <input type="text" class="form-control mpls" placeholder="" ng-model="projectName" ng-model-options="{ getterSetter: true }">
 				  </div>
+				  <div class="form-group">
+				    <label for="exampleInputEmail1">Начальный слайд презентации:</label>
+				    <ui-select ng-model="$parent.FirstState" theme="selectize">
+				    <ui-select-match placeholder="Перейти к слайду:">{{$select.selected.name}}</ui-select-match>
+				    <ui-select-choices repeat="state in States">
+				      <span ng-bind-html="state.name"></span>
+				    </ui-select-choices>
+				  	</ui-select>
+				  </div>
+				  
 				  <label for="">Превью-картинка к проекту</label>
 				  <div class="switch">
-				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio1" ng-model="posterEnabled" ng-value="true">
-				      <label for="inlineRadio1" class="switch-label switch-label-off">ВКЛ</label>
-				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="inlineRadio2" ng-model="posterEnabled" ng-value="false">
-				      <label for="inlineRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
+				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="posterRadio1" ng-model="posterEnabled" ng-value="true">
+				      <label for="posterRadio1" class="switch-label switch-label-off">ВКЛ</label>
+				      <input type="radio" class="switch-input" name="inlineRadioOptions" id="posterRadio2" ng-model="posterEnabled" ng-value="false">
+				      <label for="posterRadio2" class="switch-label switch-label-on">ВЫКЛ</label>
 				      <span class="switch-selection"></span>
 				    </div>
 
@@ -21,13 +31,13 @@
     </div>
 	</div>
 				  
-    <div class="upload-video-button" ngf-select ng-model="files" accept="image/*">Загрузить превью-картинку к презентации</div>
+    <div class="btn1 upload-video-button" ngf-select ng-model="files" accept="image/*">Загрузить превью-картинку к презентации</div>
         <!--<div ngf-drop="" ngf-select="" ng-model="files" class="drop-box" 
         ngf-drag-over-class="dragover" accept="image/*">Загрузите изображение <br>или перетащите его в эту область</div><br>-->
     </div>
    
 </form>
 <div class="modal-buttons-wrap">
-<div class="button1 button1-left button1-pink" ng-click="saveAndClose()"><span class="button-icon"><span class="icon-save"></span></span>Сохранить изменения</div>
-<div class="button1 button1-gray" ng-click="closeModal()">Отмена</div>
+<div class="btn1 btn1-pink" ng-click="saveAndClose()"><span class="button-icon"><span class="icon-save"></span></span>Сохранить изменения</div>
+<div class="btn1 button1-gray" ng-click="closeModal()">Отмена</div>
 </div>
