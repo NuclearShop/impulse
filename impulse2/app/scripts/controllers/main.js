@@ -22,12 +22,8 @@
     $scope.showDefaultLines=true;
     $scope.userConnect=[];
     
-  $scope.country = {};
-  $scope.countries = [ // Taken from https://gist.github.com/unceus/6501985
-    {name: 'Afghanistan', code: 'AF'},
-    {name: 'Åland Islands', code: 'AX'},
-   
-  ];
+
+
   $scope.openAddSlideModal = function (size) {
 
     var modalInstance = $modal.open({
@@ -73,8 +69,8 @@
    // var data=[];
     var states = ProjectFactory.getProject().AdStates;
     for(var i in states){
-      var node = _.findWhere($scope.nodes, {Id: states[i].Id});
-      if(node!==undefined){
+      var node = _.findWhere($scope.nodes, {videoUnitId: states[i].VideoUnitId});
+      if(node){
         states[i].X = node.x;
         states[i].Y = node.y;
         states[i].Name = node.name;
@@ -150,7 +146,7 @@
   $scope.deleteNode=function(){
     $scope.nodes = _.without($scope.nodes, $scope.mySel);
     var states = ProjectFactory.getProject().AdStates;
-    states = _.without(states, _.findWhere(states, {Id: $scope.mySel.Id}));
+    states = _.without(states, _.findWhere(states, {VideoUnitId: $scope.mySel.videoUnitId}));
     $scope.mySel='';
     invalidate();
     ProjectFactory.getProject().AdStates = states;
@@ -222,7 +218,7 @@
       var node;
       for(var i in $scope.nodes){
         
-        if(id===$scope.nodes[i].videoUnitId){
+        if(parseInt(id)===parseInt($scope.nodes[i].videoUnitId)){
           node = $scope.nodes[i];
         }
       }
@@ -430,9 +426,6 @@
             node.capture = img;
             $scope.nodes.push(node);
           }
-          for(var i in project.StateGraph){
-            $scope.userConnect.push(project.StateGraph[i]);
-          }
           $scope.presentationName = project.Name;
           console.log('Проект загружен, звенья переданы в scope');
           clearInterval(waitintervalid);
@@ -464,9 +457,9 @@
             }*/
         }
         if($scope.showInteractiveLines){
-        for (var c in $scope.userConnect){
-          var node1=getNodeByVideoId(parseInt($scope.userConnect[c].V1));
-          var node2=getNodeByVideoId(parseInt($scope.userConnect[c].V2));
+        for (var c in project.StateGraph){
+          var node1=getNodeByVideoId(parseInt(project.StateGraph[c].V1));
+          var node2=getNodeByVideoId(parseInt(project.StateGraph[c].V2));
 
           if(node1&&node2){
             connectNodes(node1,node2,'user');
@@ -553,7 +546,7 @@
           $scope.mySel = $scope.nodes[i];
           $scope.nodeSelected=true;
           console.log('Клик по звену '+$scope.mySel.name.toString());
-          $scope.$apply();
+          _.defer(function(){$scope.$apply();});
           offsetx = mx - $scope.mySel.x;
           offsety = my - $scope.mySel.y;
           $scope.mySel.x = mx - offsetx;
@@ -570,7 +563,7 @@
 
       $scope.nodeSelected=false;
       console.log('Клик по рабочей области');
-      $scope.$apply();
+      _.defer(function(){$scope.$apply();});
       // havent returned means we have selected nothing
       $scope.mySel = null;
       offsetx=mx-ctxOffsetx;

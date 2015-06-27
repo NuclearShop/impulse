@@ -3,6 +3,12 @@ ImpulseApp.directive('adInfoblock', function () {
     return {
         templateUrl: 'Scripts/ng-impulse/html/adInfoBlock.html',
         restrict: 'A',
+        link: function (scope, element, attrs) {
+            if (attrs.adminBlock === "") {
+                scope.adminBlock = true;
+            }
+            
+        },
         controller: function ($scope, $modal, ServerQueryService, ExportValues) {
             $scope.watch = function (url) {
                 isClose = false;
@@ -28,7 +34,7 @@ ImpulseApp.directive('adInfoblock', function () {
             }
             $scope.ad.dbChoosen = $scope.ad.choosen;
             $scope.saveButton = "fa-check";
-            $scope.image = $scope.ad.choosen.AdStates[0].VideoUnit.Image;
+            $scope.image = $scope.ad.choosen.Poster || $scope.ad.choosen.AdStates[0].VideoUnit.Image;
             $scope.switchChoosen = function (id) {
                 _.each($scope.ad.versions, function (version) {
                     if (version.Id === id) {
@@ -39,17 +45,29 @@ ImpulseApp.directive('adInfoblock', function () {
 
                 })
                 $scope.ad.choosen = _.findWhere($scope.ad.versions, { IsActive: true });
-                $scope.image = $scope.ad.choosen.AdStates[0].VideoUnit.Image;
+                $scope.image = $scope.ad.choosen.Poster || $scope.ad.choosen.AdStates[0].VideoUnit.Image;
 
             };
             $scope.exportAd = function () {
                 $scope.exportString = '';
                 $scope.isShowExport = !$scope.isShowExport;
                 switch ($scope.exportChoosen.id) {
-                    case 0: $scope.exportString = '<iframe src="http://localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey + '"></iframe>';
+                    case 0: $scope.exportString = '<script src="http://localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey + '?targeturl=${CLICK_URL_ENC}"></script>';
                         break;
                     case 1: $scope.exportString = '<iframe src="http://localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey + '"></iframe>';
                         break;
+                    case 2:
+                        $scope.exportString = "Подождите...";
+                        ServerQueryService.getVMAP($scope.ad.choosen.Id).then(function (data) {
+                            $scope.exportString = data;
+                        });
+                        break;
+                    case 3:
+                        $scope.exportString = '<script>document.write(\'<scr\'+\'ipt src="//localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey+'?targetwindow=_top&targeturl=\' + encodeURIComponent(\'{clickthrough0}\') + \'"></scr\'+\'ipt>\');</script>'; break;
+                    case 4:
+                        $scope.exportString = '<script src="//localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey+'?targetwindow=_top&targeturl=#ZANOX-CLICKTAG#"></script>'; break;
+                    case 5:
+                        $scope.exportString = '<script src="//localhost:56596/ad/' + $scope.ad.choosen.ShortUrlKey+'?targetwindow=_top&targeturl=@@"></script>'; break;
                 }
             }
             $scope.switchExportChosen = function (id) {
@@ -89,9 +107,9 @@ ImpulseApp.directive('adInfoblock', function () {
                         $scope.saveChoosen();
                     } else {
                         $scope.ad.choosen = $scope.ad.dbChoosen;
-                        
+
                     }
-                    
+
                 });
             };
 
@@ -100,6 +118,43 @@ ImpulseApp.directive('adInfoblock', function () {
                 $event.stopPropagation();
                 $scope.status.isopen = !$scope.status.isopen;
             };
+        }
+    }
+});
+
+ImpulseApp.directive('adminAdInfoblock', function () {
+    return {
+        templateUrl: 'Scripts/ng-impulse/html/admin-ad-review.html',
+        restrict: 'A',
+        controller: function ($scope, $modal, ServerQueryService, ExportValues) {
+            $scope.watch = function (url) {
+                isClose = false;
+                $scope.$modalInstance = $modal.open({
+                    backdrop: false,
+                    scope: $scope,
+                    templateUrl: '/ad/' + url,
+                    windowTemplateUrl: 'splash/index.html'
+                });
+
+            };
+            $scope.closeModal = function () {
+                $scope.$modalInstance.dismiss('cancel');
+            };
+            $scope.image = $scope.review.ad.AdStates[0].VideoUnit.Image;
+
+            $scope.toggleDropdown = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                $scope.status.isopen = !$scope.status.isopen;
+            };
+            $scope.reviewAd = function (decision, comment) {
+                $scope.review.review.IsReviewed = true;
+                $scope.review.review.IsApproved = decision;
+                $scope.review.review.Review = comment;
+                ServerQueryService.review($scope.review.review).then(function (id) {
+                    $scope.review.review.Id = id;
+                });
+            }
         }
     }
 });
@@ -126,7 +181,7 @@ ImpulseApp.filter('shortUrlFilter', function () {
 });
 ImpulseApp.filter('startFrom', function () {
     return function (input, start) {
-        start = +start-2; //parse to int
+        start = +start - 2; //parse to int
         return input.slice(start);
     }
 });
@@ -158,3 +213,39 @@ function (ngDialog, $parse, $compile) {
     }
 }
 ]);
+
+ImpulseApp.directive('userNotifications', function () {
+    return {
+        templateUrl: 'Scripts/ng-impulse/html/user-notifications.html',
+        restrict: 'A',
+        controller: function ($scope, $modal, ServerQueryService, ExportValues) {
+            $scope.reviews = [];
+            ServerQueryService.getUserReviews()
+                .then(function (reviews) {
+                    $scope.reviews = _.filter(reviews, function (review) {
+                        return review.IsReviewed === true;
+                    });
+                },
+                function (data) {
+                    console.log('userNotifications getReviews error');
+                });
+        }
+    }
+});
+ImpulseApp.directive('userProgress', function () {
+    return {
+        templateUrl: 'Scripts/ng-impulse/html/user-progress.html',
+        restrict: 'A',
+        controller: function ($scope, $modal, ServerQueryService, ExportValues) {
+            $scope.abList = [];
+            ServerQueryService.getAllTests()
+                .then(function (abList) {
+                    $scope.abList = abList;
+                    impulseUtils.enrichAbTestList($scope.abList);
+                },
+                function (data) {
+                    console.log('userProgress getAbs error');
+                });
+        }
+    }
+});

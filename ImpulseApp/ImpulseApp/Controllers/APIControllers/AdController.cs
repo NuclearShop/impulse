@@ -8,9 +8,9 @@ using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using ImpulseApp.MapUtils;
 using ImpulseApp.Models.DTO;
 using AutoMapper;
-using ImpulseApp.MapUtils;
 using System.Collections;
 using System.Threading.Tasks;
 using System.Web.Http.Cors;
@@ -33,11 +33,21 @@ namespace ImpulseApp.Controllers.APIControllers
         }
         [Route("api/ad/create")]
         [HttpPost]
-        [AllowAnonymous]
         public HttpResponseMessage CreateAd(SimpleAdModelDTO modelDTO)
         {
             SimpleAdModel model = Mapper.Map<SimpleAdModelDTO, SimpleAdModel>(modelDTO);
-            model.Init(User.Identity.GetUserId());
+            model.Init(false, User.Identity.GetUserId());
+            service.SaveAd(model, true);
+            String url = Url.Link("Default", new { controller = "UserFront", action = "CreateResponse", id = model.ShortUrlKey });
+            var response = Request.CreateResponse(HttpStatusCode.Created, url);
+            return response;
+        }
+        [Route("api/ad/update")]
+        [HttpPost]
+        public HttpResponseMessage UpdateAd(SimpleAdModelDTO modelDTO)
+        {
+            SimpleAdModel model = Mapper.Map<SimpleAdModelDTO, SimpleAdModel>(modelDTO);
+            model.Init(true, User.Identity.GetUserId());
             service.SaveAd(model, true);
             String url = Url.Link("Default", new { controller = "UserFront", action = "CreateResponse", id = model.ShortUrlKey });
             var response = Request.CreateResponse(HttpStatusCode.Created, url);
@@ -87,6 +97,23 @@ namespace ImpulseApp.Controllers.APIControllers
             }
             return Request.CreateResponse(HttpStatusCode.OK, ads);
 
+        }
+        [Route("api/ad/request")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SendUserRequest(UserRequest request)
+        {
+            request.DateTime = DateTime.Now;
+            string id = await service.SaveUserRequestAsync(request);
+            return Request.CreateResponse(HttpStatusCode.OK, id);
+        }
+
+        [Route("api/ad/request/{url}")]
+        public async Task<HttpResponseMessage> GetUserRequests(string url)
+        {
+            var ur = await service.GetUserRequestsByAdUrlAsync(url);
+            List<UserRequestDTO> result = new List<UserRequestDTO>();
+            ur.ForEach(a => result.Add(Mapper.Map<UserRequest, UserRequestDTO>(a)));
+            return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
 

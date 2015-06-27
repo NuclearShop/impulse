@@ -20,6 +20,8 @@ namespace ImpulseApp.Models.DTO
         public string HtmlEndSource { get; set; }
         public string HtmlSource { get; set; }
         public string ShortUrlKey { get; set; }
+        public string Poster { get; set; }
+        public int FirstState { get; set; }
         public DateTime DateTime { get; set; }
         public bool IsRoot { get; set; }
         public bool IsActive { get; set; }

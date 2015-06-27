@@ -327,3 +327,6 @@
 /// <reference path="spin.min.js" />
 /// <reference path="ng-impulse/controllers/securecontroller.js" />
 /// <reference path="ng-impulse/controllers/maincontroller.js" />
+/// <reference path="ng-impulse/controllers/admincontroller.js" />
+/// <reference path="ng-impulse/mplsutils.js" />
+/// <reference path="ng-impulse/controllers/userrequestcontroller.js" />

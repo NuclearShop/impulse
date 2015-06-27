@@ -15,6 +15,12 @@ namespace ImpulseApp.DBService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DBService.IDBService")]
     public interface IDBService {
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetLastAds", ReplyAction="http://tempuri.org/IDBService/GetLastAdsResponse")]
+        System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel> GetLastAds(int from, int take);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetLastAds", ReplyAction="http://tempuri.org/IDBService/GetLastAdsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel>> GetLastAdsAsync(int from, int take);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserAds", ReplyAction="http://tempuri.org/IDBService/GetUserAdsResponse")]
         System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel> GetUserAds(string UserId);
         
@@ -208,6 +214,42 @@ namespace ImpulseApp.DBService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
         System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveModeratorView", ReplyAction="http://tempuri.org/IDBService/SaveModeratorViewResponse")]
+        string SaveModeratorView(ImpulseApp.Models.UtilModels.ModeratorView view);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveModeratorView", ReplyAction="http://tempuri.org/IDBService/SaveModeratorViewResponse")]
+        System.Threading.Tasks.Task<string> SaveModeratorViewAsync(ImpulseApp.Models.UtilModels.ModeratorView view);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetModeratorView", ReplyAction="http://tempuri.org/IDBService/GetModeratorViewResponse")]
+        ImpulseApp.Models.UtilModels.ModeratorView GetModeratorView(int AdId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetModeratorView", ReplyAction="http://tempuri.org/IDBService/GetModeratorViewResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.UtilModels.ModeratorView> GetModeratorViewAsync(int AdId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetModeratorViews", ReplyAction="http://tempuri.org/IDBService/GetModeratorViewsResponse")]
+        System.Collections.Generic.List<ImpulseApp.Models.UtilModels.ModeratorView> GetModeratorViews(string userid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetModeratorViews", ReplyAction="http://tempuri.org/IDBService/GetModeratorViewsResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.UtilModels.ModeratorView>> GetModeratorViewsAsync(string userid);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveUserRequest", ReplyAction="http://tempuri.org/IDBService/SaveUserRequestResponse")]
+        string SaveUserRequest(ImpulseApp.Models.AdModels.UserRequest model);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveUserRequest", ReplyAction="http://tempuri.org/IDBService/SaveUserRequestResponse")]
+        System.Threading.Tasks.Task<string> SaveUserRequestAsync(ImpulseApp.Models.AdModels.UserRequest model);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserRequestsByAdId", ReplyAction="http://tempuri.org/IDBService/GetUserRequestsByAdIdResponse")]
+        System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest> GetUserRequestsByAdId(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserRequestsByAdId", ReplyAction="http://tempuri.org/IDBService/GetUserRequestsByAdIdResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest>> GetUserRequestsByAdIdAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserRequestsByAdUrl", ReplyAction="http://tempuri.org/IDBService/GetUserRequestsByAdUrlResponse")]
+        System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest> GetUserRequestsByAdUrl(string adUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserRequestsByAdUrl", ReplyAction="http://tempuri.org/IDBService/GetUserRequestsByAdUrlResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest>> GetUserRequestsByAdUrlAsync(string adUrl);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -235,6 +277,14 @@ namespace ImpulseApp.DBService {
         
         public DBServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel> GetLastAds(int from, int take) {
+            return base.Channel.GetLastAds(from, take);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel>> GetLastAdsAsync(int from, int take) {
+            return base.Channel.GetLastAdsAsync(from, take);
         }
         
         public System.Collections.Generic.List<ImpulseApp.Models.AdModels.SimpleAdModel> GetUserAds(string UserId) {
@@ -475,6 +525,54 @@ namespace ImpulseApp.DBService {
         
         public System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id) {
             return base.Channel.SetActiveByAdIdAsync(id);
+        }
+        
+        public string SaveModeratorView(ImpulseApp.Models.UtilModels.ModeratorView view) {
+            return base.Channel.SaveModeratorView(view);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveModeratorViewAsync(ImpulseApp.Models.UtilModels.ModeratorView view) {
+            return base.Channel.SaveModeratorViewAsync(view);
+        }
+        
+        public ImpulseApp.Models.UtilModels.ModeratorView GetModeratorView(int AdId) {
+            return base.Channel.GetModeratorView(AdId);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.UtilModels.ModeratorView> GetModeratorViewAsync(int AdId) {
+            return base.Channel.GetModeratorViewAsync(AdId);
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.UtilModels.ModeratorView> GetModeratorViews(string userid) {
+            return base.Channel.GetModeratorViews(userid);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.UtilModels.ModeratorView>> GetModeratorViewsAsync(string userid) {
+            return base.Channel.GetModeratorViewsAsync(userid);
+        }
+        
+        public string SaveUserRequest(ImpulseApp.Models.AdModels.UserRequest model) {
+            return base.Channel.SaveUserRequest(model);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveUserRequestAsync(ImpulseApp.Models.AdModels.UserRequest model) {
+            return base.Channel.SaveUserRequestAsync(model);
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest> GetUserRequestsByAdId(int adId) {
+            return base.Channel.GetUserRequestsByAdId(adId);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest>> GetUserRequestsByAdIdAsync(int adId) {
+            return base.Channel.GetUserRequestsByAdIdAsync(adId);
+        }
+        
+        public System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest> GetUserRequestsByAdUrl(string adUrl) {
+            return base.Channel.GetUserRequestsByAdUrl(adUrl);
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<ImpulseApp.Models.AdModels.UserRequest>> GetUserRequestsByAdUrlAsync(string adUrl) {
+            return base.Channel.GetUserRequestsByAdUrlAsync(adUrl);
         }
     }
 }

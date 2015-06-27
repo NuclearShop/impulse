@@ -31,6 +31,7 @@ namespace ImpulseApp.Database
         public DbSet<HtmlTag> HtmlTags { get; set; }
         public DbSet<Versioning> Versioning { get; set; }
         public DbSet<ABTest> AbTests { get; set; }
+        public DbSet<UserRequest> UserRequests { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

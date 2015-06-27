@@ -32,7 +32,7 @@ namespace ImpulseApp.Models.AdModels
         public String UserName { get; set; }
 
         [DataMember]
-        public int Length { get; set; }
+        public float Length { get; set; }
 
         [DataMember]
         public string FullPath { get; set; }

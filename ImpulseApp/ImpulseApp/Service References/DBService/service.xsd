@@ -3,6 +3,22 @@
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" />
   <xs:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.DTO" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.UtilModels" />
+  <xs:element name="GetLastAds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="from" type="xs:int" />
+        <xs:element minOccurs="0" name="take" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastAdsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetLastAdsResult" nillable="true" type="q1:ArrayOfSimpleAdModel" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetUserAds">
     <xs:complexType>
       <xs:sequence>
@@ -13,7 +29,7 @@
   <xs:element name="GetUserAdsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserAdsResult" nillable="true" type="q1:ArrayOfSimpleAdModel" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserAdsResult" nillable="true" type="q2:ArrayOfSimpleAdModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -27,7 +43,7 @@
   <xs:element name="GetAdByUrlResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAdByUrlResult" nillable="true" type="q2:SimpleAdModel" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAdByUrlResult" nillable="true" type="q3:SimpleAdModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -41,7 +57,7 @@
   <xs:element name="GetAdByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAdByIdResult" nillable="true" type="q3:SimpleAdModel" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAdByIdResult" nillable="true" type="q4:SimpleAdModel" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -72,7 +88,7 @@
   <xs:element name="SaveAd">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="model" nillable="true" type="q4:SimpleAdModel" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="model" nillable="true" type="q5:SimpleAdModel" />
         <xs:element minOccurs="0" name="proceedToDB" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -94,14 +110,14 @@
   <xs:element name="GetSessionsByAdIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetSessionsByAdIdResult" nillable="true" type="q5:ArrayOfAdSession" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetSessionsByAdIdResult" nillable="true" type="q6:ArrayOfAdSession" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveAdSession">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q6:AdSession" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q7:AdSession" />
         <xs:element minOccurs="0" name="proceedToDB" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -123,14 +139,14 @@
   <xs:element name="GetActivityBySessionIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetActivityBySessionIdResult" nillable="true" type="q7:ArrayOfActivity" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetActivityBySessionIdResult" nillable="true" type="q8:ArrayOfActivity" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveActivity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q8:Activity" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q9:Activity" />
         <xs:element minOccurs="0" name="proceedToDB" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -152,14 +168,14 @@
   <xs:element name="GetClicksByActivityIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetClicksByActivityIdResult" nillable="true" type="q9:ArrayOfClick" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="GetClicksByActivityIdResult" nillable="true" type="q10:ArrayOfClick" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveClick">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q10:Click" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" minOccurs="0" name="model" nillable="true" type="q11:Click" />
         <xs:element minOccurs="0" name="proceedToDB" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
@@ -174,7 +190,7 @@
   <xs:element name="SaveVideo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="model" nillable="true" type="q11:VideoUnit" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="model" nillable="true" type="q12:VideoUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -195,7 +211,7 @@
   <xs:element name="GetUserVideoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserVideoResult" nillable="true" type="q12:ArrayOfVideoUnit" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserVideoResult" nillable="true" type="q13:ArrayOfVideoUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -210,7 +226,7 @@
   <xs:element name="GetVideoByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetVideoByIdResult" nillable="true" type="q13:VideoUnit" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetVideoByIdResult" nillable="true" type="q14:VideoUnit" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -226,14 +242,14 @@
   <xs:element name="GetStateByAdIdAndVideoIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetStateByAdIdAndVideoIdResult" nillable="true" type="q14:AdState" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetStateByAdIdAndVideoIdResult" nillable="true" type="q15:AdState" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveAdVersioningByEntity">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="versioning" nillable="true" type="q15:Versioning" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="versioning" nillable="true" type="q16:Versioning" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -342,14 +358,14 @@
   <xs:element name="GetChildAdsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.DTO" minOccurs="0" name="GetChildAdsResult" nillable="true" type="q16:ArrayOfVersioningDTO" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.DTO" minOccurs="0" name="GetChildAdsResult" nillable="true" type="q17:ArrayOfVersioningDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SaveAbTest">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="test" nillable="true" type="q17:ABTest" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="test" nillable="true" type="q18:ABTest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -370,7 +386,7 @@
   <xs:element name="GetAbTestByUrlResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAbTestByUrlResult" nillable="true" type="q18:ABTest" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAbTestByUrlResult" nillable="true" type="q19:ABTest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -384,7 +400,7 @@
   <xs:element name="GetAbTestByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAbTestByIdResult" nillable="true" type="q19:ABTest" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAbTestByIdResult" nillable="true" type="q20:ABTest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -398,7 +414,7 @@
   <xs:element name="GetAllActiveTestsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAllActiveTestsResult" nillable="true" type="q20:ArrayOfABTest" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetAllActiveTestsResult" nillable="true" type="q21:ArrayOfABTest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -425,6 +441,90 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="SetActiveByAdIdResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveModeratorView">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.UtilModels" minOccurs="0" name="view" nillable="true" type="q22:ModeratorView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveModeratorViewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveModeratorViewResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetModeratorView">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AdId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetModeratorViewResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.UtilModels" minOccurs="0" name="GetModeratorViewResult" nillable="true" type="q23:ModeratorView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetModeratorViews">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userid" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetModeratorViewsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.UtilModels" minOccurs="0" name="GetModeratorViewsResult" nillable="true" type="q24:ArrayOfModeratorView" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveUserRequest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="model" nillable="true" type="q25:UserRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveUserRequestResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveUserRequestResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserRequestsByAdId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="adId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserRequestsByAdIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserRequestsByAdIdResult" nillable="true" type="q26:ArrayOfUserRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserRequestsByAdUrl">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="adUrl" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserRequestsByAdUrlResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" minOccurs="0" name="GetUserRequestsByAdUrlResult" nillable="true" type="q27:ArrayOfUserRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

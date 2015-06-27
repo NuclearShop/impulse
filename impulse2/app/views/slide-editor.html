@@ -13,22 +13,22 @@
 	<div class="tools-wrapper">
 				<ul>
 					<li>
-						<div class="tolls-icon"><span class="icon-text-1"></span><span class="tolls-icon-label">Текст</span></div>
+						<div class="tolls-icon"  style="display:none;"><span class="icon-text-1"></span><span class="tolls-icon-label">Текст</span></div>
 					</li>
 					<li>
-						<div class="tolls-icon"><span class="icon-image"></span><span class="tolls-icon-label">Изображение</span></div>
+						<div class="tolls-icon" style="display:none;"><span class="icon-image"></span><span class="tolls-icon-label">Изображение</span></div>
 					</li>
 					<li>
 						<div class="tolls-icon" ng-click="addButton()"><span class="icon-button-1"></span><span class="tolls-icon-label">Кнопка</span></div>
 					</li>
 					<li>
-						<div class="tolls-icon"><span class="icon-form"></span><span class="tolls-icon-label">Форма</span></div>
+						<div class="tolls-icon"  style="display:none;"><span class="icon-form"></span><span class="tolls-icon-label">Форма</span></div>
 					</li>
 				</ul>
 	</div>
 	<div class="video-edit-wrapper" id="video-wrapper">
 				<div class="video-wrapper" style="top:{{offsetVideoWrapper}}px;">
-					<video id="main-video">
+					<video id="main-video" preload="">
 						 <!-- <source src="videos/1.webm" type='video/webm'> -->
 						<source ng-src="{{node.VideoUnit.FullPath|trusted}}" type="{{node.VideoUnit.MimeType}}">
 					</video>

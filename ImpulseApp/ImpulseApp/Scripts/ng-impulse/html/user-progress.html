@@ -1,0 +1,12 @@
+﻿
+<li ng-repeat="ab in abList">
+    <a href="/#/ab/get/{{ab.Id}}">
+        <div>
+            <p>
+                {{ab.Url}}
+            </p>
+            <progressbar class="progress-striped active" max="100" value="ab.progressValue" type="info"><i>{{ab.progressValue}}% Завершено с {{ab.StartDateString}} по {{ab.EndDateString}}</i></progressbar>
+        </div>
+    </a>
+</li>
+

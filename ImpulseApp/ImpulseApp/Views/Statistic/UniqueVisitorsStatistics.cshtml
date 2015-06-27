@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ImpulseApp.Models.StatModels.UniqueVisitorsTable>
+
+@if (Model.FirstOrDefault() == null)
+{
+    <div>
+        Нет данных для отображения
+    </div>
+}
+else
+{
+    <table class="table table-striped table-bordered table-hover" id="ClickStat">
+        <thead>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.First().Date)
+                </td>
+                <td>
+                    @Html.LabelFor(a => a.First().UniqueVisitors)
+                </td>
+                <td>
+                    @Html.LabelFor(a => a.First().AverageTime)
+                </td>
+                <td>
+                    @Html.LabelFor(a => a.First().MaxTime)
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var m in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(a => a.First().Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(a => a.First().UniqueVisitors)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(a => a.First().AverageTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(a => a.First().MaxTime)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}

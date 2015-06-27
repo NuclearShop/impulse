@@ -1487,7 +1487,8 @@ body > .ui-select-bootstrap.open {
   animation: 0.2s slideOutRight linear;
 }
 .modal-content {
-  background-color: #14366b;
+  background-color: #14366b !important;
+  color: #fff !important;
 }
 /* when showing the thing */
 .struct-editor-aside.ng-hide-remove,
@@ -2194,18 +2195,11 @@ video.modal-video {
   line-height: 40px;
 }
 .mpls-action-button {
-  color: #000;
   display: block;
   width: 200px;
   height: 45px;
-  background-color: #f7f7f7;
   text-align: center;
-  border-radius: 5px;
-  padding-top: 10px;
-  box-shadow: 0px 4px 0px 0px #919191;
-  opacity: .5;
   position: absolute;
-  cursor: pointer;
 }
 .mpls-action-button:hover {
   opacity: 1;

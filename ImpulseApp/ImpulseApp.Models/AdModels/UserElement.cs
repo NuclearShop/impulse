@@ -46,15 +46,17 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         public string FormName { get; set; }
         [DataMember]
-        public int TimeAppear { get; set; }
+        public float TimeAppear { get; set; }
         [DataMember]
-        public int TimeDisappear { get; set; }
+        public float TimeDisappear { get; set; }
         [DataMember]
         public int CurrentId { get; set; }
         [DataMember]
         public int NextId { get; set; }
         [DataMember]
         public int NextTime { get; set; }
+        [DataMember]
+        public String ActionUrl { get; set; }
         [DataMember]
         public int AdStateId { get; set; }
 

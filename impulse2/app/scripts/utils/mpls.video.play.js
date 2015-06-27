@@ -21,8 +21,6 @@ var initCss = function (currentId) {
     $(".mpls-video-control").css('display', 'none');
     $(".mpls-ue").css('display', 'none');
     $(".mpls-action-button").css('cursor', 'pointer');
-    $(".mpls-action-button").css('background-color', 'white');
-    $(".mpls-action-button").css('color', 'black');
     $(".mpls-ue").css('-webkit-animation', '2s fadeIn linear');
     $(".mpls-action-button").css('-webkit-animation', '2s fadeIn linear');
     $(".mpls-video-control").css('-webkit-animation', '2s fadeIn linear');
@@ -137,7 +135,7 @@ var getElementsByDisppearTime = function (time) {
 }
 
 var timeUpdateListener = function () {
-    var videoTime = video.currentTime.toFixed(1);
+    var videoTime = video.currentTime.toFixed(0);
     var endTime = videoLength * 0.9;
     
     
@@ -172,11 +170,11 @@ var timeUpdateListener = function () {
 }
 
 var loadedMetaDataListener = function () {
-    videoLength = video.duration.toFixed(1);
+    videoLength = video.duration.toFixed(0);
 }
 
 var reinitListeners = function (video) {
-    videoLength = video.duration.toFixed(1);
+    videoLength = video.duration.toFixed(0);
     //Проблема с WebKit c первым видео
     video.addEventListener('loadedmetadata', loadedMetaDataListener);
 
@@ -236,9 +234,30 @@ var appendHtmlToDiv = function (ad) {
                 "data-next-id": element.NextId,
                 "data-next-time": element.NextTime,
                 "data-form-name": element.FormName,
-                "style": element.HtmlStyle.replace(/{/g, '').replace(/}/g, '').replace(/,/g, ';').replace(/"/g, ''),
+                //"style": element.HtmlStyle.replace(/{/g, '').replace(/}/g, ';').replace(/,/g, ';').replace(/"/g, ''),
 
             });
+            if (element.Action === 'link') {
+                elem = $("<" + element.HtmlType + "></" + element.HtmlType + ">", {
+                    "class": element.HtmlClass,
+                    id: id,
+                    //text: "<a href='http://" + element.ActionUrl + "'>"+element.Text+"</a>",
+                    "data-action": element.Action,
+                    "data-appear": element.TimeAppear.toFixed(0),
+                    "data-disappear": element.TimeDisappear.toFixed(0),
+                    "data-current-id": element.CurrentId,
+                    "data-next-id": element.NextId,
+                    "data-next-time": element.NextTime,
+                    "data-form-name": element.FormName,
+                    //"style": element.HtmlStyle.replace(/{/g, '').replace(/}/g, ';').replace(/,/g, ';').replace(/"/g, ''),
+
+                });
+                elem.html("<a href='http://" + element.ActionUrl + "' target='_blank'>"+element.Text+"</a>");
+            }
+            var styles = JSON.parse(element.HtmlStyle);
+            for (var style in styles) {
+                elem.css(style, styles[style]);
+            }
             elem.addClass('mpls-ue');
             elem.addClass('mpls-ue-' + element.Id);
             $(currentId).append(elem);

@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">Панель управления</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="row top-buffer" ng-show="isAuth">
+    <div class="col-lg-4">
+        <a href="http://localhost:9000/#/" target="_blank"><i class="fa fa-pencil fa-5x fa-fw"></i>Создать презентацию</a>
+    </div>
+    <div class="col-lg-4">
+        <a href="/#/media"><i class="fa fa-camera-retro fa-fw fa-5x"></i>Список презентаций</a>
+    </div>
+    <div class="col-lg-4">
+        <a href="/#/ab/all"><i class="fa fa-binoculars fa-fw fa-5x"></i>AB тестирование</a>
+    </div>
+</div>
+<div class="row top-buffer" ng-hide="isAuth">
+    Вы не авторизованы <a href="/#/login">Авторизуйтесь</a>
+</div>

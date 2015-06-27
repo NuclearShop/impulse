@@ -15,6 +15,7 @@
     <link href="~/Content/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bower_components/datatables-plugins/dataTables.tableTools.css" rel="stylesheet" />
     <link href="~/Content/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet" />
+     <link href="~/Content/bower_components/ui-grid/ui-grid.min.css" rel="stylesheet" />
     <link href="~/Content/ngDialog.min.css" rel="stylesheet" />
     
     <link href="~/Content/ngDialog-theme-default.min.css" rel="stylesheet" />
@@ -39,22 +40,19 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-messages"></ul>
+                    <ul user-notifications class="dropdown-menu dropdown-messages"></ul>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="">
                         <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        
                     </a>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
+                    <ul user-progress class="dropdown-menu dropdown-messages"></ul>
                 </li>
                 @Html.Partial("_LoginPartial")
             </ul>
 
-            <div class="navbar-default sidebar" role="navigation">
+            <div class="navbar-default sidebar" role="navigation" ng-show="isAuth">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -67,6 +65,9 @@
                                 </span>
                             </div>
                             <!-- /input-group -->
+                        </li>
+                        <li ng-show="isAuth && userName=='main'">
+                            <a href="/#/admin"><i class="fa fa-dashboard fa-fw"></i>Администрирование</a>
                         </li>
                         <li>
                             <a href="/#/"><i class="fa fa-dashboard fa-fw"></i>Панель управления</a>
@@ -92,13 +93,25 @@
                                 <li>
                                     <a href="/#/graphics/funnel">Статистика по переходам</a>
                                 </li>
+                                <li>
+                                    <a href="/#/graphics/locale">Лояльность по странам</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="#/tablemenu"><i class="fa fa-table fa-fw"></i>Таблицы<span class="fa arrow"></span></a>
+                            <a href="#/tablemenu"><i class="fa fa-table fa-fw"></i>Отчеты<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="/#/report/click">Статистика по кликам</a>
+                                </li>
+                                <li>
+                                    <a href="/#/report/visitors">Уникальные посетители</a>
+                                </li>
+                                <li>
+                                    <a href="/#/report/locale">Лояльность по регионам</a>
+                                </li>
+                                 <li>
+                                    <a href="/#/requests">Запросы пользователей</a>
                                 </li>
                             </ul>
                         </li>
@@ -149,12 +162,17 @@
     <script src="~/Content/bower_components/holderjs/holder.js"></script>
     <script src="~/Scripts/spin.min.js"></script>
     <script src="~/Scripts/highchart/highcharts.js"></script>
+    <script src="http://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="http://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="http://code.highcharts.com/mapdata/custom/europe.js"></script>
+    <script src="http://code.highcharts.com/mapdata/countries/ru/custom/ru-all-disputed.js"></script>
     <script src="~/Scripts/highchart/modules/funnel.js"></script>
     <script src="~/Scripts/highchart/modules/exporting.js"></script>
     <script src="~/Scripts/Chart.min.js"></script>
     <script src="~/Scripts/mpls.intellisense.js"></script>
     <script src="~/Scripts/mpls.video.play.js"></script>
     <script src="~/Content/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    
     <script src="~/Content/bower_components/raphael/raphael-min.js"></script>
     <script src="~/Content/bower_components/morrisjs/morris.min.js"></script>
     <script src="~/Content/bower_components/datatables/media/js/jquery.dataTables.js"></script>
@@ -163,6 +181,12 @@
     <script src="~/Content/dist/js/sb-admin-2.js"></script>
     <script src="~/Scripts/jQuery.download.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/i18n/angular-locale_ru.js"></script>
+    
+    <script src="~/Content/bower_components/pdf-make/pdfmake.min.js"></script>
+    <script src="~/Content/bower_components/pdf-make/vfs_fonts.js"></script>
+    <script src="~/Content/bower_components/ui-grid/ui-grid.min.js"></script>
+    <script src="~/Content/bower_components/ui-grid/ru.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/angular-sanitize.min.js"></script>
     <script src="~/Content/bower_components/angular-local-storage.min.js"></script>
@@ -174,7 +198,23 @@
     <script src="~/Scripts/mpls.statistics.helper.chartjs.js"></script>
     <script src="~/Scripts/mpls.statistics.helper.highchart.js"></script>
     <script src="~/Scripts/sendXml.js"></script>
-    @Scripts.Render("~/bundles/ngImpulse")
+    <script src="~/Scripts/ng-impulse/mplsUtils.js"></script>
+<script src="~/Scripts/ng-impulse/mplsApp.js"></script>
+
+<script src="~/Scripts/ng-impulse/controllers/AbTestController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/AdController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/AdminController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/GraphController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/HomeController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/MainController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/ModalController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/ReportController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/SecureController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/TableController.js"></script>
+<script src="~/Scripts/ng-impulse/controllers/UserRequestController.js"></script>
+    
+<script src="~/Scripts/ng-impulse/mplsServices.js"></script>
+    <script src="~/Scripts/ng-impulse/mplsDirectives.js"></script>
     <script>
         var spinnerOpts = {
             lines: 13, // The number of lines to draw

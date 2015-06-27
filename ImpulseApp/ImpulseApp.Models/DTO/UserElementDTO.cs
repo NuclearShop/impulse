@@ -24,9 +24,10 @@ namespace ImpulseApp.Models.DTO
         public string Width { get; set; }
         public string Height { get; set; }
         public string Action { get; set; }
-        public int TimeAppear { get; set; }
-        public int TimeDisappear { get; set; }
+        public float TimeAppear { get; set; }
+        public float TimeDisappear { get; set; }
         public int CurrentId { get; set; }
+        public String ActionUrl { get; set; }
         public int NextId { get; set; }
         public int NextTime { get; set; }
         public string FormName { get; set; }

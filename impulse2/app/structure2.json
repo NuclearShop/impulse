@@ -1,10 +1,10 @@
 {
    "Id":33,
-   "Name":"Реклама 49186",
+   "Name":"Новая презентация",
    "HtmlStartSource":"<button data-action='start' class='mpls-action-button mpls-action-button-start'>Начать воспроизведение</button>",
    "HtmlEndSource":null,
    "HtmlSource":null,
-   "ShortUrlKey":"49186",
+   "ShortUrlKey":null,
    "DateTime":"2015-05-16T21:05:21.257",
    "IsRoot":false,
    "IsActive":true,

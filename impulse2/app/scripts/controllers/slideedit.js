@@ -131,8 +131,7 @@ angular.module('impulseApp')
       if($scope.selectedElement.TimeDisappear>$scope.video.duration) {$scope.selectedElement.TimeDisappear=$scope.video.duration;}
       $scope.video.currentTime=$scope.selectedElement.TimeDisappear;
     };
-    $scope.interactiveClick=function(){
-    };
+    
      $scope.elementClick = function(id) {
       $scope.selectedElement=$scope.userElements[id];
       $scope.isElementSelected=true;
@@ -302,7 +301,6 @@ angular.module('impulseApp')
 
         }
         
-        $scope.$apply();
         canvasValid=true;      
       }
     }
@@ -322,7 +320,7 @@ angular.module('impulseApp')
         
         $scope.selectedElement.X = mx - offsetx;
         $scope.selectedElement.Y = my - offsety;   
-        
+        _.defer(function(){$scope.$apply();});
         // something is changing position so we better invalidate the canvas!
         invalidate();
       console.log('invalidate mousemove');
@@ -351,7 +349,7 @@ angular.module('impulseApp')
           $scope.isElementSelected=true;
           $scope.stopvideo();
           console.log('Клик по звену '+$scope.userElements[i].tempId);
-          $scope.$apply();
+          _.defer(function(){$scope.$apply();});
           offsetx = mx - $scope.selectedElement.X;
           offsety = my - $scope.selectedElement.Y;
           $scope.selectedElement.X = mx - offsetx;
@@ -368,7 +366,7 @@ angular.module('impulseApp')
 
       $scope.isElementSelected=false;
       console.log('Клик по интерактивному слою');
-      $scope.$apply();
+      _.defer(function(){$scope.$apply();});
       // havent returned means we have selected nothing
       $scope.selectedElement = null;
       // clear the ghost canvas for next time
@@ -405,6 +403,13 @@ angular.module('impulseApp')
     }
     function parseStyles(){
       for(var i in $scope.userElements){
+        $scope.userElements[i].Width=parseInt($scope.userElements[i].Width);
+        
+        $scope.userElements[i].Height=parseInt($scope.userElements[i].Height);
+
+        $scope.userElements[i].X=parseInt($scope.userElements[i].X);
+
+        $scope.userElements[i].Y=parseInt($scope.userElements[i].Y);
         var styles = {};
         try {
           styles = JSON.parse($scope.userElements[i].HtmlStyle);
@@ -424,7 +429,7 @@ angular.module('impulseApp')
         if(styles['box-shadow']){
           var s2=styles['box-shadow'].split('px 0 0 ');
           s2[0]=s2[0].replace('0 ','');
-          styles['shadow-width']=s2[0];
+          styles['shadow-width']=parseInt(s2[0]);
           styles['shadow-color']=s2[1];
         }
         /*$scope.userElements[i].Styles.BorderRadius=deletePxPrefix(styles['border-radius']);
@@ -489,6 +494,7 @@ angular.module('impulseApp')
          console.log(style);
          $scope.userElements[i].HtmlStyle=style;
          $scope.userElements[i].HtmlType='div';
+         $scope.userElements[i].HtmlClass='mpls-action-button';
         }
         $scope.node.UserElements =$scope.userElements;
         console.log(project.StateGraph);
@@ -501,10 +507,10 @@ angular.module('impulseApp')
 
         var nextslideBtn=_.where($scope.userElements,{Action:'next-slide'});
         for(var j in nextslideBtn){
-          if(nextslideBtn[j].NextId>0){
+          if(nextslideBtn[j].NextId!==0&&nextslideBtn[j]!==''){
             var newStateNode={
-              V1:$scope.node.VideoUnitId,
-              V2:nextslideBtn[j].NextId,
+              V1:parseInt($scope.node.VideoUnitId),
+              V2:parseInt(nextslideBtn[j].NextId),
               T:0
             };
             project.StateGraph.push(newStateNode);
@@ -593,8 +599,23 @@ angular.module('impulseApp')
     setInterval(drawCanvas, INTERVAL);
 
     loadElements();
-    $scope.$apply();
-    //$scope.video.load();
+    $scope.video.play();
+    $scope.video.pause();
+    _.defer(function(){$scope.$apply();});
+    $scope.video.addEventListener('loadedmetadata', function() {
+                var durationBarWidth=playbackLineWidth;
+                $scope.duration = $scope.video.duration;
+                var curbarposition=$scope.video.currentTime*durationBarWidth/$scope.duration;
+                $scope.curBarPosition = curbarposition;
+                /*
+                var thecanvas = document.createElement('canvas');
+                var context = thecanvas.getContext('2d');
+                context.drawImage($scope.video, 0, 0, $scope.video.videoWidth, $scope.video.videoHeight);
+                var dataURL = thecanvas.toDataURL('image/png');
+                dataURL = dataURL.replace('data:image/png;base64,', '');*/
+                
+                $scope.$apply();
+        }); 
 		$scope.video.addEventListener('timeupdate', function() {
                 var durationBarWidth=playbackLineWidth;
                 $scope.duration = $scope.video.duration;

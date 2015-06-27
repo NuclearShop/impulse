@@ -157,6 +157,38 @@
     <Compile Include="Migrations\201505181452056_abtestid.Designer.cs">
       <DependentUpon>201505181452056_abtestid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506071038505_poster.cs" />
+    <Compile Include="Migrations\201506071038505_poster.Designer.cs">
+      <DependentUpon>201506071038505_poster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506201718360_userreq.cs" />
+    <Compile Include="Migrations\201506201718360_userreq.Designer.cs">
+      <DependentUpon>201506201718360_userreq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506201853261_usrreq2.cs" />
+    <Compile Include="Migrations\201506201853261_usrreq2.Designer.cs">
+      <DependentUpon>201506201853261_usrreq2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506201929275_usrreq3.cs" />
+    <Compile Include="Migrations\201506201929275_usrreq3.Designer.cs">
+      <DependentUpon>201506201929275_usrreq3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506231012327_timetofloat.cs" />
+    <Compile Include="Migrations\201506231012327_timetofloat.Designer.cs">
+      <DependentUpon>201506231012327_timetofloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506231125446_videounitlengthfloat.cs" />
+    <Compile Include="Migrations\201506231125446_videounitlengthfloat.Designer.cs">
+      <DependentUpon>201506231125446_videounitlengthfloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506231312231_firstState.cs" />
+    <Compile Include="Migrations\201506231312231_firstState.Designer.cs">
+      <DependentUpon>201506231312231_firstState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201506231343020_actionurl.cs" />
+    <Compile Include="Migrations\201506231343020_actionurl.Designer.cs">
+      <DependentUpon>201506231343020_actionurl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service1.cs" />
@@ -239,6 +271,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201505181452056_abtestid.resx">
       <DependentUpon>201505181452056_abtestid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506071038505_poster.resx">
+      <DependentUpon>201506071038505_poster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506201718360_userreq.resx">
+      <DependentUpon>201506201718360_userreq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506201853261_usrreq2.resx">
+      <DependentUpon>201506201853261_usrreq2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506201929275_usrreq3.resx">
+      <DependentUpon>201506201929275_usrreq3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506231012327_timetofloat.resx">
+      <DependentUpon>201506231012327_timetofloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506231125446_videounitlengthfloat.resx">
+      <DependentUpon>201506231125446_videounitlengthfloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506231312231_firstState.resx">
+      <DependentUpon>201506231312231_firstState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506231343020_actionurl.resx">
+      <DependentUpon>201506231343020_actionurl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

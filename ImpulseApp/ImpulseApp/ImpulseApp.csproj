@@ -40,6 +40,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Accessibility" />
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
@@ -260,9 +261,13 @@
     <Compile Include="Controllers\AdOutboundController.cs" />
     <Compile Include="Controllers\APIControllers\AccountApiController.cs" />
     <Compile Include="Controllers\APIControllers\AdController.cs" />
+    <Compile Include="Controllers\APIControllers\AdminController.cs" />
+    <Compile Include="Controllers\APIControllers\NotificationsController.cs" />
     <Compile Include="Controllers\APIControllers\StatApiController.cs" />
+    <Compile Include="Controllers\APIControllers\StatisticCompileApiController.cs" />
     <Compile Include="Controllers\APIControllers\TestController.cs" />
     <Compile Include="Controllers\APIControllers\UploadController.cs" />
+    <Compile Include="Controllers\APIControllers\VASTExportController.cs" />
     <Compile Include="Controllers\APIControllers\VideoController.cs" />
     <Compile Include="Controllers\ExportControllers\FakeView.cs" />
     <Compile Include="Controllers\ExportControllers\HtmlViewRenderer.cs" />
@@ -810,7 +815,8 @@
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
-    <Content Include="package.json" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.UtilModels.ModeratorView.datasource" />
+    <Content Include="Properties\DataSources\ImpulseApp.Models.AdModels.UserRequest.datasource" />
     <None Include="Scripts\angular.intellisense.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -1949,6 +1955,7 @@
     <Content Include="Scripts\mpls.video.play.js" />
     <Content Include="Scripts\ng-impulse\controllers\AbTestController.js" />
     <Content Include="Scripts\ng-impulse\controllers\AdController.js" />
+    <Content Include="Scripts\ng-impulse\controllers\AdminController.js" />
     <Content Include="Scripts\ng-impulse\controllers\GraphController.js" />
     <Content Include="Scripts\ng-impulse\controllers\HomeController.js" />
     <Content Include="Scripts\ng-impulse\controllers\MainController.js" />
@@ -1956,12 +1963,20 @@
     <Content Include="Scripts\ng-impulse\controllers\ReportController.js" />
     <Content Include="Scripts\ng-impulse\controllers\SecureController.js" />
     <Content Include="Scripts\ng-impulse\controllers\TableController.js" />
+    <Content Include="Scripts\ng-impulse\controllers\UserRequestController.js" />
     <Content Include="Scripts\ng-impulse\html\adInfoBlock.html" />
+    <Content Include="Scripts\ng-impulse\html\admin-ad-review.html" />
+    <Content Include="Scripts\ng-impulse\html\admin-main.html" />
     <Content Include="Scripts\ng-impulse\html\login.html" />
     <Content Include="Scripts\ng-impulse\html\register.html" />
+    <Content Include="Scripts\ng-impulse\html\reports\uniq-visitors.html" />
+    <Content Include="Scripts\ng-impulse\html\user-notifications.html" />
+    <Content Include="Scripts\ng-impulse\html\user-progress.html" />
+    <Content Include="Scripts\ng-impulse\html\user-requests.html" />
     <Content Include="Scripts\ng-impulse\mplsApp.js" />
     <Content Include="Scripts\ng-impulse\mplsDirectives.js" />
     <Content Include="Scripts\ng-impulse\mplsServices.js" />
+    <Content Include="Scripts\ng-impulse\mplsUtils.js" />
     <Content Include="Scripts\ngDialog.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\popcorn-complete.min.js" />
@@ -1986,6 +2001,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DBService\ImpulseApp.Models.Exceptions.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DBService\ImpulseApp.Models.UtilModels.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\DBService\Reference.svcmap">
@@ -2069,6 +2087,7 @@
     <Content Include="Views\AdOutbound\OutboundAbTest.cshtml" />
     <Content Include="Views\Test\AbInfo.cshtml" />
     <Content Include="Views\Additional\GenerateAbs.cshtml" />
+    <Content Include="Views\Statistic\UniqueVisitorsStatistics.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Videos\" />
@@ -2104,6 +2123,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ImpuleApp.Outbound.Lib\ImpulseApp.Outbound.Lib.csproj">
+      <Project>{2450a3fe-003b-4531-b61d-6a3ccbd11482}</Project>
+      <Name>ImpulseApp.Outbound.Lib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImpulseApp.Database\ImpulseApp.Database.csproj">
       <Project>{5cc74536-26ac-43e7-a5fe-dad08f064eed}</Project>
       <Name>ImpulseApp.Database</Name>

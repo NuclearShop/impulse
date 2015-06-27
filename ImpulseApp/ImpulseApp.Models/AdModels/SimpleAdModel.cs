@@ -21,6 +21,7 @@ namespace ImpulseApp.Models.AdModels
             this.AdSessions = new HashSet<AdSession>();
             this.AdStates = new HashSet<AdState>();
             this.StateGraph = new HashSet<NodeLink>();
+            this.UserRequests = new HashSet<UserRequest>();
         }
         public SimpleAdModel(string UserId)
             : this()
@@ -35,12 +36,20 @@ namespace ImpulseApp.Models.AdModels
             this.StateGraph = null;
             this.AdStates = null;
         }
-        public void Init(string userId = null)
+        public void Init(bool isUpdate = false, string userId = null)
         {
             this.IsRoot = false;
             this.IsActive = false;
             this.DateTime = DateTime.Now;
-            this.Id = 0;
+            if ("../../images/thumbnail.jpg".Equals(Poster))
+            {
+                Poster = null;
+            }
+            if (!isUpdate)
+            {
+                this.Id = 0;
+            }
+                
             if (!String.IsNullOrWhiteSpace(userId))
             {
                 this.UserId = userId;
@@ -56,7 +65,7 @@ namespace ImpulseApp.Models.AdModels
                 this.AdStates = new HashSet<AdState>();
             foreach (var state in this.AdStates)
             {
-                state.Init();
+                state.Init(isUpdate);
             }
             this.Name = "Реклама " + ShortUrlKey;
 
@@ -73,6 +82,8 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         public string JsSource { get; set; }
         [DataMember]
+        public string Poster { get; set; }
+        [DataMember]
         public string HtmlStartSource { get; set; }
         [DataMember]
         public string HtmlEndSource { get; set; }
@@ -85,11 +96,14 @@ namespace ImpulseApp.Models.AdModels
         [DataMember]
         public bool IsActive { get; set; }
         [DataMember]
+        public int FirstState { get; set; }
+        [DataMember]
         public virtual HashSet<AdSession> AdSessions { get; set; }
         [DataMember]
         public virtual HashSet<AdState> AdStates { get; set; }
         [DataMember]
         public virtual HashSet<NodeLink> StateGraph { get; set; }
-
+        [DataMember]
+        public virtual HashSet<UserRequest> UserRequests { get; set; }
     }
 }

@@ -1,0 +1,12 @@
+﻿<h2>Загруженные ролики</h2>
+<div class="row top-buffer">
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" ng-model="showOnlyReviewed"> Скрыть просмотренные
+        </label>
+    </div>
+</div>
+<div admin-ad-infoblock ng-repeat="review in filteredReviews | startFrom:currentPage*pageSize | limitTo:pageSize"></div>
+<pagination style="bottom:0" class="pull-right" total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" max-size="3"
+            items-per-page="pageSize"
+            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>

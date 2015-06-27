@@ -1,0 +1,18 @@
+﻿<div ng-repeat="review in reviews">
+<li >
+    <div>
+        <div>
+            Реклама {{review.AdId}}
+            <span class="pull-right small text-muted" ng-bind="review.ViewDateTime"></span>
+        </div>
+        
+        <div>
+            <span ng-show="review.IsApproved">Разрешена {{review.Review}}</span>
+            <span ng-hide="review.IsApproved">Отклонена {{review.Review}}</span>
+        </div>
+    </div>
+</li>
+    <li class="divider">
+
+    </li>
+</div>

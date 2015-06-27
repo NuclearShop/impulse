@@ -25,7 +25,7 @@ $scope.presentationName='Презентация';
 
   modalInstance.result.then(function (selectedItem) {
     }, function () {
-      $log.info('Modal dismissed at: ' + new Date());
+      //$log.info('Modal dismissed at: ' + new Date());
     });
   };
 

@@ -39,6 +39,9 @@ namespace ImpulseApp.App_Start
 
             Mapper.CreateMap<NodeLink, NodeLinkDTO>();
             Mapper.CreateMap<NodeLinkDTO, NodeLink>();
+
+            Mapper.CreateMap<UserRequest, UserRequestDTO>();
+            Mapper.CreateMap<UserRequestDTO, UserRequest>();
         }
     }
 }

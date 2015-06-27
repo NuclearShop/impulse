@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp", "ImpulseApp\Im
 	ProjectSection(ProjectDependencies) = postProject
 		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888} = {4966464E-D0D4-47B5-A4DD-5C1A65995888}
+		{55CDBABD-42CC-4B70-B65B-75140899FE39} = {55CDBABD-42CC-4B70-B65B-75140899FE39}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Tests", "ImpulseApp.Tests\ImpulseApp.Tests.csproj", "{765B5D45-8DF2-426D-B27C-E6D98BFDC838}"
@@ -25,8 +26,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Outbound", "Impu
 		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.CreationService", "ImpulseApp.CreationService\ImpulseApp.CreationService.csproj", "{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StubMethods", "StubMethods\StubMethods.csproj", "{4966464E-D0D4-47B5-A4DD-5C1A65995888}"
 	ProjectSection(ProjectDependencies) = postProject
 		{5CC74536-26AC-43E7-A5FE-DAD08F064EED} = {5CC74536-26AC-43E7-A5FE-DAD08F064EED}
@@ -38,6 +37,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Front", "ImpulseApp.Front\ImpulseApp.Front.csproj", "{B08C2079-826F-4CDE-B6FC-652474DA07E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImpulseApp.Outbound.Lib", "ImpuleApp.Outbound.Lib\ImpulseApp.Outbound.Lib.csproj", "{2450A3FE-003B-4531-B61D-6A3CCBD11482}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,10 +70,6 @@ Global
 		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55CDBABD-42CC-4B70-B65B-75140899FE39}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB6AEB29-B50D-4AB9-BF27-2D65D59D272B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4966464E-D0D4-47B5-A4DD-5C1A65995888}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -81,6 +78,10 @@ Global
 		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B08C2079-826F-4CDE-B6FC-652474DA07E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2450A3FE-003B-4531-B61D-6A3CCBD11482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2450A3FE-003B-4531-B61D-6A3CCBD11482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2450A3FE-003B-4531-B61D-6A3CCBD11482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2450A3FE-003B-4531-B61D-6A3CCBD11482}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,7 @@ namespace ImpulseApp.Models.StatModels
         public AdSession()
         {
             this.Activities = new HashSet<Activity>();
+            
         }
         [DataMember]
         [Key]
@@ -43,5 +44,6 @@ namespace ImpulseApp.Models.StatModels
         public virtual SimpleAdModel Ad { get; set; }
         [DataMember]
         public virtual HashSet<Activity> Activities { get; set; }
+        
     }
 }

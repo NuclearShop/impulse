@@ -22,13 +22,41 @@ namespace ImpulseApp.Controllers.APIControllers
     public class UploadController : ApiController
     {
         IDBService service = new DBServiceClient();
+
+        [Route("api/upload/pic")]
+        [HttpPost]
+        public async Task<HttpResponseMessage> SaveImage()
+        {
+            string path = "/Images/" + User.Identity.Name + "/";
+            string fullPath = HttpContext.Current.Server.MapPath("~" + path);
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
+            var provider = new ImpulseFormDataStreamProvider(fullPath);
+            try
+            {
+                await Request.Content.ReadAsMultipartAsync(provider);
+                path = path + Path.GetFileName(provider.FileData[0].LocalFileName);
+                return Request.CreateResponse(HttpStatusCode.OK, path);
+            }
+            catch (Exception ex) { 
+                return Request.CreateResponse(HttpStatusCode.InternalServerError); 
+            }
+            
+            
+        }
         [Route("api/upload/video/complete")]
         [HttpPost]
         public async Task<HttpResponseMessage> SaveImage(VideoUnitDTO video)
         {
             byte[] image = Convert.FromBase64String(video.Image);
             string path = "/Videos/" + User.Identity.Name + "/" + video.GeneratedName + "/";
-            string fullPath = HttpContext.Current.Server.MapPath("~"+path);
+            string fullPath = HttpContext.Current.Server.MapPath("~" + path);
+            if (!Directory.Exists(fullPath))
+            {
+                Directory.CreateDirectory(fullPath);
+            }
             File.WriteAllBytes(fullPath + "/img.png", image);
             video.Image = path + "img.png";
             VideoUnit vid = Mapper.Map<VideoUnitDTO, VideoUnit>(video);
@@ -51,7 +79,7 @@ namespace ImpulseApp.Controllers.APIControllers
                 UserName = User.Identity.Name
             };
             string root = HttpContext.Current.Server.MapPath("~/Videos");
-            var path = "/" + User.Identity.Name + "/" + video.GeneratedName+"/";
+            var path = "/" + User.Identity.Name + "/" + video.GeneratedName + "/";
             DirectoryInfo directory = Directory.CreateDirectory(root + path);
             var fileName = "Videos" + path;
             var provider = new ImpulseFormDataStreamProvider(directory.FullName);
@@ -62,7 +90,7 @@ namespace ImpulseApp.Controllers.APIControllers
                 {
                     if (file.Headers.ContentType.MediaType.Contains("video"))
                     {
-                        video.FullPath = "/"+fileName+Path.GetFileName(file.LocalFileName);
+                        video.FullPath = "/" + fileName + Path.GetFileName(file.LocalFileName);
                         video.MimeType = file.Headers.ContentType.MediaType;
                     }
                     else
@@ -70,7 +98,7 @@ namespace ImpulseApp.Controllers.APIControllers
                         var exceptionMessage = new HttpResponseMessage(HttpStatusCode.UnsupportedMediaType)
                         {
                             ReasonPhrase = "Файл не является видео",
-                            Content = new StringContent("Тип загруженного объекта "+file.Headers.ContentType.MediaType)
+                            Content = new StringContent("Тип загруженного объекта " + file.Headers.ContentType.MediaType)
                         };
                         throw new HttpResponseException(exceptionMessage);
                     }

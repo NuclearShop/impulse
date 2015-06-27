@@ -1,28 +1,21 @@
 ﻿<li class="dropdown" ng-controller="LoginPartialController">
-    <div ng-show="isAuth">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">
-            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-user">
-            <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i>Профиль</a>
-                <a href="@Url.Action("Manage", "Account")"><i class="fa fa-gear fa-fw"></i>Настройки</a>
-            </li>
+    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="dropdown-menu dropdown-user" ng-show="isAuth">
+        <li>
+            Вы вошли как <strong>{{userName}}</strong>
+            @*<a href=""><i class="fa fa-user fa-fw"></i>Профиль</a>
+            <a href="@Url.Action("Manage", "Account")"><i class="fa fa-gear fa-fw"></i>Настройки</a>*@
+        </li>
 
-            <li>
-                <a ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>Выход</a>
-            </li>
+        <li>
+            <a href="" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i>Выход</a>
+        </li>
 
-        </ul>
-    </div>
-    <div ng-hide="isAuth">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="">
-            <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-        </a>
-        <ul class="dropdown-menu dropdown-user">
-            <li><a href="/#/register">Регистрация</a></li>
-            <li><a href="/#/login">Вход</a></li>
-        </ul>
-
-    </div>
+    </ul>
+    <ul class="dropdown-menu dropdown-user" ng-hide="isAuth">
+        <li><a href="/#/register">Регистрация</a></li>
+        <li><a href="/#/login">Вход</a></li>
+    </ul>
 </li>

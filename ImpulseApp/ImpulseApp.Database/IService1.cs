@@ -2,6 +2,7 @@
 using ImpulseApp.Models.DTO;
 using ImpulseApp.Models.Exceptions;
 using ImpulseApp.Models.StatModels;
+using ImpulseApp.Models.UtilModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace ImpulseApp.Database
     [ServiceContract]
     public interface IDBService
     {
+        [OperationContract]
+        IEnumerable<SimpleAdModel> GetLastAds(int from, int take);
         [OperationContract]
         IEnumerable<SimpleAdModel> GetUserAds(string UserId);
         [OperationContract]
@@ -105,6 +108,24 @@ namespace ImpulseApp.Database
         [OperationContract]
         [FaultContract(typeof(VersioningException))]
         string SetActiveByAdId(int id);
+
+        [OperationContract]
+        string SaveModeratorView(ModeratorView view);
+
+        [OperationContract]
+        ModeratorView GetModeratorView(int AdId);
+
+        [OperationContract]
+        IEnumerable<ModeratorView> GetModeratorViews(string userid);
+
+        [OperationContract]
+        string SaveUserRequest(UserRequest model);
+
+        [OperationContract]
+        IEnumerable<UserRequest> GetUserRequestsByAdId(int adId);
+
+        [OperationContract]
+        IEnumerable<UserRequest> GetUserRequestsByAdUrl(string adUrl);
 
     }
 }

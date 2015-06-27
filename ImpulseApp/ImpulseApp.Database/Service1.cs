@@ -11,6 +11,7 @@ using System.ServiceModel;
 using System.Text;
 using RefactorThis.GraphDiff;
 using ImpulseApp.Models.DTO;
+using ImpulseApp.Models.UtilModels;
 
 namespace ImpulseApp.Database
 {
@@ -23,25 +24,51 @@ namespace ImpulseApp.Database
             context.Configuration.ProxyCreationEnabled = false;
         }
         [ReferencePreservingDataContractFormat]
+        public IEnumerable<SimpleAdModel> GetLastAds(int from, int take)
+        {
+            if (take == 0)
+            {
+                return context.SimpleAds.Include("AdStates").Include("AdStates.VideoUnit").OrderByDescending(a => a.DateTime).Skip(from).ToArray();
+            }
+            return context.SimpleAds.Include("AdStates").Include("AdStates.VideoUnit").OrderByDescending(a => a.DateTime).Skip(from).Take(take).ToArray();
+        }
+        [ReferencePreservingDataContractFormat]
         public IEnumerable<Models.AdModels.SimpleAdModel> GetUserAds(string UserId)
         {
-            return context.SimpleAds.Include("AdStates").Include("AdStates.VideoUnit").Where(a => a.UserId.Equals(UserId)).ToArray();
+            return context.SimpleAds
+                .Include("AdStates")
+                .Include("AdStates.VideoUnit")
+                .Include("AdSessions")
+                .Include("AdSessions.Activities")
+                .Include("UserRequests")
+                .Include("AdSessions.Activities.Clicks")
+                .Where(a => a.UserId.Equals(UserId)).ToArray();
         }
 
         public string SaveAd(Models.AdModels.SimpleAdModel model, bool proceedToDB = true)
         {
+            if (context.SimpleAds.Count(a => a.ShortUrlKey.Equals(model.ShortUrlKey)) == 0)
+            {
+                model.IsActive = true;
+            }
             if (model.ShortUrlKey != null && model.Id > 0)
             {
-                context.UpdateGraph(model, map => map
+
+                var modelFromDb = GetAdById(model.Id);
+                context.SimpleAds.Remove(modelFromDb);
+                context.SaveChanges();
+                /*context.UpdateGraph(model, map => map
                     .OwnedCollection(graph => graph.StateGraph)
                     .OwnedCollection(states => states.AdStates, with => with
-                        .AssociatedCollection(c => c.UserElements)
-                        .AssociatedEntity(d => d.VideoUnit)));
+                        .OwnedCollection(c => c.UserElements, withd => withd
+                            .OwnedCollection(d => d.HtmlTags))
+                        .OwnedEntity(d => d.VideoUnit))
+                    .OwnedCollection(a => a.AdSessions, with => with
+                        .OwnedCollection(c => c.Activities, withd => withd
+                            .OwnedCollection(d => d.Clicks)))
+                    .OwnedCollection(a => a.UserRequests));*/
             }
-            else
-            {
-                context.SimpleAds.Add(model);
-            }
+            context.SimpleAds.Add(model);
             try
             {
                 if (proceedToDB)
@@ -137,6 +164,7 @@ namespace ImpulseApp.Database
                 .Include("AdSessions")
                 .Include("AdSessions.Activities")
                 .Include("AdSessions.Activities.Clicks")
+                .Include("UserRequests")
                 .Include("AdStates.VideoUnit")
                 .Include("AdStates.UserElements")
                 .Include("AdStates.UserElements.HtmlTags")
@@ -362,13 +390,15 @@ namespace ImpulseApp.Database
                 .Include("AdB.AdStates")
                 .Include("AdB.AdStates.VideoUnit")
                 .Include("AdB.AdStates.UserElements")
+                .Include("AdB.UserRequests")
                 .Include("AdA.AdSessions")
                 .Include("AdA.AdSessions.Activities")
                 .Include("AdA.AdSessions.Activities.Clicks")
                 .Include("AdB.AdSessions")
                 .Include("AdB.AdSessions.Activities")
                 .Include("AdB.AdSessions.Activities.Clicks")
-                .FirstOrDefault(a=>a.Id==id);
+                .Include("AdA.UserRequests")
+                .FirstOrDefault(a => a.Id == id);
         }
 
 
@@ -414,14 +444,14 @@ namespace ImpulseApp.Database
 
         public void RemoveAdByUrl(string url)
         {
-            var ads = context.SimpleAds.Where(a=>a.ShortUrlKey.Equals(url));
+            var ads = context.SimpleAds.Where(a => a.ShortUrlKey.Equals(url));
             var abtests = context.AbTests.Where(a => ads.Select(b => b.Id).Contains(a.AdAId.Value) ||
                 ads.Select(b => b.Id).Contains(a.AdBId.Value));
             foreach (var ad in ads)
             {
                 context.SimpleAds.Remove(ad);
             }
-            foreach(var ab in abtests)
+            foreach (var ab in abtests)
             {
                 context.AbTests.Remove(ab);
             }
@@ -434,6 +464,66 @@ namespace ImpulseApp.Database
             ABTest ab = context.AbTests.Find(id);
             context.AbTests.Remove(ab);
             context.SaveChanges();
+        }
+
+
+
+
+        public string SaveModeratorView(Models.UtilModels.ModeratorView view)
+        {
+            if (view.Id > 0)
+            {
+                context.Entry(view).State = System.Data.Entity.EntityState.Modified;
+            }
+            else
+            {
+                context.ModeratorViews.Add(view);
+            }
+            context.SaveChanges();
+            context.Entry<ModeratorView>(view).GetDatabaseValues();
+            return view.Id.ToString();
+        }
+
+        public Models.UtilModels.ModeratorView GetModeratorView(int AdId)
+        {
+            return context.ModeratorViews.FirstOrDefault(a => a.AdId == AdId);
+        }
+
+
+        public IEnumerable<ModeratorView> GetModeratorViews(string userid = "admin@admin")
+        {
+            if (userid.Equals("admin@admin"))
+            {
+                return context.ModeratorViews;
+            }
+            else
+            {
+                var userAdIds = context.SimpleAds.Where(a => a.UserId.Equals(userid)).Select(a => a.Id);
+                return context.ModeratorViews.Where(a => userAdIds.Contains(a.AdId));
+            }
+
+        }
+
+
+        public string SaveUserRequest(UserRequest model)
+        {
+            context.UserRequests.Add(model);
+            context.SaveChanges();
+            context.Entry<UserRequest>(model).GetDatabaseValues();
+            return model.Id.ToString();
+        }
+
+        [ReferencePreservingDataContractFormat]
+        public IEnumerable<UserRequest> GetUserRequestsByAdId(int adId)
+        {
+            var result = context.UserRequests.Include("Ad").Where(a => a.AdId == adId);
+            return result;
+        }
+        [ReferencePreservingDataContractFormat]
+        public IEnumerable<UserRequest> GetUserRequestsByAdUrl(string adUrl)
+        {
+            var result = context.UserRequests.Include("Ad").Where(a => a.Ad.ShortUrlKey.Equals(adUrl));
+            return result;
         }
     }
 }

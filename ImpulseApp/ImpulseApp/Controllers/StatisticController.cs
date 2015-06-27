@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using ImpulseApp.Models.AdModels;
 using ImpulseApp.Models.Dicts;
+using Microsoft.AspNet.Identity;
 
 namespace ImpulseApp.Controllers
 {
@@ -187,6 +188,36 @@ namespace ImpulseApp.Controllers
             return Json(chart);
         }
 
+        public JsonResult LocaleStatistics(List<int> AdIds, string sDate = "", string eDate = "")
+        {
+            var ads = service.GetUserAds(User.Identity.GetUserId()).Where(a=>AdIds.Contains(a.Id));
+
+            List<LocaleVisitorsTable> table = new List<LocaleVisitorsTable>();
+            CompareChartModel chartCompare = new CompareChartModel();
+            //var sessionsByWeek = ads.SelectMany(a => a.AdSessions).Where(a => a.DateTimeStart.Date.CompareTo(date.Date) == 0);
+            var sessionsByLocale = ads.SelectMany(a => a.AdSessions).GroupBy(a => a.UserLocale);
+            StatChartJS chartModel = new StatChartJS();
+            chartModel.name = "Лояльность по странам";
+            foreach (var session in sessionsByLocale)
+            {
+
+                LocaleVisitorsTable row = new LocaleVisitorsTable();
+                row.Locale = session.Key;
+                row.ViewsByWeek = session.Count(a => a.DateTimeStart.AddDays(7).CompareTo(DateTime.Now) > 0).ToString();
+                row.ViewsByMonth = session.Count(a => a.DateTimeStart.AddMonths(1).CompareTo(DateTime.Now) > 0).ToString();
+                chartModel.labels.Add(session.Key);
+                chartModel.data.Add(row.ViewsByMonth);
+
+                row.PopularPresentation = ads.First(b => b.Id == session
+                    .GroupBy(a => a.AdId)
+                    .OrderByDescending(a => a.Count())
+                    .First().Key).Name;
+                table.Add(row);
+            }
+            chartCompare.charts.Add(chartModel);
+            return Json(chartCompare);
+        }
+
         public JsonResult FunnelStatistics(List<int> AdIds, string sDate = "", string eDate = "")
         {
             List<SimpleAdModel> ads = new List<SimpleAdModel>();
@@ -216,7 +247,7 @@ namespace ImpulseApp.Controllers
                 var clicks = ad.AdSessions
                         .SelectMany(a => a.Activities)
                         .Where(c => c.StartTime.CompareTo(startDateTime) >= 0
-                            && c.EndTime.CompareTo(endDateTime) <= 0).GroupBy(d=>d.CurrentStateName).OrderByDescending(e=>e.Count());
+                            && c.EndTime.CompareTo(endDateTime) <= 0).GroupBy(d => d.CurrentStateName).OrderByDescending(e => e.Count());
                 jsModel.name = ad.Name;
                 foreach (var clickGroup in clicks)
                 {
@@ -268,6 +299,44 @@ namespace ImpulseApp.Controllers
                 //row.FirstStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 0).Count().ToString();
                 //row.SecondStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 1).Count().ToString();
                 //row.ThirdStage = session.SelectMany(a => a.Activities).SelectMany(b => b.Clicks).Where(c => c.ClickType == 2).Count().ToString();
+                table.Add(row);
+            }
+            return PartialView(table);
+        }
+
+        [HttpPost]
+        public ActionResult UniqueVisitorsStatistics(String StartDate = "", String EndDate = "", int daysStep = 1)
+        {
+            var ads = service.GetUserAds(User.Identity.GetUserId());
+
+            List<UniqueVisitorsTable> table = new List<UniqueVisitorsTable>();
+            DateTime StartDateTime = ads.Select(a=>a.DateTime).Min();
+            DateTime EndDateTime = ads.Select(a=>a.DateTime).Max();
+            if (StartDate != "")
+            {
+                var incomeTime = DateTime.Parse(StartDate);
+                if(incomeTime.CompareTo(StartDateTime)>0) {
+                    StartDateTime = incomeTime;
+                }
+                
+            }
+            if (EndDate != "")
+            {
+                var incomeTime = DateTime.Parse(EndDate);
+                if(incomeTime.CompareTo(EndDateTime)<0) {
+                    EndDateTime = incomeTime;
+                }
+            }
+            
+            for (var date = StartDateTime; date < EndDateTime; date = date.AddDays(daysStep))
+            {
+                UniqueVisitorsTable row = new UniqueVisitorsTable();
+                var sessions = ads.SelectMany(a => a.AdSessions).Where(a=>a.DateTimeStart.Date.CompareTo(date.Date)==0);
+                var sessionsByIP = sessions.Select(a=>a.UserIp).Distinct();
+                row.Date = date.ToShortDateString();
+                row.UniqueVisitors = sessionsByIP.Count();
+                row.AverageTime = sessions.Average(a => a.DateTimeEnd.Ticks - a.DateTimeStart.Ticks).ToString();
+                row.MaxTime = sessions.Max(a => a.DateTimeEnd.Ticks - a.DateTimeStart.Ticks).ToString();
                 table.Add(row);
             }
             return PartialView(table);

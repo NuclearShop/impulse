@@ -1,0 +1,37 @@
+﻿<div class="col-lg-12 top-buffer">
+    <div class="col-lg-4">
+        <img class="img-responsive" ng-src="{{image}}" />
+    </div>
+    <div class="col-lg-8" style="border-top: solid 1px;">
+
+        <div class="top-buffer row">
+
+            <h2>{{review.ad.Name}}:{{review.ad.Id}}</h2>
+            <div ng-show="review.review.Id==0">Реклама еще не прошла модерацию</div>
+
+        </div>
+        <div class="top-buffer row" ng-show="review.review.Id==0">
+            <div>
+                <input type="text" class="form-control" ng-model="comment" placeholder="Комментарий" />
+            </div>
+            <div>
+                <button class="btn btn-default btn-success" ng-click="reviewAd(true, comment)"><span class="fa fa-check"></span> Подтвердить</button>
+                <button class="btn btn-default btn-warning" ng-click="reviewAd(false, comment)"><span class="fa fa-remove"></span> Отклонить</button>
+            </div>
+        </div>
+        <div ng-hide="review.review.Id==0">
+            <div class="alert alert-success" role="alert" ng-show="review.review.IsApproved">
+                <strong>Реклама подтверждена</strong> <label ng-bind="review.review.Review"></label>
+            </div>
+            <div class="alert alert-danger" role="alert" ng-show="!review.review.IsApproved">
+                <strong>Реклама отклонена</strong> <label ng-bind="review.review.Review"></label>
+            </div>
+        </div>
+        <div class="top-buffer row">
+            <div class="btn-group pull-right">
+                <button class="btn btn-default btn-outline" ng-click="watch(review.ad.ShortUrlKey)"><span class="fa fa-eye"></span> Просмотреть</button>
+            </div>
+        </div>
+    </div>
+
+

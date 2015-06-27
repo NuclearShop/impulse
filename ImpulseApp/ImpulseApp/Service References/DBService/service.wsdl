@@ -8,8 +8,15 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.DTO" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.UtilModels" />
     </xsd:schema>
   </wsdl:types>
+  <wsdl:message name="IDBService_GetLastAds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastAds" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetLastAds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastAdsResponse" />
+  </wsdl:message>
   <wsdl:message name="IDBService_GetUserAds_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserAds" />
   </wsdl:message>
@@ -226,7 +233,47 @@
   <wsdl:message name="IDBService_SetActiveByAdId_VersioningExceptionFault_FaultMessage">
     <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q12:VersioningException" />
   </wsdl:message>
+  <wsdl:message name="IDBService_SaveModeratorView_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveModeratorView" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveModeratorView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveModeratorViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetModeratorView_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModeratorView" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetModeratorView_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModeratorViewResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetModeratorViews_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetModeratorViews" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetModeratorViews_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetModeratorViewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveUserRequest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserRequest" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveUserRequest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveUserRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserRequestsByAdId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequestsByAdId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserRequestsByAdId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequestsByAdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserRequestsByAdUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequestsByAdUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserRequestsByAdUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserRequestsByAdUrlResponse" />
+  </wsdl:message>
   <wsdl:portType name="IDBService">
+    <wsdl:operation name="GetLastAds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetLastAds" message="tns:IDBService_GetLastAds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetLastAdsResponse" message="tns:IDBService_GetLastAds_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetUserAds">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserAds" message="tns:IDBService_GetUserAds_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetUserAdsResponse" message="tns:IDBService_GetUserAds_OutputMessage" />
@@ -359,9 +406,42 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdIdResponse" message="tns:IDBService_SetActiveByAdId_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SetActiveByAdId_VersioningExceptionFault_FaultMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SaveModeratorView">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveModeratorView" message="tns:IDBService_SaveModeratorView_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveModeratorViewResponse" message="tns:IDBService_SaveModeratorView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModeratorView">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetModeratorView" message="tns:IDBService_GetModeratorView_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetModeratorViewResponse" message="tns:IDBService_GetModeratorView_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetModeratorViews">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetModeratorViews" message="tns:IDBService_GetModeratorViews_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetModeratorViewsResponse" message="tns:IDBService_GetModeratorViews_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserRequest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveUserRequest" message="tns:IDBService_SaveUserRequest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveUserRequestResponse" message="tns:IDBService_SaveUserRequest_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequestsByAdId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserRequestsByAdId" message="tns:IDBService_GetUserRequestsByAdId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetUserRequestsByAdIdResponse" message="tns:IDBService_GetUserRequestsByAdId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequestsByAdUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserRequestsByAdUrl" message="tns:IDBService_GetUserRequestsByAdUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetUserRequestsByAdUrlResponse" message="tns:IDBService_GetUserRequestsByAdUrl_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDBService" type="tns:IDBService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLastAds">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetLastAds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetUserAds">
       <soap:operation soapAction="http://tempuri.org/IDBService/GetUserAds" style="document" />
       <wsdl:input>
@@ -667,6 +747,60 @@
       <wsdl:fault name="VersioningExceptionFault">
         <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
       </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveModeratorView">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveModeratorView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModeratorView">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetModeratorView" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetModeratorViews">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetModeratorViews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveUserRequest">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveUserRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequestsByAdId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetUserRequestsByAdId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRequestsByAdUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetUserRequestsByAdUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DBService">

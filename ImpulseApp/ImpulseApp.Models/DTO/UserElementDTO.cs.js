@@ -31,6 +31,8 @@ server.UserElementDTO = function() {
 	this.TimeDisappear = 0;
 	/// <field name="CurrentId" type="Number">The CurrentId property as defined in ImpulseApp.Models.DTO.UserElementDTO</field>
 	this.CurrentId = 0;
+	/// <field name="ActionUrl" type="String">The ActionUrl property as defined in ImpulseApp.Models.DTO.UserElementDTO</field>
+	this.ActionUrl = '';
 	/// <field name="NextId" type="Number">The NextId property as defined in ImpulseApp.Models.DTO.UserElementDTO</field>
 	this.NextId = 0;
 	/// <field name="NextTime" type="Number">The NextTime property as defined in ImpulseApp.Models.DTO.UserElementDTO</field>

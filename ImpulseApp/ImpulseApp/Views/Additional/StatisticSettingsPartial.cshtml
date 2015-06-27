@@ -1,12 +1,9 @@
 ﻿<div class="form-inline">
-    @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
-    @*<select ng-model="type" class="form-control"
-            ng-options="opt as opt.label for opt in types">
 
-    </select>*@
-    С: <input type="date" id="start-date-stats" class="form-control" />
-    По: <input type="date" id="end-date-stats" class="form-control" />
+     @{Html.RenderAction("GetCurrentUserAds", "Additional", new { AdId = Model });}
+     С: <input type="date" id="start-date-stats" class="form-control" />
+     По: <input type="date" id="end-date-stats" class="form-control" />
+
     <button id="addAd" class="btn btn-default">Добавить</button>
-    <button id="dispose-graph" class="btn btn-default">Сбросить</button>
-    @*<div id="minificated"><input type="checkbox" value="minificate" id="minificate"> Минифицировать</div>*@
+    <button ng-show="showAds" id="dispose-graph" class="btn btn-default">Сбросить</button>
 </div>

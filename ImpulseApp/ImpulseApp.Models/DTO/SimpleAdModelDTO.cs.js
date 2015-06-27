@@ -13,6 +13,10 @@ server.SimpleAdModelDTO = function() {
 	this.HtmlSource = '';
 	/// <field name="ShortUrlKey" type="String">The ShortUrlKey property as defined in ImpulseApp.Models.DTO.SimpleAdModelDTO</field>
 	this.ShortUrlKey = '';
+	/// <field name="Poster" type="String">The Poster property as defined in ImpulseApp.Models.DTO.SimpleAdModelDTO</field>
+	this.Poster = '';
+	/// <field name="FirstState" type="Number">The FirstState property as defined in ImpulseApp.Models.DTO.SimpleAdModelDTO</field>
+	this.FirstState = 0;
 	/// <field name="DateTime" type="Date">The DateTime property as defined in ImpulseApp.Models.DTO.SimpleAdModelDTO</field>
 	this.DateTime = new Date();
 	/// <field name="IsRoot" type="Boolean">The IsRoot property as defined in ImpulseApp.Models.DTO.SimpleAdModelDTO</field>

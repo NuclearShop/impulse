@@ -1,4 +1,4 @@
-﻿var ImpulseApp = angular.module('ImpulseApp', ['ngRoute', 'ui.bootstrap', 'ngDialog', 'pascalprecht.translate', 'LocalStorageModule']);
+﻿var ImpulseApp = angular.module('ImpulseApp', ['ngRoute', 'ui.bootstrap', 'ngDialog', 'pascalprecht.translate', 'LocalStorageModule', 'ui.grid', 'ui.grid.pagination', 'ui.grid.exporter']);
 
 ImpulseApp.run([
   '$templateCache',
@@ -86,6 +86,14 @@ var configFunction = function ($routeProvider, $translateProvider, $httpProvider
                     };
                 }
             }
+        })
+        .when('/admin', {
+            templateUrl: 'Scripts/ng-impulse/html/admin-main.html',
+            controller: 'AdminController',
+        })
+        .when('/requests', {
+            templateUrl: 'Scripts/ng-impulse/html/user-requests.html',
+            controller: 'UserRequestController'
         });
 };
 configFunction.$inject = ['$routeProvider', '$translateProvider','$httpProvider'];

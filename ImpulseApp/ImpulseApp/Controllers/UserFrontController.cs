@@ -44,6 +44,10 @@ namespace ImpulseApp.Controllers
         {
             return View();
         }
+        public ActionResult StatisticsTableUniqueVisitors()
+        {
+            return PartialView();
+        }
         public ActionResult AdList()
         {
             return PartialView();

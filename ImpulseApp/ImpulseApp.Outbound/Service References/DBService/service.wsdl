@@ -6,6 +6,8 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.DTO" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IDBService_GetUserAds_InputMessage">
@@ -25,6 +27,18 @@
   </wsdl:message>
   <wsdl:message name="IDBService_GetAdById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAdByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdById_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdByUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAdByUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAdByUrlResponse" />
   </wsdl:message>
   <wsdl:message name="IDBService_SaveAd_InputMessage">
     <wsdl:part name="parameters" element="tns:SaveAd" />
@@ -68,6 +82,150 @@
   <wsdl:message name="IDBService_SaveClick_OutputMessage">
     <wsdl:part name="parameters" element="tns:SaveClickResponse" />
   </wsdl:message>
+  <wsdl:message name="IDBService_SaveVideo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveVideo" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveVideo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserVideo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserVideo" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetUserVideo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserVideoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetVideoById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetVideoById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVideoByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetVideoById_VideoNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q1:VideoNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetStateByAdIdAndVideoId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateByAdIdAndVideoId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetStateByAdIdAndVideoId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateByAdIdAndVideoIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetStateByAdIdAndVideoId_VideoNotFoundExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q2:VideoNotFoundException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByEntity_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByEntity" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByEntity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByEntityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByEntity_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q3:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIds_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByIds" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByIdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIds_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q4:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIdAndUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByIdAndUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIdAndUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByIdAndUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByIdAndUrl_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q5:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByPreviousIdAndUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByPreviousIdAndUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByPreviousIdAndUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByPreviousIdAndUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByPreviousIdAndUrl_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q6:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByUrls_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByUrls" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByUrls_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAdVersioningByUrlsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAdVersioningByUrls_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q7:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_IsRoot_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsRoot" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_IsRoot_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsRootResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_IsRoot_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q8:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetRootAdId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRootAdId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetRootAdId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRootAdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetRootAdId_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q9:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetChildAds_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildAds" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetChildAds_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetChildAdsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetChildAds_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q10:VersioningException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAbTest_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAbTest" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAbTest_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveAbTestResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SaveAbTest_AbTestExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q11:AbTestException" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAbTestByUrl_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAbTestByUrl" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAbTestByUrl_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAbTestByUrlResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAbTestById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAbTestById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAbTestById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAbTestByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAllActiveTests_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveTests" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_GetAllActiveTests_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllActiveTestsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAbTestById_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAbTestById" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_RemoveAbTestById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveAbTestByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SetActiveByAdId_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveByAdId" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SetActiveByAdId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetActiveByAdIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDBService_SetActiveByAdId_VersioningExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions" name="detail" element="q12:VersioningException" />
+  </wsdl:message>
   <wsdl:portType name="IDBService">
     <wsdl:operation name="GetUserAds">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserAds" message="tns:IDBService_GetUserAds_InputMessage" />
@@ -80,6 +238,14 @@
     <wsdl:operation name="GetAdById">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAdById" message="tns:IDBService_GetAdById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAdByIdResponse" message="tns:IDBService_GetAdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAdById" message="tns:IDBService_RemoveAdById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAdByIdResponse" message="tns:IDBService_RemoveAdById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdByUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAdByUrl" message="tns:IDBService_RemoveAdByUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAdByUrlResponse" message="tns:IDBService_RemoveAdByUrl_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="SaveAd">
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAd" message="tns:IDBService_SaveAd_InputMessage" />
@@ -109,6 +275,90 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveClick" message="tns:IDBService_SaveClick_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveClickResponse" message="tns:IDBService_SaveClick_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="SaveVideo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveVideo" message="tns:IDBService_SaveVideo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveVideoResponse" message="tns:IDBService_SaveVideo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserVideo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetUserVideo" message="tns:IDBService_GetUserVideo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetUserVideoResponse" message="tns:IDBService_GetUserVideo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetVideoById" message="tns:IDBService_GetVideoById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetVideoByIdResponse" message="tns:IDBService_GetVideoById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetVideoByIdVideoNotFoundExceptionFault" name="VideoNotFoundExceptionFault" message="tns:IDBService_GetVideoById_VideoNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStateByAdIdAndVideoId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId" message="tns:IDBService_GetStateByAdIdAndVideoId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdResponse" message="tns:IDBService_GetStateByAdIdAndVideoId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdVideoNotFoundExceptionFault" name="VideoNotFoundExceptionFault" message="tns:IDBService_GetStateByAdIdAndVideoId_VideoNotFoundExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByEntity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByEntity" message="tns:IDBService_SaveAdVersioningByEntity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByEntityResponse" message="tns:IDBService_SaveAdVersioningByEntity_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByEntityVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SaveAdVersioningByEntity_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByIds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIds" message="tns:IDBService_SaveAdVersioningByIds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIdsResponse" message="tns:IDBService_SaveAdVersioningByIds_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIdsVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SaveAdVersioningByIds_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByIdAndUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl" message="tns:IDBService_SaveAdVersioningByIdAndUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlResponse" message="tns:IDBService_SaveAdVersioningByIdAndUrl_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SaveAdVersioningByIdAndUrl_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByPreviousIdAndUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl" message="tns:IDBService_SaveAdVersioningByPreviousIdAndUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlResponse" message="tns:IDBService_SaveAdVersioningByPreviousIdAndUrl_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SaveAdVersioningByPreviousIdAndUrl_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByUrls">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByUrls" message="tns:IDBService_SaveAdVersioningByUrls_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByUrlsResponse" message="tns:IDBService_SaveAdVersioningByUrls_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAdVersioningByUrlsVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SaveAdVersioningByUrls_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsRoot">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/IsRoot" message="tns:IDBService_IsRoot_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/IsRootResponse" message="tns:IDBService_IsRoot_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/IsRootVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_IsRoot_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRootAdId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetRootAdId" message="tns:IDBService_GetRootAdId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetRootAdIdResponse" message="tns:IDBService_GetRootAdId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetRootAdIdVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_GetRootAdId_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildAds">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetChildAds" message="tns:IDBService_GetChildAds_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetChildAdsResponse" message="tns:IDBService_GetChildAds_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/GetChildAdsVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_GetChildAds_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveAbTest">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SaveAbTest" message="tns:IDBService_SaveAbTest_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SaveAbTestResponse" message="tns:IDBService_SaveAbTest_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SaveAbTestAbTestExceptionFault" name="AbTestExceptionFault" message="tns:IDBService_SaveAbTest_AbTestExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAbTestByUrl">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAbTestByUrl" message="tns:IDBService_GetAbTestByUrl_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAbTestByUrlResponse" message="tns:IDBService_GetAbTestByUrl_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAbTestById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAbTestById" message="tns:IDBService_GetAbTestById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAbTestByIdResponse" message="tns:IDBService_GetAbTestById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveTests">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTests" message="tns:IDBService_GetAllActiveTests_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/GetAllActiveTestsResponse" message="tns:IDBService_GetAllActiveTests_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAbTestById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/RemoveAbTestById" message="tns:IDBService_RemoveAbTestById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/RemoveAbTestByIdResponse" message="tns:IDBService_RemoveAbTestById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveByAdId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdId" message="tns:IDBService_SetActiveByAdId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdIdResponse" message="tns:IDBService_SetActiveByAdId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault" name="VersioningExceptionFault" message="tns:IDBService_SetActiveByAdId_VersioningExceptionFault_FaultMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IDBService" type="tns:IDBService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -132,6 +382,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetAdById">
       <soap:operation soapAction="http://tempuri.org/IDBService/GetAdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAdById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAdByUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAdByUrl" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -201,6 +469,204 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveVideo">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserVideo">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetUserVideo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVideoById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetVideoById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VideoNotFoundExceptionFault">
+        <soap:fault use="literal" name="VideoNotFoundExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStateByAdIdAndVideoId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VideoNotFoundExceptionFault">
+        <soap:fault use="literal" name="VideoNotFoundExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByEntity">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdVersioningByEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByIds">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdVersioningByIds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByIdAndUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByPreviousIdAndUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAdVersioningByUrls">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAdVersioningByUrls" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsRoot">
+      <soap:operation soapAction="http://tempuri.org/IDBService/IsRoot" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRootAdId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetRootAdId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildAds">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetChildAds" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveAbTest">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SaveAbTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AbTestExceptionFault">
+        <soap:fault use="literal" name="AbTestExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAbTestByUrl">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAbTestByUrl" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAbTestById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAbTestById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveTests">
+      <soap:operation soapAction="http://tempuri.org/IDBService/GetAllActiveTests" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveAbTestById">
+      <soap:operation soapAction="http://tempuri.org/IDBService/RemoveAbTestById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetActiveByAdId">
+      <soap:operation soapAction="http://tempuri.org/IDBService/SetActiveByAdId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="VersioningExceptionFault">
+        <soap:fault use="literal" name="VersioningExceptionFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="DBService">

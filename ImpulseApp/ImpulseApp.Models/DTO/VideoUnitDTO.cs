@@ -13,7 +13,7 @@ namespace ImpulseApp.Models.DTO
         public String Name { get; set; }
         public String GeneratedName { get; set; }
         public String UserName { get; set; }
-        public int Length { get; set; }
+        public float Length { get; set; }
         public string FullPath { get; set; }
         public string MimeType { get; set; }
         public string Image { get; set; }

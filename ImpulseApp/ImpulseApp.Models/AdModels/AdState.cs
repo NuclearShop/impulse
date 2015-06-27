@@ -16,11 +16,15 @@ namespace ImpulseApp.Models.AdModels
         {
             this.UserElements = new HashSet<UserElement>();
         }
-        public void Init()
+        public void Init(bool isUpdate)
         {
-            this.Id = 0;
+            if (!isUpdate)
+                this.Id = 0;
             if (Name == null)
                 Name = Guid.NewGuid().ToString();
+            VideoUnit = null;
+            if (EndTime == 0)
+                IsFullPlay = true;
         }
         [Key]
         [DataMember]
@@ -51,7 +55,7 @@ namespace ImpulseApp.Models.AdModels
         public int DefaultNext { get; set; }
         [DataMember]
         public int DefaultNextTime { get; set; }
-        
+
 
         [ForeignKey("AdId")]
         [DataMember]

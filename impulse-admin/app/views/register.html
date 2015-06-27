@@ -1,0 +1,33 @@
+﻿<h4>Создайте новый аккаунт</h4>
+<hr />
+<label ng-bind="message"></label>
+<hr />
+<div class="form-group">
+    <label for="UserName" class="col-md-2 control-label">Имя пользователя</label>
+    <div class="col-md-10">
+        <input type="text" name="UserName" class="form-control" ng-model="registration.userName" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="Password" class="col-md-2 control-label">Email</label>
+    <div class="col-md-10">
+        <input type="email" name="Password" class="form-control" ng-model="registration.email" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="Password" class="col-md-2 control-label">Пароль</label>
+    <div class="col-md-10">
+        <input type="password" name="Password" class="form-control" ng-model="registration.password" />
+    </div>
+</div>
+<div class="form-group">
+    <label for="ConfirmPassword" class="col-md-2 control-label">Подтвердите пароль</label>
+    <div class="col-md-10">
+        <input type="password" name="ConfirmPassword" class="form-control" ng-model="registration.confirmPassword" />
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input ng-click="signUp()" type="submit" class="btn btn-default" value="Регистрация" />
+    </div>
+</div>

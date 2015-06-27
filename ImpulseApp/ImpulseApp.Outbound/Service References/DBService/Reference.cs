@@ -9,669 +9,205 @@
 //------------------------------------------------------------------------------
 
 namespace ImpulseApp.Outbound.DBService {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SimpleAdModel", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.AdModels")]
-    [System.SerializableAttribute()]
-    public partial class SimpleAdModel : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.AdSession[] AdSessionsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string HtmlSourceField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ShortUrlKeyField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.AdSession[] AdSessions {
-            get {
-                return this.AdSessionsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdSessionsField, value) != true)) {
-                    this.AdSessionsField = value;
-                    this.RaisePropertyChanged("AdSessions");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateTime {
-            get {
-                return this.DateTimeField;
-            }
-            set {
-                if ((this.DateTimeField.Equals(value) != true)) {
-                    this.DateTimeField = value;
-                    this.RaisePropertyChanged("DateTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string HtmlSource {
-            get {
-                return this.HtmlSourceField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.HtmlSourceField, value) != true)) {
-                    this.HtmlSourceField = value;
-                    this.RaisePropertyChanged("HtmlSource");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ShortUrlKey {
-            get {
-                return this.ShortUrlKeyField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ShortUrlKeyField, value) != true)) {
-                    this.ShortUrlKeyField = value;
-                    this.RaisePropertyChanged("ShortUrlKey");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserId {
-            get {
-                return this.UserIdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserIdField, value) != true)) {
-                    this.UserIdField = value;
-                    this.RaisePropertyChanged("UserId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AdSession", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels")]
-    [System.SerializableAttribute()]
-    public partial class AdSession : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ActiveMillisecondsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.Activity[] ActivitiesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.SimpleAdModel AdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int AdIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateTimeEndField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime DateTimeStartField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SessionIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserBrowserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserIpField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserLocaleField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserLocationField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ActiveMilliseconds {
-            get {
-                return this.ActiveMillisecondsField;
-            }
-            set {
-                if ((this.ActiveMillisecondsField.Equals(value) != true)) {
-                    this.ActiveMillisecondsField = value;
-                    this.RaisePropertyChanged("ActiveMilliseconds");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.Activity[] Activities {
-            get {
-                return this.ActivitiesField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ActivitiesField, value) != true)) {
-                    this.ActivitiesField = value;
-                    this.RaisePropertyChanged("Activities");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.SimpleAdModel Ad {
-            get {
-                return this.AdField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdField, value) != true)) {
-                    this.AdField = value;
-                    this.RaisePropertyChanged("Ad");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int AdId {
-            get {
-                return this.AdIdField;
-            }
-            set {
-                if ((this.AdIdField.Equals(value) != true)) {
-                    this.AdIdField = value;
-                    this.RaisePropertyChanged("AdId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateTimeEnd {
-            get {
-                return this.DateTimeEndField;
-            }
-            set {
-                if ((this.DateTimeEndField.Equals(value) != true)) {
-                    this.DateTimeEndField = value;
-                    this.RaisePropertyChanged("DateTimeEnd");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime DateTimeStart {
-            get {
-                return this.DateTimeStartField;
-            }
-            set {
-                if ((this.DateTimeStartField.Equals(value) != true)) {
-                    this.DateTimeStartField = value;
-                    this.RaisePropertyChanged("DateTimeStart");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SessionId {
-            get {
-                return this.SessionIdField;
-            }
-            set {
-                if ((this.SessionIdField.Equals(value) != true)) {
-                    this.SessionIdField = value;
-                    this.RaisePropertyChanged("SessionId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserBrowser {
-            get {
-                return this.UserBrowserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserBrowserField, value) != true)) {
-                    this.UserBrowserField = value;
-                    this.RaisePropertyChanged("UserBrowser");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserIp {
-            get {
-                return this.UserIpField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserIpField, value) != true)) {
-                    this.UserIpField = value;
-                    this.RaisePropertyChanged("UserIp");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserLocale {
-            get {
-                return this.UserLocaleField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserLocaleField, value) != true)) {
-                    this.UserLocaleField = value;
-                    this.RaisePropertyChanged("UserLocale");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string UserLocation {
-            get {
-                return this.UserLocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserLocationField, value) != true)) {
-                    this.UserLocationField = value;
-                    this.RaisePropertyChanged("UserLocation");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Activity", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels")]
-    [System.SerializableAttribute()]
-    public partial class Activity : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.Click[] ClicksField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime EndTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.AdSession SessionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int SessionIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime StartTimeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.Click[] Clicks {
-            get {
-                return this.ClicksField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClicksField, value) != true)) {
-                    this.ClicksField = value;
-                    this.RaisePropertyChanged("Clicks");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime EndTime {
-            get {
-                return this.EndTimeField;
-            }
-            set {
-                if ((this.EndTimeField.Equals(value) != true)) {
-                    this.EndTimeField = value;
-                    this.RaisePropertyChanged("EndTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.AdSession Session {
-            get {
-                return this.SessionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.SessionField, value) != true)) {
-                    this.SessionField = value;
-                    this.RaisePropertyChanged("Session");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int SessionId {
-            get {
-                return this.SessionIdField;
-            }
-            set {
-                if ((this.SessionIdField.Equals(value) != true)) {
-                    this.SessionIdField = value;
-                    this.RaisePropertyChanged("SessionId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime StartTime {
-            get {
-                return this.StartTimeField;
-            }
-            set {
-                if ((this.StartTimeField.Equals(value) != true)) {
-                    this.StartTimeField = value;
-                    this.RaisePropertyChanged("StartTime");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Click", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.StatModels")]
-    [System.SerializableAttribute()]
-    public partial class Click : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private ImpulseApp.Outbound.DBService.Activity ActivityField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ActivityIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ClickIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime ClickTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ClickTypeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ClickZoneField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public ImpulseApp.Outbound.DBService.Activity Activity {
-            get {
-                return this.ActivityField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ActivityField, value) != true)) {
-                    this.ActivityField = value;
-                    this.RaisePropertyChanged("Activity");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ActivityId {
-            get {
-                return this.ActivityIdField;
-            }
-            set {
-                if ((this.ActivityIdField.Equals(value) != true)) {
-                    this.ActivityIdField = value;
-                    this.RaisePropertyChanged("ActivityId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ClickId {
-            get {
-                return this.ClickIdField;
-            }
-            set {
-                if ((this.ClickIdField.Equals(value) != true)) {
-                    this.ClickIdField = value;
-                    this.RaisePropertyChanged("ClickId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime ClickTime {
-            get {
-                return this.ClickTimeField;
-            }
-            set {
-                if ((this.ClickTimeField.Equals(value) != true)) {
-                    this.ClickTimeField = value;
-                    this.RaisePropertyChanged("ClickTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ClickType {
-            get {
-                return this.ClickTypeField;
-            }
-            set {
-                if ((this.ClickTypeField.Equals(value) != true)) {
-                    this.ClickTypeField = value;
-                    this.RaisePropertyChanged("ClickType");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ClickZone {
-            get {
-                return this.ClickZoneField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClickZoneField, value) != true)) {
-                    this.ClickZoneField = value;
-                    this.RaisePropertyChanged("ClickZone");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="DBService.IDBService")]
     public interface IDBService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserAds", ReplyAction="http://tempuri.org/IDBService/GetUserAdsResponse")]
-        ImpulseApp.Outbound.DBService.SimpleAdModel[] GetUserAds(string UserId);
+        ImpulseApp.Models.AdModels.SimpleAdModel[] GetUserAds(string UserId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserAds", ReplyAction="http://tempuri.org/IDBService/GetUserAdsResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel[]> GetUserAdsAsync(string UserId);
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel[]> GetUserAdsAsync(string UserId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAdByUrl", ReplyAction="http://tempuri.org/IDBService/GetAdByUrlResponse")]
-        ImpulseApp.Outbound.DBService.SimpleAdModel GetAdByUrl(string url);
+        ImpulseApp.Models.AdModels.SimpleAdModel GetAdByUrl(string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAdByUrl", ReplyAction="http://tempuri.org/IDBService/GetAdByUrlResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel> GetAdByUrlAsync(string url);
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByUrlAsync(string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAdById", ReplyAction="http://tempuri.org/IDBService/GetAdByIdResponse")]
-        ImpulseApp.Outbound.DBService.SimpleAdModel GetAdById(int id);
+        ImpulseApp.Models.AdModels.SimpleAdModel GetAdById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAdById", ReplyAction="http://tempuri.org/IDBService/GetAdByIdResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel> GetAdByIdAsync(int id);
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdById", ReplyAction="http://tempuri.org/IDBService/RemoveAdByIdResponse")]
+        void RemoveAdById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdById", ReplyAction="http://tempuri.org/IDBService/RemoveAdByIdResponse")]
+        System.Threading.Tasks.Task RemoveAdByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdByUrl", ReplyAction="http://tempuri.org/IDBService/RemoveAdByUrlResponse")]
+        void RemoveAdByUrl(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAdByUrl", ReplyAction="http://tempuri.org/IDBService/RemoveAdByUrlResponse")]
+        System.Threading.Tasks.Task RemoveAdByUrlAsync(string url);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAd", ReplyAction="http://tempuri.org/IDBService/SaveAdResponse")]
-        string SaveAd(ImpulseApp.Outbound.DBService.SimpleAdModel model, bool proceedToDB);
+        string SaveAd(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAd", ReplyAction="http://tempuri.org/IDBService/SaveAdResponse")]
-        System.Threading.Tasks.Task<string> SaveAdAsync(ImpulseApp.Outbound.DBService.SimpleAdModel model, bool proceedToDB);
+        System.Threading.Tasks.Task<string> SaveAdAsync(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetSessionsByAdId", ReplyAction="http://tempuri.org/IDBService/GetSessionsByAdIdResponse")]
-        ImpulseApp.Outbound.DBService.AdSession[] GetSessionsByAdId(int AdId);
+        ImpulseApp.Models.StatModels.AdSession[] GetSessionsByAdId(int AdId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetSessionsByAdId", ReplyAction="http://tempuri.org/IDBService/GetSessionsByAdIdResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.AdSession[]> GetSessionsByAdIdAsync(int AdId);
+        System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.AdSession[]> GetSessionsByAdIdAsync(int AdId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdSession", ReplyAction="http://tempuri.org/IDBService/SaveAdSessionResponse")]
-        string SaveAdSession(ImpulseApp.Outbound.DBService.AdSession model, bool proceedToDB);
+        string SaveAdSession(ImpulseApp.Models.StatModels.AdSession model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdSession", ReplyAction="http://tempuri.org/IDBService/SaveAdSessionResponse")]
-        System.Threading.Tasks.Task<string> SaveAdSessionAsync(ImpulseApp.Outbound.DBService.AdSession model, bool proceedToDB);
+        System.Threading.Tasks.Task<string> SaveAdSessionAsync(ImpulseApp.Models.StatModels.AdSession model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetActivityBySessionId", ReplyAction="http://tempuri.org/IDBService/GetActivityBySessionIdResponse")]
-        ImpulseApp.Outbound.DBService.Activity[] GetActivityBySessionId(int SessionId);
+        ImpulseApp.Models.StatModels.Activity[] GetActivityBySessionId(int SessionId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetActivityBySessionId", ReplyAction="http://tempuri.org/IDBService/GetActivityBySessionIdResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.Activity[]> GetActivityBySessionIdAsync(int SessionId);
+        System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.Activity[]> GetActivityBySessionIdAsync(int SessionId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveActivity", ReplyAction="http://tempuri.org/IDBService/SaveActivityResponse")]
-        string SaveActivity(ImpulseApp.Outbound.DBService.Activity model, bool proceedToDB);
+        string SaveActivity(ImpulseApp.Models.StatModels.Activity model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveActivity", ReplyAction="http://tempuri.org/IDBService/SaveActivityResponse")]
-        System.Threading.Tasks.Task<string> SaveActivityAsync(ImpulseApp.Outbound.DBService.Activity model, bool proceedToDB);
+        System.Threading.Tasks.Task<string> SaveActivityAsync(ImpulseApp.Models.StatModels.Activity model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetClicksByActivityId", ReplyAction="http://tempuri.org/IDBService/GetClicksByActivityIdResponse")]
-        ImpulseApp.Outbound.DBService.Click[] GetClicksByActivityId(int ActivityId);
+        ImpulseApp.Models.StatModels.Click[] GetClicksByActivityId(int ActivityId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetClicksByActivityId", ReplyAction="http://tempuri.org/IDBService/GetClicksByActivityIdResponse")]
-        System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.Click[]> GetClicksByActivityIdAsync(int ActivityId);
+        System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.Click[]> GetClicksByActivityIdAsync(int ActivityId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveClick", ReplyAction="http://tempuri.org/IDBService/SaveClickResponse")]
-        string SaveClick(ImpulseApp.Outbound.DBService.Click model, bool proceedToDB);
+        string SaveClick(ImpulseApp.Models.StatModels.Click model, bool proceedToDB);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveClick", ReplyAction="http://tempuri.org/IDBService/SaveClickResponse")]
-        System.Threading.Tasks.Task<string> SaveClickAsync(ImpulseApp.Outbound.DBService.Click model, bool proceedToDB);
+        System.Threading.Tasks.Task<string> SaveClickAsync(ImpulseApp.Models.StatModels.Click model, bool proceedToDB);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveVideo", ReplyAction="http://tempuri.org/IDBService/SaveVideoResponse")]
+        string SaveVideo(ImpulseApp.Models.AdModels.VideoUnit model);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveVideo", ReplyAction="http://tempuri.org/IDBService/SaveVideoResponse")]
+        System.Threading.Tasks.Task<string> SaveVideoAsync(ImpulseApp.Models.AdModels.VideoUnit model);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserVideo", ReplyAction="http://tempuri.org/IDBService/GetUserVideoResponse")]
+        ImpulseApp.Models.AdModels.VideoUnit[] GetUserVideo(string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetUserVideo", ReplyAction="http://tempuri.org/IDBService/GetUserVideoResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit[]> GetUserVideoAsync(string UserName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetVideoById", ReplyAction="http://tempuri.org/IDBService/GetVideoByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VideoNotFoundException), Action="http://tempuri.org/IDBService/GetVideoByIdVideoNotFoundExceptionFault", Name="VideoNotFoundException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.VideoUnit GetVideoById(string UserName, int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetVideoById", ReplyAction="http://tempuri.org/IDBService/GetVideoByIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit> GetVideoByIdAsync(string UserName, int Id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId", ReplyAction="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VideoNotFoundException), Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdVideoNotFoundExceptionFault" +
+            "", Name="VideoNotFoundException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.AdModels.AdState GetStateByAdIdAndVideoId(int adId, int videoId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetStateByAdIdAndVideoId", ReplyAction="http://tempuri.org/IDBService/GetStateByAdIdAndVideoIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.AdState> GetStateByAdIdAndVideoIdAsync(int adId, int videoId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByEntity", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByEntityResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByEntityVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByEntity(ImpulseApp.Models.AdModels.Versioning versioning);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByEntity", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByEntityResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByEntityAsync(ImpulseApp.Models.AdModels.Versioning versioning);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIds", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByIdsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByIds(int rootId, int childId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIds", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdsResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByIdsAsync(int rootId, int childId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByIdAndUrl(int rootId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByIdAndUrlResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByIdAndUrlAsync(int rootId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlVersioningExcepti" +
+            "onFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByPreviousIdAndUrl(int prevId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrl", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByPreviousIdAndUrlResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByPreviousIdAndUrlAsync(int prevId, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByUrls", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByUrlsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SaveAdVersioningByUrlsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAdVersioningByUrls(string rootUrl, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAdVersioningByUrls", ReplyAction="http://tempuri.org/IDBService/SaveAdVersioningByUrlsResponse")]
+        System.Threading.Tasks.Task<string> SaveAdVersioningByUrlsAsync(string rootUrl, string childUrl);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/IsRoot", ReplyAction="http://tempuri.org/IDBService/IsRootResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/IsRootVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        bool IsRoot(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/IsRoot", ReplyAction="http://tempuri.org/IDBService/IsRootResponse")]
+        System.Threading.Tasks.Task<bool> IsRootAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetRootAdId", ReplyAction="http://tempuri.org/IDBService/GetRootAdIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/GetRootAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        int GetRootAdId(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetRootAdId", ReplyAction="http://tempuri.org/IDBService/GetRootAdIdResponse")]
+        System.Threading.Tasks.Task<int> GetRootAdIdAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetChildAds", ReplyAction="http://tempuri.org/IDBService/GetChildAdsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/GetChildAdsVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        ImpulseApp.Models.DTO.VersioningDTO[] GetChildAds(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetChildAds", ReplyAction="http://tempuri.org/IDBService/GetChildAdsResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.DTO.VersioningDTO[]> GetChildAdsAsync(int adId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAbTest", ReplyAction="http://tempuri.org/IDBService/SaveAbTestResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.AbTestException), Action="http://tempuri.org/IDBService/SaveAbTestAbTestExceptionFault", Name="AbTestException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SaveAbTest(ImpulseApp.Models.AdModels.ABTest test);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SaveAbTest", ReplyAction="http://tempuri.org/IDBService/SaveAbTestResponse")]
+        System.Threading.Tasks.Task<string> SaveAbTestAsync(ImpulseApp.Models.AdModels.ABTest test);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
+        ImpulseApp.Models.AdModels.ABTest GetAbTestByUrl(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestByUrl", ReplyAction="http://tempuri.org/IDBService/GetAbTestByUrlResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByUrlAsync(string url);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
+        ImpulseApp.Models.AdModels.ABTest GetAbTestById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAbTestById", ReplyAction="http://tempuri.org/IDBService/GetAbTestByIdResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAllActiveTests", ReplyAction="http://tempuri.org/IDBService/GetAllActiveTestsResponse")]
+        ImpulseApp.Models.AdModels.ABTest[] GetAllActiveTests(string UserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/GetAllActiveTests", ReplyAction="http://tempuri.org/IDBService/GetAllActiveTestsResponse")]
+        System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest[]> GetAllActiveTestsAsync(string UserId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAbTestById", ReplyAction="http://tempuri.org/IDBService/RemoveAbTestByIdResponse")]
+        void RemoveAbTestById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/RemoveAbTestById", ReplyAction="http://tempuri.org/IDBService/RemoveAbTestByIdResponse")]
+        System.Threading.Tasks.Task RemoveAbTestByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(ImpulseApp.Models.Exceptions.VersioningException), Action="http://tempuri.org/IDBService/SetActiveByAdIdVersioningExceptionFault", Name="VersioningException", Namespace="http://schemas.datacontract.org/2004/07/ImpulseApp.Models.Exceptions")]
+        string SetActiveByAdId(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDBService/SetActiveByAdId", ReplyAction="http://tempuri.org/IDBService/SetActiveByAdIdResponse")]
+        System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -701,84 +237,244 @@ namespace ImpulseApp.Outbound.DBService {
                 base(binding, remoteAddress) {
         }
         
-        public ImpulseApp.Outbound.DBService.SimpleAdModel[] GetUserAds(string UserId) {
+        public ImpulseApp.Models.AdModels.SimpleAdModel[] GetUserAds(string UserId) {
             return base.Channel.GetUserAds(UserId);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel[]> GetUserAdsAsync(string UserId) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel[]> GetUserAdsAsync(string UserId) {
             return base.Channel.GetUserAdsAsync(UserId);
         }
         
-        public ImpulseApp.Outbound.DBService.SimpleAdModel GetAdByUrl(string url) {
+        public ImpulseApp.Models.AdModels.SimpleAdModel GetAdByUrl(string url) {
             return base.Channel.GetAdByUrl(url);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel> GetAdByUrlAsync(string url) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByUrlAsync(string url) {
             return base.Channel.GetAdByUrlAsync(url);
         }
         
-        public ImpulseApp.Outbound.DBService.SimpleAdModel GetAdById(int id) {
+        public ImpulseApp.Models.AdModels.SimpleAdModel GetAdById(int id) {
             return base.Channel.GetAdById(id);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.SimpleAdModel> GetAdByIdAsync(int id) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.SimpleAdModel> GetAdByIdAsync(int id) {
             return base.Channel.GetAdByIdAsync(id);
         }
         
-        public string SaveAd(ImpulseApp.Outbound.DBService.SimpleAdModel model, bool proceedToDB) {
+        public void RemoveAdById(int id) {
+            base.Channel.RemoveAdById(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAdByIdAsync(int id) {
+            return base.Channel.RemoveAdByIdAsync(id);
+        }
+        
+        public void RemoveAdByUrl(string url) {
+            base.Channel.RemoveAdByUrl(url);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAdByUrlAsync(string url) {
+            return base.Channel.RemoveAdByUrlAsync(url);
+        }
+        
+        public string SaveAd(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB) {
             return base.Channel.SaveAd(model, proceedToDB);
         }
         
-        public System.Threading.Tasks.Task<string> SaveAdAsync(ImpulseApp.Outbound.DBService.SimpleAdModel model, bool proceedToDB) {
+        public System.Threading.Tasks.Task<string> SaveAdAsync(ImpulseApp.Models.AdModels.SimpleAdModel model, bool proceedToDB) {
             return base.Channel.SaveAdAsync(model, proceedToDB);
         }
         
-        public ImpulseApp.Outbound.DBService.AdSession[] GetSessionsByAdId(int AdId) {
+        public ImpulseApp.Models.StatModels.AdSession[] GetSessionsByAdId(int AdId) {
             return base.Channel.GetSessionsByAdId(AdId);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.AdSession[]> GetSessionsByAdIdAsync(int AdId) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.AdSession[]> GetSessionsByAdIdAsync(int AdId) {
             return base.Channel.GetSessionsByAdIdAsync(AdId);
         }
         
-        public string SaveAdSession(ImpulseApp.Outbound.DBService.AdSession model, bool proceedToDB) {
+        public string SaveAdSession(ImpulseApp.Models.StatModels.AdSession model, bool proceedToDB) {
             return base.Channel.SaveAdSession(model, proceedToDB);
         }
         
-        public System.Threading.Tasks.Task<string> SaveAdSessionAsync(ImpulseApp.Outbound.DBService.AdSession model, bool proceedToDB) {
+        public System.Threading.Tasks.Task<string> SaveAdSessionAsync(ImpulseApp.Models.StatModels.AdSession model, bool proceedToDB) {
             return base.Channel.SaveAdSessionAsync(model, proceedToDB);
         }
         
-        public ImpulseApp.Outbound.DBService.Activity[] GetActivityBySessionId(int SessionId) {
+        public ImpulseApp.Models.StatModels.Activity[] GetActivityBySessionId(int SessionId) {
             return base.Channel.GetActivityBySessionId(SessionId);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.Activity[]> GetActivityBySessionIdAsync(int SessionId) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.Activity[]> GetActivityBySessionIdAsync(int SessionId) {
             return base.Channel.GetActivityBySessionIdAsync(SessionId);
         }
         
-        public string SaveActivity(ImpulseApp.Outbound.DBService.Activity model, bool proceedToDB) {
+        public string SaveActivity(ImpulseApp.Models.StatModels.Activity model, bool proceedToDB) {
             return base.Channel.SaveActivity(model, proceedToDB);
         }
         
-        public System.Threading.Tasks.Task<string> SaveActivityAsync(ImpulseApp.Outbound.DBService.Activity model, bool proceedToDB) {
+        public System.Threading.Tasks.Task<string> SaveActivityAsync(ImpulseApp.Models.StatModels.Activity model, bool proceedToDB) {
             return base.Channel.SaveActivityAsync(model, proceedToDB);
         }
         
-        public ImpulseApp.Outbound.DBService.Click[] GetClicksByActivityId(int ActivityId) {
+        public ImpulseApp.Models.StatModels.Click[] GetClicksByActivityId(int ActivityId) {
             return base.Channel.GetClicksByActivityId(ActivityId);
         }
         
-        public System.Threading.Tasks.Task<ImpulseApp.Outbound.DBService.Click[]> GetClicksByActivityIdAsync(int ActivityId) {
+        public System.Threading.Tasks.Task<ImpulseApp.Models.StatModels.Click[]> GetClicksByActivityIdAsync(int ActivityId) {
             return base.Channel.GetClicksByActivityIdAsync(ActivityId);
         }
         
-        public string SaveClick(ImpulseApp.Outbound.DBService.Click model, bool proceedToDB) {
+        public string SaveClick(ImpulseApp.Models.StatModels.Click model, bool proceedToDB) {
             return base.Channel.SaveClick(model, proceedToDB);
         }
         
-        public System.Threading.Tasks.Task<string> SaveClickAsync(ImpulseApp.Outbound.DBService.Click model, bool proceedToDB) {
+        public System.Threading.Tasks.Task<string> SaveClickAsync(ImpulseApp.Models.StatModels.Click model, bool proceedToDB) {
             return base.Channel.SaveClickAsync(model, proceedToDB);
+        }
+        
+        public string SaveVideo(ImpulseApp.Models.AdModels.VideoUnit model) {
+            return base.Channel.SaveVideo(model);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveVideoAsync(ImpulseApp.Models.AdModels.VideoUnit model) {
+            return base.Channel.SaveVideoAsync(model);
+        }
+        
+        public ImpulseApp.Models.AdModels.VideoUnit[] GetUserVideo(string UserName) {
+            return base.Channel.GetUserVideo(UserName);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit[]> GetUserVideoAsync(string UserName) {
+            return base.Channel.GetUserVideoAsync(UserName);
+        }
+        
+        public ImpulseApp.Models.AdModels.VideoUnit GetVideoById(string UserName, int Id) {
+            return base.Channel.GetVideoById(UserName, Id);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.VideoUnit> GetVideoByIdAsync(string UserName, int Id) {
+            return base.Channel.GetVideoByIdAsync(UserName, Id);
+        }
+        
+        public ImpulseApp.Models.AdModels.AdState GetStateByAdIdAndVideoId(int adId, int videoId, string stateName) {
+            return base.Channel.GetStateByAdIdAndVideoId(adId, videoId, stateName);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.AdState> GetStateByAdIdAndVideoIdAsync(int adId, int videoId, string stateName) {
+            return base.Channel.GetStateByAdIdAndVideoIdAsync(adId, videoId, stateName);
+        }
+        
+        public string SaveAdVersioningByEntity(ImpulseApp.Models.AdModels.Versioning versioning) {
+            return base.Channel.SaveAdVersioningByEntity(versioning);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByEntityAsync(ImpulseApp.Models.AdModels.Versioning versioning) {
+            return base.Channel.SaveAdVersioningByEntityAsync(versioning);
+        }
+        
+        public string SaveAdVersioningByIds(int rootId, int childId) {
+            return base.Channel.SaveAdVersioningByIds(rootId, childId);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByIdsAsync(int rootId, int childId) {
+            return base.Channel.SaveAdVersioningByIdsAsync(rootId, childId);
+        }
+        
+        public string SaveAdVersioningByIdAndUrl(int rootId, string childUrl) {
+            return base.Channel.SaveAdVersioningByIdAndUrl(rootId, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByIdAndUrlAsync(int rootId, string childUrl) {
+            return base.Channel.SaveAdVersioningByIdAndUrlAsync(rootId, childUrl);
+        }
+        
+        public string SaveAdVersioningByPreviousIdAndUrl(int prevId, string childUrl) {
+            return base.Channel.SaveAdVersioningByPreviousIdAndUrl(prevId, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByPreviousIdAndUrlAsync(int prevId, string childUrl) {
+            return base.Channel.SaveAdVersioningByPreviousIdAndUrlAsync(prevId, childUrl);
+        }
+        
+        public string SaveAdVersioningByUrls(string rootUrl, string childUrl) {
+            return base.Channel.SaveAdVersioningByUrls(rootUrl, childUrl);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAdVersioningByUrlsAsync(string rootUrl, string childUrl) {
+            return base.Channel.SaveAdVersioningByUrlsAsync(rootUrl, childUrl);
+        }
+        
+        public bool IsRoot(int adId) {
+            return base.Channel.IsRoot(adId);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsRootAsync(int adId) {
+            return base.Channel.IsRootAsync(adId);
+        }
+        
+        public int GetRootAdId(int adId) {
+            return base.Channel.GetRootAdId(adId);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetRootAdIdAsync(int adId) {
+            return base.Channel.GetRootAdIdAsync(adId);
+        }
+        
+        public ImpulseApp.Models.DTO.VersioningDTO[] GetChildAds(int adId) {
+            return base.Channel.GetChildAds(adId);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.DTO.VersioningDTO[]> GetChildAdsAsync(int adId) {
+            return base.Channel.GetChildAdsAsync(adId);
+        }
+        
+        public string SaveAbTest(ImpulseApp.Models.AdModels.ABTest test) {
+            return base.Channel.SaveAbTest(test);
+        }
+        
+        public System.Threading.Tasks.Task<string> SaveAbTestAsync(ImpulseApp.Models.AdModels.ABTest test) {
+            return base.Channel.SaveAbTestAsync(test);
+        }
+        
+        public ImpulseApp.Models.AdModels.ABTest GetAbTestByUrl(string url) {
+            return base.Channel.GetAbTestByUrl(url);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByUrlAsync(string url) {
+            return base.Channel.GetAbTestByUrlAsync(url);
+        }
+        
+        public ImpulseApp.Models.AdModels.ABTest GetAbTestById(int id) {
+            return base.Channel.GetAbTestById(id);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest> GetAbTestByIdAsync(int id) {
+            return base.Channel.GetAbTestByIdAsync(id);
+        }
+        
+        public ImpulseApp.Models.AdModels.ABTest[] GetAllActiveTests(string UserId) {
+            return base.Channel.GetAllActiveTests(UserId);
+        }
+        
+        public System.Threading.Tasks.Task<ImpulseApp.Models.AdModels.ABTest[]> GetAllActiveTestsAsync(string UserId) {
+            return base.Channel.GetAllActiveTestsAsync(UserId);
+        }
+        
+        public void RemoveAbTestById(int id) {
+            base.Channel.RemoveAbTestById(id);
+        }
+        
+        public System.Threading.Tasks.Task RemoveAbTestByIdAsync(int id) {
+            return base.Channel.RemoveAbTestByIdAsync(id);
+        }
+        
+        public string SetActiveByAdId(int id) {
+            return base.Channel.SetActiveByAdId(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> SetActiveByAdIdAsync(int id) {
+            return base.Channel.SetActiveByAdIdAsync(id);
         }
     }
 }

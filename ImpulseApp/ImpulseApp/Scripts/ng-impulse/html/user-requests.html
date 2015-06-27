@@ -1,0 +1,42 @@
+﻿<h1 class="page-header">Запросы пользователей</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Выберете рекламу</h3>
+    </div>
+    <div class="panel-body">
+        <select class="form-control" ng-model="selectedAd" ng-options="ad.key as ad.versions[0].Name for ad in ads"></select>
+        <button ng-click="load()" class="form-control button">Просмотреть</button>
+    </div>
+
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Запросы пользователей</h3>
+    </div>
+    <div class="panel-body">
+        <div ng-show="userRequests.length==0 && !selectedAd">Выберете презентацию</div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="request in userRequests">
+                <h4 class="list-group-item-heading" ng-bind="request.MainText"></h4>
+                <p class="list-group-item-text">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <span ng-bind="request.AdditionalText"></span>
+                        </div>
+                        <div class="col-lg-4">
+                            <ul class="list-group">
+                                <li class="list-group-item" ng-bind="request.UserIp">
+                                </li>
+                                <li class="list-group-item" ng-bind="request.DateTime">
+                                </li>
+                                <li class="list-group-item" ng-bind="request.BaseUrl">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+            </li>
+        </ul>
+    </div>
+
+</div>
