@@ -1,0 +1,71 @@
+<h1 class="page-header">A\B Тестирование</h1>
+<form novalidate name="abform">
+    <div class="row top-buffer">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Презентация A</h3>
+                </div>
+                <div class="panel-body">
+                    <select class="form-control" ng-model="adKey1" ng-options="ad.key as ad.versions[0].Name for ad in ads"></select>
+                    <select name="ada" class="form-control" ng-model="abTest.AdAId" ng-options="ver.Id as ver.DateTime for ver in ad1.versions"></select>
+                    {{version1.Name}}
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Презентация B</h3>
+                </div>
+                <div class="panel-body panel-default">
+                    <select class="form-control" ng-model="adKey2" ng-options="ad.key as ad.versions[0].Name for ad in ads"></select>
+                    <select name="adb" class="form-control" ng-model="abTest.AdBId" ng-options="ver.Id as ver.DateTime for ver in ad2.versions"></select>
+                    {{version2.Name}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="alert alert-danger" role="alert" ng-show="abform.ada.$invalid || abform.abb.$invalid">
+        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+        <span class="sr-only">Ошибка: </span>
+        Выберете разные варианты
+    </div>
+    <div class="row top-buffer">
+        <div class="col-md-6">
+            <label>Частота изменения</label>
+            <div class="input-group" ng-class="{ 'has-error': abform.ChangeHours.$invalid }">
+                <span class="input-group-addon" id="basic-addon1">час.</span>
+                <input name="ChangeHours" type="number" class="form-control" ng-model="abTest.ChangeHours" min="1" aria-describedby="basic-addon1" required />
+            </div>
+
+
+            <div class="form-group" ng-class="{ 'has-error': abform.DateStart.$invalid }">
+                <label>Начальная дата</label>
+                <input type="date" name="DateStart" class="form-control" ng-model="abTest.DateStart" min="{{today}}" required />
+                <div class="alert alert-danger" role="alert" ng-show="abform.DateStart.$invalid">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Ошибка: </span>
+                    Введите дату не раньше завтрашнего дня
+                </div>
+                <p class="help-block">До наступления срока по ссылке будет доступна презентация A</p>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <label>Количество итераций</label>
+            <div class="input-group" ng-class="{ 'has-error': abform.ChangeCount.$invalid }">
+                <span class="input-group-addon">раз</span>
+                <input name="ChangeCount" type="number" class="form-control" ng-model="abTest.ChangeCount" min="1" required />
+            </div>
+            <label>Конечная дата</label>
+            <p class="form-control-static">{{dateEnd}}</p>
+            <label>Адрес</label>
+            <p class="form-control-static">/ab/{{abTest.Url}}</p>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <input class="btn btn-default btn-lg" type="submit" value="Создать" ng-disabled="abform.$invalid" ng-click="submit()" />
+    </div>
+</form>

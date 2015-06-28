@@ -345,7 +345,7 @@ ImpulseApp.factory('authService', ['$http', '$q', 'localStorageService', functio
 
         var deferred = $q.defer();
 
-        $http.post('token', $.param(data), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
+        $http.post('/token', $.param(data), { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }).success(function (response) {
 
             localStorageService.set('authorizationData', { token: response.access_token, userName: loginData.userName });
 
@@ -400,6 +400,10 @@ ImpulseApp.factory('authInterceptorService', ['$q', '$location', 'localStorageSe
 
         config.headers = config.headers || {};
 
+        var host = 'http://localhost:56596';
+        if (config.url.indexOf('api') > -1 || config.url.indexOf('token') > -1) {
+            config.url = host + config.url;
+        }
         var authData = localStorageService.get('authorizationData');
         if (authData) {
             config.headers.Authorization = 'Bearer ' + authData.token;

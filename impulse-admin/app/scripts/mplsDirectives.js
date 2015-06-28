@@ -124,7 +124,7 @@ ImpulseApp.directive('adInfoblock', function () {
 
 ImpulseApp.directive('adminAdInfoblock', function () {
     return {
-        templateUrl: 'Scripts/ng-impulse/html/admin-ad-review.html',
+        templateUrl: 'views/admin-ad-review.html',
         restrict: 'A',
         controller: function ($scope, $modal, ServerQueryService, ExportValues) {
             $scope.watch = function (url) {

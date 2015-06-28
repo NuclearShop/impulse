@@ -1,0 +1,17 @@
+<h1 class="page-header">A\B Тестирование тест номер {{abReview.AbTest.Url}}</h1>
+<form novalidate name="abform">
+    <progressbar class="progress-striped active" max="100" value="abReview.progressValue" type="danger"><i>{{abReview.progressValue}}% Завершено с {{abReview.StartDateString}} по {{abReview.EndDateString}}</i></progressbar>
+    <div class="row top-buffer">
+        <div class="col-lg-6">
+            <div id="click-container"></div>
+        </div>
+        <div class="col-lg-6">
+            <div id="click-container-absolute"></div>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-lg-12">
+            <div id="click-container-all"></div>
+        </div>
+    </div>
+</form>

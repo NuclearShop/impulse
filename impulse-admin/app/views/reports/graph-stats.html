@@ -1,0 +1,37 @@
+<div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">{{title}}</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div id="options" class="row">
+        <div class="form-inline">
+            <span ad-dropdown /> С:
+            <input type="date" id="start-date-stats" class="form-control" /> По:
+            <input type="date" id="end-date-stats" class="form-control" />
+            <button id="addAd" class="btn btn-default">Добавить</button>
+            <button ng-show="showAds" id="dispose-graph" class="btn btn-default">Сбросить</button>
+        </div>
+    </div>
+    <div class="row top-buffer">
+        <div class="col-lg-{{width}}">
+            <div id="canvasContainer" />
+        </div>
+        <div class="col-lg-6" ng-show="state.Name">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <span class="badge">Название</span> {{state.Name}}
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Количество возможных переходов</span> {{state.UserElements.length}}
+                </li>
+                <li class="list-group-item">
+                    <span class="badge">Название видео</span> {{state.VideoUnit.Name}}
+                </li>
+                <li class="list-group-item"><img class="img-responsive" src="{{state.VideoUnit.Image}}" /></li>
+            </ul>
+        </div>
+        <div id="statLegend" class="col-lg-2"></div>
+    </div>
+</div>

@@ -19,31 +19,31 @@ var configFunction = function ($routeProvider, $translateProvider, $httpProvider
             controller: 'HomeController'
         })
         .when('/graphics/:type', {
-            templateUrl: 'UserFront/StatisticsClicks',
+            templateUrl: 'views/reports/graph-stats.html',
             controller: 'GraphController'
         })
         .when('/report/:type', {
-            templateUrl: 'UserFront/StatisticsTableClick',
+            templateUrl: 'views/reports/table-stats.html',
             controller: 'TableController'
         })
         .when('/create', {
-            templateUrl: 'UserFront/CreateTestStub',
+            templateUrl: 'views/additional/create-stub.html',
             controller: 'HomeController'
         })
         .when('/generate', {
-            templateUrl: 'Additional/GenerateAds',
+            templateUrl: 'views/additional/generate-stats-ads.html',
             controller: 'HomeController'
         })
         .when('/generateab', {
-            templateUrl: 'Additional/GenerateAbs',
+            templateUrl: 'views/additional/generate-stats-abs.html',
             controller: 'HomeController'
         })
         .when('/media', {
-            templateUrl: 'UserFront/AdList',
+            templateUrl: 'views/ad-list.html',
             controller: 'AdController'
         })
         .when('/ab/get/:id', {
-            templateUrl: 'Test/AbInfo',
+            templateUrl: 'views/ab-info.html',
             controller: 'AbTestInfoController'
         })
         .when('/login', {
@@ -55,7 +55,7 @@ var configFunction = function ($routeProvider, $translateProvider, $httpProvider
             controller: 'RegisterController'
         })
         .when('/ab', {
-            templateUrl: 'UserFront/AbTest',
+            templateUrl: 'views/ab.html',
             controller: 'AbTestController',
             resolve: {
                 ctrlOptions: function () {
@@ -66,7 +66,7 @@ var configFunction = function ($routeProvider, $translateProvider, $httpProvider
             }
         })
         .when('/ab/all', {
-            templateUrl: 'UserFront/AbTestList',
+            templateUrl: 'views/ab-list.html',
             controller: 'AbTestListController',
             resolve: {
                 ctrlOptions: function () {
@@ -77,7 +77,7 @@ var configFunction = function ($routeProvider, $translateProvider, $httpProvider
             }
         })
         .when('/ab/:id', {
-            templateUrl: 'UserFront/AbTest',
+            templateUrl: 'views/ab.html',
             controller: 'AbTestController',
             resolve: {
                 ctrlOptions: function () {
